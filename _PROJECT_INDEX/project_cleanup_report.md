@@ -1,5 +1,7 @@
 # Project Cleanup Report — D:\ocn
 
+> **REALIGNMENT BANNER (2026-07-05):** This cleanup report was written when V3.7 was treated as the current paper. The current mainline is now the **V3.17 baseline** offline PDF-corpus evidence-sufficiency screening pipeline. V3.7 is a historical advisor-handoff draft. See `D:\ocn\project_synthesis\mainline_realignment_v1\` for the authoritative realignment docs. The cleanup operations described below remain valid; only the "current paper = V3.7" framing is superseded.
+
 **Date:** 2026-07-04
 **Operation:** Full backup + mainline reorganization + archive
 **Operator:** TRAE agent (automated)

@@ -1,5 +1,7 @@
 # Script Cleanup Report v1
 
+> **REALIGNMENT BANNER (2026-07-05):** This cleanup report was written when V3.7 was treated as the current paper. The current mainline is now the **V3.17 baseline** offline PDF-corpus evidence-sufficiency screening pipeline; the V3.17 baseline scripts (`run_canonicalized_review_queue_v1.py`, `run_r4_evidence_canonicalization_v1.py`, `run_canonicalized_risk_ranking_v1.py`, `run_v3_18_intelligent_upgrade_v1.py`) are the current authoritative scripts. V3.7 is a historical advisor-handoff draft. See `D:\ocn\project_synthesis\mainline_realignment_v1\` for the authoritative realignment docs.
+
 Date: 2026-07-04
 Operator: assistant (script_cleanup_v1)
 Backup reference: `D:\ocn_backup_20260704_1606\`

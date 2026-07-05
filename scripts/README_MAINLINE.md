@@ -1,6 +1,21 @@
 # D:\ocn\scripts — Current Mainline Minimal Set
 
-This directory holds the **current mainline minimal script set** for the CESE-OCN Mixed Framework V3.7 paper. It is **not** a complete historical code archive. Old / retired scripts live under `D:\ocn\_ARCHIVE_NON_MAINLINE\scripts_*\` (see `D:\ocn\_PROJECT_INDEX\script_archive_manifest.csv` for the old_path → archive_path mapping).
+> **REALIGNMENT BANNER (2026-07-05):** The current mainline is the **V3.17 baseline offline PDF-corpus evidence-sufficiency screening framework**: PDF corpus → BM25 top-k → `best_sentence_top5_overlap` canonicalization → restored R4 (10 seeds, per-seed thresholds) → `G_conservative_precision` ranking → second-stage review queue. **V3.7 is now a historical advisor-handoff paper draft**, not the current selected method. **V3.18 intelligent upgrade** is retained as an exploratory negative ablation (selector/ranker did not improve over V3.17 baseline). See `D:\ocn\project_synthesis\mainline_realignment_v1\` for the authoritative realignment docs. The V3.7-era content below is retained for traceability.
+
+This directory holds the **current mainline minimal script set** for the CESE-OCN project. It is **not** a complete historical code archive. Old / retired scripts live under `D:\ocn\_ARCHIVE_NON_MAINLINE\scripts_*\` (see `D:\ocn\_PROJECT_INDEX\script_archive_manifest.csv` for the old_path → archive_path mapping).
+
+## Current V3.17 Baseline Scripts (Authoritative)
+
+The following scripts implement the current selected V3.17 baseline main method and the V3.18 exploratory negative ablation:
+
+| Script | Role | Safe to run? |
+|---|---|---|
+| `run_canonicalized_review_queue_v1.py` | V3.17 baseline: PDF → BM25 → canonicalization → R4 → review queue | YES (confirm no overwrite of frozen outputs) |
+| `run_r4_evidence_canonicalization_v1.py` | Evidence canonicalization format ablation | YES (diagnostic; confirm no overwrite) |
+| `run_canonicalized_risk_ranking_v1.py` | Risk ranking formula sweep (best=G_conservative_precision) | YES (diagnostic; confirm no overwrite) |
+| `run_v3_18_intelligent_upgrade_v1.py` | V3.18 exploratory negative ablation (learned selector + ranker) | YES (diagnostic; does not modify V3.17 baseline) |
+
+**V3.17 baseline frozen metrics (436 eval candidates):** strong_F1=0.4503, P@20=0.45, R@100=0.3303, FP/TP@5%=11.24, second-stage viable=true, standalone viable=false.
 
 ## What's Here
 

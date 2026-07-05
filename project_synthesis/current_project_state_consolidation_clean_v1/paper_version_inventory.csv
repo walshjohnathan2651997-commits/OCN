@@ -1,3 +1,4 @@
+# REALIGNMENT NOTE (2026-07-05): All paper versions below are historical. Current selected mainline method is V3.17 baseline (offline PDF-corpus evidence-sufficiency screening), NOT a paper version. V3.7 is historical advisor-handoff draft. See project_synthesis/mainline_realignment_v1/ for authoritative realignment docs.
 version_dir,main_md,main_docx,exists,size_md,size_docx,last_modified,main_positioning,contains_rigourate_diff,contains_hierarchical_taxonomy,contains_non_gold_checks,contains_gold_pending,notes
 V3_4_taxonomy_hardened,CESE_OCN_V3_4_taxonomy_hardened.md,CESE_OCN_V3_4_taxonomy_hardened.docx,True,82960,31409,2026-07-04 14:27:04,taxonomy hardened,no,no,no,yes,Historical taxonomy hardened; superseded
 V3_5_presentation_ready,CESE_OCN_V3_5_presentation_ready.md,CESE_OCN_V3_5_presentation_ready.docx,True,54370,22046,2026-07-04 14:53:59,presentation ready,no,no,no,yes,Historical; superseded

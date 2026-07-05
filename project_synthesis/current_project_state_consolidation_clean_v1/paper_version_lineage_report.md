@@ -1,7 +1,10 @@
 # Paper Version Lineage Report
 
+> **REALIGNMENT BANNER (2026-07-05):** The current selected main method is the **V3.17 baseline** offline PDF-corpus evidence-sufficiency screening pipeline, which is NOT a paper version per se. V3.7 (listed below as the latest paper version) is a **historical advisor-handoff draft**, not the current selected method. V3.18 intelligent upgrade is an exploratory negative ablation (not selected). The paper-version lineage below is retained for traceability; see `D:\ocn\project_synthesis\mainline_realignment_v1\` for the authoritative realignment.
+
 **Date:** 2026-07-05
 **Versions scanned:** 16
+**Note:** All paper versions below are historical. Current selected mainline method is V3.17 baseline (not a paper version).
 
 ## Version lineage (V3.4 → V3.15)
 

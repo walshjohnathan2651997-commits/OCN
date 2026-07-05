@@ -1,5 +1,7 @@
 # Script Second-Pass Cleanup Note
 
+> **REALIGNMENT BANNER (2026-07-05):** This note was written when V3.7 was treated as the current paper. The current mainline is now the **V3.17 baseline** offline PDF-corpus evidence-sufficiency screening pipeline. V3.7 is a historical advisor-handoff draft. See `D:\ocn\project_synthesis\mainline_realignment_v1\` for the authoritative realignment docs. The cleanup observations below remain valid; only the "current paper = V3.7" framing is superseded.
+
 Date: 2026-07-04
 Pass: 2 (correction pass after the first script_cleanup_v1 run)
 Operator: assistant

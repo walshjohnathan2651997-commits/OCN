@@ -1,9 +1,26 @@
 # Current Mainline Assessment
 
-**Date:** 2026-07-05
-**Assessment based on:** V3.15 hierarchical taxonomy revision + V3.16 integration gate + overnight pipeline + all recent task gates
+> **REALIGNMENT BANNER (2026-07-05):** This assessment has been superseded by `D:\ocn\project_synthesis\mainline_realignment_v1\updated_project_mainline_summary.md`. The current mainline is the **V3.17 baseline offline PDF-corpus evidence-sufficiency screening framework**: PDF corpus → BM25 top-k → `best_sentence_top5_overlap` canonicalization → restored R4 (10 seeds, per-seed thresholds) → `G_conservative_precision` ranking → second-stage review queue. V3.15 hierarchical taxonomy is retained as paper-level interpretation only. V3.18 intelligent upgrade is an exploratory negative ablation (not selected). The V3.15-era content below is retained for traceability.
 
-## 1. What is the current mainline?
+**Date:** 2026-07-05
+**Assessment based on (historical):** V3.15 hierarchical taxonomy revision + V3.16 integration gate + overnight pipeline + all recent task gates
+**Superseded by (current):** V3.17 baseline + V3.18 intelligent upgrade negative result; see `mainline_realignment_v1/`
+
+## 1. What is the current mainline? (UPDATED)
+
+The current mainline is the **offline PDF-corpus evidence-sufficiency screening framework**:
+
+```
+PDF corpus → BM25 top-k retrieval → evidence canonicalization (best_sentence_top5_overlap)
+  → CESE-OCN / R4 relation-specific screening (restored R4, 10 seeds, per-seed thresholds, majority vote)
+  → risk ranking (G_conservative_precision) → second-stage human review queue
+```
+
+This mainline is offline, auditable, and second-stage. V3.17 baseline is the selected method (strong_F1=0.4503, P@20=0.45, R@100=0.3303, FP/TP@5%=11.24). V3.18 intelligent upgrade attempted learned selector + ranker and did NOT improve (negative ablation). The hierarchical diagnostic taxonomy (V3.15) is retained as paper-level interpretation; it is NOT the empirical mainline. The original V3.15-era content follows below.
+
+---
+
+## Historical V3.15-era Assessment (Retained for Traceability)
 
 The current mainline is **CESE-OCN R4**: a relation-specific screening router under the hierarchical diagnostic taxonomy, targeting Level-2 high-risk strong_action overclaim screening as a complement to LLM judges. The mainline is anchored on the SimClaim controlled counterfactual diagnostic set (444 silver pairs, 111 groups, 6 domains) and the pre-registered §VII gold adjudication protocol (Layer 1 relation + Layer 2 realism, DRAFT, annotation NOT begun).
 

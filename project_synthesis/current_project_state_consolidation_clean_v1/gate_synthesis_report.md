@@ -1,5 +1,7 @@
 # Gate Synthesis Report
 
+> **REALIGNMENT BANNER (2026-07-05):** The current authoritative gates are the V3.17 baseline + V3.18 intelligent upgrade gates: `experiments/canonicalized_review_queue_v1/canonicalized_review_queue_gate.json` (supports_v3_17_mainline, second_stage_viable=true), `experiments/r4_evidence_canonicalization_v1/evidence_canonicalization_gate.json` (supports_v3_17_mainline=true, supports_pdf_corpus_screening_claim=true), `experiments/canonicalized_risk_ranking_v1/risk_ranking_gate.json` (best_variant=G_conservative_precision), and `experiments/v3_18_intelligent_upgrade_v1/v3_18_intelligent_upgrade_gate.json` (supports_v3_18_intelligent_upgrade=false, best_overall_method=V3.17_baseline). The V3.15/V3.16-era gates summarized below are historical; see `D:\ocn\project_synthesis\mainline_realignment_v1\` for the authoritative realignment.
+
 **Date:** 2026-07-05
 **Total gates scanned:** 25
 **Valid JSON:** 24

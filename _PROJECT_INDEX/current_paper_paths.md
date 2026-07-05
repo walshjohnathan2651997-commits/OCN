@@ -1,9 +1,11 @@
-# Current Paper Paths — Top 5
+# Historical Advisor-Handoff Paths (V3.7) — Top 5
 
-**Date:** 2026-07-04
-**Version:** V3.7 (advisor handoff clean)
+> **REALIGNMENT BANNER (2026-07-05):** The current selected main method is the **V3.17 baseline** offline PDF-corpus evidence-sufficiency screening pipeline, NOT a paper version. V3.7 below is a **historical advisor-handoff paper draft**, retained for traceability. For the authoritative current mainline, see `D:\ocn\project_synthesis\mainline_realignment_v1\updated_project_mainline_summary.md`. The V3.17 baseline is selected; V3.18 intelligent upgrade is an exploratory negative ablation (not selected).
 
-The 5 most important paths for the current paper. Send these to your advisor / collaborator.
+**Date:** 2026-07-04 (historical)
+**Version:** V3.7 (advisor handoff clean — historical)
+
+The 5 most important paths for the historical V3.7 advisor-handoff paper draft. These are retained for traceability; the current mainline method is V3.17 baseline.
 
 ---
 

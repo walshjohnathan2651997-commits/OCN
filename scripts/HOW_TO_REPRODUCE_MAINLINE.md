@@ -1,6 +1,39 @@
 # How to Reproduce the Mainline Results
 
-This file lists the canonical paths and the minimum set of scripts needed to reproduce or rebuild the mainline CESE-OCN V3.7 artifacts.
+> **REALIGNMENT BANNER (2026-07-05):** The current selected main method is the **V3.17 baseline** offline PDF-corpus evidence-sufficiency screening pipeline. The V3.7 paper reproduction path below is retained as historical. For the authoritative V3.17 baseline reproduction path, see Section 0 below and `D:\ocn\project_synthesis\mainline_realignment_v1\updated_reproducibility_note.md`.
+
+## 0. Current Selected Method — V3.17 Baseline Reproduction
+
+The V3.17 baseline pipeline is:
+
+```
+PDF corpus → BM25 top-k retrieval → evidence canonicalization (best_sentence_top5_overlap)
+  → restored R4 screening (10 seeds [11,22,33,44,55,66,77,88,99,111], per-seed thresholds, majority vote, prefer test split)
+  → risk ranking (G_conservative_precision) → second-stage review queue (top-100)
+```
+
+**Frozen V3.17 baseline metrics:** strong_F1=0.4503, strong_recall=0.7064, P@20=0.45, R@100=0.3303, FP/TP@5%=11.24, second-stage viable=true.
+
+**Per-seed R4 thresholds (example seed_11):** `t_contra=0.4`, `t_contra_low=0.35`, `t_strong=0.55`, `t_svm=0.55`. Frozen reference thresholds: `t_contra=0.48`, `t_strong=0.535`, `t_svm=0.51`. Do not refit.
+
+**R4 artifacts:** `D:\ocn\experiments\r4_minimal_recovery_v1\artifacts\seed_*\` (classifier.joblib, scaler.joblib, thresholds.json, feature_columns.json, label_mapping.json).
+
+**V3.17 baseline replay (if needed):**
+```
+python D:\ocn\scripts\run_canonicalized_review_queue_v1.py
+python D:\ocn\scripts\run_canonicalized_risk_ranking_v1.py
+```
+
+**V3.18 exploratory negative ablation replay (if needed):**
+```
+python D:\ocn\scripts\run_v3_18_intelligent_upgrade_v1.py
+```
+
+---
+
+## Historical V3.7 Paper Reproduction (Retained for Traceability)
+
+This file lists the canonical paths and the minimum set of scripts needed to reproduce or rebuild the historical CESE-OCN V3.7 paper artifacts. V3.7 is NOT the current selected method.
 
 ## 0. Important: Full Reproduction Is NOT Recommended
 

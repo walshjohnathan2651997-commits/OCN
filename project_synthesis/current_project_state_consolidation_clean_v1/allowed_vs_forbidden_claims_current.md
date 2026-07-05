@@ -1,7 +1,10 @@
-# Allowed vs. Forbidden Claims (Current, as of V3.15)
+# Allowed vs. Forbidden Claims (Current, Post-Realignment v1)
+
+> **REALIGNMENT BANNER (2026-07-05):** This list has been superseded by `D:\ocn\project_synthesis\mainline_realignment_v1\updated_allowed_forbidden_claims.md`. The current mainline is the V3.17 baseline offline PDF-corpus evidence-sufficiency screening framework. New allowed claims: A1 (PDF retrieval feasible), A2 (raw chunks degrade R4), A3 (canonicalization restores strong_action screening), A4 (overlap robust), A5 (R4 second-stage), A6 (V3.17 selected), A7 (SimClaim diagnostic), A8 (R4 macro_F1 < LLM), A9 (V3.18 negative ablation). New forbidden claims: F6 (learned improves main method), F7 (raw BM25 solves screening), F8 (model fully understands). The V3.15-era content below is retained for traceability; where it conflicts with the realignment, the realignment prevails.
 
 **Date:** 2026-07-05
-**Basis:** V3.15 hierarchical taxonomy revision + V3.16 integration gate + overnight pipeline + all recent task gates. Silver-stage evidence only; gold adjudication pending.
+**Basis (current):** V3.17 baseline frozen metrics + V3.18 intelligent upgrade negative result + canonicalized R4 evidence-sufficiency pipeline
+**Basis (historical, retained):** V3.15 hierarchical taxonomy revision + V3.16 integration gate + overnight pipeline + all recent task gates. Silver-stage evidence only; gold adjudication pending.
 
 ---
 

@@ -1,8 +1,11 @@
 # Current Project State — Master Report
 
+> **REALIGNMENT BANNER (2026-07-05):** This master report has been superseded by `D:\ocn\project_synthesis\mainline_realignment_v1\updated_project_mainline_summary.md`. The current mainline is the **V3.17 baseline** offline PDF-corpus evidence-sufficiency screening pipeline (PDF → BM25 → `best_sentence_top5_overlap` canonicalization → restored R4 → `G_conservative_precision` ranking → second-stage review queue). V3.15 hierarchical taxonomy is retained as paper-level interpretation only. V3.18 intelligent upgrade is an exploratory negative ablation (not selected). The V3.15-era content below is retained for traceability.
+
 **Date:** 2026-07-05
-**Version:** V3.15 Hierarchical Taxonomy Revision
+**Version (historical):** V3.15 Hierarchical Taxonomy Revision
 **Prepared by:** Project State Consolidation v1 (read-only audit)
+**Superseded by (current):** `mainline_realignment_v1/updated_project_mainline_summary.md`
 
 ---
 

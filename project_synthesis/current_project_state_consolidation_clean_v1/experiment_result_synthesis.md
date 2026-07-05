@@ -1,7 +1,9 @@
 # Experiment Result Synthesis
 
+> **REALIGNMENT BANNER (2026-07-05):** The current authoritative experiment results are the V3.17 baseline + V3.18 intelligent upgrade results. **V3.17 baseline (436 eval candidates):** strong_F1=0.4503, strong_recall=0.7064, P@20=0.45, R@100=0.3303, FP/TP@5%=11.24, second-stage viable=true. **V3.18 intelligent upgrade (negative ablation):** selector strong_F1=0.4444 (gap -0.006 vs baseline), ranker P@20=0.35 (gap -0.10 vs baseline), FP/TP@5%=2.00 (better), supports_v3_18_intelligent_upgrade=false, best_overall_method=V3.17_baseline. See `experiments/v3_18_intelligent_upgrade_v1/` and `D:\ocn\project_synthesis\mainline_realignment_v1\` for the authoritative realignment. The V3.15-era R4 results below remain valid as historical context; the V3.17 baseline numbers above supersede them as the current mainline.
+
 **Date:** 2026-07-05
-**Experiments synthesized:** 9
+**Experiments synthesized:** 9 (historical) + 4 current V3.17/V3.18 experiments (added by realignment)
 
 ## R4 strong_action results
 

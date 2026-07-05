@@ -1,5 +1,12 @@
 file_or_folder,category,location,reason_kept,notes
-CESE_OCN_CURRENT_ADVISOR_REVIEW.docx,paper_word,D:\ocn\CESE_OCN_CURRENT_ADVISOR_REVIEW.docx,Latest Word manuscript for advisor review,Byte-for-byte copy of V3.7 docx
+# REALIGNMENT NOTE (2026-07-05): Current mainline is V3.17 baseline (offline PDF-corpus evidence-sufficiency screening). V3.7 docx below is historical advisor-handoff draft. See project_synthesis/mainline_realignment_v1/ for authoritative realignment docs.
+# Current V3.17 baseline experiments (authoritative):
+experiments\canonicalized_review_queue_v1,experiment,D:\ocn\experiments\canonicalized_review_queue_v1,V3.17 baseline canonicalized R4 review queue (best_sentence_top5_overlap + restored R4 + second-stage queue),Current mainline experiment (V3.17 baseline)
+experiments\r4_evidence_canonicalization_v1,experiment,D:\ocn\experiments\r4_evidence_canonicalization_v1,Evidence canonicalization format ablation; proves raw BM25 degrades R4 and canonicalization restores strong_action screening,Current mainline experiment (V3.17 baseline)
+experiments\canonicalized_risk_ranking_v1,experiment,D:\ocn\experiments\canonicalized_risk_ranking_v1,Risk ranking formula sweep; best variant=G_conservative_precision (P@20=0.45),Current mainline experiment (V3.17 baseline)
+experiments\v3_18_intelligent_upgrade_v1,experiment,D:\ocn\experiments\v3_18_intelligent_upgrade_v1,V3.18 exploratory negative ablation (learned selector + ranker); supports_v3_18=false; best_overall_method=V3.17_baseline,Current mainline experiment (V3.18 negative ablation)
+# Historical V3.7 advisor-handoff artifacts (retained for traceability):
+CESE_OCN_CURRENT_ADVISOR_REVIEW.docx,paper_word,D:\ocn\CESE_OCN_CURRENT_ADVISOR_REVIEW.docx,Historical V3.7 Word manuscript for advisor review (NOT current selected method),Byte-for-byte copy of V3.7 docx; current mainline is V3.17 baseline
 paper_versions_ordered\V3_7_advisor_handoff_clean,paper_version,D:\ocn\paper_versions_ordered\V3_7_advisor_handoff_clean,Current final advisor-review draft; 7 files including main md/docx + cover note + one-page summary + risk brief + cleanup log + manifest,V3.7 is the current main version
 paper_versions_ordered\V3_6_case_figure_integrity_checked,paper_version,D:\ocn\paper_versions_ordered\V3_6_case_figure_integrity_checked,Recent key version for traceability; contains case_integrity_audit.csv and table_taxonomy_examples_v3_6_clean.csv referenced by V3.7,V3.6 case/figure integrity pass
 paper_versions_ordered\V3_5_presentation_ready,paper_version,D:\ocn\paper_versions_ordered\V3_5_presentation_ready,Recent key version for traceability; contains figures and presentation pack,V3.5 presentation pack
