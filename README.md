@@ -1,21 +1,102 @@
-# Current paper V2 mainline
+# OCN / CESE-OCN
 
-The current manuscript is **V2: Evidence-Aware Hierarchical Calibration for Simulation Claims**, not the older full shared-threshold CESE-OCN architecture claim.
+## Current mainline
 
-Authoritative V2 reproduction path:
+The current empirical mainline is **V3.17 Canonicalized R4 Baseline for Offline PDF-Corpus Evidence-Sufficiency Screening**.
 
-- `docs/paper_v2_reproduction_path.md`
-- `paper_versions_ordered/V2_evidence_aware_hierarchical/V2_CESE_OCN_evidence_aware_hierarchical_pilot.docx`
-- `experiments/paper_readiness_v2_evidence_aware/`
+This repository should currently be read as a **retrieval-to-screening pipeline** for simulation claim escalation review, not as a completed validation of the older full shared-threshold CESE-OCN neural architecture.
 
-Current empirical status:
+## Current pipeline
 
-- silver-label pilot only;
-- main task: `escalation_binary`;
-- main result: frozen `cross-encoder/nli-deberta-base` pair features + Logistic Regression;
-- no LLM calls, no transformer fine-tuning, no gold/human-audited claim.
+```text
+PDF corpus
+→ BM25 top-k retrieval
+→ best_sentence_top5_overlap evidence canonicalization
+→ frozen R4 out-of-fold screening
+→ G_conservative_precision risk ranking
+→ second-stage human review queue
+```
 
-The older CESE-OCN shared-threshold network code below remains development history and future architecture, but it is **not** the current V2 empirical claim.
+## Current empirical claim
+
+Raw PDF/BM25 chunks are not screening-compatible evidence units. The downstream failure is mainly **retrieval-to-screening format shift**: long, noisy, multi-sentence chunks and metadata damage R4/NLI/action-gap features. Simple unsupervised evidence canonicalization (best_sentence_top5_overlap) restores strong-action screening signal.
+
+Canonicalization gain: strong_F1 improves from 0.1806 (raw BM25 top1 chunk) to 0.4503 (canonicalized), a +0.2697 gain, only -0.0246 below the oracle-span upper bound (0.4257).
+
+## System role
+
+This is a **second-stage screener / review queue generator**, not a standalone classifier. R4 standalone viability is false (FP/TP @ 1% prevalence = 66.82); second-stage viability is true (FP/TP @ 5% = 11.24, recall ≥ 0.6). The pipeline produces a prioritized review queue for human adjudication; it does not replace human review.
+
+## Safe claims
+
+- PDF retrieval is feasible.
+- Raw retrieved chunks degrade R4 screening.
+- Evidence canonicalization restores strong_action screening.
+- Simple overlap-based canonicalization is robust (6/9 canonicalization formats achieve strong_F1 > 0.40; V3.18 learned selector did not improve over the simple overlap selector).
+- R4 is a second-stage screening router, not standalone.
+- SimClaim is a controlled silver diagnostic test set (444 pairs, 111 groups, 6 domains, balanced 1:1:1:1).
+
+## Not safe claims (do NOT make)
+
+- "R4 beats LLM overall." — R4 macro_F1 (0.4238 historical / 0.3847 V3.17) is lower than LLM (0.5270 DeepSeek-V3 / 0.5523 GPT-5.5). R4 provides targeted strong_action recall, not overall superiority.
+- "Gold validated." — All labels are silver (AI-preannotated); gold adjudication has NOT begun.
+- "Natural distribution / natural prevalence." — SimClaim is a controlled counterfactual diagnostic set with deliberate balanced design, not a natural-prevalence corpus.
+- "Full automatic review." — R4 produces a review queue for human second-stage review.
+- "Standalone detector." — R4 standalone viability is false.
+- "Learned selector/ranker improves main method." — V3.18 intelligent upgrade is a negative ablation (selector strong_F1=0.4444 < baseline 0.4503; ranker P@20=0.35 < baseline 0.45). V3.17 baseline remains selected.
+- "Raw BM25 chunks alone solve screening." — Raw BM25 top1 strong_F1=0.1806; canonicalization is required.
+- "Local LLM baseline completed." — Local LLM baseline is future work; current LLM comparison uses API-based DeepSeek-V3 (200 samples) and GPT-5.5 (100 samples).
+- "Full shared-threshold CESE-OCN neural architecture validation." — The older CESE-OCN architecture below is development history / future architecture, not the current empirical claim.
+- "The model fully understands scientific language." — R4 is a feature-based screening router using NLI and action-gap features.
+
+## Current frozen metrics (V3.17 baseline, 436 eval candidates)
+
+| Metric | Value | Note |
+|---|---|---|
+| strong_F1 | 0.4503 | main metric |
+| strong_recall | 0.7064 | high recall, second-stage value |
+| strong_precision | 0.3305 | low precision, motivates second-stage |
+| macro_F1 | 0.3847 | lower than LLM |
+| precision@20 | 0.45 | review queue top-20 precision |
+| recall@100 | 0.3303 | review queue top-100 coverage |
+| FP/TP @ 5% prevalence | 11.24 | second-stage viable |
+| standalone viable | false | R4 is second-stage only |
+| second-stage viable | true | R4 is second-stage only |
+| raw BM25 top1 strong_F1 | 0.1806 | raw chunks degrade screening |
+| canonicalization gain | +0.2697 | canonicalization restores signal |
+
+## Where to read next
+
+- **`_MAINLINE_CURRENT/READ_ME_FIRST_CURRENT_MAINLINE.md`** — the single entry point for the current mainline
+- **`_MAINLINE_CURRENT/_MAINLINE_EVIDENCE_MAP.md`** — claim → evidence → metric → source path
+- **`_MAINLINE_CURRENT/_FINAL_NUMBERS_FOR_PAPER.csv`** — paper-allowed final numbers
+- **`_MAINLINE_CURRENT/_DO_NOT_USE_OLD_CLAIMS.md`** — forbidden stale claims
+- **`_MAINLINE_CURRENT/_FINAL_PAPER_OUTLINE_CURRENT.md`** — current paper skeleton
+- **`scripts/README_MAINLINE.md`** — mainline script registry
+- **`scripts/HOW_TO_REPRODUCE_MAINLINE.md`** — reproduction guide
+- **`project_synthesis/mainline_realignment_v1/`** — full realignment inventory and stale-claims audit
+
+## Safety boundaries (enforced)
+
+- silver-label diagnostic only
+- not gold
+- not human-audited
+- not SOTA
+- not natural-distribution prevalence
+- not full shared-threshold CESE-OCN neural architecture validation
+- not a standalone detector
+- not replacing human review
+- no LLM/API calls in mainline
+- no new training
+- no threshold changes
+- no original data changes
+- no silver-as-gold claim
+
+---
+
+## Historical / development context (NOT current mainline)
+
+The sections below describe the older **full shared-threshold CESE-OCN neural architecture**. This code remains as development history and a candidate future architecture. It is **not** the current V3.17 empirical mainline and should not be cited as the current claim. Treat everything below this divider as historical context.
 
 # CESE-OCN: Shared-Threshold Ordinal Calibration Network
 # for Simulation Claim-Evidence Calibration
@@ -203,11 +284,12 @@ only. Do NOT write them as paper results.** Paper-ready milestones
 (300–500 rows, `extracted` evidence, graph evidence, LLM judge,
 `run_stage_report.py` on real data) are out of scope for ocn-29.
 
-## Recommended entry points (ocn-23 / ocn-41 task 1)
+## Legacy recommended entry points (ocn-23 / ocn-41 task 1) — NOT current mainline
 
-The current paper main line is **CESE-OCN on `simclaim_human_pilot`**:
+The legacy paper main line was **CESE-OCN on `simclaim_human_pilot`**:
 `simclaim_human_pilot` → `release_simclaim_human_pilot` →
-`paper_assets/simclaim_human_pilot` → 论文结果表. Do **not** introduce
+`paper_assets/simclaim_human_pilot` → 论文结果表. This is superseded by
+the V3.17 mainline (see `CURRENT_MAINLINE.md`). Do **not** introduce
 new datasets, new release names, or new "future pipeline" branches.
 
 Only two classes of entry points are recommended for the main line:
