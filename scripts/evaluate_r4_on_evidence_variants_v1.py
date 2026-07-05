@@ -31,6 +31,10 @@ from pathlib import Path
 
 import numpy as np
 
+# Shared config utilities
+sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
+from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+
 # ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
@@ -644,21 +648,28 @@ def main():
     parser = argparse.ArgumentParser(
         description="Frozen R4 evaluation on evidence variants."
     )
-    parser.add_argument("--variant_inputs_csv",
-                        default="experiments/format_shift_ablation_v1/format_shift_inputs.csv")
-    parser.add_argument("--candidate_csv",
-                        default="data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv")
-    parser.add_argument("--output_dir",
-                        default="experiments/format_shift_ablation_v1")
+    parser.add_argument("--variant_inputs_csv", default=None)
+    parser.add_argument("--candidate_csv", default=None)
+    parser.add_argument("--output_dir", default=None)
     parser.add_argument("--r4_mode", default="frozen")
     parser.add_argument("--no_train", default="true")
+    parser.add_argument("--config", default=None, help="Path to YAML config")
     parser.add_argument("--toy_mode", action="store_true")
     args = parser.parse_args()
+
+    # --- Load config ---
+    config = load_and_validate(args.config, toy_mode=args.toy_mode)
+    print_guards(config)
 
     CONFIG["r4_mode"] = args.r4_mode
     CONFIG["no_train"] = args.no_train.lower() in ("true", "1", "yes")
 
-    output_dir = Path(args.output_dir)
+    if args.output_dir:
+        output_dir = Path(args.output_dir)
+    elif args.toy_mode:
+        output_dir = Path("experiments/format_shift_ablation_v1_toy")
+    else:
+        output_dir = Path("experiments/format_shift_ablation_v1")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     if args.toy_mode:
@@ -666,8 +677,8 @@ def main():
         candidate_csv = "data/toy_synthetic/toy_candidates_v1.csv"
         print("[toy_mode] Using toy inputs")
     else:
-        variant_inputs_csv = args.variant_inputs_csv
-        candidate_csv = args.candidate_csv
+        variant_inputs_csv = args.variant_inputs_csv or "experiments/format_shift_ablation_v1/format_shift_inputs.csv"
+        candidate_csv = args.candidate_csv or str(resolve_path(config, "candidate_csv") or "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv")
 
     # --- Load inputs ---
     print(f"Loading variant inputs from {variant_inputs_csv}")
@@ -779,6 +790,10 @@ def main():
     guard_json = output_dir / "r4_leakage_guard_report.json"
     write_leakage_guard(guard_json)
     print(f"Wrote {guard_json}")
+
+    write_run_config(output_dir, config, "evaluate_r4_on_evidence_variants_v1.py",
+                     extra={"toy_mode": args.toy_mode, "r4_mode": args.r4_mode})
+    print(f"Wrote run_config.json")
 
     print("\nDone.")
 

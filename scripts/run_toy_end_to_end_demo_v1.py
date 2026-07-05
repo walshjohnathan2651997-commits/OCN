@@ -8,6 +8,7 @@ All R4 scores are MOCK/TOY. Do NOT mix with real experiment results.
 Hard boundaries: no network, no API, no training, no real data.
 """
 
+import argparse
 import json
 import shutil
 import subprocess
@@ -17,6 +18,10 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PYTHON = sys.executable
+
+# Shared config utilities
+sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
+from config_utils import load_and_validate, write_run_config, print_guards  # noqa: E402
 
 STEPS = [
     {
@@ -95,6 +100,14 @@ def run_step(step):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Toy end-to-end pipeline demo.")
+    parser.add_argument("--config", default=None, help="Path to YAML config (default: toy_demo.yaml)")
+    args = parser.parse_args()
+
+    # --- Load config (toy demo always uses toy config by default) ---
+    config = load_and_validate(args.config, toy_mode=True)
+    print_guards(config)
+
     output_dir = REPO_ROOT / "experiments" / "toy_end_to_end_demo_v1"
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -146,6 +159,10 @@ def main():
     with open(summary_path, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
     log(f"\nWrote {summary_path}")
+
+    write_run_config(output_dir, config, "run_toy_end_to_end_demo_v1.py",
+                     extra={"toy_mode": True, "all_steps_success": all_success})
+    log("Wrote run_config.json")
 
     if all_success:
         log("\nAll steps completed successfully!")

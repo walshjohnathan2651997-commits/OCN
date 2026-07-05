@@ -12,6 +12,7 @@ no silver-as-gold, no natural-distribution claim, no simulated-as-real claim.
 
 from __future__ import annotations
 
+import argparse
 import json
 import math
 import os
@@ -33,7 +34,11 @@ from sklearn.metrics import (
     recall_score,
 )
 
-# ---------------- Paths ----------------
+# Shared config utilities
+sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
+from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+
+# ---------------- Paths (defaults — can be overridden by --config) ----------------
 ROBUST_DIR = Path(r"D:\ocn\experiments\canonical_selector_robustness_v1")
 CANON_DIR = Path(r"D:\ocn\experiments\r4_evidence_canonicalization_v1")
 RECOVERY_DIR = Path(r"D:\ocn\experiments\r4_minimal_recovery_v1")
@@ -46,7 +51,6 @@ PAPER_STRICT_CSV = Path(
 )
 
 OUTPUT_DIR = Path(r"D:\ocn\experiments\canonicalized_review_queue_v1")
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---------------- Constants ----------------
 SEEDS = [11, 22, 33, 44, 55, 66, 77, 88, 99, 111]
@@ -205,6 +209,29 @@ def build_action_gap_features(claims, evidences, original_df_for_tfidf):
 # ---------------- Main ----------------
 
 def main():
+    global OUTPUT_DIR, ROBUST_DIR, CANON_DIR, RETRIEVAL_RESULTS_BM25, PAPER_STRICT_CSV
+
+    parser = argparse.ArgumentParser(description="Canonicalized review queue and low-prevalence screening.")
+    parser.add_argument("--config", default=None, help="Path to YAML config (optional, overrides defaults)")
+    args = parser.parse_args()
+
+    # --- Load config if provided ---
+    if args.config:
+        config = load_and_validate(args.config)
+        print_guards(config)
+        if resolve_path(config, "review_queue_dir"):
+            OUTPUT_DIR = resolve_path(config, "review_queue_dir")
+        if resolve_path(config, "canonicalizer_dir"):
+            ROBUST_DIR = resolve_path(config, "canonicalizer_dir")
+        if resolve_path(config, "retrieval_dir"):
+            RETRIEVAL_RESULTS_BM25 = resolve_path(config, "retrieval_dir") / "retrieval_results_bm25.csv"
+        if resolve_path(config, "candidate_csv"):
+            PAPER_STRICT_CSV = resolve_path(config, "candidate_csv")
+    else:
+        config = None
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
     log("=" * 70)
     log("Canonicalized Review Queue and Low-Prevalence Screening v1")
     log("=" * 70)
@@ -1021,6 +1048,9 @@ Canonicalization vs raw:
     log(f"review_queue_usable: {review_queue_usable}")
     log(f"low_prevalence_usable: {low_prev_usable}")
     log(f"recommended_mode: {recommended_mode}")
+    if config:
+        write_run_config(OUTPUT_DIR, config, "run_canonicalized_review_queue_v1.py")
+        log(f"Run config: {OUTPUT_DIR / 'run_config.json'}")
 
 
 if __name__ == "__main__":

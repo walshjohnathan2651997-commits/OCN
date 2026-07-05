@@ -25,6 +25,10 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Shared config utilities
+sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
+from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+
 # ---------------------------------------------------------------------------
 # Config (single source of truth)
 # ---------------------------------------------------------------------------
@@ -641,22 +645,22 @@ def main():
     parser = argparse.ArgumentParser(
         description="Unified evidence canonicalizer ablation (8 selectors)."
     )
-    parser.add_argument("--candidate_csv",
-                        default="data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv")
-    parser.add_argument("--chunk_retrieval_csv",
-                        default="experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_results_bm25.csv")
-    parser.add_argument("--sentence_retrieval_csv",
-                        default="experiments/bm25_sentence_retrieval_v1/retrieval_results_sentence_bm25.csv")
-    parser.add_argument("--window_retrieval_csv",
-                        default="experiments/bm25_sentence_retrieval_v1/retrieval_results_window_bm25.csv")
-    parser.add_argument("--output_dir",
-                        default="experiments/canonicalizer_ablation_v1")
+    parser.add_argument("--candidate_csv", default=None)
+    parser.add_argument("--chunk_retrieval_csv", default=None)
+    parser.add_argument("--sentence_retrieval_csv", default=None)
+    parser.add_argument("--window_retrieval_csv", default=None)
+    parser.add_argument("--output_dir", default=None)
     parser.add_argument("--top_k", type=int, default=5)
+    parser.add_argument("--config", default=None, help="Path to YAML config")
     parser.add_argument("--toy_mode", action="store_true")
     args = parser.parse_args()
 
+    # --- Load config ---
+    config = load_and_validate(args.config, toy_mode=args.toy_mode)
+    print_guards(config)
+
     CONFIG["top_k"] = args.top_k
-    output_dir = Path(args.output_dir)
+    output_dir = Path(args.output_dir) if args.output_dir else resolve_path(config, "canonicalizer_dir")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     if args.toy_mode:
@@ -666,9 +670,10 @@ def main():
         window_retrieval_csv = "experiments/bm25_sentence_retrieval_v1_toy/retrieval_results_window_bm25.csv"
         print("[toy_mode] Using toy inputs")
     else:
-        candidate_csv = args.candidate_csv
-        sentence_retrieval_csv = args.sentence_retrieval_csv
-        window_retrieval_csv = args.window_retrieval_csv
+        candidate_csv = args.candidate_csv or str(resolve_path(config, "candidate_csv") or "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv")
+        retr_dir = resolve_path(config, "retrieval_dir") or Path("experiments/bm25_sentence_retrieval_v1")
+        sentence_retrieval_csv = args.sentence_retrieval_csv or str(retr_dir / "retrieval_results_sentence_bm25.csv")
+        window_retrieval_csv = args.window_retrieval_csv or str(retr_dir / "retrieval_results_window_bm25.csv")
 
     # --- Load inputs ---
     print(f"Loading candidates from {candidate_csv}")
@@ -787,6 +792,10 @@ def main():
     with open(config_json, "w", encoding="utf-8") as f:
         json.dump(CONFIG, f, indent=2, ensure_ascii=False)
     print(f"Wrote {config_json}")
+
+    write_run_config(output_dir, config, "run_canonicalizer_ablation_v1.py",
+                     extra={"toy_mode": args.toy_mode})
+    print(f"Wrote run_config.json")
 
     print(f"\nDefault mainline selector: {DEFAULT_SELECTOR}")
     print("Done.")

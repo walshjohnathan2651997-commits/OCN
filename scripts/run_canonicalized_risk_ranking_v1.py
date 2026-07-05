@@ -7,6 +7,7 @@ Canonicalized R4 Risk Ranking Calibration v1
 只做风险排序校准，不训练模型，不调 API，不改原数据，不改论文。
 """
 
+import argparse
 import json
 import sys
 import numpy as np
@@ -15,12 +16,15 @@ from pathlib import Path
 from datetime import datetime
 from sklearn.metrics import average_precision_score
 
-# ===== Paths =====
+# Shared config utilities
+sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
+from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+
+# ===== Paths (defaults — can be overridden by --config) =====
 REVIEW_QUEUE_DIR = Path(r"D:\ocn\experiments\canonicalized_review_queue_v1")
 SELECTOR_DIR = Path(r"D:\ocn\experiments\canonical_selector_robustness_v1")
 RETRIEVAL_DIR = Path(r"D:\ocn\experiments\simclaim_pdf_corpus_retrieval_v1")
 OUTPUT_DIR = Path(r"D:\ocn\experiments\canonicalized_risk_ranking_v1")
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ===== Constants =====
 T_CONTRA_LOW = 0.36  # frozen mean threshold
@@ -837,6 +841,29 @@ def build_report(gate, results_df, low_prev_df, error_df, df):
 
 
 def main():
+    global OUTPUT_DIR, REVIEW_QUEUE_DIR, SELECTOR_DIR, RETRIEVAL_DIR
+
+    parser = argparse.ArgumentParser(description="Canonicalized R4 risk ranking calibration.")
+    parser.add_argument("--config", default=None, help="Path to YAML config (optional, overrides defaults)")
+    args = parser.parse_args()
+
+    # --- Load config if provided ---
+    if args.config:
+        config = load_and_validate(args.config)
+        print_guards(config)
+        if resolve_path(config, "risk_ranking_dir"):
+            OUTPUT_DIR = resolve_path(config, "risk_ranking_dir")
+        if resolve_path(config, "review_queue_dir"):
+            REVIEW_QUEUE_DIR = resolve_path(config, "review_queue_dir")
+        if resolve_path(config, "canonicalizer_dir"):
+            SELECTOR_DIR = resolve_path(config, "canonicalizer_dir")
+        if resolve_path(config, "retrieval_dir"):
+            RETRIEVAL_DIR = resolve_path(config, "retrieval_dir")
+    else:
+        config = None
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
     log("=" * 70)
     log("Canonicalized R4 Risk Ranking Calibration v1")
     log("=" * 70)
@@ -896,6 +923,9 @@ def main():
     log(f"  Recommended mode: {gate['recommended_mode']}")
     log(f"  Gate: {OUTPUT_DIR / 'risk_ranking_gate.json'}")
     log(f"  Report: {OUTPUT_DIR / 'risk_ranking_report.md'}")
+    if config:
+        write_run_config(OUTPUT_DIR, config, "run_canonicalized_risk_ranking_v1.py")
+        log(f"  Run config: {OUTPUT_DIR / 'run_config.json'}")
     log("=" * 70)
 
 

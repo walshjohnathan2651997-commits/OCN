@@ -23,6 +23,10 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+# Shared config utilities
+sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
+from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+
 # ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
@@ -368,18 +372,24 @@ def main():
     parser = argparse.ArgumentParser(
         description="Evidence format-shift ablation: construct 8 variants."
     )
-    parser.add_argument("--candidate_csv",
-                        default="data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv")
-    parser.add_argument("--chunk_retrieval_csv",
-                        default="experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_results_bm25.csv")
-    parser.add_argument("--selector_variant_csv",
-                        default="experiments/canonicalizer_ablation_v1/selector_variant_evidence.csv")
-    parser.add_argument("--output_dir",
-                        default="experiments/format_shift_ablation_v1")
+    parser.add_argument("--candidate_csv", default=None)
+    parser.add_argument("--chunk_retrieval_csv", default=None)
+    parser.add_argument("--selector_variant_csv", default=None)
+    parser.add_argument("--output_dir", default=None)
+    parser.add_argument("--config", default=None, help="Path to YAML config")
     parser.add_argument("--toy_mode", action="store_true")
     args = parser.parse_args()
 
-    output_dir = Path(args.output_dir)
+    # --- Load config ---
+    config = load_and_validate(args.config, toy_mode=args.toy_mode)
+    print_guards(config)
+
+    if args.output_dir:
+        output_dir = Path(args.output_dir)
+    elif args.toy_mode:
+        output_dir = Path("experiments/format_shift_ablation_v1_toy")
+    else:
+        output_dir = Path("experiments/format_shift_ablation_v1")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     if args.toy_mode:
@@ -388,8 +398,9 @@ def main():
         selector_variant_csv = "experiments/canonicalizer_ablation_v1_toy/selector_variant_evidence.csv"
         print("[toy_mode] Using toy inputs")
     else:
-        candidate_csv = args.candidate_csv
-        selector_variant_csv = args.selector_variant_csv
+        candidate_csv = args.candidate_csv or str(resolve_path(config, "candidate_csv") or "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv")
+        canon_dir = resolve_path(config, "canonicalizer_dir") or Path("experiments/canonicalizer_ablation_v1")
+        selector_variant_csv = args.selector_variant_csv or str(canon_dir / "selector_variant_evidence.csv")
 
     # --- Load inputs ---
     print(f"Loading candidates from {candidate_csv}")
@@ -436,6 +447,10 @@ def main():
     config_json = output_dir / "format_shift_config.json"
     write_config_json(config_json)
     print(f"Wrote {config_json}")
+
+    write_run_config(output_dir, config, "run_format_shift_ablation_v1.py",
+                     extra={"toy_mode": args.toy_mode})
+    print(f"Wrote run_config.json")
 
     print("\nNote: oracle_clean is diagnostic upper-bound, NOT production.")
     print("      canonicalized_best_sentence_top5 is the production-like selector.")

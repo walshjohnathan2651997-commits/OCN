@@ -21,6 +21,10 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
+# Shared config utilities
+sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
+from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+
 FORBIDDEN_SELECTOR_FIELDS = {
     "true_label", "candidate_label_guess", "gold_label", "human_audited",
     "oracle_hit", "final_label",
@@ -452,18 +456,19 @@ def write_audit_summary(filepath, results):
 
 def main():
     parser = argparse.ArgumentParser(description="Leakage audit for V3.17 pipeline.")
-    parser.add_argument("--candidate_csv",
-                        default="data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv")
-    parser.add_argument("--canonicalizer_guard",
-                        default="experiments/canonicalizer_ablation_v1/leakage_guard_report.json")
-    parser.add_argument("--queue_guard",
-                        default="experiments/lightweight_smart_queue_v1/leakage_guard_report.json")
-    parser.add_argument("--output_dir",
-                        default="experiments/leakage_audit_v1")
+    parser.add_argument("--candidate_csv", default=None)
+    parser.add_argument("--canonicalizer_guard", default=None)
+    parser.add_argument("--queue_guard", default=None)
+    parser.add_argument("--output_dir", default=None)
+    parser.add_argument("--config", default=None, help="Path to YAML config")
     parser.add_argument("--toy_mode", action="store_true")
     args = parser.parse_args()
 
-    output_dir = Path(args.output_dir)
+    # --- Load config ---
+    config = load_and_validate(args.config, toy_mode=args.toy_mode)
+    print_guards(config)
+
+    output_dir = Path(args.output_dir) if args.output_dir else resolve_path(config, "leakage_audit_dir")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     if args.toy_mode:
@@ -472,9 +477,11 @@ def main():
         queue_guard = "experiments/lightweight_smart_queue_v1_toy/leakage_guard_report.json"
         print("[toy_mode] Using toy inputs")
     else:
-        candidate_csv = args.candidate_csv
-        canonicalizer_guard = args.canonicalizer_guard
-        queue_guard = args.queue_guard
+        candidate_csv = args.candidate_csv or str(resolve_path(config, "candidate_csv") or "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv")
+        canon_dir = resolve_path(config, "canonicalizer_dir") or Path("experiments/canonicalizer_ablation_v1")
+        queue_dir = resolve_path(config, "smart_queue_dir") or Path("experiments/lightweight_smart_queue_v1")
+        canonicalizer_guard = args.canonicalizer_guard or str(canon_dir / "leakage_guard_report.json")
+        queue_guard = args.queue_guard or str(queue_dir / "leakage_guard_report.json")
 
     # --- Load data ---
     print(f"Loading candidates from {candidate_csv}")
@@ -528,6 +535,9 @@ def main():
                        ("group_split", group_split), ("selector_oracle", selector_oracle),
                        ("queue_forbidden", queue_forbidden)]:
         print(f"  {name}: {res.get('status', 'skip')}")
+    write_run_config(output_dir, config, "run_leakage_audit_v1.py",
+                     extra={"toy_mode": args.toy_mode})
+    print("Wrote run_config.json")
     print("Done.")
 
 

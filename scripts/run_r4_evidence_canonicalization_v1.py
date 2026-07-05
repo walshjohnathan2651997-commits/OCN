@@ -20,6 +20,7 @@ no true_label/oracle_hit use for evidence selection, no silver-as-gold.
 
 from __future__ import annotations
 
+import argparse
 import json
 import math
 import os
@@ -41,7 +42,11 @@ from sklearn.metrics import (
     recall_score,
 )
 
-# ---------------- Paths ----------------
+# ---------------- Paths (defaults — can be overridden by --config) ----------------
+# Shared config utilities
+sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
+from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+
 REPLAY_DIR = Path(r"D:\ocn\experiments\r4_retrieved_replay_v1")
 RECOVERY_DIR = Path(r"D:\ocn\experiments\r4_minimal_recovery_v1")
 RECOVERY_ARTIFACTS = RECOVERY_DIR / "artifacts"
@@ -62,7 +67,6 @@ ORACLE_HCM_REPLAY = REPLAY_DIR / "hcm_features_replay_oracle.csv"
 BM25_TOP1_HCM_REPLAY = REPLAY_DIR / "hcm_features_replay_bm25_top1.csv"
 
 OUTPUT_DIR = Path(r"D:\ocn\experiments\r4_evidence_canonicalization_v1")
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---------------- Constants ----------------
 SEEDS = [11, 22, 33, 44, 55, 66, 77, 88, 99, 111]
@@ -460,6 +464,27 @@ def json_default(o):
 # ---------------- Main ----------------
 
 def main():
+    global OUTPUT_DIR, RETRIEVAL_RESULTS_BM25, PAPER_STRICT_CSV
+
+    parser = argparse.ArgumentParser(description="R4 evidence canonicalization.")
+    parser.add_argument("--config", default=None, help="Path to YAML config (optional, overrides defaults)")
+    args = parser.parse_args()
+
+    # --- Load config if provided ---
+    if args.config:
+        config = load_and_validate(args.config)
+        print_guards(config)
+        if resolve_path(config, "canonicalizer_dir"):
+            OUTPUT_DIR = resolve_path(config, "canonicalizer_dir")
+        if resolve_path(config, "retrieval_dir"):
+            RETRIEVAL_RESULTS_BM25 = resolve_path(config, "retrieval_dir") / "retrieval_results_bm25.csv"
+        if resolve_path(config, "candidate_csv"):
+            PAPER_STRICT_CSV = resolve_path(config, "candidate_csv")
+    else:
+        config = None
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
     log("=" * 70)
     log("Retrieved Evidence Canonicalization for R4 v1")
     log("=" * 70)
@@ -1293,6 +1318,9 @@ def main():
     log(f"format_shift_confirmed: {format_shift_confirmed}")
     log(f"retrieved_replay_passed: {retrieved_replay_passed}")
     log(f"supports_v3_17_mainline: {supports_v3_17}")
+    if config:
+        write_run_config(OUTPUT_DIR, config, "run_r4_evidence_canonicalization_v1.py")
+        log(f"Run config: {OUTPUT_DIR / 'run_config.json'}")
 
 
 if __name__ == "__main__":

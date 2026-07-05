@@ -18,14 +18,20 @@ Hard prohibitions:
     - No file deletion
 """
 
+import argparse
 import json
 import re
 import math
 import shutil
+import sys
 from pathlib import Path
 from collections import Counter, defaultdict
 import pandas as pd
 import numpy as np
+
+# Shared config utilities
+sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
+from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
 
 # Try pymupdf
 try:
@@ -34,7 +40,7 @@ try:
 except ImportError:
     PYMUPDF_OK = False
 
-# ============ Configuration ============
+# ============ Configuration (defaults — can be overridden by --config) ============
 STRICT_SILVER_CSV = Path(r"D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv")
 PDF_SEARCH_DIRS = [
     Path(r"D:\ocn_backup_20260704_1606\data\source_bank_v2\pdfs"),
@@ -1074,6 +1080,29 @@ BM25 检索指标：
 
 # ============ Main ============
 def main() -> None:
+    global EXP_OUT, DATA_OUT, STRICT_SILVER_CSV
+
+    parser = argparse.ArgumentParser(description="SimClaim PDF-corpus retrieval prototype.")
+    parser.add_argument("--config", default=None, help="Path to YAML config (optional, overrides defaults)")
+    args = parser.parse_args()
+
+    # --- Load config if provided ---
+    if args.config:
+        config = load_and_validate(args.config)
+        print_guards(config)
+        if resolve_path(config, "candidate_csv"):
+            STRICT_SILVER_CSV = resolve_path(config, "candidate_csv")
+        if resolve_path(config, "retrieval_dir"):
+            EXP_OUT = resolve_path(config, "retrieval_dir")
+        # DATA_OUT is derived from retrieval_dir's parent data dir
+        if resolve_path(config, "pdf_corpus_dir"):
+            DATA_OUT = resolve_path(config, "pdf_corpus_dir")
+    else:
+        config = None
+
+    EXP_OUT.mkdir(parents=True, exist_ok=True)
+    DATA_OUT.mkdir(parents=True, exist_ok=True)
+
     print("=" * 60)
     print("SimClaim PDF-Corpus Retrieval Prototype v1")
     print("=" * 60)
@@ -1123,6 +1152,9 @@ def main() -> None:
     print("DONE")
     print(f"  Experiment output: {EXP_OUT}")
     print(f"  Data output: {DATA_OUT}")
+    if config:
+        write_run_config(EXP_OUT, config, "run_simclaim_pdf_retrieval_v1.py")
+        print(f"  Run config: {EXP_OUT / 'run_config.json'}")
     print("=" * 60)
 
 

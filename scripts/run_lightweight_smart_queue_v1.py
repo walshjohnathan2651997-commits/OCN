@@ -23,6 +23,10 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Shared config utilities
+sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
+from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+
 # ---------------------------------------------------------------------------
 # Config (single source of truth)
 # ---------------------------------------------------------------------------
@@ -392,21 +396,22 @@ def write_leakage_guard(filepath):
 
 def main():
     parser = argparse.ArgumentParser(description="Lightweight SmartQueue with 3 profiles and group diversity.")
-    parser.add_argument("--review_scores_csv",
-                        default="experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv")
-    parser.add_argument("--selector_csv",
-                        default="experiments/canonicalizer_ablation_v1/selector_variant_evidence.csv")
-    parser.add_argument("--retrieval_csv",
-                        default="experiments/bm25_sentence_retrieval_v1/retrieval_results_sentence_bm25.csv")
-    parser.add_argument("--output_dir",
-                        default="experiments/lightweight_smart_queue_v1")
+    parser.add_argument("--review_scores_csv", default=None)
+    parser.add_argument("--selector_csv", default=None)
+    parser.add_argument("--retrieval_csv", default=None)
+    parser.add_argument("--output_dir", default=None)
     parser.add_argument("--selector", default=CONFIG["selector"])
     parser.add_argument("--profile", default="balanced", choices=["conservative", "balanced", "high_recall"])
+    parser.add_argument("--config", default=None, help="Path to YAML config (default: v3_17_confidential_default.yaml or toy_demo.yaml)")
     parser.add_argument("--toy_mode", action="store_true")
     args = parser.parse_args()
 
+    # --- Load config (default: toy config if toy_mode, else default config) ---
+    config = load_and_validate(args.config, toy_mode=args.toy_mode)
+    print_guards(config)
+
     CONFIG["selector"] = args.selector
-    output_dir = Path(args.output_dir)
+    output_dir = Path(args.output_dir) if args.output_dir else resolve_path(config, "smart_queue_dir")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     if args.toy_mode:
@@ -415,9 +420,12 @@ def main():
         review_scores_csv = None  # will generate mock
         print("[toy_mode] Using toy inputs with mock R4 scores")
     else:
-        selector_csv = args.selector_csv
-        retrieval_csv = args.retrieval_csv
-        review_scores_csv = args.review_scores_csv
+        canon_dir = resolve_path(config, "canonicalizer_dir") or Path("experiments/canonicalizer_ablation_v1")
+        retr_dir = resolve_path(config, "retrieval_dir") or Path("experiments/bm25_sentence_retrieval_v1")
+        queue_dir = resolve_path(config, "review_queue_dir") or Path("experiments/canonicalized_review_queue_v1")
+        selector_csv = args.selector_csv or str(canon_dir / "selector_variant_evidence.csv")
+        retrieval_csv = args.retrieval_csv or str(retr_dir / "retrieval_results_sentence_bm25.csv")
+        review_scores_csv = args.review_scores_csv or str(queue_dir / "canonicalized_r4_review_scores.csv")
 
     # --- Load data ---
     print(f"Loading selector evidence from {selector_csv}")
@@ -533,6 +541,11 @@ def main():
 
     write_leakage_guard(output_dir / "leakage_guard_report.json")
     print(f"Wrote leakage_guard_report.json")
+
+    # --- Write run_config.json ---
+    write_run_config(output_dir, config, "run_lightweight_smart_queue_v1.py",
+                     extra={"selected_profile": args.profile, "toy_mode": args.toy_mode})
+    print(f"Wrote run_config.json")
 
     # --- Summary ---
     bucket_dist = Counter(it["bucket"] for it in all_items)
