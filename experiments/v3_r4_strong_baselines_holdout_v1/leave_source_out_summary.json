@@ -1,0 +1,13 @@
+{
+  "n_sources_tested": 32,
+  "r4_stable_sources": 28,
+  "r4_unstable_sources": 4,
+  "fragile_sources": [
+    "POL-007",
+    "AD-007",
+    "POL-014",
+    "MARL-002"
+  ],
+  "mean_r4_strong_f1": 0.3700875,
+  "mean_b1_strong_f1": 0.190625
+}

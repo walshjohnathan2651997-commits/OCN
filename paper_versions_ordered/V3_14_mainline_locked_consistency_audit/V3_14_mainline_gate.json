@@ -1,0 +1,99 @@
+{
+  "gate_version": "V3.14 Mainline Locked + Reviewer-Grade Consistency Audit",
+  "gate_date": "2026-07-05",
+  "gate_scope": "Pre-gold mainline lock + reviewer-grade consistency audit on V3.13 RIGOURATE-Differentiated + Realism-Aware text. No new experiments, no API calls, no gold annotation, no model retraining, no threshold retuning, no new research direction.",
+  "fields": {
+    "mainline_locked": {
+      "value": true,
+      "evidence": "§II.B Mainline Lock Declaration: 'This paper is not a natural-prevalence benchmark and does not claim to replace broad scientific overstatement scoring. It studies fine-grained evidence-sufficiency relation diagnosis under a controlled counterfactual diagnostic setting, with a focus on rare high-risk strong_action_overclaim screening.' Mainline is locked at V3.14; subsequent pre-gold revisions may revise wording/ordering/disclosure but will not introduce new direction, claim natural prevalence, claim gold validation, or delete silver-stage caveats."
+    },
+    "rigourate_overlap_controlled": {
+      "value": true,
+      "evidence": "§II.A RIGOURATE paragraph explicitly acknowledges RIGOURATE's strengths (natural claims, larger scale, human validation) and states the differentiation (four-class relation label vs. continuous scalar; strong_action isolation). §VI.E RIGOURATE-style proxy baseline is explicitly labelled as proxy, NOT official RIGOURATE (official code/data/model not publicly available as of 2026-07-05). homogenization_risk_audit.md Q1 verdict: NOT homogenous, overlap controlled."
+    },
+    "forcebench_overlap_controlled": {
+      "value": true,
+      "evidence": "§II.A ForceBench paragraph explicitly acknowledges ForceBench's strengths (clean contrastive paired-claim protocol, five force dimensions) and states the differentiation (single-instance relation typing + screening vs. contrastive preference). homogenization_risk_audit.md Q2 verdict: NOT homogenous, input form structurally different."
+    },
+    "claimbench_overlap_controlled": {
+      "value": true,
+      "evidence": "§II.A CLAIM-BENCH paragraph explicitly acknowledges CLAIM-BENCH's strengths (natural full-paper pairs, extraction+validation joint evaluation) and states the differentiation (strength-calibration typing vs. extraction-validation). homogenization_risk_audit.md Q3 verdict: NOT homogenous, primary question different."
+    },
+    "counterfactual_dataset_disclosed": {
+      "value": true,
+      "evidence": "§V.A transparency statement: 'SimClaim is not a natural-prevalence corpus of author-written claims. It is a controlled counterfactual diagnostic set: evidence spans are drawn from real scientific papers, while claim variants are generated to instantiate specific evidence-sufficiency relations.' dataset_construction_risk_audit.md documents 7 risk dimensions with mitigations."
+    },
+    "natural_prevalence_not_claimed": {
+      "value": true,
+      "evidence": "§V.A: 'The four-way balanced design (111 per class) is a deliberate construction for pressure-testing boundary recognition under matched evidence, not an estimate of the natural prevalence of these relations in real scientific writing.' §IX item 10 reinforces. claim_validity_matrix.csv C10 audited. Forbidden claims list (Appendix B) includes 'SimClaim is a natural-prevalence corpus' and 'SimClaim estimates the real-world prevalence'."
+    },
+    "silver_not_gold": {
+      "value": true,
+      "evidence": "§VII: 'No gold annotation has been performed.' All 444 SimClaim labels are AI-preannotated, author-screened silver (candidate_label_guess field; final_label and gold_label fields are EMPTY). Tables G1-G3 are all TO_BE_FILLED_AFTER_GOLD. claim_validity_matrix.csv C08 audited. Forbidden claims list includes 'Our labels are gold / human-audited' and 'Gold validated'."
+    },
+    "gold_relation_realism_pending": {
+      "value": true,
+      "evidence": "§VII.J Two-Layer Gold Protocol (Relation + Realism): Layer 1 relation label (operationalised by frozen gold_pilot_protocol_freeze_v1 package, 2026-07-04, status: PROTOCOL FROZEN, annotation NOT begun); Layer 2 claim realism (claim_realism_score_1_to_5, claim_realism_issue, claim_realism_usable_for_paper). Pre-registered 25% class-level and 25% paper-level realism thresholds. Annotation has NOT begun; no gold_label, final_label, or human_audited fields filled."
+    },
+    "non_gold_checks_not_overclaimed": {
+      "value": true,
+      "evidence": "§VIII.D opening (V3.14 reinforced): 'These checks are non-gold robustness analyses that strengthen but do not validate. They do not replace gold adjudication (§VII).' §VIII.D Summary: 'They do not validate absolute numbers, do not replace gold adjudication, and do not change the fact that R4's overall macro-F1 remains lower than the LLM judges.' claim_validity_matrix.csv C09 audited."
+    },
+    "r4_lower_macro_preserved": {
+      "value": true,
+      "evidence": "§VI.B: R4 macro-F1 = 0.3280 vs. GPT-5.5 = 0.5523 vs. DeepSeek-V3 = 0.5248 on matched 100. §VIII.A and §IX item 4 explicitly state 'R4's macro-F1 is substantially lower than LLM judges'. r4_method_positioning_audit.md Q2 confirms the fact is preserved. Forbidden claims list includes 'R4 outperforms LLM overall' and 'R4 beats LLM'."
+    },
+    "screening_positioning_consistent": {
+      "value": true,
+      "evidence": "§I Contribution 3, §II.B Mainline Lock, §VI.B, §VIII.A, §VIII.D.B all consistently position R4 as 'screening-oriented complement to LLM judges, not a replacement and not a state-of-the-art overstatement detector'. r4_method_positioning_audit.md Q1-Q6 confirm: R4 is relation-specific mixed router (not rule stack); lower macro-F1 not fatal (screening orientation); screening metrics appropriate; FP/TP=2.89 is trade-off not strength; recall=0.36 is relative not 'high recall'; 'R4 beats LLM' is forbidden."
+    },
+    "ready_for_gold_protocol_next": {
+      "value": true,
+      "evidence": "gold_pilot_protocol_freeze_v1 package is frozen (2026-07-04): annotation guideline, decision tree, boundary rules, 20 worked examples, annotator training packet, two blind annotation templates (A and B with silver excluded), adjudication protocol, agreement metric plan. §VII.J extends with Layer 2 realism fields. Protocol is ready to send to two independent annotators; annotation has NOT begun."
+    },
+    "ready_for_submission_after_gold": {
+      "value": false,
+      "evidence": "Gold annotation has NOT begun. All §VI results are silver-stage. Tables G1-G3 are TO_BE_FILLED_AFTER_GOLD. Submission requires: (1) gold pilot (50 samples) under two-layer protocol; (2) gold adjudication; (3) insertion of gold results into Tables G1-G3; (4) check against §VII.G downgrade criteria (mild_vs_strong κ < 0.40 → taxonomy revised; strong_action retention < 0.50 → claim downgraded); (5) realism audit check against 25% thresholds; (6) possible paper text revision based on gold results. Estimated minimum: 2-4 weeks after annotator onboarding."
+    },
+    "main_remaining_risk": {
+      "value": "Three primary risks: (1) Gold adjudication may reveal mild_vs_strong κ < 0.40, triggering §VII.G taxonomy downgrade (the strong_action_overclaim class may need to be merged with mild, weakening the central contribution); (2) Realism audit may reveal > 25% of strong_action_overclaim claims are unrealistic (current heuristic pre-screen: 9.0% for strong_action class), triggering a realism caveat and limiting the screening claim to diagnostic-stage only; (3) Official RIGOURATE artifacts may be released and, if the official scalar score can distinguish mild from strong_action, the §VI.E proxy baseline finding may not transfer, weakening the four-class decomposition motivation."
+    },
+    "next_required_action": {
+      "value": "Five-step sequence: (1) Send the frozen gold_pilot_protocol_freeze_v1 package (plus §VII.J Layer 2 realism fields) to two independent annotators; (2) Run the 50-sample gold pilot under the two-layer protocol (Layer 1 relation label + Layer 2 claim realism); (3) Adjudicate disagreements and compute Cohen's κ / Krippendorff's α per class and per boundary; (4) Insert gold results into Tables G1-G3 and check against §VII.G downgrade criteria and §VII.J realism thresholds; (5) If gold pilot passes (mild_vs_strong κ ≥ 0.40, strong_action retention ≥ 0.50, realism thresholds not breached), prepare V3.15 with gold results and consider submission; if gold pilot fails, downgrade per §VII.G and §VII.J."
+    }
+  },
+  "prohibitions_enforced": {
+    "no_new_experiments": true,
+    "no_api_calls": true,
+    "no_gold_annotation": true,
+    "no_original_data_modification": true,
+    "no_v3_13_modification": true,
+    "no_new_research_direction": true,
+    "no_planned_as_completed": true,
+    "no_silver_as_gold": true,
+    "no_synthetic_as_natural": true,
+    "no_advisor_note_generated": true
+  },
+  "quality_checks": {
+    "no_first_scientific_overstatement_benchmark_claim": true,
+    "no_natural_prevalence_corpus_claim": true,
+    "no_gold_validated_claim": true,
+    "no_r4_beats_llm_overall_claim": true,
+    "r4_macro_f1_lower_than_llm_preserved": true,
+    "gold_not_done_fact_preserved": true,
+    "synthetic_counterfactual_disclosure_preserved": true,
+    "three_non_gold_checks_preserved": true,
+    "docx_generated_successfully": true,
+    "v3_13_file_unchanged": true
+  },
+  "file_inventory": {
+    "main_draft_md": "CESE_OCN_V3_14_mainline_locked.md",
+    "main_draft_docx": "CESE_OCN_V3_14_mainline_locked.docx",
+    "claim_validity_matrix": "claim_validity_matrix.csv",
+    "homogenization_risk_audit": "homogenization_risk_audit.md",
+    "dataset_construction_risk_audit": "dataset_construction_risk_audit.md",
+    "r4_method_positioning_audit": "r4_method_positioning_audit.md",
+    "mainline_gate": "V3_14_mainline_gate.json",
+    "revision_log": "V3_14_revision_log.md"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "frozen_r4_script_found": true,
+  "frozen_r4_per_item_predictions_found": true,
+  "per_item_prediction_files": [
+    "D:\\ocn\\scripts\\run_mixed_framework_router_optimization_v2.py",
+    "D:\\ocn\\scripts\\run_mixed_framework_new_algorithm_sweep_v1.py",
+    "D:\\ocn\\scripts\\run_llm_judge_baseline_v1.py",
+    "D:\\ocn\\scripts\\run_cese_ocn_lite_v3.py",
+    "D:\\ocn\\experiments\\gpt_structured_judge_probe_v1\\gpt_vs_r4_deepseek_comparison.csv"
+  ],
+  "per_item_prediction_coverage": "100/444 matched samples only (gpt_vs_r4_deepseek_comparison.csv); full silver-444 per-item predictions were never saved",
+  "hcm_features_csv_exists": false,
+  "trained_model_artifacts_exist": false,
+  "model_artifact_paths": [],
+  "nli_model_cached": true,
+  "nli_model_path": "C:\\Users\\Administrator\\.cache\\huggingface\\hub\\models--cross-encoder--nli-deberta-base",
+  "frozen_thresholds": {
+    "t_contra": 0.48,
+    "t_strong": 0.535,
+    "t_svm": 0.51
+  },
+  "t_contra_low_frozen": false,
+  "feature_dependencies_available": false,
+  "can_replay_with_new_evidence": false,
+  "proxy_required": true,
+  "reason_if_blocked": "HCM/NLI features CSV (hcm_features.csv) is MISSING — required input for R4 classifiers; No trained classifier artifacts (.pkl/.joblib) on disk — clf_contra, clf_strong, clf_svm must be retrained; t_contra_low (lower contradiction guard) is NOT frozen — only grid-search code exists; REPLAY BLOCKED: R4 requires (a) HCM/NLI features for new evidence, (b) trained classifier artifacts, (c) frozen t_contra_low. Without all three, routing cannot produce per-item predictions.; Reproduction path (requires authorization to retrain on silver labels): (1) compute NLI features with cached cross-encoder/nli-deberta-base; (2) retrain clf_contra/clf_strong/clf_svm on silver-444 with original evidence; (3) save artifacts; (4) compute NLI features for retrieved evidence; (5) apply frozen thresholds + saved classifiers.",
+  "exact_script_or_file_to_use": "D:\\ocn\\scripts\\run_mixed_framework_router_optimization_v2.py (routing logic) + D:\\ocn\\scripts\\run_cese_ocn_lite_v3.py (NLI feature computation) + frozen_r4_manifest.json (thresholds)",
+  "exact_thresholds_found": {
+    "t_contra": 0.48,
+    "t_strong": 0.535,
+    "t_svm": 0.51
+  },
+  "no_threshold_tuning_confirmed": true,
+  "blocked_path_required": true,
+  "alternative_path_to_unblock": [
+    "1. Authorize reproduction training (retrain clf_contra/clf_strong/clf_svm on silver-444 with original evidence — this is reproduction, not new model training)",
+    "2. Save classifier artifacts as .pkl/.joblib",
+    "3. Compute NLI features for retrieved evidence (BM25 top1/top3/top5) using cached cross-encoder/nli-deberta-base",
+    "4. Freeze t_contra_low (use grid-search mean or re-fit on silver-444)",
+    "5. Apply frozen thresholds + saved classifiers to retrieved evidence",
+    "6. Output per-item R4 predictions on retrieved evidence"
+  ]
+}

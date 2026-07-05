@@ -1,0 +1,6 @@
+dataset_name,max_sample,task_E1,task_E2,task_E3,task_E4,sampling_notes
+SciFact,300,True,True,False,True,Balance SUPPORT/CONTRADICT/NEI ~100 each; require non-empty evidence text.
+VitaminC,300,True,True,True,True,"Sample contrastive triples (claim × {correct, wrong, empty} evidence); 100 claims × 3 evidence variants."
+FEVER,300,True,True,False,True,"Balance SUPPORTED/REFUTED/NEI ~100 each; optional, not primary."
+PubHealth,300,True,True,False,True,Balance true/false/mixture/unproven; drop rows with empty evidence.
+AVeriTeC,300,True,True,False,True,Sample Supported/Refuted/NEE; hold out Cherry-picking for qualitative review only.

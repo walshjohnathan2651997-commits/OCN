@@ -1,0 +1,23 @@
+{
+  "n_samples": 100,
+  "n_true_strong": 25,
+  "n_r4_flagged_strong": 35,
+  "tp": 9,
+  "fp": 26,
+  "fn": 16,
+  "tn": 49,
+  "review_burden": 0.35,
+  "recall": 0.36,
+  "precision": 0.2571428571428571,
+  "fp_tp_ratio": 2.888888888888889,
+  "fp_by_silver_class": {
+    "supported": 12,
+    "mild_scope_overclaim": 13,
+    "strong_action_overclaim": 9,
+    "contradiction_candidate": 1
+  },
+  "frozen_threshold_note": "Binary screening at frozen R4 prediction (r4_label == strong_action_overclaim). No continuous score available in frozen prediction files; budget curve approximated by class-priority ranking.",
+  "pre_registered_fp_tp_threshold": 10,
+  "fp_tp_below_threshold": true,
+  "budget_curve_method": "Class-priority ranking (strong>contra>mild>supp) due to absence of continuous R4 scores in frozen files."
+}

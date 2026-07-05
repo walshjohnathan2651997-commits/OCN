@@ -1,0 +1,19 @@
+{
+  "n_bootstrap": 1000,
+  "n_strong_matched_100": 25,
+  "break_even_retention": "~0.5",
+  "break_even_retention_value": 0.5,
+  "r4_wins_at_60pct": true,
+  "r4_wins_at_50pct": true,
+  "r4_wins_at_60pct_pct": 0.986,
+  "r4_wins_at_50pct_pct": 0.942,
+  "delta_at_60pct": 0.14077499999999998,
+  "delta_at_50pct": 0.11372504091653028,
+  "delta_ci_at_60pct": [0.035, 0.28],
+  "delta_ci_at_50pct": [-0.02618657937806876, 0.2553191489361702],
+  "statistical_strength_at_60pct": "marginal-positive (CI lower bound just above 0 at 0.035)",
+  "statistical_strength_at_50pct": "positive but statistically weaker / CI crosses zero (delta_ci_low=-0.0262)",
+  "key_finding": "Break-even retention ~0.5. At 60% retention: R4 wins 98.6% of bootstraps (delta=+0.1408, CI=[+0.035, +0.28]) — marginal-positive, CI lower bound just above 0. At 50%: R4 wins 94.2% of bootstraps (delta=+0.1137, CI=[-0.0262, +0.2553]) — positive point estimate but statistically weaker, CI crosses zero. R4 advantage is robust because LLM F1 is already near zero, but the 50% retention result should NOT be reported as a robust pass; it is a directional signal pending gold confirmation.",
+  "non_gold_robustness_analysis": true,
+  "does_not_replace_gold": true
+}

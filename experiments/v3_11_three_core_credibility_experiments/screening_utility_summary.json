@@ -1,0 +1,33 @@
+{
+  "n_samples": 100,
+  "n_true_strong": 25,
+  "n_r4_predicted_strong": 35,
+  "tp": 9,
+  "fp": 26,
+  "fn": 16,
+  "tn": 49,
+  "precision": 0.2571428571428571,
+  "recall": 0.36,
+  "positive_f1": 0.3,
+  "fp_tp_ratio": 2.888888888888889,
+  "review_burden": 0.35,
+  "r4_captures_llm_missed": 8,
+  "predicted_strong_by_silver_class": {
+    "supported": 12,
+    "mild_scope_overclaim": 13,
+    "strong_action_overclaim": 9,
+    "contradiction_candidate": 1
+  },
+  "actual_false_positive_by_silver_class": {
+    "supported": 12,
+    "mild_scope_overclaim": 13,
+    "contradiction_candidate": 1
+  },
+  "pre_registered_fp_tp_threshold": 10,
+  "screening_viable": true,
+  "r4_captures_llm_missed_cases": true,
+  "budget_curve_note": "Class-priority ranking (strong>contra>mild>supp) due to absence of continuous R4 scores in frozen prediction files.",
+  "non_gold_robustness_analysis": true,
+  "does_not_replace_gold": true,
+  "field_renaming_note": "predicted_strong_by_silver_class was previously mislabeled as fp_by_silver_class; it counts all R4-predicted-strong samples (TP+FP) grouped by silver class. actual_false_positive_by_silver_class is FP-only (excludes strong_action_overclaim=9 since those are TP, not FP)."
+}

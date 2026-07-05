@@ -1,0 +1,111 @@
+{
+  "R4_conservative_strong": {
+    "flat4_macro_f1_mean": 0.4238144832896925,
+    "flat4_macro_f1_std": 0.03840419732263182,
+    "strong_positive_f1_mean": 0.3967103458797685,
+    "strong_positive_f1_std": 0.04406609617194901,
+    "contradiction_positive_f1_mean": 0.7296170260285617,
+    "contradiction_positive_f1_std": 0.0809475762865681,
+    "escalation_macro_f1_mean": 0.6143278013787116,
+    "escalation_macro_f1_std": 0.05246434464227421,
+    "strong_precision_mean": 0.37905844219637325,
+    "strong_precision_std": 0.08277008017999041,
+    "strong_recall_mean": 0.45625,
+    "strong_recall_std": 0.12517349071499834
+  },
+  "B1_nli_only_flat4": {
+    "flat4_macro_f1_mean": 0.3963214172825301,
+    "flat4_macro_f1_std": 0.043024447471780206,
+    "strong_positive_f1_mean": 0.2408313848533537,
+    "strong_positive_f1_std": 0.06396278994506688,
+    "contradiction_positive_f1_mean": 0.730839827571572,
+    "contradiction_positive_f1_std": 0.10309392903451826,
+    "escalation_macro_f1_mean": 0.5722926725853734,
+    "escalation_macro_f1_std": 0.027587884174213918,
+    "strong_precision_mean": 0.30972262214909274,
+    "strong_precision_std": 0.11750687426680957,
+    "strong_recall_mean": 0.20625,
+    "strong_recall_std": 0.05145453764678529
+  },
+  "B2_nli_plus_action_gap_flat4": {
+    "flat4_macro_f1_mean": 0.4657200562682684,
+    "flat4_macro_f1_std": 0.04149450795828367,
+    "strong_positive_f1_mean": 0.33563521156263093,
+    "strong_positive_f1_std": 0.07190903663305233,
+    "contradiction_positive_f1_mean": 0.7403695564033032,
+    "contradiction_positive_f1_std": 0.08991866873591871,
+    "escalation_macro_f1_mean": 0.6548273819807606,
+    "escalation_macro_f1_std": 0.044151161529756615,
+    "strong_precision_mean": 0.3875665266106443,
+    "strong_precision_std": 0.10010150660257307,
+    "strong_recall_mean": 0.3125,
+    "strong_recall_std": 0.08838834764831845
+  },
+  "B3a_tfidf_claim_only": {
+    "flat4_macro_f1_mean": 0.2472806638925356,
+    "flat4_macro_f1_std": 0.02243439615808736,
+    "strong_positive_f1_mean": 0.2618535607147516,
+    "strong_positive_f1_std": 0.07295731731401155,
+    "contradiction_positive_f1_mean": 0.3536316362743483,
+    "contradiction_positive_f1_std": 0.06167299919665854,
+    "escalation_macro_f1_mean": 0.5028999018395027,
+    "escalation_macro_f1_std": 0.03915511814045245,
+    "strong_precision_mean": 0.2518737161531279,
+    "strong_precision_std": 0.034507644707006416,
+    "strong_recall_mean": 0.3,
+    "strong_recall_std": 0.12430361575146916
+  },
+  "B3b_tfidf_claim_evidence": {
+    "flat4_macro_f1_mean": 0.2494846445779823,
+    "flat4_macro_f1_std": 0.0351768224069194,
+    "strong_positive_f1_mean": 0.25903080482027846,
+    "strong_positive_f1_std": 0.07586322501376289,
+    "contradiction_positive_f1_mean": 0.35593758529052644,
+    "contradiction_positive_f1_std": 0.02785410321979139,
+    "escalation_macro_f1_mean": 0.4938033288464815,
+    "escalation_macro_f1_std": 0.03679959853999847,
+    "strong_precision_mean": 0.23754893179842468,
+    "strong_precision_std": 0.048380617521310613,
+    "strong_recall_mean": 0.3125,
+    "strong_recall_std": 0.1473139127471974
+  },
+  "B4_sentence_embedding": {
+    "status": "skipped",
+    "reason": "sentence_transformers not installed; no cached embeddings"
+  },
+  "B5_cross_encoder_nli_pair": {
+    "flat4_macro_f1_mean": 0.5453300000000001,
+    "flat4_macro_f1_std": 0.04399525353186788,
+    "strong_positive_f1": "NA (frozen encoder did not compute per-class strong F1)",
+    "note": "Uses 70/30 split (no dev set); NOT directly comparable to R4 70/15/15",
+    "n_seeds": 10
+  },
+  "B5_hybrid_tfidf_plus_nli": {
+    "flat4_macro_f1_mean": 0.53928,
+    "flat4_macro_f1_std": 0.04948620009659259,
+    "strong_positive_f1": "NA (frozen encoder did not compute per-class strong F1)",
+    "note": "Uses 70/30 split (no dev set); NOT directly comparable to R4 70/15/15",
+    "n_seeds": 10
+  },
+  "B5_tfidf_claim_only": {
+    "flat4_macro_f1_mean": 0.23995000000000002,
+    "flat4_macro_f1_std": 0.0322609240757642,
+    "strong_positive_f1": "NA (frozen encoder did not compute per-class strong F1)",
+    "note": "Uses 70/30 split (no dev set); NOT directly comparable to R4 70/15/15",
+    "n_seeds": 10
+  },
+  "B5_tfidf_claim_evidence": {
+    "flat4_macro_f1_mean": 0.22512,
+    "flat4_macro_f1_std": 0.031017765518776143,
+    "strong_positive_f1": "NA (frozen encoder did not compute per-class strong F1)",
+    "note": "Uses 70/30 split (no dev set); NOT directly comparable to R4 70/15/15",
+    "n_seeds": 10
+  },
+  "B6_cost_sensitive_cw4.0": {
+    "strong_positive_f1_mean": 0.4221,
+    "flat4_macro_f1_mean": 0.4365,
+    "contradiction_positive_f1_mean": 0.7296,
+    "escalation_macro_f1_mean": 0.6262,
+    "note": "From Task M; auxiliary module, not main method"
+  }
+}

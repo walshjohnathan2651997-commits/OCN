@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-07-03T14:55:28.832790",
+  "r4_frozen": true,
+  "frozen_r4_path": "D:\\ocn\\experiments\\mixed_framework_v2_frozen_r4_baseline",
+  "main_method_name": "CESE-OCN Mixed Framework v2 with R4_conservative_strong router",
+  "main_method_ready_for_current_draft": true,
+  "q1_ready": false,
+  "q1_blockers": [
+    "silver labels only (no human gold validation)",
+    "small dataset (444 claims, test ~16/seed)",
+    "no human adjudication / inter-annotator agreement",
+    "strong_action F1 = 0.3967 (moderate, not solved)",
+    "supported/mild boundary F1 ~0.52 (weak)",
+    "no external validation",
+    "no significance test against strong external baselines"
+  ],
+  "current_level": "pilot_to_mid_tier_ready",
+  "q1_possible_with_validation": true,
+  "main_result_strength": {
+    "strong_positive_delta": 0.1559,
+    "ci": [
+      0.1058,
+      0.1988
+    ],
+    "ci_crosses_zero": false,
+    "positive_seed_count": "10/10",
+    "flat4_macro_delta": 0.027500000000000024,
+    "contradiction_delta": -0.0012,
+    "escalation_delta": 0.042,
+    "assessment": "strong positive-F1 gain with CI not crossing 0; suitable for current draft as pilot validation"
+  },
+  "biggest_risk": "overclaiming: silver-label pilot results presented as final benchmark performance",
+  "next_required_action": "expand to 300-500 human-audited pairs with inter-annotator agreement; run significance tests against strong external baselines; validate on gold adjudicated data",
+  "auxiliary_method_status": {
+    "name": "B_cost_sensitive_cw4.0",
+    "replace_r4": false,
+    "recommended_use": "auxiliary_module",
+    "main_blocker": "strong_positive_delta=0.0254 below +0.03 vs R4"
+  },
+  "paper_positioning": "pilot validation of a mixed evidence-relation router framework; exploratory on silver data, not confirmatory",
+  "readiness_rules": {
+    "main_method_ready_for_current_draft": "true if R4 frozen, strong_positive_delta >= 0.05, CI not crossing 0, flat4/contra/escalation not damaged",
+    "q1_ready": "false (silver only, small data, no gold, no significance vs external baselines)",
+    "q1_possible_with_validation": "true if 300-500 human-audited pairs, gold validation, significance tests, external baselines all pass"
+  }
+}

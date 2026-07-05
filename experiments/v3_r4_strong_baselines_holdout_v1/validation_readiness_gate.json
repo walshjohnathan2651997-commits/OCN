@@ -1,0 +1,89 @@
+{
+  "generated_at": "2026-07-04T01:33:05.880849",
+  "r4_main_method_retained": true,
+  "validation_status": "supportive_but_not_final",
+  "best_overall_baseline": "B2_nli_plus_action_gap_flat4",
+  "best_strong_baseline": "B2_nli_plus_action_gap_flat4",
+  "best_strong_baseline_value": 0.33563521156263093,
+  "r4_strong_positive_f1": 0.3967103458797685,
+  "r4_vs_best_strong_delta": 0.06107513431713757,
+  "r4_vs_tfidf_delta": 0.13767954105949004,
+  "r4_vs_nli_flat_delta": 0.1558789610264148,
+  "domain_holdout_status": "stable",
+  "source_holdout_status": "stable",
+  "source_pair_holdout_status": "no_leakage",
+  "fragile_domains": [],
+  "fragile_sources": [
+    "POL-007",
+    "AD-007",
+    "POL-014",
+    "MARL-002"
+  ],
+  "does_r4_generalize_beyond_random_split": true,
+  "does_r4_need_revision": false,
+  "recommended_use": "main_method_retained",
+  "main_blocker": "none",
+  "recommended_next_step": "expand to 300-500 human-audited pairs; validate on gold; run significance tests vs strong external baselines",
+  "strong_baseline_summary": {
+    "B1_nli_only": {
+      "strong_f1": 0.2408313848533537,
+      "flat4_macro": 0.3963214172825301
+    },
+    "B2_nli_plus_gap": {
+      "strong_f1": 0.33563521156263093,
+      "flat4_macro": 0.4657200562682684
+    },
+    "B3a_tfidf_claim_only": {
+      "strong_f1": 0.2618535607147516,
+      "flat4_macro": 0.2472806638925356
+    },
+    "B3b_tfidf_claim_evidence": {
+      "strong_f1": 0.25903080482027846,
+      "flat4_macro": 0.2494846445779823
+    },
+    "B4_sentence_embedding": "skipped (no sentence-transformer)",
+    "B5_cross_encoder_nli": {
+      "flat4_macro_f1_mean": 0.5453300000000001,
+      "flat4_macro_f1_std": 0.04399525353186788,
+      "strong_positive_f1": "NA (frozen encoder did not compute per-class strong F1)",
+      "note": "Uses 70/30 split (no dev set); NOT directly comparable to R4 70/15/15",
+      "n_seeds": 10
+    },
+    "B6_cost_sensitive_cw4.0": {
+      "strong_f1": 0.4221,
+      "note": "auxiliary"
+    }
+  },
+  "holdout_summary": {
+    "leave_domain_out": {
+      "n_domains": 6,
+      "r4_stable_domains": 6,
+      "r4_unstable_domains": 0,
+      "fragile_domains": [],
+      "mean_r4_strong_f1": 0.4143666666666666,
+      "mean_best_baseline_strong_f1": 0.3021,
+      "r4_generalizes_beyond_random_split": true
+    },
+    "leave_source_out": {
+      "n_sources_tested": 32,
+      "r4_stable_sources": 28,
+      "r4_unstable_sources": 4,
+      "fragile_sources": [
+        "POL-007",
+        "AD-007",
+        "POL-014",
+        "MARL-002"
+      ],
+      "mean_r4_strong_f1": 0.3700875,
+      "mean_b1_strong_f1": 0.190625
+    },
+    "source_pair": {
+      "group_leakage": "no_leakage",
+      "seeds_tested": [
+        11,
+        22,
+        33
+      ]
+    }
+  }
+}

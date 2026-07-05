@@ -1,0 +1,140 @@
+{
+  "task": "RIGOURATE Reproduction + SimClaim Differentiation v1 - Readiness Gate",
+  "generated_at": "2026-07-05",
+  "auditor": "CESE-OCN automated gate (no API calls)",
+  "gate_fields": {
+    "official_rigourate_code_available": {
+      "value": false,
+      "evidence": "arXiv v2 (12 Jan 2026) contains placeholder '[Github/HF Link]'; no concrete GitHub repo found via web search as of 2026-07-05",
+      "source_file": "official_reproduction_status.json"
+    },
+    "official_rigourate_data_available": {
+      "value": false,
+      "evidence": "10K+ claim-evidence set described in paper but not publicly released; no HuggingFace dataset found",
+      "source_file": "official_reproduction_status.json"
+    },
+    "official_rigourate_model_available": {
+      "value": false,
+      "evidence": "Fine-tuned reranker and scorer weights not publicly released; no HuggingFace model found",
+      "source_file": "official_reproduction_status.json"
+    },
+    "official_reproduction_possible": {
+      "value": false,
+      "evidence": "blocked - no code/data/model/supplementary available; only paper text accessible",
+      "source_file": "rigourate_reproduction_feasibility_report.md"
+    },
+    "proxy_rigourate_style_baseline_completed": {
+      "value": true,
+      "evidence": "3 baselines built: A=rule_scalar_score (completed, 444 rows), B=nli_scalar_score (BLOCKED - HCM/NLI features not in repo, blocked_reason recorded), C=llm_scalar_proxy (completed, 200/444 matched). All clearly labelled as proxy, NOT official RIGOURATE.",
+      "source_file": "baseline_build_notes.md"
+    },
+    "scalar_baseline_distinguishes_mild_vs_strong": {
+      "value": false,
+      "evidence": "rule_scalar_score ROC-AUC on mild_vs_strong = 0.5062 (chance); llm_scalar_proxy ROC-AUC on mild_vs_strong = 0.5874 (weak, below 0.70 threshold). Neither scalar can reliably distinguish mild_scope_overclaim from strong_action_overclaim.",
+      "source_file": "scalar_baseline_report.md"
+    },
+    "r4_outperforms_scalar_on_strong_action": {
+      "value": true,
+      "evidence": "On 444 silver: R4 strong_F1=0.3967 vs rule_scalar best-F1=0.3844 (R4 above by 0.0123). On 100 matched: R4 strong_F1=0.3000 vs rule_scalar strong_F1=0.1364 (R4 above by 0.1636). R4 also captures 8/24 LLM-missed strong_action cases. R4 ROC-AUC on strong_vs_nonstrong is at chance (0.4971 for rule, 0.5154 for LLM), but R4's structured routing provides screening signal that scalar compression cannot match.",
+      "source_file": "rigourate_style_vs_r4_report.md"
+    },
+    "claim_realism_risk_high": {
+      "value": false,
+      "evidence": "21/444 (4.7%) of SimClaim claims have heuristic realism risk flags. By silver label: supported 2.7%, mild 3.6%, strong_action 9.0%, contradiction 3.6%. All below the 25% pre-registered class-level threshold. Risk is non-trivial but not high.",
+      "source_file": "claim_realism_audit_summary.md"
+    },
+    "gold_realism_extension_needed": {
+      "value": true,
+      "evidence": "Non-trivial realism risk (4.7% overall, 9.0% for strong_action) motivates gold realism annotation. Two-layer gold protocol proposed: Layer 1 relation label (unchanged), Layer 2 claim_realism_score_1_to_5 + claim_realism_issue + claim_realism_usable_for_paper. Pre-registered thresholds: 25% class-level, 25% paper-level.",
+      "source_file": "proposed_relation_realism_gold_protocol_v2.md"
+    },
+    "v3_13_revision_needed": {
+      "value": true,
+      "evidence": "V3.13 is positioning-only (no new experiments). RIGOURATE-style baseline results (Sections 5-7) are new experimental content that strengthens V3.13's positioning. Recommendation: create V3.14 (V3.13 + new Section VI.B RIGOURATE-style baseline results + Limitations additions), not revise V3.13 in place.",
+      "source_file": "V3_13_revision_recommendation.md"
+    },
+    "advisor_send_ready_after_revision": {
+      "value": false,
+      "evidence": "V3.14 paper text not yet written. Advisor cover note not yet drafted. Final quality check not yet run. Recommended sequence: draft V3.14 text, draft advisor cover note, run final quality check, then send to advisor.",
+      "source_file": "V3_13_revision_recommendation.md"
+    },
+    "main_remaining_risk": {
+      "value": "Three primary risks remain: (1) Official RIGOURATE artifacts not publicly available - proxy baseline is NOT official RIGOURATE and conclusions may shift when official system is released; (2) Silver-only evaluation - all conclusions are pre-gold and may shift with gold adjudication; (3) SimClaim realism risk - 4.7% overall and 9.0% for strong_action_overclaim class is non-trivial; gold realism annotation required to confirm SimClaim claims are naturalistic enough for paper tables.",
+      "source_file": "synthesised from all sections"
+    },
+    "recommended_next_action": {
+      "value": "1. Draft V3.14 paper text: V3.13 + new Section VI.B (RIGOURATE-style scalar baseline results: 3 baselines, 4 binary tasks, 5-method comparison, case analysis) + Limitations additions (proxy caveat, realism caveat, silver-only caveat). 2. Draft advisor cover note (Chinese, per user preference) covering: V3.13 positioning revision, V3.14 baseline results, official RIGOURATE blocked status, proxy construction, scalar vs R4 comparison, realism audit, gold protocol extension. 3. Run final quality check: no proxy-as-official, no silver-as-gold, no API calls, no V3.12/V3.13 modification, no claim of reproduction success. 4. Send V3.14 + cover note to advisor. 5. Out-of-task: email RIGOURATE corresponding author (jhfjames1@sheffield.ac.uk) to request code/data release status.",
+      "source_file": "V3_13_revision_recommendation.md"
+    }
+  },
+  "summary_verdict": {
+    "official_reproduction": "BLOCKED - official RIGOURATE code/data/model not publicly available as of 2026-07-05",
+    "proxy_baseline": "COMPLETED - 3 baselines built (1 completed, 1 blocked with reason, 1 completed for matched subset); clearly labelled as proxy",
+    "scalar_vs_taxonomy": "Scalar CANNOT replace four-class taxonomy - scalar cannot distinguish mild vs strong (ROC-AUC <= 0.59) and cannot match R4 strong_action F1",
+    "r4_screening_value": "R4 RETAINS screening value - R4 strong_F1=0.3967 > scalar best-F1=0.3844; R4 captures 8/24 LLM-missed strong_action cases",
+    "realism_risk": "MODERATE - 4.7% overall, 9.0% for strong_action; below 25% threshold but non-trivial; gold realism annotation needed",
+    "v3_14_needed": "YES - V3.14 recommended (V3.13 + RIGOURATE-style baseline results section)",
+    "advisor_send_ready": "NO - V3.14 text and advisor cover note not yet drafted"
+  },
+  "prohibitions_enforced": [
+    "no_paid_api_calls",
+    "no_gold_creation",
+    "no_silver_as_gold",
+    "no_proxy_as_official_rigourate",
+    "no_modification_of_V3_12",
+    "no_modification_of_V3_13",
+    "no_modification_of_original_data",
+    "no_fabrication_of_reproduction_success",
+    "no_claim_of_simclaim_as_natural_claims",
+    "blocked_reason_recorded_for_all_unavailable_artifacts"
+  ],
+  "output_files_inventory": {
+    "section_1": [
+      "experiments/official_resource_inventory.csv",
+      "experiments/rigourate_reproduction_feasibility_report.md",
+      "experiments/official_reproduction_status.json"
+    ],
+    "section_2": [
+      "experiments/rigourate_method_dissection.md",
+      "experiments/rigourate_vs_cese_ocn_method_table.csv"
+    ],
+    "section_3": [
+      "experiments/official_reproduction_run_log.md"
+    ],
+    "section_4": [
+      "experiments/rigourate_style_scalar_scores.csv",
+      "experiments/baseline_build_notes.md"
+    ],
+    "section_5": [
+      "experiments/scalar_baseline_binary_results.csv",
+      "experiments/scalar_baseline_threshold_sweep.csv",
+      "experiments/scalar_baseline_report.md"
+    ],
+    "section_6": [
+      "experiments/rigourate_style_vs_r4_results.csv",
+      "experiments/rigourate_style_vs_r4_cases.csv",
+      "experiments/rigourate_style_vs_r4_report.md"
+    ],
+    "section_7": [
+      "experiments/case_level_comparison.csv",
+      "experiments/case_level_comparison_report.md"
+    ],
+    "section_8": [
+      "experiments/claim_realism_audit_queue.csv",
+      "experiments/claim_realism_audit_summary.md"
+    ],
+    "section_9": [
+      "experiments/proposed_relation_realism_gold_protocol_v2.md"
+    ],
+    "section_10": [
+      "docs/rigourate_forcebench_claimbench_related_work_insert.md"
+    ],
+    "section_11": [
+      "experiments/V3_13_revision_recommendation.md"
+    ],
+    "section_12": [
+      "experiments/rigourate_reproduction_master_report.md",
+      "experiments/rigourate_reproduction_readiness_gate.json"
+    ]
+  }
+}

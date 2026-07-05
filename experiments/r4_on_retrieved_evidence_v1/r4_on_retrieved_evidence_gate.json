@@ -1,0 +1,79 @@
+{
+  "task": "R4-on-Retrieved Evidence Formal Evaluation v1",
+  "audit_date": "2026-07-05",
+  "n_claims": 444,
+  "frozen_r4_found": true,
+  "frozen_r4_thresholds_found": {
+    "t_contra": 0.48,
+    "t_strong": 0.535,
+    "t_svm": 0.51
+  },
+  "frozen_r4_per_item_predictions_found": true,
+  "frozen_r4_per_item_coverage": "100/444 matched samples only (gpt_vs_r4_deepseek_comparison.csv); full silver-444 per-item predictions were never saved",
+  "hcm_features_available": false,
+  "trained_classifier_artifacts_available": false,
+  "nli_model_cached": true,
+  "t_contra_low_frozen": false,
+  "can_replay_with_new_evidence": false,
+  "used_proxy": false,
+  "proxy_rejected": true,
+  "proxy_rejection_reason": "Task spec explicitly prohibits cue-based proxy as R4. R4 replay is BLOCKED, not proxied.",
+  "oracle_strong_f1": -1.0,
+  "top1_strong_f1": -1.0,
+  "top3_strong_f1": -1.0,
+  "top5_strong_f1": -1.0,
+  "oracle_strong_f1_status": "BLOCKED",
+  "top1_strong_f1_status": "BLOCKED",
+  "top3_strong_f1_status": "BLOCKED",
+  "top5_strong_f1_status": "BLOCKED",
+  "best_retrieved_setting": "BLOCKED",
+  "oracle_to_best_retrieved_gap": -1.0,
+  "retrieval_level_metrics": {
+    "oracle_found_in_pdf_rate": 0.990990990990991,
+    "top1_oracle_hit_rate": 0.7162162162162162,
+    "top3_oracle_hit_rate": 0.9391891891891891,
+    "top5_oracle_hit_rate": 0.972972972972973,
+    "retrieval_success_rate": 0.7162162162162162
+  },
+  "retrieval_error_distribution": {
+    "retrieval_success": 318,
+    "retrieval_partial_hit": 114,
+    "oracle_chunk_not_retrieved": 6,
+    "oracle_not_in_pdf_text": 4,
+    "retrieved_wrong_paper": 2
+  },
+  "main_bottleneck": "R4 replay blocked (missing HCM features + classifier artifacts + t_contra_low); retrieval-level bottleneck: retrieval_success",
+  "supports_pdf_corpus_screening_claim": "partial",
+  "supports_pdf_corpus_screening_reason": "Retrieval is feasible (PDF coverage 100%, BM25 Recall@10=97.97%), but R4 screening on retrieved evidence is BLOCKED. Without R4 replay, the claim 'offline PDF-corpus retrieval + CESE-OCN screening works' is only partially supported: retrieval works, but downstream screening validation is pending.",
+  "supports_v3_17_mainline": "partial",
+  "supports_v3_17_reason": "V3.17 mainline (offline PDF-corpus retrieval + CESE-OCN screening) is feasible in principle but requires: (1) R4 reproduction training to save classifier artifacts; (2) NLI feature computation for retrieved evidence; (3) frozen t_contra_low. All three are doable with current local resources (NLI model cached, silver labels available, sklearn available).",
+  "recommended_next_step": [
+    "1. Authorize R4 reproduction training: retrain clf_contra/clf_strong/clf_svm on silver-444 with original evidence (reproduction, NOT new model training)",
+    "2. Save classifier artifacts as .pkl files",
+    "3. Freeze t_contra_low (use grid-search mean from existing router optimization results)",
+    "4. Compute NLI features for 4 input CSVs (oracle, BM25 top1/top3/top5) using cached cross-encoder/nli-deberta-base",
+    "5. Replay R4 on all 4 input CSVs with frozen thresholds + saved classifiers",
+    "6. Compute per-setting metrics (strong-F1, macro-F1, confusion matrix)",
+    "7. Compare oracle vs retrieved strong-F1 gap",
+    "8. If gap < 0.05: V3.17 mainline is fully supported. If gap >= 0.05: investigate retrieval quality improvement (dense/hybrid/reranker)."
+  ],
+  "retriever_upgrade_readiness": {
+    "dense_possible": true,
+    "hybrid_possible": true,
+    "reranker_possible": true,
+    "nli_model_cached": true,
+    "gpu_available": false
+  },
+  "prohibitions_enforced": [
+    "no_model_training",
+    "no_api_calls",
+    "no_network",
+    "no_threshold_tuning",
+    "no_original_data_modification",
+    "no_paper_modification",
+    "no_file_deletion",
+    "no_cue_based_proxy_as_r4",
+    "no_silver_as_gold",
+    "no_simulation_as_natural_distribution"
+  ]
+}

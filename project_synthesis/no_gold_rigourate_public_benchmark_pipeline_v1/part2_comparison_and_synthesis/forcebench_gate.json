@@ -1,0 +1,17 @@
+{
+  "task": "No-Gold RIGOURATE + Public Benchmark Pipeline Part 2 - Section 2 ForceBench",
+  "audit_date": "2026-07-05",
+  "forcebench_status": "blocked",
+  "forcebench_data_available": false,
+  "forcebench_code_available": false,
+  "blocked_reason": "ForceBench is referenced in related work (V3.13 differentiation) as a contrastive evidence-force calibration benchmark with calibrated vs. force-raised claim pairs along five force dimensions (relation, modality, scope, temporal validity, numeric specificity). However, as of audit date 2026-07-05, no public GitHub repository, HuggingFace dataset, or downloadable data bundle has been located via web search. The ForceBench paper is referenced but the dataset is not publicly accessible. Consequently, no non-API subset analysis could be performed.",
+  "subset_extracted": false,
+  "mvr_computed": false,
+  "prohibitions_enforced": [
+    "no_api_calls",
+    "no_gold_creation",
+    "no_silver_as_gold",
+    "no_fabrication_of_forcebench_data",
+    "no_proxy_as_official"
+  ]
+}

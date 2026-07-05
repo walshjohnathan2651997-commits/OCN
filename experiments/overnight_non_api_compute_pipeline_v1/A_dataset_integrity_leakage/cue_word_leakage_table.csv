@@ -1,0 +1,46 @@
+label,cue_word,count_in_label,count_in_other,rate_in_label,rate_in_other,imbalance_ratio
+supported,the study,0,0,0.0,0.0,0.0
+supported,the paper,0,0,0.0,0.0,0.0
+supported,the approach,0,0,0.0,0.0,0.0
+supported,we evaluate,0,0,0.0,0.0,0.0
+supported,we extend,0,0,0.0,0.0,0.0
+supported,we propose,0,0,0.0,0.0,0.0
+mild_scope_overclaim,across,0,0,0.0,0.0,0.0
+mild_scope_overclaim,multi,5,16,0.002101723413198823,0.0022886568445143756,0.9183217738545608
+mild_scope_overclaim,as the main,0,0,0.0,0.0,0.0
+mild_scope_overclaim,and five,0,0,0.0,0.0,0.0
+mild_scope_overclaim,multi-stage,0,0,0.0,0.0,0.0
+mild_scope_overclaim,multi-domain,0,0,0.0,0.0,0.0
+mild_scope_overclaim,broader,4,0,0.0016813787305590584,0.0,1681378.7305590583
+strong_action_overclaim,deploy,0,0,0.0,0.0,0.0
+strong_action_overclaim,deployment,0,0,0.0,0.0,0.0
+strong_action_overclaim,safety,4,9,0.0016632016632016633,0.0012921751615218953,1.2871332871332872
+strong_action_overclaim,guarantee,0,0,0.0,0.0,0.0
+strong_action_overclaim,operational,0,0,0.0,0.0,0.0
+strong_action_overclaim,policy,0,0,0.0,0.0,0.0
+strong_action_overclaim,generalization,0,0,0.0,0.0,0.0
+strong_action_overclaim,broadly,0,0,0.0,0.0,0.0
+strong_action_overclaim,ready for,0,0,0.0,0.0,0.0
+strong_action_overclaim,can be used to,0,0,0.0,0.0,0.0
+strong_action_overclaim,enables,0,0,0.0,0.0,0.0
+strong_action_overclaim,ensures,0,0,0.0,0.0,0.0
+strong_action_overclaim,demonstrates,0,0,0.0,0.0,0.0
+strong_action_overclaim,proves,1,0,0.0004158004158004158,0.0,415800.4158004158
+strong_action_overclaim,suitable for,0,0,0.0,0.0,0.0
+strong_action_overclaim,direct physical,0,0,0.0,0.0,0.0
+strong_action_overclaim,plant trials,0,0,0.0,0.0,0.0
+strong_action_overclaim,reliable transfer,0,0,0.0,0.0,0.0
+strong_action_overclaim,industrial applications,0,0,0.0,0.0,0.0
+strong_action_overclaim,real-world,0,0,0.0,0.0,0.0
+contradiction_candidate,not,0,3,0.0,0.00042402826855123676,0.0
+contradiction_candidate,but,0,0,0.0,0.0,0.0
+contradiction_candidate,however,0,0,0.0,0.0,0.0
+contradiction_candidate,disregarded,1,0,0.00043572984749455336,0.0,435729.8474945533
+contradiction_candidate,ignores,1,0,0.00043572984749455336,0.0,435729.8474945533
+contradiction_candidate,fails to,0,0,0.0,0.0,0.0
+contradiction_candidate,cannot,0,0,0.0,0.0,0.0
+contradiction_candidate,does not,0,0,0.0,0.0,0.0
+contradiction_candidate,unclear,0,0,0.0,0.0,0.0
+contradiction_candidate,saturated,0,2,0.0,0.0002826855123674912,0.0
+contradiction_candidate,little expertise,0,0,0.0,0.0,0.0
+contradiction_candidate,different,1,1,0.00043572984749455336,0.0001413427561837456,3.082788671023965

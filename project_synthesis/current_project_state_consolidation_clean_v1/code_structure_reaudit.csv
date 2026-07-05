@@ -1,0 +1,52 @@
+script_path,category,related_task,safe_to_run,modifies_data,calls_api,trains_model,outputs,notes
+scripts/_v2_qc_check.py,audit,general,yes,no,no,no,,
+scripts/_v3_15_scalar_gate_view.py,audit,V3.15 hierarchical taxonomy,yes,no,no,no,,Recent task (V3.15/overnight/V3.16); safe to rerun for reanalysis
+scripts/_v3_15_view_metrics.py,audit,V3.15 hierarchical taxonomy,yes,no,no,no,,Recent task (V3.15/overnight/V3.16); safe to rerun for reanalysis
+scripts/build_gold_pilot_preparation_v1.py,mainline,Gold pilot prep,yes,no,no,no,D:\ocn\gold_pilot_preparation_v1,Mainline builder; output frozen; do not rerun
+scripts/build_paper_ready_mixed_framework_v2.py,mainline,R4 frozen baseline,no,no,no,no,"D:\\ocn\\experiments\\paper_ready_mixed_framework_v2\\
+",Mainline builder; output frozen; do not rerun
+scripts/build_rigourate_style_scalar_baselines.py,build_docx,RIGOURATE reproduction,yes,no,no,no,,Historical docx builder; output already frozen; do not rerun
+scripts/build_v2_relation_realism_templates.py,mainline,general,yes,no,no,no,,Mainline builder; output frozen; do not rerun
+scripts/build_v3_10_1_docx.py,unknown,V3.10 advisor ready,yes,no,no,no,,
+scripts/build_v3_10_docx.py,build_docx,V3.10 advisor ready,yes,no,no,no,,Historical docx builder; output already frozen; do not rerun
+scripts/build_v3_11_docx.py,build_docx,V3.11 framework roadmap,yes,no,no,no,,Historical docx builder; output already frozen; do not rerun
+scripts/build_v3_12_1_docx.py,unknown,V3.12 three credibility checks,yes,no,no,no,,
+scripts/build_v3_12_docx.py,build_docx,V3.12 three credibility checks,yes,no,no,no,,Historical docx builder; output already frozen; do not rerun
+scripts/build_v3_13_docx.py,build_docx,V3.13 RIGOURATE-differentiated,yes,no,no,no,,
+scripts/build_v3_13_rigourate_aware_docx.py,build_docx,V3.13 RIGOURATE-differentiated,yes,no,no,no,,
+scripts/build_v3_14_docx.py,build_docx,V3.14 mainline locked,yes,no,no,no,,
+scripts/build_v3_15_attack_response_and_gate.py,build_docx,V3.15 hierarchical taxonomy,yes,no,no,no,D:\ocn\paper_versions_ordered\V3_15_hierarchical_taxonomy_revision,Recent task (V3.15/overnight/V3.16); safe to rerun for reanalysis
+scripts/build_v3_15_hierarchical_taxonomy.py,build_docx,V3.15 hierarchical taxonomy,yes,no,no,no,D:\ocn\paper_versions_ordered\V3_15_hierarchical_taxonomy_revision,Recent task (V3.15/overnight/V3.16); safe to rerun for reanalysis
+scripts/build_v3_1_docx.py,build_docx,V3.1 docx,yes,no,no,no,,Historical docx builder; output already frozen; do not rerun
+scripts/build_v3_2_docx.py,build_docx,V3.2 table 0 + audit,yes,no,no,no,,Historical docx builder; output already frozen; do not rerun
+scripts/build_v3_2_table0_and_audit.py,mainline,V3.2 table 0 + audit,no,no,no,no,,Mainline builder; output frozen; do not rerun
+scripts/build_v3_3_docx.py,build_docx,V3.3 main paper,yes,no,no,no,,Historical docx builder; output already frozen; do not rerun
+scripts/build_v3_3_main_paper.py,mainline,V3.3 main paper,no,no,no,no,,Mainline builder; output frozen; do not rerun
+scripts/build_v3_4_docx.py,build_docx,V3.4 taxonomy hardened,yes,no,no,no,,Historical docx builder; output already frozen; do not rerun
+scripts/build_v3_4_main_paper.py,mainline,V3.4 taxonomy hardened,no,no,no,no,,Mainline builder; output frozen; do not rerun
+scripts/build_v3_4_taxonomy_hardening.py,mainline,V3.4 taxonomy hardened,no,no,no,no,D:\ocn\paper_versions_ordered\V3_4_taxonomy_hardened,Mainline builder; output frozen; do not rerun
+scripts/build_v3_5_docx.py,build_docx,V3.5 presentation ready,yes,no,no,no,,Historical docx builder; output already frozen; do not rerun
+scripts/build_v3_6_docx.py,build_docx,V3.6 case figure integrity,yes,no,no,no,,Historical docx builder; output already frozen; do not rerun
+scripts/build_v3_7_docx.py,build_docx,V3.7 advisor handoff,yes,no,no,no,,Historical docx builder; output already frozen; do not rerun
+scripts/build_v3_9_docx.py,build_docx,V3.9 pre-gold complete,yes,no,no,no,,Historical docx builder; output already frozen; do not rerun
+scripts/build_v3_external_gold_llm_plan_v1.py,mainline,External gold eval,no,no,no,no,,Mainline builder; output frozen; do not rerun
+scripts/case_level_comparison.py,experiment,general,yes,no,no,no,,Historical experiment; results frozen; do not rerun
+scripts/check_v3_15_quality.py,audit,V3.15 hierarchical taxonomy,yes,no,no,no,D:\ocn\paper_versions_ordered\V3_15_hierarchical_taxonomy_revision,Recent task (V3.15/overnight/V3.16); safe to rerun for reanalysis
+scripts/claim_realism_audit.py,experiment,Claim realism audit,yes,no,no,no,,Historical experiment; results frozen; do not rerun
+scripts/compare_rigourate_style_vs_r4.py,experiment,RIGOURATE reproduction,yes,no,no,no,,Historical experiment; results frozen; do not rerun
+scripts/eval_scalar_baselines.py,experiment,Scalar baseline,yes,no,no,no,,Historical experiment; results frozen; do not rerun
+scripts/run_cese_ocn_lite_v3.py,experiment,R4 frozen baseline,no,no,no,no,,Historical experiment; results frozen; do not rerun
+scripts/run_external_gold_scifact_vitaminc_v1.py,experiment,External gold eval,no,no,no,no,,Historical experiment; results frozen; do not rerun
+scripts/run_gpt_structured_judge_probe_v1.py,experiment,GPT structured probe,no,no,yes,no,,Historical experiment; results frozen; do not rerun
+scripts/run_llm_judge_baseline_v1.py,experiment,LLM judge baseline,no,no,yes,no,,Historical experiment; results frozen; do not rerun
+scripts/run_mixed_framework_new_algorithm_sweep_v1.py,experiment,R4 frozen baseline,no,no,no,yes,,Historical experiment; results frozen; do not rerun
+scripts/run_mixed_framework_router_optimization_v2.py,experiment,R4 frozen baseline,no,no,no,yes,,Historical experiment; results frozen; do not rerun
+scripts/run_overnight_non_api_pipeline_v1.py,experiment,Overnight pipeline v1,yes,no,no,no,,Recent task (V3.15/overnight/V3.16); safe to rerun for reanalysis
+scripts/run_project_state_consolidation_v1.py,unknown,general,no,no,no,no,D:\ocn\project_synthesis\current_project_state_consolidation_v1,
+scripts/run_v3_15_claim_realism_audit.py,experiment,V3.15 hierarchical taxonomy,yes,no,no,no,"D:\\ocn\\experiments\\v3_15_claim_realism_audit\\
+",Recent task (V3.15/overnight/V3.16); safe to rerun for reanalysis
+scripts/run_v3_15_low_prevalence_screening_simulation.py,experiment,V3.15 hierarchical taxonomy,yes,no,no,no,D:\ocn\experiments\v3_15_low_prevalence_screening_simulation,Recent task (V3.15/overnight/V3.16); safe to rerun for reanalysis
+scripts/run_v3_15_scalar_vs_relation_deep_test.py,experiment,V3.15 hierarchical taxonomy,yes,no,no,no,"D:\\ocn\\experiments\\v3_15_scalar_vs_relation_screening_deep_test\\
+",Recent task (V3.15/overnight/V3.16); safe to rerun for reanalysis
+scripts/run_v3_16_integration_summary.py,experiment,V3.16 integration summary,yes,no,no,no,D:\ocn\project_synthesis\v3_16_integration_summary_and_revision_plan,Recent task (V3.15/overnight/V3.16); safe to rerun for reanalysis
+scripts/run_v3_r4_strong_baselines_holdout_v1.py,experiment,general,no,no,no,no,,Historical experiment; results frozen; do not rerun

@@ -1,0 +1,7 @@
+dataset,judge,n_silver_strong,pred_as_supported,pred_as_mild,pred_as_strong,pred_as_contradiction,pct_supported,pct_mild,pct_strong,pct_contradiction,pct_conservative_collapse_sup_or_mild,pct_correct_strong
+matched_100,gpt_standard,25,0,10,1,14,0.0,0.4,0.04,0.56,0.4,0.04
+matched_100,gpt_structured,25,0,10,1,14,0.0,0.4,0.04,0.56,0.4,0.04
+matched_100,deepseek,25,9,10,1,5,0.36,0.4,0.04,0.2,0.76,0.04
+matched_100,r4,25,2,8,9,6,0.08,0.32,0.36,0.24,0.4,0.36
+matched_200,deepseek,50,19,21,2,8,0.38,0.42,0.04,0.16,0.8,0.04
+matched_200,r4,50,2,20,18,10,0.04,0.4,0.36,0.2,0.44,0.36

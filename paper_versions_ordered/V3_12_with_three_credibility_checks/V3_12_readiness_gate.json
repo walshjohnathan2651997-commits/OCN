@@ -1,0 +1,50 @@
+{
+  "v3_12_complete": true,
+  "three_checks_inserted": true,
+  "evidence_necessity_inserted": true,
+  "screening_utility_inserted": true,
+  "label_shift_inserted": true,
+  "non_gold_caveat_present": true,
+  "gold_not_replaced": true,
+  "numbers_unchanged": true,
+  "retention_50_caveat_present": true,
+  "r4_macro_f1_gap_preserved": true,
+  "advisor_send_ready": true,
+  "remaining_main_risk": "The three credibility checks in §VIII.D are non-gold robustness analyses. (A) Evidence Necessity uses a pre-existing NLI audit on the same SimClaim backbone but an earlier dataset version; the TF-IDF sanity check is a surface-level probe. (B) Screening Utility counts depend on silver labels and may shift under gold. (C) Label-Shift is a simulated sensitivity probe — the relabeled strong_action samples are not gold data, and at 50% retention the Δ 95% CI crosses zero ([−0.026, +0.255]), so the 50% result is positive-but-statistically-weaker and must not be reported as a robust pass. Independent gold adjudication (§VII) remains the only mechanism that can validate absolute numbers, resolve the mild/strong boundary κ, and confirm the strong_action retention rate. Until gold is completed, all §VIII.D conclusions are directional silver-stage support, not validation.",
+  "recommended_next_action": "Send V3.12 to advisor as the current best silver-stage draft. Frame §VIII.D as: 'three non-gold credibility checks that strengthen the silver-stage relative pattern (R4 > LLM on strong_action) without replacing gold adjudication.' Highlight the label-shift break-even (~50% retention) as a pre-registered quantitative bar for the gold pilot: ≥70% robust, 60% marginal-positive, 50% CI-crosses-zero, <50% downgrade per §VII.G. Proceed to 50-sample gold pilot per §VII protocol, prioritizing the high_risk_sample_bank cases. Do NOT claim gold validation in any external communication.",
+  "auxiliary": {
+    "v3_12_md_size_bytes": 93389,
+    "v3_12_docx_size_bytes": 33849,
+    "v3_11_md_size_bytes": 82599,
+    "size_delta_bytes": 10790,
+    "new_section": "§VIII.D Robustness and Credibility Checks Before Gold Adjudication",
+    "renamed_section": "§VIII.D What Remains Unresolved -> §VIII.E What Remains Unresolved",
+    "abstract_sentence_added": "We further report three non-gold credibility checks (§VIII.D) testing evidence necessity, screening utility, and sensitivity to simulated strong-label shift.",
+    "limitations_item_added": "§IX.8 (non-gold caveat)",
+    "key_numbers_used": {
+      "evidence_necessity": {
+        "correct_acc": 0.4324,
+        "empty_acc": 0.2545,
+        "shuffled_acc": 0.3851,
+        "same_domain_wrong_acc": 0.2568,
+        "tfidf_correct_sim": 0.4131,
+        "tfidf_empty_sim": 0.0,
+        "tfidf_same_domain_wrong_sim": 0.0124,
+        "tfidf_nli_correlation": -0.2736
+      },
+      "screening_utility": {
+        "matched_100": {"tp": 9, "fp": 26, "fn": 16, "precision": 0.257, "recall": 0.36, "positive_f1": 0.3, "fp_tp_ratio": 2.89, "review_burden": 0.35, "r4_captures_llm_missed": 8,
+          "actual_fp_by_silver_class": {"supported": 12, "mild_scope_overclaim": 13, "contradiction_candidate": 1}}
+      },
+      "label_shift": {
+        "break_even_retention": "~0.5",
+        "at_60pct": {"delta": 0.1408, "delta_ci": [0.035, 0.28], "r4_wins_pct": 0.986, "strength": "marginal-positive"},
+        "at_50pct": {"delta": 0.1137, "delta_ci": [-0.0262, 0.2553], "r4_wins_pct": 0.942, "strength": "positive but statistically weaker / CI crosses zero"}
+      }
+    },
+    "preserved_numbers_verified": ["0.3967", "0.0769", "0.3280", "0.5523", "0.2408", "0.2231"],
+    "v3_11_unchanged": true,
+    "mojibake_check": "none",
+    "docx_valid": true
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "r4_vs_deepseek_strong_f1": {
+    "delta": 0.22307692307692306,
+    "ci": [
+      0.0397162485065711,
+      0.39474937343358396
+    ],
+    "mcnemar_p": 0.0029350556433200836,
+    "significant": true
+  },
+  "r4_vs_gpt_standard_strong_f1": {
+    "delta": 0.22307692307692306,
+    "ci": [
+      0.032308802308802294,
+      0.3943754633061527
+    ],
+    "mcnemar_p": 0.0029350556433200836,
+    "significant": true
+  },
+  "gpt_standard_vs_structured_strong_f1": {
+    "delta": 0.0,
+    "ci": [
+      0.0,
+      0.0
+    ],
+    "mcnemar_p": 1.0,
+    "significant": false
+  },
+  "r4_vs_deepseek_macro_f1": {
+    "delta": -0.19678176398764635,
+    "ci": [
+      -0.07187264969136792,
+      0.11514218436936507
+    ]
+  },
+  "matched_significance_supports_r4": true,
+  "key_finding": "R4 strong_action F1 advantage is statistically supported: vs DeepSeek delta=+0.2231 CI=[+0.0397, +0.3947] McNemar p=0.0029; vs GPT-standard delta=+0.2231 CI=[+0.0323, +0.3944]. GPT structured vs standard: delta=+0.0000 (NOT significant — structured prompt does not improve strong_action). R4 macro-F1 remains lower than DeepSeek (delta=-0.1968) — R4 is a strong_action complement, not overall winner."
+}

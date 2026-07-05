@@ -1,0 +1,41 @@
+{
+  "task": "No-Gold RIGOURATE + Scalar Baseline Pipeline Part 1 - Section 1 Official Audit",
+  "audit_date": "2026-07-05",
+  "paper_identifier": "RIGOURATE, arXiv:2601.04350v2 [cs.CL] 12 Jan 2026",
+  "venue": "Findings of ACL 2026",
+  "official_rigourate_status": "blocked",
+  "official_code_available": false,
+  "official_data_available": false,
+  "official_model_available": false,
+  "official_reproduction_possible": false,
+  "blocked_reason": "arXiv v2 of RIGOURATE contains a placeholder '[Github/HF Link]' in place of the code/data/model URL. As of audit date 2026-07-05, no concrete GitHub repository, HuggingFace model/dataset, annotation script, supplementary material, or runnable example has been located. Official reproduction is blocked.",
+  "partial_assets_available": [
+    "arXiv paper text (full methods description)"
+  ],
+  "assets_missing": [
+    "GitHub repository (placeholder only in arXiv v2)",
+    "HuggingFace model repository (placeholder only in arXiv v2)",
+    "HuggingFace dataset repository (not released)",
+    "Training/evaluation dataset (10K+ claim-evidence sets described but not released)",
+    "Fine-tuned reranker weights",
+    "Fine-tuned overstatement scorer weights",
+    "Annotation scripts (LLM annotator + peer-review calibration pipeline)",
+    "Supplementary material",
+    "Runnable end-to-end example",
+    "License specification"
+  ],
+  "feasibility_conclusion": "blocked",
+  "proxy_baseline_required": true,
+  "proxy_baseline_note": "Per task spec, when official artifacts are unavailable, a RIGOURATE-style scalar proxy baseline may be constructed. The proxy MUST NOT be claimed as official RIGOURATE; it must be labeled as 'RIGOURATE-style' or 'scalar overstatement proxy'.",
+  "prohibitions_enforced": [
+    "do_not_claim_proxy_as_official",
+    "do_not_fabricate_reproduction_success",
+    "do_not_call_paid_api",
+    "do_not_modify_paper",
+    "do_not_modify_original_data",
+    "do_not_create_gold",
+    "do_not_write_silver_as_gold",
+    "do_not_generate_annotation_templates",
+    "do_not_request_human_annotation"
+  ]
+}

@@ -1,0 +1,10 @@
+method,n_total,subset,source,strong_f1,strong_precision,strong_recall,macro_f1,fp_tp_ratio,review_burden,notes
+R4_conservative_strong,444,silver_444,frozen_r4_metrics_summary.json,0.3967,0.3791,0.4562,0.4238,1.6378264310208388,,"R4 frozen conservative; t_contra=0.48, t_strong=0.535, t_svm=0.51"
+baseline_flat4,444,silver_444,frozen_r4_metrics_summary.json,0.2408,0.3097,0.2062,0.3963,2.228931223764934,,flat4 baseline (no routing)
+rule_scalar_score,444,silver_444,Part 1 rigourate_style_scalar_scores.csv,0.299625468164794,0.2564102564102564,0.36036036036036034,0.2506504760193754,2.9,0.35135135135135137,cue-based scalar mapped to 4-class; threshold=2 for strong
+DeepSeek_llm_label_200,200,llm_200,llm_parsed_outputs_200.csv,0.07692307692307693,1.0,0.04,0.526976264654098,0.0,0.01,DeepSeek-V3 direct 4-class prediction on 200 subset
+llm_scalar_proxy_200,200,llm_200,Part 1 scalar scores (llm_scalar_proxy),0.07692307692307693,1.0,0.04,,0.0,0.01,llm_scalar_proxy = LLM-label-derived; identical to DeepSeek_llm_label_200
+GPT_standard_100,100,matched_100,gpt_vs_r4_deepseek_comparison.csv,0.07692307692307693,1.0,0.04,0.5522664835164836,0.0,0.01,100 matched samples; gpt_standard_label
+GPT_structured_100,100,matched_100,gpt_vs_r4_deepseek_comparison.csv,0.07692307692307693,1.0,0.04,0.5543293369597476,0.0,0.01,100 matched samples; gpt_structured_label
+DeepSeek_100_matched,100,matched_100,gpt_vs_r4_deepseek_comparison.csv,0.07692307692307693,1.0,0.04,0.5247649572649573,0.0,0.01,100 matched samples; deepseek_label
+R4_100_matched,100,matched_100,gpt_vs_r4_deepseek_comparison.csv,0.3,0.2571428571428571,0.36,0.32798319327731096,2.888888888888889,0.35,100 matched samples; r4_label

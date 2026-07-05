@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-07-03T14:55:28.832284",
+  "purpose": "Define safe vs forbidden language for paper writing based on frozen R4 results",
+  "safe_to_write": [
+    "R4 improves strong-action positive-F1 from 0.2408 to 0.3967 while preserving contradiction and escalation performance.",
+    "Results support a mixed evidence-relation framework rather than a single flat classifier.",
+    "On silver-label pilot data, the conservative-strong router yields a strong-action positive-F1 delta of +0.1559 (CI [0.1058, 0.1988], 10/10 seeds positive).",
+    "The cost-sensitive variant (cw4.0) provides a small auxiliary improvement (+0.0254) but does not meet the pre-registered replacement threshold.",
+    "NLI and action-gap features are complementary: combining them improves strong expert F1 over either alone.",
+    "The mixed framework is positioned as an action-overclaim diagnostic, not a final calibrated benchmark.",
+    "strong_action_overclaim remains the weakest class (F1 = 0.3967); the framework improves recall but introduces supported/mild false positives."
+  ],
+  "must_not_write": [
+    "We solve scientific claim calibration.",
+    "Our model fully handles strong action overclaims.",
+    "Our labels are gold/human-audited.",
+    "Cost-sensitive cw4.0 is the new main method.",
+    "CESE-OCN outperforms strong baselines on a final benchmark.",
+    "The framework is validated for deployment.",
+    "All four classes are well-calibrated.",
+    "supported_vs_mild boundary is resolved.",
+    "Results are confirmatory (they are exploratory on silver data).",
+    "Cross-domain generalization is confirmed."
+  ],
+  "cautious_language": [
+    "on silver-label pilot data",
+    "suggests",
+    "supports",
+    "indicates",
+    "requires validation on gold adjudicated data",
+    "exploratory",
+    "pilot pipeline validation",
+    "not submission-ready empirical evidence",
+    "preliminary",
+    "diagnostic"
+  ],
+  "numeric_claims_allowed": {
+    "r4_strong_positive_f1": 0.3967,
+    "baseline_strong_positive_f1": 0.2408,
+    "strong_positive_delta": 0.1559,
+    "ci_lower": 0.1058,
+    "ci_upper": 0.1988,
+    "positive_seed_count": "10/10"
+  },
+  "numeric_claims_forbidden": {
+    "gold_f1": "no gold evaluation performed",
+    "human_kappa": "no human adjudication performed",
+    "q1_ready": "not Q1 ready on silver data",
+    "final_benchmark": "not a final benchmark"
+  }
+}

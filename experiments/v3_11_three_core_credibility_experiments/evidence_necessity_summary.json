@@ -1,0 +1,90 @@
+{
+  "layer_A_nli_feature_analysis": {
+    "n_samples": 444,
+    "nli_s_correct_mean_strong": -0.04104760426740573,
+    "nli_s_correct_mean_other": 0.0451391220930754,
+    "nli_s_correct_diff": -0.08618672636048114,
+    "tfidf_nli_correlation": -0.27362379289375793,
+    "interpretation": "TF-IDF similarity (surface lexical overlap) and NLI s_correct (semantic entailment score) probe DIFFERENT dimensions of the claim-evidence relation. Their correlation is negative (r=-0.2736), which is expected: NLI s_correct measures semantic entailment that can hold even with low lexical overlap (paraphrase / abstraction), while TF-IDF measures token-level overlap. The two signals are complementary, not redundant. Both layers independently support evidence dependence: the NLI audit shows accuracy drops under perturbation (Layer A), and the TF-IDF sanity check shows similarity drops under content-changing perturbation (Layer B)."
+  },
+  "layer_A_pre_existing_audit": {
+    "source": "D:\\ocn\\_ARCHIVE_NON_MAINLINE\\data\\simclaim_v4_evidence_necessity\\v4_evidence_necessity_audit.csv",
+    "correct_evidence_accuracy": 0.4324324324324324,
+    "user_spec_perturbed_accuracies": {
+      "empty": 0.2545045045045045,
+      "shuffled": 0.3851351351351351,
+      "same_domain_wrong": 0.2567567567567567
+    },
+    "all_perturbed_accuracies_for_reference": {
+      "same_paper_wrong": 0.2432432432432432,
+      "same_domain_wrong": 0.2567567567567567,
+      "cross_domain_wrong": 0.2387387387387387,
+      "shuffled": 0.3851351351351351,
+      "empty": 0.2545045045045045,
+      "title_only": 0.2657657657657657
+    },
+    "correct_beats_all_user_spec_perturbed": true,
+    "accuracy_drop_correct_to_empty": 0.1779279279279279,
+    "accuracy_drop_correct_to_shuffled": 0.047297297297297314,
+    "accuracy_drop_correct_to_same_domain_wrong": 0.1756756756756757
+  },
+  "layer_B_tfidf_sanity_check": {
+    "correct_evidence_mean_sim": 0.41306759160754003,
+    "user_spec_perturbed_mean_sims": {
+      "empty_evidence": 0.0,
+      "shuffled_evidence": 0.41306759160754003,
+      "same_domain_wrong_evidence": 0.012424659599408486
+    },
+    "all_perturbed_mean_sims_for_reference": {
+      "empty_evidence": 0.0,
+      "shuffled_evidence": 0.41306759160754003,
+      "same_domain_wrong_evidence": 0.012424659599408486,
+      "cross_domain_wrong_evidence": 0.007804730183794681,
+      "same_paper_wrong_evidence": 0.023607042537710086,
+      "title_only_evidence": 0.10515236239014554
+    },
+    "correct_beats_all_user_spec_perturbed_sim": true,
+    "tfidf_discriminated_conditions": [
+      "empty_evidence",
+      "same_domain_wrong_evidence"
+    ],
+    "shuffled_tfidf_equals_correct": true,
+    "shuffled_tfidf_note": "TF-IDF cosine for shuffled evidence is identical to correct evidence by construction (bag-of-words, same token multiset). The shuffled condition is discriminated by the NLI audit (order-sensitive), not by TF-IDF.",
+    "per_label_similarity": {
+      "supported": {
+        "n": 111,
+        "mean_sim_correct": 0.4753594398170627,
+        "mean_sim_shuffled": 0.4753594398170627,
+        "mean_sim_empty": 0.0,
+        "mean_sim_same_domain_wrong": 0.01218250691030604
+      },
+      "mild_scope_overclaim": {
+        "n": 111,
+        "mean_sim_correct": 0.43066043467736137,
+        "mean_sim_shuffled": 0.43066043467736137,
+        "mean_sim_empty": 0.0,
+        "mean_sim_same_domain_wrong": 0.014431993174374666
+      },
+      "strong_action_overclaim": {
+        "n": 111,
+        "mean_sim_correct": 0.3800184580082332,
+        "mean_sim_shuffled": 0.3800184580082332,
+        "mean_sim_empty": 0.0,
+        "mean_sim_same_domain_wrong": 0.012257536152697016
+      },
+      "contradiction_candidate": {
+        "n": 111,
+        "mean_sim_correct": 0.366232033927503,
+        "mean_sim_shuffled": 0.366232033927503,
+        "mean_sim_empty": 0.0,
+        "mean_sim_same_domain_wrong": 0.010826602160256223
+      }
+    },
+    "note": "title_only_evidence excluded from gate check because short-title TF-IDF cosine is artificially inflated by vector concentration; it is reported for reference only and is not part of the user-specified 4 conditions."
+  },
+  "evidence_necessity_passed": true,
+  "correct_evidence_beats_perturbed": true,
+  "non_gold_robustness_analysis": true,
+  "does_not_replace_gold": true,
+  "key_finding": "Evidence necessity CONFIRMED: correct evidence achieves 0.4324 accuracy vs empty=0.2545, shuffled=0.3851, same_domain_wrong=0.2568 (audit accuracy, Layer A). TF-IDF similarity (Layer B): correct=0.4131 beats empty=0.0000 and same_domain_wrong=0.0124. shuffled TF-IDF is identical to correct (bag-of-words invariance); the shuffled condition is discriminated by the NLI audit (order-sensitive), which shows a 0.0473 accuracy drop. The task and method are evidence-dependent, not claim-only."
+}

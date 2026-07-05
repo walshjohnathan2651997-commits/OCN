@@ -1,0 +1,65 @@
+{
+  "input_dir": "D:\\ocn\\handoff_from_chatgpt_all92",
+  "n_batches_found": 20,
+  "n_batches_with_all_files": 20,
+  "missing_batches": [],
+  "n_evidence_merged": 161,
+  "n_claims_merged": 644,
+  "n_audit_merged": 161,
+  "n_source_ids_covered": 84,
+  "n_span_ids_covered": 161,
+  "n_domains_covered": 6,
+  "domains": [
+    "autonomous_driving",
+    "cyber_defense",
+    "digital_twin",
+    "marl",
+    "policy_simulation",
+    "robotics"
+  ],
+  "domain_evidence_counts": {
+    "autonomous_driving": 51,
+    "digital_twin": 26,
+    "policy_simulation": 26,
+    "cyber_defense": 24,
+    "marl": 23,
+    "robotics": 11
+  },
+  "domain_claim_counts": {
+    "autonomous_driving": 204,
+    "digital_twin": 104,
+    "policy_simulation": 104,
+    "cyber_defense": 96,
+    "marl": 92,
+    "robotics": 44
+  },
+  "schema_clean_ok": true,
+  "schema_claim_ok": true,
+  "schema_audit_ok": true,
+  "n_label_issues": 0,
+  "n_candidate_groups": 161,
+  "n_unique_candidate_ids": 644,
+  "pollution_found": false,
+  "source_trace_stats": {
+    "source_trace_complete_true": 644,
+    "source_trace_complete_false": 0,
+    "source_location_empty": 0,
+    "pdf_page_N_count": 644,
+    "pdf_page_N_ratio": 1.0,
+    "evidence_text_empty": 0,
+    "url_empty": 0,
+    "arxiv_id_empty": 0,
+    "pdf_filename_empty": 0
+  },
+  "cue_risk_summary": {
+    "complete": 1,
+    "only": 1,
+    "omit": 4
+  },
+  "n_issues_total": 6,
+  "can_be_ai_preannotated_pool": true,
+  "can_be_gold": false,
+  "can_be_final_paper_full": false,
+  "final_paper_full_blocker": "requires TF-IDF leakage audit before final paper-full",
+  "recommended_next_step": "TF-IDF leakage audit on claim_text across all92 pool"
+}

@@ -1,0 +1,50 @@
+{
+  "gate_name": "overnight_master_gate",
+  "task": "Overnight Non-API Compute Pipeline v1 — Master Summary",
+  "date": "2026-07-05",
+  "output_directory": "D:\\ocn\\experiments\\overnight_non_api_compute_pipeline_v1\\H_master_summary\\",
+  "n_sub_tasks": 7,
+  "n_completed": 7,
+  "n_partial": 0,
+  "n_blocked": 0,
+  "sub_task_gates": {
+    "A": true,
+    "B": true,
+    "C": true,
+    "D": true,
+    "E": true,
+    "F": true,
+    "G": true
+  },
+  "sub_task_gate_paths": {
+    "A": "D:\\ocn\\experiments\\overnight_non_api_compute_pipeline_v1\\A_dataset_integrity_leakage\\dataset_integrity_gate.json",
+    "B": "D:\\ocn\\experiments\\overnight_non_api_compute_pipeline_v1\\B_claim_variant_template_risk\\template_risk_gate.json",
+    "C": "D:\\ocn\\experiments\\overnight_non_api_compute_pipeline_v1\\C_low_prevalence_screening\\low_prevalence_gate.json",
+    "D": "D:\\ocn\\experiments\\overnight_non_api_compute_pipeline_v1\\D_boundary_collapse_fallback\\boundary_collapse_gate.json",
+    "E": "D:\\ocn\\experiments\\overnight_non_api_compute_pipeline_v1\\E_llm_conservatism_error_direction\\llm_conservatism_gate.json",
+    "F": "D:\\ocn\\experiments\\overnight_non_api_compute_pipeline_v1\\F_r4_false_positive_root_cause\\r4_false_positive_gate.json",
+    "G": "D:\\ocn\\experiments\\overnight_non_api_compute_pipeline_v1\\G_scalar_baseline_sweep\\scalar_baseline_gate.json"
+  },
+  "dataset_max_risk": "low",
+  "r4_screening_positioning_stable": true,
+  "r4_usable_low_prevalence_standalone": false,
+  "r4_usable_low_prevalence_first_stage": true,
+  "llm_conservatism_confirmed": true,
+  "template_risk_severe": false,
+  "needs_dataset_redesign": false,
+  "proceed_to_relation_realism_gold": true,
+  "tomorrow_first_priority": "Run v2 50-pair relation+realism gold pilot",
+  "prohibitions_enforced": {
+    "no_api_calls": true,
+    "no_gold": true,
+    "no_large_model_training": true,
+    "no_paper_modification": true,
+    "no_original_data_modification": true,
+    "no_file_deletion": true,
+    "no_overwrite_old_experiments": true,
+    "no_simulation_as_real_natural_distribution": true,
+    "no_silver_as_gold": true,
+    "no_proxy_as_official_rigourate": true
+  },
+  "audit_disclaimer": "Overnight non-API compute pipeline. All results are reanalysis of existing predictions on SILVER labels (pre-gold). Scalar baselines are PROXY (rule-based / LLM-label-derived), NOT official RIGOURATE. Low-prevalence simulation uses heuristic non-strong composition and is NOT a real natural-distribution study. Two-stage pipeline proposed but not evaluated."
+}

@@ -1,0 +1,41 @@
+{
+  "taxonomies_tested": [
+    "A_4class",
+    "B_3class_overclaim_merge",
+    "C_3class_acceptable_merge"
+  ],
+  "deltas_matched_100": {
+    "A_4class": {
+      "r4_macro_f1": 0.32798319327731096,
+      "ds_macro_f1": 0.5247649572649573,
+      "delta": -0.19678176398764635,
+      "r4_key_recall": 0.36,
+      "ds_key_recall": 0.04,
+      "key_recall_delta": 0.32
+    },
+    "B_3class_overclaim_merge": {
+      "r4_macro_f1": 0.4727789046653144,
+      "ds_macro_f1": 0.7112385665017245,
+      "delta": -0.23845966183641004,
+      "r4_key_recall": 0.72,
+      "ds_key_recall": 0.48,
+      "key_recall_delta": 0.24
+    },
+    "C_3class_acceptable_merge": {
+      "r4_macro_f1": 0.4970370370370371,
+      "ds_macro_f1": 0.562631357713325,
+      "delta": -0.06559432067628784,
+      "r4_key_recall": 0.36,
+      "ds_key_recall": 0.04,
+      "key_recall_delta": 0.32
+    }
+  },
+  "best_fallback_taxonomy_for_r4_screening_value": "C_3class_acceptable_merge",
+  "best_fallback_key_recall_delta": 0.32,
+  "fallback_analysis": {
+    "B_3class_overclaim_merge": "Merges mild+strong into overclaim. R4 recall=0.72 vs DS=0.48 (delta +0.24). R4 still has screening value but the specific strong_action contribution is diluted.",
+    "C_3class_acceptable_merge": "Merges supported+mild into acceptable, preserves strong_action as separate class. R4 recall=0.36 vs DS=0.04 (delta +0.32). Best fallback because it preserves R4's relation-specific routing story.",
+    "recommendation": "Taxonomy C is the best fallback: if mild_vs_strong boundary collapses under gold, merge supported+mild (which R4's SVM residual handles) and keep strong_action separate (which R4's escalation route targets)."
+  },
+  "key_finding": "Under taxonomy C (acceptable merge: acceptable/strong_action/contradiction), R4 strong_action recall = 0.3600 vs DeepSeek 0.0400 (delta +0.3200). Under taxonomy B (overclaim merge), R4 overclaim recall = 0.7200 vs DeepSeek 0.4800. Both 3-class fallbacks preserve R4's screening value; C is preferred because it keeps strong_action as a separate class."
+}

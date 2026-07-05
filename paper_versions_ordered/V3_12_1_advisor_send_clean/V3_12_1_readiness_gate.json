@@ -1,0 +1,44 @@
+{
+  "v3_12_1_complete": true,
+  "mojibake_scan_zero_hits": true,
+  "wording_stabilized": true,
+  "systematically_to_consistently": true,
+  "strong_action_under_detection_preserved": true,
+  "section_viii_d_preserved": true,
+  "non_gold_caveat_preserved": true,
+  "retention_50_caveat_preserved": true,
+  "r4_macro_f1_gap_preserved": true,
+  "gold_not_done_fact_preserved": true,
+  "numbers_unchanged": true,
+  "v3_12_unchanged": true,
+  "docx_generated": true,
+  "json_valid": true,
+  "advisor_send_ready": true,
+  "remaining_main_risk": "V3.12.1 is an encoding-clean and wording-stabilized version of V3.12. The three credibility checks in §VIII.D remain non-gold robustness analyses: (A) Evidence Necessity uses a pre-existing NLI audit on an earlier dataset version; (B) Screening Utility counts depend on silver labels; (C) Label-Shift is a simulated sensitivity probe, and at 50% retention the Δ 95% CI crosses zero. Independent gold adjudication (§VII) is still the only mechanism that can validate absolute numbers, resolve the mild/strong boundary κ, and confirm the strong_action retention rate. The wording change from 'systematically' to 'consistently' does not weaken the strong_action under-detection main conclusion — the numbers (LLM strong-F1=0.0769, recall=0.04) are unchanged.",
+  "recommended_next_action": "Send V3.12.1 to advisor as the current best silver-stage draft. Frame as: 'encoding-clean and wording-stabilized version with three non-gold credibility checks (§VIII.D) that strengthen the silver-stage relative pattern (R4 > LLM on strong_action) without replacing gold adjudication.' The label-shift break-even (~50% retention) sets a pre-registered quantitative bar for the gold pilot. Proceed to 50-sample gold pilot per §VII protocol. Do NOT claim gold validation in any external communication.",
+  "auxiliary": {
+    "v3_12_1_md_size_bytes": 93772,
+    "v3_12_1_docx_size_bytes": 34118,
+    "v3_12_md_size_bytes": 93389,
+    "v3_12_docx_size_bytes": 33849,
+    "size_delta_md_bytes": 383,
+    "size_delta_docx_bytes": 269,
+    "mojibake_patterns_scanned": 25,
+    "mojibake_hits": 0,
+    "proper_unicode_chars_present": {
+      "section_sign_U00A7": 75,
+      "kappa_U03BA": 11,
+      "delta_U0394": 5,
+      "greater_equal_U2265": 15,
+      "minus_sign_U2212": 9,
+      "em_dash_U2014": 109,
+      "en_dash_U2013": 15
+    },
+    "wording_changes": [
+      {"location": "Abstract line 16", "before": "systematically under-detect", "after": "consistently under-detect"},
+      {"location": "Introduction line 26", "before": "systematically under-detect", "after": "consistently under-detect"}
+    ],
+    "preserved_numbers_verified": ["0.3967", "0.0769", "0.3280", "0.5523", "0.2408", "0.2231"],
+    "v3_12_unchanged": true
+  }
+}

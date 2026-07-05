@@ -1,0 +1,14 @@
+{
+  "mode": "exact_reproduction",
+  "t_contra": 0.4,
+  "t_contra_low": 0.4,
+  "t_strong": 0.4,
+  "t_svm": 0.45,
+  "frozen_thresholds_for_reference": {
+    "t_contra": 0.48,
+    "t_strong": 0.535,
+    "t_svm": 0.51
+  },
+  "t_contra_low_dev_tuned_frozen_mode": 0.4,
+  "source": "routing_variant_results_by_seed.csv"
+}

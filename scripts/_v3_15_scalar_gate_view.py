@@ -1,0 +1,16 @@
+import json
+g = json.load(open(r"D:\ocn\experiments\v3_15_scalar_vs_relation_screening_deep_test\scalar_vs_relation_deep_test_gate.json", encoding="utf-8"))
+print("=== GATE ===")
+print("scalar_can_detect_overclaim:", g["scalar_can_detect_overclaim"])
+print("scalar_can_separate_mild_strong:", g["scalar_can_separate_mild_strong"])
+print("scalar_can_replace_r4:", g["scalar_can_replace_r4"])
+print("r4_retains_strong_action_advantage:", g["r4_retains_strong_action_advantage"])
+print("mild_strong_overlap_high:", g["mild_strong_overlap_high"])
+print("score_collapse_observed:", g["score_collapse_observed"])
+print()
+print("=== SUPPORTING METRICS ===")
+for k, v in g["supporting_metrics"].items():
+    print(f"  {k}: {v}")
+print()
+print("=== RECOMMENDED PAPER CLAIM ===")
+print(g["recommended_paper_claim"])

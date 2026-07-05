@@ -1,0 +1,104 @@
+{
+  "generated_at": "2026-07-03T12:52:15.287196",
+  "r4_frozen": true,
+  "frozen_r4_path": "D:\\ocn\\experiments\\mixed_framework_v2_frozen_r4_baseline",
+  "best_new_method": "B_cost_sensitive_cw4.0",
+  "best_new_strong_positive_f1": 0.4221,
+  "r4_strong_positive_f1": 0.3967,
+  "delta_vs_r4": 0.0254,
+  "flat4_macro_delta_vs_r4": 0.0127,
+  "contradiction_delta_vs_r4": 0.0,
+  "escalation_delta_vs_r4": 0.0119,
+  "positive_delta_seed_count": 7,
+  "ci_crosses_zero": true,
+  "false_positive_risk_vs_r4": {
+    "r4_supported_to_strong": 0.3,
+    "best_new_supported_to_strong": 0.2437,
+    "r4_mild_to_strong": 0.4062,
+    "best_new_mild_to_strong": 0.3625
+  },
+  "replace_r4": false,
+  "recommended_use": "auxiliary_module",
+  "main_blocker": "strong_positive_delta=0.0254 below +0.03 vs R4",
+  "recommended_next_step": "keep R4 as main baseline; use new method as auxiliary if delta > 0",
+  "all_methods_ranked": [
+    {
+      "method": "B_cost_sensitive_cw4.0",
+      "strong_positive_f1": 0.4221,
+      "delta_vs_r4": 0.0254,
+      "recommended_use": "auxiliary_module"
+    },
+    {
+      "method": "B_cost_sensitive_cw1.5",
+      "strong_positive_f1": 0.4136,
+      "delta_vs_r4": 0.0169,
+      "recommended_use": "auxiliary_module"
+    },
+    {
+      "method": "A1_temp_scaled_router",
+      "strong_positive_f1": 0.4076,
+      "delta_vs_r4": 0.0109,
+      "recommended_use": "auxiliary_module"
+    },
+    {
+      "method": "B_cost_sensitive_cw3.0",
+      "strong_positive_f1": 0.4059,
+      "delta_vs_r4": 0.0092,
+      "recommended_use": "auxiliary_module"
+    },
+    {
+      "method": "B_cost_sensitive_cw2.0",
+      "strong_positive_f1": 0.4023,
+      "delta_vs_r4": 0.0056,
+      "recommended_use": "auxiliary_module"
+    },
+    {
+      "method": "C_ordinal_severity",
+      "strong_positive_f1": 0.3685,
+      "delta_vs_r4": -0.0282,
+      "recommended_use": "diagnostic_only"
+    },
+    {
+      "method": "A2_isotonic_router",
+      "strong_positive_f1": 0.3661,
+      "delta_vs_r4": -0.0307,
+      "recommended_use": "reject"
+    },
+    {
+      "method": "F_recall_balance_router",
+      "strong_positive_f1": 0.3185,
+      "delta_vs_r4": -0.0782,
+      "recommended_use": "reject"
+    },
+    {
+      "method": "D1_ovr_contra_priority",
+      "strong_positive_f1": 0.3141,
+      "delta_vs_r4": -0.0826,
+      "recommended_use": "reject"
+    },
+    {
+      "method": "D2_ovr_strong_priority",
+      "strong_positive_f1": 0.3036,
+      "delta_vs_r4": -0.0931,
+      "recommended_use": "reject"
+    },
+    {
+      "method": "E_error_corrector_r4",
+      "strong_positive_f1": 0.2787,
+      "delta_vs_r4": -0.118,
+      "recommended_use": "reject"
+    },
+    {
+      "method": "A3_platt_router",
+      "strong_positive_f1": 0.254,
+      "delta_vs_r4": -0.1427,
+      "recommended_use": "reject"
+    },
+    {
+      "method": "D3_ovr_max_prob",
+      "strong_positive_f1": 0.2397,
+      "delta_vs_r4": -0.1571,
+      "recommended_use": "reject"
+    }
+  ]
+}

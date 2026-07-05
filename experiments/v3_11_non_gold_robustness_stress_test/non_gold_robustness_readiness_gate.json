@@ -1,0 +1,30 @@
+{
+  "label_shift_break_even_retention": "~0.5 (CI lower bound crosses 0)",
+  "r4_wins_at_60_percent_retention": true,
+  "r4_wins_at_50_percent_retention": true,
+  "best_fallback_taxonomy": "C_3class_acceptable_merge",
+  "screening_fp_tp_ratio": 2.888888888888889,
+  "screening_viable": true,
+  "llm_conservatism_confirmed": true,
+  "matched_significance_supports_r4": true,
+  "can_strengthen_v3_11_without_gold": true,
+  "recommended_paper_insert_section": "§VIII.D Non-Gold Robustness Stress Tests: label-shift persistence, boundary-collapse fallback, screening utility, LLM conservatism audit, matched significance. These results strengthen V3.11's silver-stage claims without requiring gold annotation.",
+  "remaining_gold_dependency": "Gold adjudication still needed to: (1) confirm the absolute strong_action F1 numbers (silver→gold may shift), (2) resolve the mild_vs_strong boundary κ, (3) confirm strong_action retention rate. The non-gold stress tests show the RELATIVE pattern (R4 > LLM on strong_action) is robust, but absolute numbers remain silver-stage.",
+  "auxiliary_fields": {
+    "r4_wins_at_60pct_pct": 0.986,
+    "r4_wins_at_50pct_pct": 0.942,
+    "delta_at_60pct": 0.14077499999999998,
+    "delta_at_50pct": 0.11372504091653028,
+    "r4_vs_deepseek_strong_f1_delta": 0.22307692307692306,
+    "r4_vs_deepseek_strong_f1_ci": [
+      0.0397162485065711,
+      0.39474937343358396
+    ],
+    "r4_vs_deepseek_mcnemar_p": 0.0029350556433200836,
+    "llm_conservative_collapse_gpt_std": 0.4,
+    "llm_conservative_collapse_deepseek": 0.76,
+    "screening_review_burden": 0.35,
+    "screening_recall": 0.36,
+    "screening_precision": 0.2571428571428571
+  }
+}

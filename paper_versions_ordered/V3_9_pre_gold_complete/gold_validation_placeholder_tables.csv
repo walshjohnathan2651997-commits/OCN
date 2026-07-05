@@ -1,0 +1,69 @@
+table_id,metric,planned_value_or_placeholder,success_threshold,interpretation
+G1,overall_agreement,TO_BE_FILLED_AFTER_GOLD,>= 0.70,Annotator agreement on the four-class taxonomy. Below 0.70 means the four classes are not reliably distinguishable.
+G1,cohens_kappa,TO_BE_FILLED_AFTER_GOLD,>= 0.45,Overall Cohen's kappa between two independent annotators. Below 0.45 means annotators agree mostly by chance.
+G1,krippendorffs_alpha_optional,TO_BE_FILLED_AFTER_GOLD,>= 0.40 (informational),Krippendorff's alpha as a redundancy check; reported but not a primary pass/fail criterion.
+G1,mild_vs_strong_kappa,TO_BE_FILLED_AFTER_GOLD,>= 0.40,Per-boundary kappa for the mild_vs_strong boundary. Below 0.40 triggers taxonomy revision (see downgrade criteria 1).
+G1,strong_vs_contradiction_kappa,TO_BE_FILLED_AFTER_GOLD,>= 0.40,Per-boundary kappa for strong_vs_contradiction (detail-swap detection).
+G1,supported_vs_mild_kappa,TO_BE_FILLED_AFTER_GOLD,>= 0.40 (informational),Per-boundary kappa for supported_vs_mild; this is the weakest silver-stage boundary and is reported as informational.
+G1,unsure_rate,TO_BE_FILLED_AFTER_GOLD,<= 0.20,Rate of unsure labels. High unsure rate indicates the decision tree is not operational enough.
+G2,silver_gold_agreement,TO_BE_FILLED_AFTER_GOLD,>= 0.70,Overall agreement between silver labels and adjudicated gold labels.
+G2,strong_action_retention_rate,TO_BE_FILLED_AFTER_GOLD,>= 0.60,Fraction of silver strong_action labels that remain strong_action under gold. Below 0.50 triggers downgrade criterion 2.
+G2,mild_to_strong_shift,TO_BE_FILLED_AFTER_GOLD,informational,Number of silver mild cases that gold re-labels as strong. Indicates silver under-escalation.
+G2,strong_to_mild_shift,TO_BE_FILLED_AFTER_GOLD,informational,Number of silver strong cases that gold re-labels as mild. Indicates silver over-escalation.
+G2,contradiction_retention_rate,TO_BE_FILLED_AFTER_GOLD,>= 0.60,Fraction of silver contradiction_candidate labels that remain contradiction under gold.
+G3,Flat_baseline_macro_f1,TO_BE_FILLED_AFTER_GOLD,informational,Macro-F1 of the flat four-class baseline on the gold subset.
+G3,Flat_baseline_strong_precision,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action precision of the flat baseline.
+G3,Flat_baseline_strong_recall,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action recall of the flat baseline.
+G3,Flat_baseline_strong_f1,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action F1 of the flat baseline.
+G3,Flat_baseline_contra_f1,TO_BE_FILLED_AFTER_GOLD,informational,Contradiction F1 of the flat baseline.
+G3,Flat_baseline_false_positives_per_true_positive,TO_BE_FILLED_AFTER_GOLD,informational,False positives per true positive for the flat baseline.
+G3,Flat_baseline_status,TO_BE_FILLED_AFTER_GOLD,success_or_downgrade,Status flag computed against pre-registered criteria.
+G3,NLI_baseline_macro_f1,TO_BE_FILLED_AFTER_GOLD,informational,Macro-F1 of the NLI cross-encoder baseline.
+G3,NLI_baseline_strong_precision,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action precision of the NLI baseline.
+G3,NLI_baseline_strong_recall,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action recall of the NLI baseline.
+G3,NLI_baseline_strong_f1,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action F1 of the NLI baseline.
+G3,NLI_baseline_contra_f1,TO_BE_FILLED_AFTER_GOLD,informational,Contradiction F1 of the NLI baseline.
+G3,NLI_baseline_false_positives_per_true_positive,TO_BE_FILLED_AFTER_GOLD,informational,False positives per true positive for the NLI baseline.
+G3,NLI_baseline_status,TO_BE_FILLED_AFTER_GOLD,success_or_downgrade,Status flag.
+G3,GPT_standard_macro_f1,TO_BE_FILLED_AFTER_GOLD,informational,Macro-F1 of GPT-5.5 standard judge prompt.
+G3,GPT_standard_strong_precision,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action precision.
+G3,GPT_standard_strong_recall,TO_BE_FILLED_AFTER_GOLD,<= 0.20 supports H4,Strong-action recall. Pre-gold value is 0.04; if gold-subset recall remains low the LLM under-detection finding is supported.
+G3,GPT_standard_strong_f1,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action F1.
+G3,GPT_standard_contra_f1,TO_BE_FILLED_AFTER_GOLD,informational,Contradiction F1.
+G3,GPT_standard_false_positives_per_true_positive,TO_BE_FILLED_AFTER_GOLD,informational,False positives per true positive.
+G3,GPT_standard_status,TO_BE_FILLED_AFTER_GOLD,success_or_downgrade,Status flag.
+G3,GPT_decision_tree_prompt_macro_f1,TO_BE_FILLED_AFTER_GOLD,informational,Macro-F1 of GPT-5.5 with a decision-tree-structured prompt.
+G3,GPT_decision_tree_prompt_strong_precision,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action precision.
+G3,GPT_decision_tree_prompt_strong_recall,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action recall.
+G3,GPT_decision_tree_prompt_strong_f1,TO_BE_FILLED_AFTER_GOLD,>= 0.20 would challenge H4,If a decision-tree prompt fixes strong_action the LLM under-detection claim is downgraded (criterion 3).
+G3,GPT_decision_tree_prompt_contra_f1,TO_BE_FILLED_AFTER_GOLD,informational,Contradiction F1.
+G3,GPT_decision_tree_prompt_false_positives_per_true_positive,TO_BE_FILLED_AFTER_GOLD,informational,False positives per true positive.
+G3,GPT_decision_tree_prompt_status,TO_BE_FILLED_AFTER_GOLD,success_or_downgrade,Status flag.
+G3,GPT_few_shot_prompt_macro_f1,TO_BE_FILLED_AFTER_GOLD,informational,Macro-F1 of GPT-5.5 with a few-shot prompt.
+G3,GPT_few_shot_prompt_strong_precision,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action precision.
+G3,GPT_few_shot_prompt_strong_recall,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action recall.
+G3,GPT_few_shot_prompt_strong_f1,TO_BE_FILLED_AFTER_GOLD,>= 0.20 would challenge H4,If a few-shot prompt fixes strong_action the LLM under-detection claim is downgraded (criterion 3).
+G3,GPT_few_shot_prompt_contra_f1,TO_BE_FILLED_AFTER_GOLD,informational,Contradiction F1.
+G3,GPT_few_shot_prompt_false_positives_per_true_positive,TO_BE_FILLED_AFTER_GOLD,informational,False positives per true positive.
+G3,GPT_few_shot_prompt_status,TO_BE_FILLED_AFTER_GOLD,success_or_downgrade,Status flag.
+G3,DeepSeek_macro_f1,TO_BE_FILLED_AFTER_GOLD,informational,Macro-F1 of DeepSeek-V3.
+G3,DeepSeek_strong_precision,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action precision.
+G3,DeepSeek_strong_recall,TO_BE_FILLED_AFTER_GOLD,<= 0.20 supports H4,Strong-action recall. Pre-gold value is 0.04.
+G3,DeepSeek_strong_f1,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action F1.
+G3,DeepSeek_contra_f1,TO_BE_FILLED_AFTER_GOLD,informational,Contradiction F1.
+G3,DeepSeek_false_positives_per_true_positive,TO_BE_FILLED_AFTER_GOLD,informational,False positives per true positive.
+G3,DeepSeek_status,TO_BE_FILLED_AFTER_GOLD,success_or_downgrade,Status flag.
+G3,R4_macro_f1,TO_BE_FILLED_AFTER_GOLD,informational,Macro-F1 of frozen R4 on the gold subset.
+G3,R4_strong_precision,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action precision.
+G3,R4_strong_recall,TO_BE_FILLED_AFTER_GOLD,> DeepSeek strong_recall supports H5,R4 strong recall should remain meaningfully higher than LLM strong recall under gold.
+G3,R4_strong_f1,TO_BE_FILLED_AFTER_GOLD,> LLM strong_f1 supports H5,Strong-action F1. Pre-gold value is 0.3000 on matched 100.
+G3,R4_contra_f1,TO_BE_FILLED_AFTER_GOLD,informational,Contradiction F1.
+G3,R4_false_positives_per_true_positive,TO_BE_FILLED_AFTER_GOLD,<= 10 supports H6,If R4 produces more than 10 false positives per true positive the screening claim is downgraded (criterion 4).
+G3,R4_status,TO_BE_FILLED_AFTER_GOLD,success_or_downgrade,Status flag.
+G3,LLM_R4_hybrid_macro_f1,TO_BE_FILLED_AFTER_GOLD,informational,Macro-F1 of an LLM+R4 hybrid (e.g. LLM for supported/mild/contradiction, R4 for strong_action).
+G3,LLM_R4_hybrid_strong_precision,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action precision of the hybrid.
+G3,LLM_R4_hybrid_strong_recall,TO_BE_FILLED_AFTER_GOLD,> R4 alone supports H6,Hybrid strong recall should be at least as high as R4 alone.
+G3,LLM_R4_hybrid_strong_f1,TO_BE_FILLED_AFTER_GOLD,informational,Strong-action F1 of the hybrid.
+G3,LLM_R4_hybrid_contra_f1,TO_BE_FILLED_AFTER_GOLD,informational,Contradiction F1 of the hybrid.
+G3,LLM_R4_hybrid_false_positives_per_true_positive,TO_BE_FILLED_AFTER_GOLD,informational,False positives per true positive for the hybrid.
+G3,LLM_R4_hybrid_status,TO_BE_FILLED_AFTER_GOLD,success_or_downgrade,If hybrid gives no screening gain over R4 alone the complementarity claim is downgraded (criterion 5).

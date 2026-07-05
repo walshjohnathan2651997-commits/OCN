@@ -1,0 +1,54 @@
+{
+  "schema_name": "llm_baseline_output",
+  "version": "1.0",
+  "description": "Output schema for LLM judge baseline on SimClaim small sample.",
+  "fields": {
+    "label": {
+      "type": "string",
+      "enum": [
+        "supported",
+        "mild_scope_overclaim",
+        "strong_action_overclaim",
+        "contradiction_candidate"
+      ],
+      "required": true
+    },
+    "confidence": {
+      "type": "float",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "required": true
+    },
+    "one_sentence_rationale": {
+      "type": "string",
+      "max_chars": 300,
+      "required": true
+    },
+    "evidence_used": {
+      "type": "boolean",
+      "required": true,
+      "notes": "true if LLM reports using the provided evidence; false if it relied on prior knowledge."
+    },
+    "uncertain": {
+      "type": "boolean",
+      "required": true,
+      "notes": "true if LLM is unsure between two labels."
+    }
+  },
+  "expected_output_file": "llm_baseline_predictions.csv",
+  "expected_columns": [
+    "sample_id",
+    "candidate_id",
+    "label_4_silver",
+    "llm_label",
+    "llm_confidence",
+    "llm_rationale",
+    "llm_evidence_used",
+    "llm_uncertain",
+    "r4_label",
+    "agreement_llm_vs_silver",
+    "agreement_llm_vs_r4"
+  ]
+}

@@ -1,0 +1,10 @@
+silver_label,n_fp,pct_of_fp,with_action_cues,with_safety_cues,with_deployment_cues,with_generalization_cues,long_claims,domain,pct
+supported,12,46.15,0.0,0.0,0.0,0.0,0.0,,
+mild_scope_overclaim,13,50.0,0.0,1.0,0.0,0.0,0.0,,
+contradiction_candidate,1,3.85,0.0,0.0,0.0,0.0,0.0,,
+,2,,,,,,,autonomous_driving,7.69
+,1,,,,,,,cyber_defense,3.85
+,7,,,,,,,digital_twin,26.92
+,5,,,,,,,marl,19.23
+,8,,,,,,,policy_simulation,30.77
+,3,,,,,,,robotics,11.54

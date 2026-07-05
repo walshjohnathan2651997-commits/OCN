@@ -1,0 +1,81 @@
+{
+  "gate_name": "low_prevalence_screening_gate",
+  "task": "V3.15 Low-Prevalence Screening Simulation + Natural Distribution Stress Test",
+  "date": "2026-07-05",
+  "output_directory": "D:\\ocn\\experiments\\v3_15_low_prevalence_screening_simulation\\",
+  "simulation_completed": true,
+  "prevalence_levels_tested": [0.01, 0.03, 0.05, 0.10, 0.15, 0.20, 0.25],
+  "r4_screening_viable_at_1pct": false,
+  "r4_screening_viable_at_3pct": false,
+  "r4_screening_viable_at_5pct": false,
+  "r4_screening_viable_at_10pct": true,
+  "best_supported_prevalence_range": "10%-25% (marginal at 10% with FP/TP=12, viable at 25% with FP/TP=3.8); below 10% requires two-stage pipeline (R4 -> LLM/human), not standalone",
+  "fp_tp_at_1pct": {
+    "value": 121.0,
+    "type": "median_over_1000_bootstraps",
+    "verdict": "NOT acceptable as standalone screener (FP/TP far above medical screening range 5-10)",
+    "recall": 0.3626,
+    "precision": 0.0078,
+    "review_burden": 0.463,
+    "nnr": 159.3
+  },
+  "fp_tp_at_3pct": {
+    "value": 41.0,
+    "type": "median_over_1000_bootstraps",
+    "verdict": "NOT acceptable as standalone screener (FP/TP above medical screening range 5-10)",
+    "recall": 0.3606,
+    "precision": 0.0235,
+    "review_burden": 0.461,
+    "nnr": 45.7
+  },
+  "fp_tp_at_5pct": {
+    "value": 24.7,
+    "type": "median_over_1000_bootstraps",
+    "verdict": "BORDERLINE (FP/TP above typical medical screening range 5-10); may be acceptable only for very-high-risk applications",
+    "recall": 0.3585,
+    "precision": 0.0391,
+    "review_burden": 0.459,
+    "nnr": 26.6
+  },
+  "fp_tp_at_10pct": {
+    "value": 11.5,
+    "type": "median_over_1000_bootstraps",
+    "verdict": "MARGINAL (FP/TP at upper edge of medical screening range 5-10); viable for high-risk safety-critical screening only",
+    "recall": 0.3632,
+    "precision": 0.0799,
+    "review_burden": 0.454,
+    "nnr": 12.7
+  },
+  "recommended_paper_claim": "R4 has boundary-recognition ability on the balanced SimClaim diagnostic set (strong_F1 = 0.40, above chance) and its recall is stable (~0.36) across simulated prevalences from 1% to 25%. However, R4 is NOT viable as a standalone screener below 10% prevalence (FP/TP = 25-121, precision = 0.8-3.9%). At low prevalence, R4 retains value as a first-stage high-recall filter that captures strong_action_overclaim cases missed by all three LLM judges (3.19-80.04 per 1000 samples across prevalences). LLM judges exhibit a high-accuracy / low-recall failure mode at low prevalence (99% accuracy, 4.3% recall at 1%), making accuracy a misleading deployment metric. The recommended deployment configuration is a two-stage pipeline (R4 -> LLM/human), proposed but not evaluated in this paper. Balanced SimClaim macro-F1 cannot be extrapolated to deployment; prevalence-aware metrics (FP/TP, NNR, review burden) are required for deployment-stage evaluation. All simulation results are on silver labels and use a heuristic 80/15/5 non-strong composition; gold validation and natural-prevalence corpus studies are required before deployment claims.",
+  "main_risk": "Three-fold: (1) Base pool is only 100 matched samples (25 strong_action cases), limiting diversity of strong_action patterns; (2) non-strong composition 80/15/5 is a heuristic approximation, NOT empirically validated against a real natural-prevalence corpus, so absolute FP/TP values may shift with real distribution; (3) all results are on silver labels (pre-gold), and gold adjudication (frozen protocol, annotation NOT begun) may shift the base predictions and therefore the simulation conclusions. Additional risk: the two-stage pipeline (R4 -> LLM/human) is proposed but NOT empirically evaluated; the paper must not claim it as a validated configuration.",
+  "next_required_experiment": "Two parallel tracks required before deployment claims: (1) Gold pilot annotation per gold_pilot_protocol_freeze_v1 (PROTOCOL FROZEN, annotation NOT begun) on 50-sample pilot, then re-evaluate R4/LLM on gold-validated subset and re-run low-prevalence simulation with gold labels; (2) Natural-prevalence corpus study on real scientific writing (not counterfactual SimClaim) to empirically validate the 80/15/5 non-strong composition and the 1%-10% strong_action prevalence range. Optional but recommended: (3) Empirically evaluate the two-stage pipeline (R4 -> LLM/human) on a held-out set to validate the proposed deployment configuration.",
+  "prohibitions_enforced": {
+    "no_gold_annotation": true,
+    "no_api_calls": true,
+    "no_new_model_training": true,
+    "no_threshold_retuning": true,
+    "no_original_data_modification": true,
+    "no_simulation_as_real_natural_distribution": true,
+    "no_silver_as_gold": true,
+    "no_paper_modification": true
+  },
+  "quality_checks": {
+    "all_results_labelled_simulated_low_prevalence": true,
+    "json_readable": true,
+    "csv_fields_complete": true,
+    "no_garbled_text": true,
+    "bootstrap_iterations_per_prevalence": 1000,
+    "random_seed": 20260705,
+    "base_data": "100 matched samples from gpt_vs_r4_deepseek_comparison.csv (25 per class)",
+    "methods_evaluated": ["r4", "gpt_standard", "gpt_structured", "deepseek"]
+  },
+  "file_inventory": {
+    "low_prevalence_sample_manifest.csv": "Bootstrap sample manifest (7000 rows = 7 prevalences x 1000 iterations)",
+    "low_prevalence_screening_metrics.csv": "Per-method per-prevalence screening metrics (28 rows = 4 methods x 7 prevalences)",
+    "low_prevalence_screening_summary.json": "Full summary with config, methods, results_by_prevalence",
+    "review_budget_curve.csv": "Review budget curve (224 rows = 4 methods x 7 prevalences x 8 budgets)",
+    "low_prevalence_screening_report.md": "Main report answering 6 required questions",
+    "balanced_vs_low_prevalence_interpretation.md": "Interpretation guide for balanced vs low-prevalence settings",
+    "low_prevalence_screening_gate.json": "This readiness gate file"
+  }
+}

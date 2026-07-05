@@ -1,0 +1,5 @@
+method,n_strong_silver,pred_supported,pred_mild,pred_strong,pred_contradiction,pred_strong_rate,pred_compress_to_mild_or_supported,compress_rate
+gpt_standard,25,0,10,1,14,0.04,10,0.4
+gpt_structured,25,0,10,1,14,0.04,10,0.4
+deepseek,25,9,10,1,5,0.04,19,0.76
+r4,25,2,8,9,6,0.36,10,0.4

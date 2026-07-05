@@ -1,0 +1,7 @@
+batch_name,file_name,issue_type,candidate_id,target_candidate_group_id,span_id,source_id,label,field,value,note
+,claim_candidates_batch.csv,leakage_cue_risk,SBV2-ALL92-G096-C04,SBV2-ALL92-G096,,CYB-010,contradiction_candidate,claim_text,complete,high_risk_cue 'complete' in claim_text
+,claim_candidates_batch.csv,leakage_cue_risk,SBV2-ALL92-G153-C04,SBV2-ALL92-G153,,DT-018,contradiction_candidate,claim_text,only,high_risk_cue 'only' in claim_text
+,claim_candidates_batch.csv,leakage_cue_risk,SBV2-ALL92-G194-C01,SBV2-ALL92-G194,,MARL-007,supported,claim_text,omit,high_risk_cue 'omit' in claim_text
+,claim_candidates_batch.csv,leakage_cue_risk,SBV2-ALL92-G194-C02,SBV2-ALL92-G194,,MARL-007,mild_scope_overclaim,claim_text,omit,high_risk_cue 'omit' in claim_text
+,claim_candidates_batch.csv,leakage_cue_risk,SBV2-ALL92-G194-C03,SBV2-ALL92-G194,,MARL-007,strong_action_overclaim,claim_text,omit,high_risk_cue 'omit' in claim_text
+,claim_candidates_batch.csv,leakage_cue_risk,SBV2-ALL92-G194-C04,SBV2-ALL92-G194,,MARL-007,contradiction_candidate,claim_text,omit,high_risk_cue 'omit' in claim_text

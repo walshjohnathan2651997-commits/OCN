@@ -1,0 +1,15 @@
+resource_type,identifier,url_or_location,availability_status,license,notes,blocked_reason
+paper_arxiv,RIGOURATE arXiv v2,https://arxiv.org/abs/2601.04350v2,available,arXiv default,"arXiv:2601.04350v2 [cs.CL] 12 Jan 2026; full text accessible",
+paper_acl,Findings of ACL 2026,https://aclanthology.org/,pending_publication,ACL default,"Venue confirmed in arXiv v2; anthology entry not located as of 2026-07-05 (proceedings may not yet be indexed)",
+authors,"Joseph James (Sheffield); Chenghao Xiao (Durham); Yucheng Li (Surrey); Nafise Sadat Moosavi (Sheffield); Chenghua Lin (Manchester)",N/A,available,N/A,"Five authors across four UK institutions; contact emails present in arXiv v2",
+abstract,Abstract in arXiv v2,https://arxiv.org/abs/2601.04350v2,available,N/A,"Multimodal two-stage approach: (1) fine-tuned reranker for evidence retrieval from full papers, (2) fine-tuned model for continuous overstatement scoring 0-1",
+github_repo,"[Github/HF Link] placeholder in arXiv v2",https://github.com/ (no concrete URL),not_available,unknown,"arXiv v2 still contains placeholder string '[Github/HF Link]'; no concrete GitHub URL found via web search 2026-07-05","No public GitHub repository identified; arXiv v2 link is a placeholder"
+huggingface_repo,"[Github/HF Link] placeholder in arXiv v2",https://huggingface.co/ (no concrete model found),not_available,unknown,"Searched HuggingFace for 'RIGOURATE', 'rigourate', author names; no matching model or dataset found as of 2026-07-05","No public HuggingFace repository identified; arXiv v2 link is a placeholder"
+code_release_readme,N/A,N/A,not_available,N/A,"No README, requirements.txt, or run script available outside the placeholder link","No code bundle accessible"
+training_data,"10K+ claim-evidence sets from ICLR/NeurIPS papers (per paper text)",N/A,not_available,unknown,"Paper describes 10K+ claim-evidence sets annotated by 8 LLM annotators with peer-review calibration and human evaluation; dataset not publicly released","Dataset not publicly released; only described in paper text"
+annotation_script,"LLM annotator + peer-review calibration protocol",N/A,not_available,N/A,"Paper describes 8 LLM annotators and peer-review calibration; no annotation script released","Annotation pipeline scripts not publicly available"
+fine_tuned_reranker,"Fine-tuned multimodal reranker for evidence retrieval",N/A,not_available,unknown,"Model weights not publicly released","No model weights released"
+fine_tuned_scorer,"Fine-tuned overstatement scoring model",N/A,not_available,unknown,"Model weights not publicly released; output is continuous 0-1 overstatement score","No model weights released"
+supplementary,Supplementary material (if any),N/A,not_available,N/A,"No supplementary file located on arXiv or via web search","No supplementary material located"
+runnable_example,Minimal end-to-end example,N/A,not_available,N/A,"No runnable example available without code/data/model","No code/data/model available to construct example"
+license,License for code/data/model,N/A,not_available,unknown,"License not specified because no code/data/model is publicly released","License unknown because no artifacts released"

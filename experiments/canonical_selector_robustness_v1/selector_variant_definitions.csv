@@ -1,0 +1,12 @@
+﻿selector,type,rule,uses_true_label,uses_oracle_hit,uses_nli
+bm25_top1_raw,negative_baseline,Use original BM25 top1 chunk text verbatim (with metadata markers). No selection.,False,False,False
+oracle_span,upper_bound,Use oracle evidence span (gold evidence from dataset).,False,False,False
+best_sentence_top3_overlap,overlap,Split each of top3 BM25 chunks into sentences. Pick sentence with max F1-like token overlap with claim.,False,False,False
+best_sentence_top5_overlap,overlap,Split each of top5 BM25 chunks into sentences. Pick sentence with max F1-like token overlap with claim.,False,False,False
+best_sentence_top10_overlap,overlap,Split each of top10 BM25 chunks into sentences. Pick sentence with max F1-like token overlap with claim.,False,False,False
+best_sentence_top5_bm25weighted,overlap_weighted,Score = sentence-claim overlap + 0.2 * parent_chunk_bm25_score. Pick max.,False,False,False
+best_sentence_top5_nli_entailment,nli,"Compute NLI(evidence=sentence, hypothesis=claim) for all top5 sentences. Pick max entailment_prob.",False,False,True
+best_sentence_top5_nli_low_entropy,nli,Pick sentence with min NLI entropy (most confident).,False,False,True
+best_sentence_top5_margin,nli,Pick sentence with max abs(entailment - contradiction).,False,False,True
+two_sentence_window_top5,window,Pick best sentence by overlap from top5. Add 1 most-overlapping neighbor (same chunk adjacent OR another chunk sentence).,False,False,False
+length_limited_top5,overlap_length,Filter top5 sentences to 10-40 words only. Pick max overlap.,False,False,False

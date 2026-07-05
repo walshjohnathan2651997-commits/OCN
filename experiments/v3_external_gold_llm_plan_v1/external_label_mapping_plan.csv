@@ -1,0 +1,19 @@
+dataset_name,source_label,v3_label,confidence,rationale
+SciFact,SUPPORT,supported,high,Direct support relation maps cleanly to V3 supported.
+SciFact,CONTRADICT,contradiction_candidate,high,Direct contradiction relation maps cleanly to V3 contradiction_candidate.
+SciFact,NEI / NOT_ENOUGH_INFO,unsupported_or_insufficient,high,Insufficient evidence is a distinct bucket; maps to a 3rd external-only class.
+VitaminC,SUPPORTS,supported,high,Direct support.
+VitaminC,REFUTES,contradiction_candidate,high,Direct refutation.
+VitaminC,NOT_ENOUGH_INFO,unsupported_or_insufficient,high,Insufficient evidence.
+FEVER,SUPPORTED,supported,high,Direct support.
+FEVER,REFUTED,contradiction_candidate,high,Direct refutation.
+FEVER,NOT ENOUGH INFO,unsupported_or_insufficient,high,Insufficient evidence.
+PubHealth,true,supported,high,Claim is true given evidence.
+PubHealth,false,contradiction_candidate,medium,"Claim is false; approximately maps to contradiction but is truth-value based, not evidence-relation based."
+PubHealth,mixture,unsupported_or_insufficient,medium,Mixed support; treated as insufficient for a single clean verdict.
+PubHealth,unproven,unsupported_or_insufficient,high,No sufficient evidence.
+AVeriTeC,Supported,supported,high,Direct support.
+AVeriTeC,Refuted,contradiction_candidate,high,Direct refutation.
+AVeriTeC,Not Enough Evidence,unsupported_or_insufficient,high,Insufficient evidence.
+AVeriTeC,Conflicting,unsupported_or_insufficient,medium,"Conflicting evidence; not a clean contradiction, bucketed as insufficient."
+AVeriTeC,Cherry-picking,unsupported_or_insufficient,low,Cherry-picking weakly resembles mild_scope_overclaim but is NOT equivalent. Conservatively bucketed as insufficient rather than mapped to overclaim.

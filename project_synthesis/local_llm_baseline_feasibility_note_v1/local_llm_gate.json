@@ -1,0 +1,64 @@
+{
+  "task": "Local LLM Baseline Feasibility Note v1",
+  "audit_date": "2026-07-05T19:30:00",
+  "task_type": "feasibility_analysis_only",
+  "local_llm_run": false,
+  "deployment_required_now": false,
+  "blocks_v3_17_mainline": false,
+  "must_discuss_as_alternative": true,
+  "recommended_positioning": "future_work_or_optional_baseline",
+  "mainline_can_continue_without_local_llm": true,
+  "evidence_chain_complete_without_local_llm": true,
+  "api_based_llm_baseline_exists": true,
+  "api_based_llm_models_tested": ["GPT-5.5", "DeepSeek-V3"],
+  "api_based_llm_strong_recall": 0.04,
+  "r4_strong_recall_silver_444": 0.4562,
+  "r4_strong_recall_matched_100": 0.36,
+  "r4_captures_llm_missed_strong": 8,
+  "current_evidence_chain": {
+    "pdf_retrieval_feasible": true,
+    "raw_chunk_degrades_screening": true,
+    "canonicalization_restores_screening": true,
+    "selector_robust": true,
+    "review_queue_second_stage_viable": true,
+    "ranking_calibration_improved": true,
+    "r4_not_standalone": true,
+    "local_llm_comparison_executed": false
+  },
+  "key_gate_values_from_recent_tasks": {
+    "canonicalization_best_strong_f1": 0.4503,
+    "canonicalization_oracle_strong_f1": 0.4257,
+    "canonicalization_format_shift_confirmed": true,
+    "selector_robustness_passed": true,
+    "review_queue_fp_tp_at_5pct": 12.84,
+    "ranking_best_precision_at_20": 0.45,
+    "ranking_fp_tp_at_5pct": 11.24,
+    "ranking_second_stage_usable": true,
+    "ranking_standalone_usable": false
+  },
+  "reviewer_risk_assessment": {
+    "no_local_llm_baseline": "medium_controllable",
+    "r4_heuristic_vs_learned": "medium_controllable",
+    "silver_only_labels": "high_but_pre_registered_gold_protocol",
+    "simclaim_counterfactual": "medium_by_design"
+  },
+  "prohibitions_enforced": [
+    "no_model_download",
+    "no_model_deployment",
+    "no_ollama_lm_studio_install",
+    "no_network",
+    "no_api_calls",
+    "no_inference",
+    "no_model_training",
+    "no_paper_modification",
+    "no_threshold_change",
+    "no_silver_as_gold",
+    "no_natural_distribution_claim"
+  ],
+  "output_files": [
+    "local_llm_feasibility_note.md",
+    "local_llm_alternative_risk_table.csv",
+    "local_llm_future_work_protocol.md",
+    "local_llm_gate.json"
+  ]
+}

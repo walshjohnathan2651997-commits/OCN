@@ -1,0 +1,29 @@
+{
+  "n_strict_groups": 111,
+  "n_strict_claims": 444,
+  "n_excluded_groups": 50,
+  "label_distribution": {
+    "supported": 111,
+    "mild_scope_overclaim": 111,
+    "strong_action_overclaim": 111,
+    "contradiction_candidate": 111
+  },
+  "domain_distribution": {
+    "autonomous_driving": 140,
+    "policy_simulation": 84,
+    "digital_twin": 68,
+    "cyber_defense": 64,
+    "marl": 52,
+    "robotics": 36
+  },
+  "tier_distribution_per_group": {
+    "tier4_no_B_has_A": 85,
+    "tier2_B_has_A": 13,
+    "tier1_B_no_A": 8,
+    "tier3_no_B_no_A": 5
+  },
+  "silver_label_source": "candidate_label_guess",
+  "human_audited": false,
+  "is_gold": false,
+  "is_final": false
+}

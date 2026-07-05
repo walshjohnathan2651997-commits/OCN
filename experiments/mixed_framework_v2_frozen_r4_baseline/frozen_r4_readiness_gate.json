@@ -1,0 +1,99 @@
+{
+  "generated_at": "2026-07-03T12:10:33.327689",
+  "mixed_framework_router_ready": true,
+  "best_router": "R4_conservative_strong",
+  "best_objective": "OBJ3_weighted",
+  "selected_thresholds_mean": {
+    "t_contra": 0.48,
+    "t_strong": 0.535,
+    "t_svm": 0.51
+  },
+  "baseline_strong_positive_f1": 0.2408,
+  "best_strong_positive_f1": 0.3967,
+  "strong_positive_delta": 0.1559,
+  "baseline_flat4_strong_per_label_f1": 0.2408,
+  "best_flat4_strong_per_label_f1": 0.3967,
+  "flat4_strong_per_label_delta": 0.1559,
+  "flat4_macro_delta": 0.0275,
+  "contradiction_positive_delta": -0.0012,
+  "escalation_macro_delta": 0.042,
+  "positive_delta_seed_count": 10,
+  "strong_recall_delta": 0.25,
+  "strong_precision_delta": 0.0693,
+  "delta_ci_lower": 0.1058,
+  "delta_ci_upper": 0.1988,
+  "delta_ci_crosses_zero": false,
+  "does_improve_real_strong_class": true,
+  "is_binary_macro_only_gain": false,
+  "recommended_use": "main_method",
+  "main_blocker": "none",
+  "recommended_next_step": "adopt as main method for strong_action; report in paper with positive-F1 as primary metric",
+  "selection_criteria": {
+    "strong_positive_f1_improve_ge_0.05": true,
+    "flat4_macro_not_down_gt_0.02": true,
+    "contradiction_positive_not_down_gt_0.03": true,
+    "escalation_macro_not_down_gt_0.03": true,
+    "at_least_7_seeds_positive": true,
+    "all_criteria_met": true
+  },
+  "taskk_correction": {
+    "taskk_original_best_method": "M5_E1_contra_first",
+    "taskk_original_metric": "strong_binary_macro_f1",
+    "taskk_original_delta": 0.0995,
+    "taskk_corrected_e1_strong_positive_f1": 0.4257,
+    "taskk_corrected_e1_strong_positive_delta": 0.1849,
+    "taskk_corrected_e1_flat4_strong_f1": 0.4257,
+    "taskk_corrected_e1_flat4_strong_delta": 0.1849,
+    "taskk_conclusion_needs_correction": false
+  },
+  "key_metrics_all_methods": {
+    "baseline_flat4": {
+      "strong_positive_f1": 0.2408,
+      "strong_positive_delta": 0.0,
+      "flat4_strong_f1": 0.2408,
+      "flat4_macro_f1": 0.3963,
+      "strong_recall": 0.2062,
+      "strong_precision": 0.3097
+    },
+    "R1_contra_first": {
+      "strong_positive_f1": 0.3467,
+      "strong_positive_delta": 0.1059,
+      "flat4_strong_f1": 0.3467,
+      "flat4_macro_f1": 0.4124,
+      "strong_recall": 0.4,
+      "strong_precision": 0.3534
+    },
+    "R2_strong_first": {
+      "strong_positive_f1": 0.34,
+      "strong_positive_delta": 0.0992,
+      "flat4_strong_f1": 0.34,
+      "flat4_macro_f1": 0.3925,
+      "strong_recall": 0.4125,
+      "strong_precision": 0.3313
+    },
+    "R3_margin_router": {
+      "strong_positive_f1": 0.4047,
+      "strong_positive_delta": 0.1639,
+      "flat4_strong_f1": 0.4047,
+      "flat4_macro_f1": 0.3565,
+      "strong_recall": 0.6937,
+      "strong_precision": 0.2875
+    },
+    "R4_conservative_strong": {
+      "strong_positive_f1": 0.3967,
+      "strong_positive_delta": 0.1559,
+      "flat4_strong_f1": 0.3967,
+      "flat4_macro_f1": 0.4238,
+      "strong_recall": 0.4562,
+      "strong_precision": 0.3791
+    },
+    "R5_strong_recall_router": {
+      "strong_positive_f1": 0.4399,
+      "strong_positive_delta": 0.1991,
+      "flat4_strong_f1": 0.4399,
+      "flat4_macro_f1": 0.368,
+      "strong_recall": 0.7,
+      "strong_precision": 0.3235
+    }
+  }
+}

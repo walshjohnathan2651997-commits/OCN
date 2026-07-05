@@ -1,0 +1,7 @@
+file_name,file_type,purpose,ready_to_share,notes
+CESE_OCN_V3_7_advisor_handoff_clean.md,markdown main paper,Main paper manuscript (advisor-review draft),yes,Cleaned from V3.6; EMNAACP fixed; table/figure numbering unified; no mojibake; silver-not-gold preserved; no R4-beats-LLM claims
+CESE_OCN_V3_7_advisor_handoff_clean.docx,docx,Word version of main paper for advisor reading,yes,Built via zipfile+XML (python-docx unavailable); 25575 bytes; 8 tables; ASCII figures render as monospace text
+advisor_cover_note.md,markdown,1121-word cover note addressed to advisor/collaborator,yes,Within 800-1200 word target; covers main line / strongest result / R4-as-complement / gold-missing risk / 5 advisor feedback asks; honest tone
+one_page_project_summary.md,markdown,One-page project summary for quick reading,yes,Includes Title/Problem/Method/Dataset/Key results/Main limitation/Current readiness/Recommended next step; explicitly states 'advisor-review draft not final submission'
+reviewer_risk_brief.md,markdown,One-page reviewer risk brief,yes,5 risks (silver-not-gold / LLM prompt-sample-specific / R4 macro-F1 lower / mild-strong boundary / no independent adjudication); each with risk + current mitigation + what would fully solve
+V3_7_cleanup_log.md,markdown,Cleanup log documenting all V3.7 changes,yes,Records EMNAACP fix; mojibake check; figure/table unification; citation placeholder handling; silver/gold preservation; V3.6 preservation; no new experiments

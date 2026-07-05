@@ -1,0 +1,13 @@
+task,score,n_samples,roc_auc,pr_auc,method,precision,recall,f1,tp,fp,fn,tn
+supported_vs_overclaim,rule_scalar_score,444,0.5136,0.7563,,,,,,,,
+supported_vs_overclaim,llm_scalar_score,200,0.8533,0.9267,,,,,,,,
+mild_vs_strong,rule_scalar_score,222,0.5062,0.5016,,,,,,,,
+mild_vs_strong,llm_scalar_score,100,0.5874,0.5931,,,,,,,,
+strong_vs_rest,rule_scalar_score,444,0.4971,0.2464,,,,,,,,
+strong_vs_rest,llm_scalar_score,200,0.5154,0.2505,,,,,,,,
+contradiction_vs_rest,rule_scalar_score,444,0.5277,0.2671,,,,,,,,
+contradiction_vs_rest,llm_scalar_score,200,0.9195,0.7561,,,,,,,,
+supported_vs_overclaim,,100,,,r4_frozen,0.7473,0.9067,0.8193,68.0,23.0,7.0,2.0
+mild_vs_strong,,50,,,r4_frozen,0.4091,0.36,0.383,9.0,13.0,16.0,12.0
+strong_vs_rest,,100,,,r4_frozen,0.2571,0.36,0.3,9.0,26.0,16.0,49.0
+contradiction_vs_rest,,100,,,r4_frozen,0.68,0.68,0.68,17.0,8.0,8.0,67.0

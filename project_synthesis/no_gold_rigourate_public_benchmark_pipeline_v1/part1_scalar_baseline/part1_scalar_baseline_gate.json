@@ -1,0 +1,53 @@
+{
+  "task": "No-Gold RIGOURATE + Scalar Baseline Pipeline Part 1",
+  "audit_date": "2026-07-05",
+  "official_rigourate_status": "blocked",
+  "official_code_available": false,
+  "official_data_available": false,
+  "official_model_available": false,
+  "proxy_scalar_completed": true,
+  "rule_scalar_completed": true,
+  "nli_scalar_completed": false,
+  "nli_scalar_blocked_reason": "no HCM/NLI features available in repo",
+  "llm_scalar_proxy_completed": true,
+  "llm_scalar_proxy_coverage": "200/444 candidates (DeepSeek 200 + GPT 100 matched)",
+  "scalar_distinguishes_mild_strong": false,
+  "scalar_distinguishes_mild_strong_evidence": "rule_scalar ROC-AUC=0.5054 if available; llm_scalar ROC-AUC=0.5874 if available; threshold 0.60; result=False",
+  "scalar_detects_strong_action": true,
+  "scalar_detects_strong_action_evidence": "rule_scalar recall=0.7838 F1=0.3791 if available; llm_scalar recall=0.6200 F1=0.3974 if available; threshold recall>=0.30 and F1>=0.20; result=True",
+  "main_remaining_risk": "Scalar proxy baseline confirms that scalar scores cannot replace hierarchical relation typing (mild_vs_strong ROC-AUC < 0.60, strong_action ROC-AUC < 0.55). However, the proxy is built on silver labels and a 200-sample LLM subset; gold adjudication may shift conclusions. The NLI scalar is blocked, leaving a gap in the proxy comparison. Main paper risk: if reviewers argue the proxy is too weak to be a fair baseline, the inability-to-replace-relation-typing claim weakens.",
+  "recommended_next_action": "Proceed to Part 2 (public benchmark comparison if any public dataset becomes available) OR proceed to gold pilot (50-pair two-layer relation+realism annotation) to validate the mild_vs_strong boundary that scalar cannot resolve. Do NOT claim proxy as official RIGOURATE. Do NOT claim scalar results as gold.",
+  "prohibitions_enforced": [
+    "no_gold_created",
+    "no_api_calls",
+    "no_model_training",
+    "no_paper_modification",
+    "no_original_data_modification",
+    "no_proxy_as_official",
+    "no_silver_as_gold",
+    "no_annotation_templates",
+    "no_planned_as_completed",
+    "no_file_deletion"
+  ],
+  "quality_checks": {
+    "no_gold": true,
+    "no_api": true,
+    "no_model_training": true,
+    "no_paper_modification": true,
+    "no_original_data_modification": true,
+    "no_proxy_as_official": true,
+    "no_silver_as_gold": true,
+    "json_csv_md_readable": true,
+    "no_garbled_chars": true
+  },
+  "output_files": [
+    "rigourate_official_resource_inventory.csv",
+    "rigourate_official_reproduction_status.md",
+    "rigourate_official_gate.json",
+    "rigourate_style_scalar_scores.csv",
+    "scalar_baseline_binary_results.csv",
+    "scalar_threshold_sweep.csv",
+    "scalar_baseline_report.md",
+    "part1_scalar_baseline_gate.json"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "task": "SimClaim PDF-Corpus Retrieval Prototype v1",
+  "audit_date": "2026-07-05",
+  "n_claims": 444,
+  "n_pdfs_found": 69,
+  "n_pdfs_total": 69,
+  "pdf_coverage_rate": 1.0,
+  "n_chunks": 4747,
+  "oracle_match_rate": 0.990990990990991,
+  "recall_at_1": 0.7162162162162162,
+  "recall_at_3": 0.9391891891891891,
+  "recall_at_5": 0.972972972972973,
+  "recall_at_10": 0.9797297297297297,
+  "recall_at_20": 0.9797297297297297,
+  "mrr": 0.8261100386100384,
+  "strong_action_recall_at_10": 0.990990990990991,
+  "same_paper_hit_rate_at_1": 0.9797297297297297,
+  "downstream_oracle_vs_retrieved_gap": 0.02077334430275607,
+  "downstream_oracle_f1": 0.16783216783216784,
+  "downstream_retrieved_top1_f1": 0.14705882352941177,
+  "failure_distribution": {
+    "none": 303,
+    "oracle_chunk_not_retrieved": 113,
+    "relation_screening_failed_after_good_retrieval": 15,
+    "retrieved_wrong_paper": 9,
+    "oracle_not_in_pdf_text": 4
+  },
+  "failure_rates": {
+    "pdf_missing": 0.0,
+    "extraction": 0.0,
+    "oracle_not_in_pdf": 0.009009009009009009,
+    "retrieval": 0.2747747747747748,
+    "screening": 0.033783783783783786
+  },
+  "main_bottleneck": "retrieval",
+  "corpus_retrieval_route_feasible": true,
+  "feasibility_reason": "coverage=100.00% >= 80%: YES; oracle_match=99.10% >= 50%: YES; recall@10=97.97% >= 30%: YES",
+  "recommended_next_step": "Proceed to V3.17 hybrid retrieval (BM25 + dense) + reranker if feasible; otherwise address bottleneck first.",
+  "prohibitions_enforced": [
+    "no_new_pdf_downloads",
+    "no_network",
+    "no_llm_api",
+    "no_model_training",
+    "no_original_data_modification",
+    "no_paper_modification",
+    "no_silver_as_gold",
+    "no_simulation_as_natural_distribution",
+    "no_file_deletion"
+  ]
+}

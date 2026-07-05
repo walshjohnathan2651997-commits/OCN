@@ -1,0 +1,4 @@
+seed,n_train_groups,n_dev_groups,n_test_groups,train_dev_overlap,train_test_overlap,dev_test_overlap,group_leakage,r4_strong_f1,r4_flat4_macro
+11,78,17,16,0,0,0,NONE,0.3750,0.3788
+22,78,17,16,0,0,0,NONE,0.3750,0.4757
+33,78,17,16,0,0,0,NONE,0.4444,0.4662

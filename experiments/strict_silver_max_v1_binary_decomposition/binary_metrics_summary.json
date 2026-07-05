@@ -1,0 +1,355 @@
+{
+  "experiment": "strict_silver_max_v1_binary_decomposition",
+  "label_source": "silver (AI-preannotated)",
+  "human_audited": false,
+  "is_gold": false,
+  "n_train": 308,
+  "n_test": 72,
+  "tasks": {
+    "issue_binary": {
+      "claim_only": {
+        "accuracy": 0.6806,
+        "macro_f1": 0.5273,
+        "positive_class": "issue",
+        "positive_precision": 0.7627,
+        "positive_recall": 0.8333,
+        "positive_f1": 0.7965,
+        "confusion_matrix": [
+          [
+            45,
+            9
+          ],
+          [
+            14,
+            4
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "issue",
+          "no_issue"
+        ]
+      },
+      "evidence_only": {
+        "accuracy": 0.75,
+        "macro_f1": 0.4286,
+        "positive_class": "issue",
+        "positive_precision": 0.75,
+        "positive_recall": 1.0,
+        "positive_f1": 0.8571,
+        "confusion_matrix": [
+          [
+            54,
+            0
+          ],
+          [
+            18,
+            0
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "issue",
+          "no_issue"
+        ]
+      },
+      "claim_evidence": {
+        "accuracy": 0.6944,
+        "macro_f1": 0.5123,
+        "positive_class": "issue",
+        "positive_precision": 0.7581,
+        "positive_recall": 0.8704,
+        "positive_f1": 0.8103,
+        "confusion_matrix": [
+          [
+            47,
+            7
+          ],
+          [
+            15,
+            3
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "issue",
+          "no_issue"
+        ]
+      },
+      "ce_co_macro_f1_delta": -0.015
+    },
+    "escalation_binary": {
+      "claim_only": {
+        "accuracy": 0.5139,
+        "macro_f1": 0.4975,
+        "positive_class": "escalation",
+        "positive_precision": 0.5217,
+        "positive_recall": 0.3333,
+        "positive_f1": 0.4068,
+        "confusion_matrix": [
+          [
+            12,
+            24
+          ],
+          [
+            11,
+            25
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "escalation",
+          "non_escalation"
+        ]
+      },
+      "evidence_only": {
+        "accuracy": 0.5,
+        "macro_f1": 0.3333,
+        "positive_class": "escalation",
+        "positive_precision": 0.5,
+        "positive_recall": 1.0,
+        "positive_f1": 0.6667,
+        "confusion_matrix": [
+          [
+            36,
+            0
+          ],
+          [
+            36,
+            0
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "escalation",
+          "non_escalation"
+        ]
+      },
+      "claim_evidence": {
+        "accuracy": 0.5417,
+        "macro_f1": 0.5416,
+        "positive_class": "escalation",
+        "positive_precision": 0.5405,
+        "positive_recall": 0.5556,
+        "positive_f1": 0.5479,
+        "confusion_matrix": [
+          [
+            20,
+            16
+          ],
+          [
+            17,
+            19
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "escalation",
+          "non_escalation"
+        ]
+      },
+      "ce_co_macro_f1_delta": 0.0441
+    },
+    "contradiction_binary": {
+      "claim_only": {
+        "accuracy": 0.5694,
+        "macro_f1": 0.5372,
+        "positive_class": "contradiction",
+        "positive_precision": 0.3143,
+        "positive_recall": 0.6111,
+        "positive_f1": 0.4151,
+        "confusion_matrix": [
+          [
+            11,
+            7
+          ],
+          [
+            24,
+            30
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "contradiction",
+          "not_contradiction"
+        ]
+      },
+      "evidence_only": {
+        "accuracy": 0.25,
+        "macro_f1": 0.2,
+        "positive_class": "contradiction",
+        "positive_precision": 0.25,
+        "positive_recall": 1.0,
+        "positive_f1": 0.4,
+        "confusion_matrix": [
+          [
+            18,
+            0
+          ],
+          [
+            54,
+            0
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "contradiction",
+          "not_contradiction"
+        ]
+      },
+      "claim_evidence": {
+        "accuracy": 0.6111,
+        "macro_f1": 0.5625,
+        "positive_class": "contradiction",
+        "positive_precision": 0.3333,
+        "positive_recall": 0.5556,
+        "positive_f1": 0.4167,
+        "confusion_matrix": [
+          [
+            10,
+            8
+          ],
+          [
+            20,
+            34
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "contradiction",
+          "not_contradiction"
+        ]
+      },
+      "ce_co_macro_f1_delta": 0.0253
+    },
+    "supported_vs_rest": {
+      "claim_only": {
+        "accuracy": 0.6806,
+        "macro_f1": 0.5273,
+        "positive_class": "supported",
+        "positive_precision": 0.3077,
+        "positive_recall": 0.2222,
+        "positive_f1": 0.2581,
+        "confusion_matrix": [
+          [
+            45,
+            9
+          ],
+          [
+            14,
+            4
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "non_supported",
+          "supported"
+        ]
+      },
+      "evidence_only": {
+        "accuracy": 0.75,
+        "macro_f1": 0.4286,
+        "positive_class": "supported",
+        "positive_precision": 0.0,
+        "positive_recall": 0.0,
+        "positive_f1": 0.0,
+        "confusion_matrix": [
+          [
+            54,
+            0
+          ],
+          [
+            18,
+            0
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "non_supported",
+          "supported"
+        ]
+      },
+      "claim_evidence": {
+        "accuracy": 0.6944,
+        "macro_f1": 0.5123,
+        "positive_class": "supported",
+        "positive_precision": 0.3,
+        "positive_recall": 0.1667,
+        "positive_f1": 0.2143,
+        "confusion_matrix": [
+          [
+            47,
+            7
+          ],
+          [
+            15,
+            3
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "non_supported",
+          "supported"
+        ]
+      },
+      "ce_co_macro_f1_delta": -0.015
+    },
+    "contradiction_vs_rest": {
+      "claim_only": {
+        "accuracy": 0.5694,
+        "macro_f1": 0.5372,
+        "positive_class": "contradiction",
+        "positive_precision": 0.3143,
+        "positive_recall": 0.6111,
+        "positive_f1": 0.4151,
+        "confusion_matrix": [
+          [
+            11,
+            7
+          ],
+          [
+            24,
+            30
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "contradiction",
+          "non_contradiction"
+        ]
+      },
+      "evidence_only": {
+        "accuracy": 0.25,
+        "macro_f1": 0.2,
+        "positive_class": "contradiction",
+        "positive_precision": 0.25,
+        "positive_recall": 1.0,
+        "positive_f1": 0.4,
+        "confusion_matrix": [
+          [
+            18,
+            0
+          ],
+          [
+            54,
+            0
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "contradiction",
+          "non_contradiction"
+        ]
+      },
+      "claim_evidence": {
+        "accuracy": 0.6111,
+        "macro_f1": 0.5625,
+        "positive_class": "contradiction",
+        "positive_precision": 0.3333,
+        "positive_recall": 0.5556,
+        "positive_f1": 0.4167,
+        "confusion_matrix": [
+          [
+            10,
+            8
+          ],
+          [
+            20,
+            34
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "contradiction",
+          "non_contradiction"
+        ]
+      },
+      "ce_co_macro_f1_delta": 0.0253
+    }
+  }
+}

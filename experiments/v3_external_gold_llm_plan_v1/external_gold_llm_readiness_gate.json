@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-07-04T01:44:35",
+  "public_gold_available": true,
+  "recommended_public_datasets": [
+    "SciFact",
+    "VitaminC",
+    "PubHealth",
+    "AVeriTeC"
+  ],
+  "best_external_test_candidate": "SciFact",
+  "best_external_test_reason": "Scientific domain match with V3; has evidence text and rationale; support/contradict/NEI labels map cleanly to V3 external labels; manageable size (~1.4k claims).",
+  "can_replace_simclaim_gold": false,
+  "why_not_replace_gold": [
+    "No public dataset annotates action-overclaim / deployment-overclaim / safety-scope overclaim.",
+    "Public labels are support/refute/NEI only; they cannot test the strong_action_overclaim vs mild_scope_overclaim distinction.",
+    "Public domains (news, Wikipedia, health) do not match V3's 6 technical domains (autonomous_driving, marl, robotics, etc.).",
+    "SimClaim's 4-class schema with action/deployment/safety dimension is unique to V3."
+  ],
+  "llm_baseline_needed": true,
+  "llm_baseline_scope": "small_sample_only",
+  "llm_baseline_recommended_size": 200,
+  "llm_baseline_pilot_size": 100,
+  "llm_baseline_models_recommended": [
+    "GPT-4o-mini (low cost pilot)",
+    "Claude 3.5 Haiku (alternative low cost)",
+    "local Qwen2.5-7B (zero API cost if available)"
+  ],
+  "estimated_next_step": "1) Download SciFact + VitaminC (manual approval); 2) Execute E1+E2 on SciFact; 3) Execute E3 on VitaminC; 4) Run 100-sample LLM pilot; 5) Decide whether to scale LLM to 200 and add a stronger model.",
+  "risk_level": "medium",
+  "risk_notes": "Public data download may require license verification. LLM API calls (if approved) incur small cost (~$0.10-$2.10). External results may be weaker than SimClaim due to domain mismatch; this is expected and should be reported transparently.",
+  "recommended_order": [
+    "1. SciFact protocol (E1 + E2)",
+    "2. VitaminC evidence sensitivity protocol (E3)",
+    "3. SimClaim 100-sample LLM baseline",
+    "4. optional FEVER/PubHealth sanity check"
+  ],
+  "task_p_validation_status": "supportive_but_not_final",
+  "task_p_r4_retained": true,
+  "does_external_plan_change_r4_status": false,
+  "does_external_plan_change_r4_status_reason": "External gold + LLM baseline are ADDITIONAL evidence, not replacements. R4's main-method status depends on SimClaim validation (Task P), which is unchanged.",
+  "forbidden_actions": [
+    "Do NOT download datasets automatically without license verification.",
+    "Do NOT call any LLM API in Task Q.",
+    "Do NOT merge public results with SimClaim main results.",
+    "Do NOT map public labels to strong_action_overclaim.",
+    "Do NOT write human_audited/gold/final labels."
+  ]
+}

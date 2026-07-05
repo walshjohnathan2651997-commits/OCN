@@ -1,0 +1,5 @@
+original_label,level1_label,level2_label,is_high_risk,paper_interpretation,fallback_behavior
+supported,supported,NA,false,fully supported relation,keep
+mild_scope_overclaim,overclaim,scope_expansion,false,boundary-sensitive scope overclaim,merge into overclaim if unstable
+strong_action_overclaim,overclaim,strong_action,true,high-risk action/deployment overclaim,retain as binary screen if stable
+contradiction_candidate,contradiction,NA,false,evidence conflict/control relation,keep

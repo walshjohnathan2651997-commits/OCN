@@ -1,0 +1,33 @@
+file_or_folder,category,location,reason_kept,notes
+CESE_OCN_CURRENT_ADVISOR_REVIEW.docx,paper_word,D:\ocn\CESE_OCN_CURRENT_ADVISOR_REVIEW.docx,Latest Word manuscript for advisor review,Byte-for-byte copy of V3.7 docx
+paper_versions_ordered\V3_7_advisor_handoff_clean,paper_version,D:\ocn\paper_versions_ordered\V3_7_advisor_handoff_clean,Current final advisor-review draft; 7 files including main md/docx + cover note + one-page summary + risk brief + cleanup log + manifest,V3.7 is the current main version
+paper_versions_ordered\V3_6_case_figure_integrity_checked,paper_version,D:\ocn\paper_versions_ordered\V3_6_case_figure_integrity_checked,Recent key version for traceability; contains case_integrity_audit.csv and table_taxonomy_examples_v3_6_clean.csv referenced by V3.7,V3.6 case/figure integrity pass
+paper_versions_ordered\V3_5_presentation_ready,paper_version,D:\ocn\paper_versions_ordered\V3_5_presentation_ready,Recent key version for traceability; contains figures and presentation pack,V3.5 presentation pack
+paper_versions_ordered\V3_4_taxonomy_hardened,paper_version,D:\ocn\paper_versions_ordered\V3_4_taxonomy_hardened,Recent key version for traceability; contains high_risk_sample_bank.csv and trusted_case_bank.csv referenced by V3.7 and gold pilot,V3.4 taxonomy hardening
+paper_versions_ordered\VERSION_INDEX.md,index,D:\ocn\paper_versions_ordered\VERSION_INDEX.md,Version index for paper history,Reference
+experiments\mixed_framework_v2_frozen_r4_baseline,experiment,D:\ocn\experiments\mixed_framework_v2_frozen_r4_baseline,Frozen R4 baseline results; main R4 strong_action-F1=0.3967,Mainline experiment
+experiments\paper_ready_mixed_framework_v2,experiment,D:\ocn\experiments\paper_ready_mixed_framework_v2,Paper-ready result pack; tables and summary JSONs,Mainline experiment
+experiments\gpt_structured_judge_probe_v1,experiment,D:\ocn\experiments\gpt_structured_judge_probe_v1,GPT-5.5 standard vs structured probe; 100 samples,Mainline experiment
+experiments\llm_judge_baseline_v1,experiment,D:\ocn\experiments\llm_judge_baseline_v1,DeepSeek-V3 LLM baseline; 200 samples,Mainline experiment
+experiments\external_gold_scifact_vitaminc_v1,experiment,D:\ocn\experiments\external_gold_scifact_vitaminc_v1,SciFact + VitaminC external gold-derived eval,Mainline experiment
+experiments\v3_r4_strong_baselines_holdout_v1,experiment,D:\ocn\experiments\v3_r4_strong_baselines_holdout_v1,Strong baselines + domain/source holdout validation; referenced by V3.7,Mainline experiment
+experiments\v3_external_gold_llm_plan_v1,experiment,D:\ocn\experiments\v3_external_gold_llm_plan_v1,External gold/LLM plan; referenced by V3.7,Mainline experiment
+experiments\strict_silver_max_v1,experiment_data,D:\ocn\experiments\strict_silver_max_v1,Strict silver main data in experiments directory,Mainline data
+experiments\strict_silver_max_v1_binary_decomposition,experiment_data,D:\ocn\experiments\strict_silver_max_v1_binary_decomposition,Binary decomposition variant,Mainline data
+experiments\mixed_framework_router_optimization_v2,experiment,D:\ocn\experiments\mixed_framework_router_optimization_v2,Router optimization results; referenced by V3.7,Mainline experiment
+experiments\mixed_framework_new_algorithm_sweep_v1,experiment,D:\ocn\experiments\mixed_framework_new_algorithm_sweep_v1,Algorithm sweep results; referenced by V3.7,Mainline experiment
+experiments\paper_v2_strengthening_summary.md,summary,D:\ocn\experiments\paper_v2_strengthening_summary.md,Summary of paper v2 strengthening,Reference
+data\simclaim_all92_candidate_pool_v1,data,D:\ocn\data\simclaim_all92_candidate_pool_v1,Main SimClaim data; contains strict_silver_max_v1/strict_silver_max_candidates_v1.csv (444 pairs),Mainline data source
+data\external_gold,data,D:\ocn\data\external_gold,SciFact + VitaminC external gold data; used by external_gold_scifact_vitaminc_v1 experiment,Mainline data
+gold_pilot_preparation_v1,prep,D:\ocn\gold_pilot_preparation_v1,Gold pilot preparation pack (50 samples + guidelines + templates); next-step materials,Mainline-adjacent (next step)
+scripts,scripts,D:\ocn\scripts,All 190 scripts retained for reference; 16 mainline scripts also copied to _MAIN_PAPER_CURRENT\scripts\,Not individually categorized; kept intact
+docs,docs,D:\ocn\docs,22 mainline doc items (annotation guidelines; data cards; paper-code alignment; reproduction path; workflow),Mainline documentation
+tests,tests,D:\ocn\tests,Test suite; kept for validation,Infrastructure
+.github,infrastructure,D:\ocn\.github,GitHub config,Infrastructure
+.venv,infrastructure,D:\ocn\.venv,Python virtual environment,Infrastructure
+.gitignore,config,D:\ocn\.gitignore,Git ignore rules,Infrastructure
+pytest.ini,config,D:\ocn\pytest.ini,Pytest configuration,Infrastructure
+README.md,config,D:\ocn\README.md,Project README,Infrastructure
+requirements.txt,config,D:\ocn\requirements.txt,Python dependencies,Infrastructure
+_MAIN_PAPER_CURRENT,curated,D:\ocn\_MAIN_PAPER_CURRENT,Curated copies of mainline paper/experiments/data/scripts for quick access,New directory
+_PROJECT_INDEX,index,D:\ocn\_PROJECT_INDEX,This manifest + cleanup report + path list,New directory

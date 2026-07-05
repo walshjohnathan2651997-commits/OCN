@@ -1,0 +1,2 @@
+﻿setting,n_eval,strong_precision,strong_recall,strong_f1,macro_f1,supported_f1,mild_scope_overclaim_f1,strong_action_overclaim_f1,contradiction_candidate_f1,oracle_to_learned_gap,learned_vs_baseline_gap,baseline_strong_f1,baseline_strong_recall,selector_upgrade_passed,n_predicted_strong,n_true_strong
+learned_selector_only,436,0.3261802575107296,0.6972477064220184,0.4444444444444444,0.36848239985460945,0.3218390804597701,0.10852713178294573,0.4444444444444444,0.5991189427312775,0.018744444444444397,-0.005855555555555558,0.4503,0.7064,False,233,109

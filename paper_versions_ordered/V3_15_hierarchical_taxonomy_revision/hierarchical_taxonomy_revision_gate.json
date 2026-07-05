@@ -1,0 +1,41 @@
+{
+  "gate_name": "hierarchical_taxonomy_revision_gate",
+  "version": "V3.15 Hierarchical Taxonomy Revision",
+  "date": "2026-07-05",
+  "hierarchical_taxonomy_inserted": true,
+  "flat_four_class_deemphasized": true,
+  "mild_as_buffer_subtype": true,
+  "strong_action_as_high_risk_subtype": true,
+  "level1_level2_mapping_created": true,
+  "fallback_to_3class_plus_binary_defined": true,
+  "numbers_unchanged": true,
+  "gold_not_claimed": true,
+  "silver_not_gold": true,
+  "old_files_unchanged": true,
+  "docx_generated": true,
+  "main_remaining_risk": "The Level-2 mild_vs_strong boundary is the hardest to draw (75% confusion in §V.D audit). If gold adjudication reveals mild_vs_strong κ < 0.40, the paper must fall back to Level-1 three-class + binary strong_action screening per §VII.K. The hierarchical framing reduces but does not eliminate this risk; it converts a fatal 'forced four-class' attack into a pre-registered graceful-degradation path. A secondary residual risk is that the RIGOURATE-style scalar baseline (§VI.E) is a proxy, not the official RIGOURATE system; conclusions may shift when official artifacts become available.",
+  "next_required_action": "Run the §VII 50-pair two-layer gold pilot (Layer 1 relation label + Layer 2 realism) using the frozen gold_pilot_protocol_freeze_v1 package and the v2 relation+realism protocol. Specifically: (1) execute blind annotation A and B; (2) adjudicate disagreements; (3) compute Level-1 κ (supported/overclaim/contradiction) and Level-2 κ (scope_expansion vs. strong_action conditional on overclaim); (4) compute strong_action retention rate; (5) apply the §VII.K fallback rules: if Level-1 κ ≥ 0.50 and Level-2 κ ≥ 0.40 and retention ≥ 0.60, retain the hierarchical taxonomy; if Level-1 κ ≥ 0.50 but Level-2 κ < 0.40, fall back to Level-1 three-class + binary strong_action screening; if retention < 0.50, downgrade strong_action to exploratory. Insert gold results into Tables G1–G3 without restructuring the paper.",
+  "outputs": {
+    "main_md": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\CESE_OCN_V3_15_hierarchical_taxonomy_revision.md",
+    "main_docx": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\CESE_OCN_V3_15_hierarchical_taxonomy_revision.docx",
+    "mapping_csv": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\hierarchical_label_mapping.csv",
+    "gold_plan": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\hierarchical_gold_validation_plan.md",
+    "attack_response": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\flat_four_class_attack_response.md",
+    "revision_log": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\V3_15_revision_log.md",
+    "build_gate": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\V3_15_hierarchical_taxonomy_gate.json",
+    "readiness_gate": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\hierarchical_taxonomy_revision_gate.json"
+  },
+  "quality_checks_section_12": {
+    "no_garbled_chars": true,
+    "mild_scope_not_claimed_naturally_stable": true,
+    "four_operational_labels_not_deleted": true,
+    "experimental_numbers_unchanged": true,
+    "three_class_fallback_not_executed": true,
+    "gold_not_claimed_complete": true,
+    "r4_macro_f1_below_llm_fact_preserved": true,
+    "non_gold_checks_caveat_preserved": true,
+    "docx_generated_successfully": true,
+    "old_version_files_unchanged": true
+  },
+  "audit_disclaimer": "V3.15 hierarchical taxonomy revision. Wording-level and interpretive-level revision only. No experiments run, no API calls, no gold annotation, no original data modified, no experimental numbers changed. Four operational labels preserved as experimental label space; only interpretation changes from flat four-class to hierarchical. mild_scope_overclaim explicitly NOT claimed to be naturally stable. R4 explicitly NOT claimed to overall beat LLM (R4 macro-F1 0.3280 < LLM 0.5523 on matched 100). All silver labels remain silver. Three-class fallback is pre-registered, NOT executed. Gold is planned (§VII), NOT complete."
+}

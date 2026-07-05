@@ -1,0 +1,356 @@
+{
+  "generated_at": "2026-07-04T03:18:51",
+  "is_full_benchmark": false,
+  "is_gold_derived_subset": true,
+  "original_labels_preserved": true,
+  "mapped_labels_are_derived": true,
+  "sampling_representativeness_limit": "label-balanced sample of <=300 per dataset; not full benchmark",
+  "statistical_power_limit": "small N; multi-seed mean/std only; no SOTA claims",
+  "can_claim_sota": false,
+  "can_replace_simclaim_gold": false,
+  "scifact": {
+    "available": true,
+    "n_eval_per_seed": 171,
+    "label_distribution_sampled": {
+      "supported": 500,
+      "contradiction_candidate": 355,
+      "unsupported_or_insufficient": 500
+    },
+    "e1_macro_f1_by_method": {
+      "A_tfidf_claim_evidence": {
+        "mean": 0.33496551708014743,
+        "std": 0.007243458972956733,
+        "n": 5
+      },
+      "B_tfidf_claim_only": {
+        "mean": 0.3169879064749083,
+        "std": 0.012024086154853685,
+        "n": 5
+      },
+      "C_nli_cross_encoder": {
+        "mean": 0.6895344728385482,
+        "std": 0.011883706249272404,
+        "n": 5
+      },
+      "D_r4_compatible": {
+        "mean": 0.35491205582032687,
+        "std": 0.010469424227432718,
+        "n": 5
+      }
+    },
+    "e1_accuracy_by_method": {
+      "A_tfidf_claim_evidence": {
+        "mean": 0.3251461988304093,
+        "std": 0.006667692544439403,
+        "n": 5
+      },
+      "B_tfidf_claim_only": {
+        "mean": 0.295906432748538,
+        "std": 0.012126573890834923,
+        "n": 5
+      },
+      "C_nli_cross_encoder": {
+        "mean": 0.6877192982456141,
+        "std": 0.01830698928947197,
+        "n": 5
+      },
+      "D_r4_compatible": {
+        "mean": 0.35204678362573094,
+        "std": 0.01046113673684112,
+        "n": 5
+      }
+    },
+    "e2_macro_f1_by_method": {
+      "A_tfidf_claim_evidence": {
+        "mean": 0.5110850528316683,
+        "std": 0.006294615760961732,
+        "n": 5
+      },
+      "B_tfidf_claim_only": {
+        "mean": 0.46287294121376144,
+        "std": 0.012021555397598468,
+        "n": 5
+      },
+      "C_nli_cross_encoder": {
+        "mean": 0.6034448672615719,
+        "std": 0.015274933177211564,
+        "n": 5
+      },
+      "D_r4_compatible": {
+        "mean": 0.5166136806064059,
+        "std": 0.010337176378942423,
+        "n": 5
+      }
+    },
+    "e2_accuracy_by_method": {
+      "A_tfidf_claim_evidence": {
+        "mean": 0.5439114391143911,
+        "std": 0.005596218039890426,
+        "n": 5
+      },
+      "B_tfidf_claim_only": {
+        "mean": 0.49594095940959415,
+        "std": 0.009969930690853371,
+        "n": 5
+      },
+      "C_nli_cross_encoder": {
+        "mean": 0.6044280442804428,
+        "std": 0.015524490013256571,
+        "n": 5
+      },
+      "D_r4_compatible": {
+        "mean": 0.5424354243542436,
+        "std": 0.009038707537945332,
+        "n": 5
+      }
+    },
+    "best_task": "E1/C_nli_cross_encoder",
+    "best_macro_f1": 0.6895344728385482,
+    "claim_only_leakage": {
+      "a_mean": 0.33496551708014743,
+      "b_mean": 0.3169879064749083,
+      "delta_b_minus_a": -0.017977610605239114,
+      "leakage_risk": "high"
+    }
+  },
+  "vitaminc": {
+    "available": true,
+    "n_eval_per_seed": 200,
+    "label_distribution_sampled": {
+      "supported": 500,
+      "unsupported_or_insufficient": 500,
+      "contradiction_candidate": 500
+    },
+    "e1_macro_f1_by_method": {
+      "A_tfidf_claim_evidence": {
+        "mean": 0.4276606352953669,
+        "std": 0.01842660320623643,
+        "n": 5
+      },
+      "B_tfidf_claim_only": {
+        "mean": 0.3976295378383262,
+        "std": 0.05487201725329899,
+        "n": 5
+      },
+      "C_nli_cross_encoder": {
+        "mean": 0.6686312025989969,
+        "std": 0.020986890011469826,
+        "n": 5
+      },
+      "D_r4_compatible": {
+        "mean": 0.4568250051870931,
+        "std": 0.027726050864515683,
+        "n": 5
+      }
+    },
+    "e1_accuracy_by_method": {
+      "A_tfidf_claim_evidence": {
+        "mean": 0.366,
+        "std": 0.02247220505424425,
+        "n": 5
+      },
+      "B_tfidf_claim_only": {
+        "mean": 0.34199999999999997,
+        "std": 0.05142956348249518,
+        "n": 5
+      },
+      "C_nli_cross_encoder": {
+        "mean": 0.6599999999999999,
+        "std": 0.020916500663351868,
+        "n": 5
+      },
+      "D_r4_compatible": {
+        "mean": 0.41000000000000003,
+        "std": 0.01903943276465976,
+        "n": 5
+      }
+    },
+    "e2_macro_f1_by_method": {
+      "A_tfidf_claim_evidence": {
+        "mean": 0.5183688574498952,
+        "std": 0.018628937787132076,
+        "n": 5
+      },
+      "B_tfidf_claim_only": {
+        "mean": 0.5012624407797472,
+        "std": 0.031178379806040536,
+        "n": 5
+      },
+      "C_nli_cross_encoder": {
+        "mean": 0.5691484362730413,
+        "std": 0.03042493506206344,
+        "n": 5
+      },
+      "D_r4_compatible": {
+        "mean": 0.5197228693973178,
+        "std": 0.02973039157313802,
+        "n": 5
+      }
+    },
+    "e2_accuracy_by_method": {
+      "A_tfidf_claim_evidence": {
+        "mean": 0.5879999999999999,
+        "std": 0.012156388352540353,
+        "n": 5
+      },
+      "B_tfidf_claim_only": {
+        "mean": 0.5599999999999999,
+        "std": 0.02134374745810951,
+        "n": 5
+      },
+      "C_nli_cross_encoder": {
+        "mean": 0.5693333333333334,
+        "std": 0.03049590136395378,
+        "n": 5
+      },
+      "D_r4_compatible": {
+        "mean": 0.5820000000000001,
+        "std": 0.026729093595639276,
+        "n": 5
+      }
+    },
+    "best_task": "E1/C_nli_cross_encoder",
+    "best_macro_f1": 0.6686312025989969,
+    "claim_only_leakage": {
+      "a_mean": 0.4276606352953669,
+      "b_mean": 0.3976295378383262,
+      "delta_b_minus_a": -0.03003109745704069,
+      "leakage_risk": "high"
+    }
+  },
+  "e3_evidence_sensitivity": [
+    {
+      "n_pairs": 300,
+      "correct_vs_wrong_delta": 0.027009090006589152,
+      "label_flip_rate": 0.03,
+      "evidence_sensitivity_rate": 0.4666666666666667,
+      "correct_support_score_mean": 0.037608821564887575,
+      "wrong_support_score_mean": 0.01059973155829842,
+      "seed": 11,
+      "dataset": "vitaminc",
+      "e3_pair_source": "official_contrastive"
+    },
+    {
+      "n_pairs": 209,
+      "correct_vs_wrong_delta": 0.007655983605688331,
+      "label_flip_rate": 0.11004784688995216,
+      "evidence_sensitivity_rate": 0.47368421052631576,
+      "correct_support_score_mean": 0.07621812252659221,
+      "wrong_support_score_mean": 0.06856213892090389,
+      "seed": 11,
+      "dataset": "scifact",
+      "e3_pair_source": "synthetic_perturbation"
+    },
+    {
+      "n_pairs": 300,
+      "correct_vs_wrong_delta": 0.03260950566652658,
+      "label_flip_rate": 0.05,
+      "evidence_sensitivity_rate": 0.5033333333333333,
+      "correct_support_score_mean": 0.05348346019394133,
+      "wrong_support_score_mean": 0.020873954527414754,
+      "seed": 22,
+      "dataset": "vitaminc",
+      "e3_pair_source": "official_contrastive"
+    },
+    {
+      "n_pairs": 209,
+      "correct_vs_wrong_delta": 0.02239163468627239,
+      "label_flip_rate": 0.08133971291866028,
+      "evidence_sensitivity_rate": 0.45933014354066987,
+      "correct_support_score_mean": 0.07621812046230904,
+      "wrong_support_score_mean": 0.05382648577603665,
+      "seed": 22,
+      "dataset": "scifact",
+      "e3_pair_source": "synthetic_perturbation"
+    },
+    {
+      "n_pairs": 300,
+      "correct_vs_wrong_delta": 0.015687263278014143,
+      "label_flip_rate": 0.03333333333333333,
+      "evidence_sensitivity_rate": 0.46,
+      "correct_support_score_mean": 0.03467318369546168,
+      "wrong_support_score_mean": 0.018985920417447535,
+      "seed": 33,
+      "dataset": "vitaminc",
+      "e3_pair_source": "official_contrastive"
+    },
+    {
+      "n_pairs": 209,
+      "correct_vs_wrong_delta": -0.015652899625772414,
+      "label_flip_rate": 0.11004784688995216,
+      "evidence_sensitivity_rate": 0.4258373205741627,
+      "correct_support_score_mean": 0.07621812142816631,
+      "wrong_support_score_mean": 0.09187102105393873,
+      "seed": 33,
+      "dataset": "scifact",
+      "e3_pair_source": "synthetic_perturbation"
+    },
+    {
+      "n_pairs": 300,
+      "correct_vs_wrong_delta": 0.0232754980030586,
+      "label_flip_rate": 0.023333333333333334,
+      "evidence_sensitivity_rate": 0.4633333333333333,
+      "correct_support_score_mean": 0.03827273043333359,
+      "wrong_support_score_mean": 0.014997232430274987,
+      "seed": 44,
+      "dataset": "vitaminc",
+      "e3_pair_source": "official_contrastive"
+    },
+    {
+      "n_pairs": 209,
+      "correct_vs_wrong_delta": -0.0030258946001956366,
+      "label_flip_rate": 0.11004784688995216,
+      "evidence_sensitivity_rate": 0.45454545454545453,
+      "correct_support_score_mean": 0.0762181275346791,
+      "wrong_support_score_mean": 0.07924402213487473,
+      "seed": 44,
+      "dataset": "scifact",
+      "e3_pair_source": "synthetic_perturbation"
+    },
+    {
+      "n_pairs": 300,
+      "correct_vs_wrong_delta": 0.014501008142930611,
+      "label_flip_rate": 0.03333333333333333,
+      "evidence_sensitivity_rate": 0.4533333333333333,
+      "correct_support_score_mean": 0.03856069286698281,
+      "wrong_support_score_mean": 0.024059684724052205,
+      "seed": 55,
+      "dataset": "vitaminc",
+      "e3_pair_source": "official_contrastive"
+    },
+    {
+      "n_pairs": 209,
+      "correct_vs_wrong_delta": 0.016518184324683573,
+      "label_flip_rate": 0.09569377990430622,
+      "evidence_sensitivity_rate": 0.45933014354066987,
+      "correct_support_score_mean": 0.07621812769788336,
+      "wrong_support_score_mean": 0.05969994337319978,
+      "seed": 55,
+      "dataset": "scifact",
+      "e3_pair_source": "synthetic_perturbation"
+    }
+  ],
+  "label_distribution_note": "public gold original labels preserved; mapped labels are derived (SUPPORT->supported, CONTRADICT/REFUTES->contradiction_candidate, NEI->unsupported_or_insufficient)",
+  "naming_note": "this is an external gold-derived subset / external sanity check, NOT a new gold benchmark, NOT SimClaim gold, NOT human-audited SimClaim gold",
+  "vitaminc_e3_summary": {
+    "n_pairs_per_seed": 300,
+    "delta_mean": 0.022616473019423815,
+    "delta_std": 0.0068332249664867836,
+    "sensitivity_rate_mean": 0.4693333333333333,
+    "uses_official_contrastive_pairs": true,
+    "uses_synthetic_perturbation": false
+  },
+  "scifact_e3_summary": {
+    "n_pairs_per_seed": 209,
+    "delta_mean": 0.0055774016781352485,
+    "delta_std": 0.013649044360012443,
+    "sensitivity_rate_mean": 0.4545454545454546,
+    "uses_official_contrastive_pairs": false,
+    "uses_synthetic_perturbation": true
+  },
+  "r4_external_sanity": {
+    "method_d_ran_without_crash": true,
+    "r4_compatible_e1_macro_f1_scifact": 0.35491205582032687,
+    "r4_compatible_e2_macro_f1_scifact": 0.5166136806064059
+  }
+}

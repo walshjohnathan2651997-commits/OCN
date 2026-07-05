@@ -1,0 +1,92 @@
+{
+  "version": "V3.10.1",
+  "date": "2026-07-04",
+  "pass_type": "encoding_clean_and_advisor_send_package",
+  "v3_10_1_complete": true,
+  "safe_to_send_advisor": true,
+  "advisor_verdict_expected": "A_or_B",
+  "v3_10_modified": false,
+  "v3_9_modified": false,
+  "v3_8_modified": false,
+  "new_experiments_run": false,
+  "api_calls_made": false,
+  "gold_annotation_performed": false,
+  "numeric_results_changed": false,
+  "paper_mainline_changed": false,
+  "silver_relabeled_as_gold": false,
+  "new_gold_final_human_fields_added": false,
+  "encoding_checks": {
+    "mojibake_patterns_searched": 17,
+    "mojibake_matches_in_v3_10_source": 0,
+    "mojibake_matches_in_v3_10_1_outputs": 0,
+    "bom_in_any_output": false,
+    "non_ascii_chars_verified_legitimate": true,
+    "legitimate_non_ascii_inventory": {
+      "U+2588_full_block": 277,
+      "U+2014_em_dash": 92,
+      "U+00A7_section_sign": 60,
+      "U+2192_right_arrow": 28,
+      "U+2265_geq": 14,
+      "U+03BA_kappa": 11,
+      "U+2264_leq": 7,
+      "U+2013_en_dash": 4,
+      "U+00B1_plus_minus": 2,
+      "U+03B1_alpha": 2
+    }
+  },
+  "content_integrity": {
+    "pre_gold_occurrence_count": 4,
+    "pre_gold_locations": ["Abstract", "VI_opener", "VII_opener", "X_Conclusion"],
+    "key_numbers_unchanged": {
+      "r4_strong_f1": 0.3967,
+      "llm_strong_f1": 0.0769,
+      "r4_baseline_strong_f1": 0.2408,
+      "r4_macro_f1_matched_100": 0.3280,
+      "gpt55_macro_f1_matched_100": 0.5523,
+      "deepseek_macro_f1_200": 0.5270,
+      "bootstrap_ci": [0.1058, 0.1988],
+      "seeds_positive": "10/10",
+      "ablation_A0_nli_only": 0.3934,
+      "ablation_A1_action_gap_only": 0.3648,
+      "ablation_A2_nli_plus_action_gap": 0.4209,
+      "fp_tp_ratio_estimate": 4.9,
+      "author_sanity_audit_questionable": "25/40 (62.5%)"
+    },
+    "tables_G1_G3_status": "TO_BE_FILLED_AFTER_GOLD (unchanged)"
+  },
+  "file_sizes": {
+    "main_md_v3_10": 83393,
+    "main_md_v3_10_1": 84688,
+    "main_md_not_abnormally_short": true,
+    "main_docx_v3_10": 31560,
+    "main_docx_v3_10_1": 31792,
+    "main_docx_not_abnormally_short": true,
+    "advisor_note_v3_10": 7233,
+    "advisor_note_v3_10_1": 7377
+  },
+  "version_string_changes_only": [
+    "title_page_version_line: V3.10 -> V3.10.1 (advisor send, encoding-verified clean)",
+    "appended Changes from V3.10 (V3.10.1) paragraph documenting clean pass",
+    "advisor note header version reference updated to V3.10.1",
+    "advisor note file path references updated to V3.10.1 directory"
+  ],
+  "output_files": {
+    "main_md": "D:\\ocn\\paper_versions_ordered\\V3_10_1_advisor_send_clean\\CESE_OCN_V3_10_1_advisor_send_clean.md",
+    "main_docx": "D:\\ocn\\paper_versions_ordered\\V3_10_1_advisor_send_clean\\CESE_OCN_V3_10_1_advisor_send_clean.docx",
+    "advisor_cover_note": "D:\\ocn\\paper_versions_ordered\\V3_10_1_advisor_send_clean\\advisor_cover_note_cn_clean.md",
+    "cleaning_log": "D:\\ocn\\paper_versions_ordered\\V3_10_1_advisor_send_clean\\V3_10_1_cleaning_log.md",
+    "readiness_gate": "D:\\ocn\\paper_versions_ordered\\V3_10_1_advisor_send_clean\\V3_10_1_readiness_gate.json"
+  },
+  "source_files_preserved": {
+    "v3_10_directory": "D:\\ocn\\paper_versions_ordered\\V3_10_advisor_ready_silver_stage\\",
+    "v3_10_modified": false,
+    "v3_9_directory": "D:\\ocn\\paper_versions_ordered\\V3_9_pre_gold_complete\\",
+    "v3_9_modified": false
+  },
+  "top_3_residual_risks": [
+    "62.5% of silver labels flagged questionable/unclear in author sanity audit — gold may overturn silver patterns",
+    "R4 macro-F1 0.22 lower than LLM judges — screening positioning depends on gold FP/TP <= 10 threshold",
+    "50-sample gold pilot is small for confirmatory claims — may need follow-up expansion"
+  ],
+  "recommended_next_step": "Send V3.10.1 to advisor with Chinese cover note. Do NOT run gold before advisor review. If advisor approves taxonomy + positioning, proceed with 50-sample blind gold pilot per frozen protocol in section VII."
+}

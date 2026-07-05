@@ -1,0 +1,93 @@
+{
+  "generated_at": "2026-07-04T01:44:35",
+  "n_datasets": 5,
+  "datasets": [
+    {
+      "dataset_name": "SciFact",
+      "task_type": "scientific claim verification",
+      "domain": "biomedical/scientific papers",
+      "label_schema": "SUPPORT / CONTRADICT / NEI (NOT_ENOUGH_INFO)",
+      "has_gold_labels": true,
+      "has_evidence_text": true,
+      "has_rationale_or_evidence_sentence": true,
+      "license_or_access": "CC BY-NC 2.0 (allenai/scifact on HuggingFace)",
+      "data_size": "~1.4k claims; 5.2k evidence abstracts",
+      "download_url": "https://github.com/allenai/scifact; https://huggingface.co/datasets/allenai/scifact",
+      "local_status": "not_downloaded",
+      "mapping_to_v3_possible": true,
+      "recommended_use": "A",
+      "risk_notes": "Best scientific-domain match for V3. Has evidence text and rationale. Labels are support/contradict/NEI only; CANNOT map to strong_action_overclaim (no action/deployment/safety dimension). Use as external contradiction/support sanity check, not as SimClaim gold replacement."
+    },
+    {
+      "dataset_name": "VitaminC",
+      "task_type": "contrastive fact verification",
+      "domain": "news/Wikipedia (encyclopedic)",
+      "label_schema": "SUPPORTS / REFUTES / NOT_ENOUGH_INFO",
+      "has_gold_labels": true,
+      "has_evidence_text": true,
+      "has_rationale_or_evidence_sentence": true,
+      "license_or_access": "CC BY 4.0 (tals/vitaminc on HuggingFace)",
+      "data_size": "~47k claim-evidence pairs; contrastive design",
+      "download_url": "https://github.com/TalSchuster/VitaminC; https://huggingface.co/datasets/tals/vitaminc",
+      "local_status": "not_downloaded",
+      "mapping_to_v3_possible": true,
+      "recommended_use": "C",
+      "risk_notes": "Contrastive design (same claim, correct vs wrong evidence) is ideal for evidence sensitivity test (E3). Domain is news/encyclopedic, NOT scientific/technical. Cannot map to strong_action_overclaim. Use only for evidence-sensitivity sanity check."
+    },
+    {
+      "dataset_name": "FEVER",
+      "task_type": "general fact verification",
+      "domain": "Wikipedia (general knowledge)",
+      "label_schema": "SUPPORTED / REFUTED / NOT ENOUGH INFO",
+      "has_gold_labels": true,
+      "has_evidence_text": true,
+      "has_rationale_or_evidence_sentence": true,
+      "license_or_access": "CC BY-SA 3.0 (fever.ai)",
+      "data_size": "~185k annotated claims",
+      "download_url": "https://fever.ai/downloadfever; https://huggingface.co/datasets/fever/fever",
+      "local_status": "not_downloaded",
+      "mapping_to_v3_possible": true,
+      "recommended_use": "D",
+      "risk_notes": "Largest scale but general-knowledge domain mismatch with V3 (technical/scientific). Use only as optional binary sanity check. NOT a primary external test. Cannot map to strong_action_overclaim."
+    },
+    {
+      "dataset_name": "PubHealth",
+      "task_type": "health claim verification",
+      "domain": "public health / medical news",
+      "label_schema": "true / false / mixture / unproven",
+      "has_gold_labels": true,
+      "has_evidence_text": true,
+      "has_rationale_or_evidence_sentence": true,
+      "license_or_access": "MIT (healthver variant); PubHealth original has restricted commercial use",
+      "data_size": "~11.8k claim-evidence pairs (HealthVer); PubHealth ~9.7k",
+      "download_url": "https://github.com/utahnlp/healthver; https://huggingface.co/datasets/healthver",
+      "local_status": "not_downloaded",
+      "mapping_to_v3_possible": true,
+      "recommended_use": "B",
+      "risk_notes": "Health-domain support/non-support external test. Labels are true/false/mixture/unproven; cannot capture action-overclaim. Use as support-vs-non-support (E2) sanity check. License terms vary between PubHealth and HealthVer; verify before use."
+    },
+    {
+      "dataset_name": "AVeriTeC",
+      "task_type": "complex fact-checking with retrieved evidence",
+      "domain": "web/real-world claims (fact-checking)",
+      "label_schema": "Supported / Refuted / Not Enough Evidence / Conflicting / Cherry-picking",
+      "has_gold_labels": true,
+      "has_evidence_text": true,
+      "has_rationale_or_evidence_sentence": true,
+      "license_or_access": "CC BY 4.0 (github.com/ factiverse/averitec)",
+      "data_size": "~5.7k claims with evidence",
+      "download_url": "https://github.com/factiverse/averitec; https://huggingface.co/datasets/averitec",
+      "local_status": "not_downloaded",
+      "mapping_to_v3_possible": true,
+      "recommended_use": "B",
+      "risk_notes": "Rich labels (5-class incl. Cherry-picking) are closest in spirit to overclaim detection, but still not equivalent to strong_action_overclaim. Use as complex fact-checking sanity check. Cherry-picking may weakly correlate with mild_scope_overclaim but must NOT be hard-mapped to SimClaim gold."
+    }
+  ],
+  "recommended_use_legend": {
+    "A": "A. contradiction external test",
+    "B": "B. support vs non-support external test",
+    "C": "C. evidence sensitivity / counterfactual test",
+    "D": "D. not recommended"
+  },
+  "global_caveat": "All public datasets have support/refute/NEI-style labels. NONE can replace SimClaim gold because none annotate action-overclaim, deployment-overclaim, or safety-scope overclaim. Public data is for external sanity check only."
+}

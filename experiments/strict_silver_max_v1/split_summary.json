@@ -1,0 +1,13 @@
+{
+  "n_groups_total": 111,
+  "n_groups_train": 77,
+  "n_groups_dev": 16,
+  "n_groups_test": 18,
+  "n_claims_train": 308,
+  "n_claims_dev": 64,
+  "n_claims_test": 72,
+  "label_source": "candidate_label_guess (silver, AI-preannotated)",
+  "human_audited": false,
+  "is_gold": false,
+  "is_final": false
+}

@@ -1,0 +1,5 @@
+retrieval_setting,n_claims,accuracy,macro_f1,weighted_f1,strong_precision,strong_recall,strong_f1,contradiction_f1,supported_f1,mild_f1,status,reason
+oracle,444,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,BLOCKED,"R4 replay not possible: HCM features missing, classifier artifacts not saved, t_contra_low not frozen"
+bm25_top1,444,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,BLOCKED,"R4 replay not possible: HCM features missing, classifier artifacts not saved, t_contra_low not frozen"
+bm25_top3,444,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,BLOCKED,"R4 replay not possible: HCM features missing, classifier artifacts not saved, t_contra_low not frozen"
+bm25_top5,444,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,BLOCKED,"R4 replay not possible: HCM features missing, classifier artifacts not saved, t_contra_low not frozen"

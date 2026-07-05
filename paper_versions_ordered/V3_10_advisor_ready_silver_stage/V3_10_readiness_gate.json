@@ -1,0 +1,119 @@
+{
+  "version": "V3.10",
+  "date": "2026-07-04",
+  "v3_10_complete": true,
+  "safe_to_send_advisor": true,
+  "advisor_verdict_expected": "A_or_B",
+  "revision_type": "wording_framing_qualifier_risk_control_only",
+  "v3_9_modified": false,
+  "new_experiments_run": false,
+  "api_calls_made": false,
+  "gold_annotation_performed": false,
+  "numeric_results_changed": false,
+  "silver_relabeled_as_gold": false,
+  "mojibake_present": false,
+  "pre_gold_occurrence_count": 4,
+  "pre_gold_allowed_locations": [
+    "Abstract",
+    "VI_opener",
+    "VII_opener",
+    "X_Conclusion"
+  ],
+  "revisions_applied": {
+    "R1_title_page_reframe": {
+      "applied": true,
+      "v3_9_framing": "Not submission-ready until gold validation is completed.",
+      "v3_10_framing": "Silver-stage pilot manuscript with a pre-registered gold validation protocol",
+      "location": "lines 3-6"
+    },
+    "R2_VI_conditional_framing": {
+      "applied": true,
+      "text": "All numerical results in this section are silver-stage pilot results... If the planned gold adjudication in VII supports the silver labels, these patterns will be treated as validated pilot findings; otherwise, the affected claims will be downgraded according to the pre-registered criteria in VII.G.",
+      "location": "line 255"
+    },
+    "R3_silver_label_qualifiers": {
+      "applied": true,
+      "affected_numbers": [
+        "R4 strong_F1 0.3967",
+        "LLM strong_F1 0.0769",
+        "R4 vs LLM strong_action gap +0.2231",
+        "GPT/DeepSeek strong recall 0.04",
+        "R4 macro_F1 0.3280 vs LLM 0.5523",
+        "bootstrap CI [0.1058, 0.1988]"
+      ],
+      "qualifier_pattern": "on silver labels / in the silver-stage evaluation"
+    },
+    "R4_pre_gold_reduction": {
+      "applied": true,
+      "v3_9_count_approx": 19,
+      "v3_10_count": 4,
+      "locations": ["Abstract line 14", "VI opener line 255", "VII opener line 378", "X Conclusion line 501"]
+    },
+    "R5_pilot_contributions": {
+      "applied": true,
+      "v3_10_contributions": [
+        "We propose a pilot taxonomy...",
+        "We construct a silver-stage SimClaim diagnostic set...",
+        "We evaluate whether LLM judges under-detect strong_action_overclaim under tested prompts...",
+        "We pre-register a gold validation protocol..."
+      ],
+      "location": "lines 30-36"
+    },
+    "R6_R4_screening_FP_TP": {
+      "applied": true,
+      "fp_tp_ratio_estimate": 4.9,
+      "false_positives_approx": 122,
+      "true_strong_action_approx": 25,
+      "positioning": "high-recall screening layer, not final automatic labeler",
+      "location": "line 449 (VIII.A)"
+    },
+    "R7_strong_action_as_hypothesis": {
+      "applied": true,
+      "text": "The separability of strong_action_overclaim as a reliably drawable class is a hypothesis to be tested by the planned gold validation (VII), not an assumption taken as already proven.",
+      "location": "line 30 (III.C / contribution i)"
+    },
+    "R8_external_transferability_probe": {
+      "applied": true,
+      "v3_9_title": "External Public Dataset Sanity Check",
+      "v3_10_title": "External Transferability Probe",
+      "concession": "public data cannot test the four-class evidence-sufficiency taxonomy",
+      "location": "line 350 (VI.D)"
+    },
+    "R9_advisor_cover_note": {
+      "applied": true,
+      "file": "advisor_cover_note_cn.md",
+      "language": "Chinese",
+      "tone": "stable, non-discouraging",
+      "structure": [
+        "silver-stage complete draft",
+        "mainline finalized",
+        "ask advisor to judge taxonomy + positioning, not experiment validity",
+        "if approved, proceed with 50-sample blind gold pilot",
+        "if not approved, revise structure before gold"
+      ]
+    },
+    "R10_mojibake_cleanup": {
+      "applied": true,
+      "mojibake_patterns_checked": ["garbled_section_sign", "garbled_paragraph", "garbled_kappa", "garbled_geq", "garbled_dash_variants"],
+      "matches_found": 0,
+      "proper_utf8_chars_verified": ["U+00A7 section", "U+2265 geq", "U+03BA kappa", "U+2014 em_dash", "U+201C U+201D curly_quotes", "U+2192 right_arrow"]
+    }
+  },
+  "output_files": {
+    "main_md": "D:\\ocn\\paper_versions_ordered\\V3_10_advisor_ready_silver_stage\\CESE_OCN_V3_10_advisor_ready_silver_stage.md",
+    "main_docx": "D:\\ocn\\paper_versions_ordered\\V3_10_advisor_ready_silver_stage\\CESE_OCN_V3_10_advisor_ready_silver_stage.docx",
+    "revision_log": "D:\\ocn\\paper_versions_ordered\\V3_10_advisor_ready_silver_stage\\V3_10_revision_log.md",
+    "advisor_cover_note": "D:\\ocn\\paper_versions_ordered\\V3_10_advisor_ready_silver_stage\\advisor_cover_note_cn.md",
+    "readiness_gate": "D:\\ocn\\paper_versions_ordered\\V3_10_advisor_ready_silver_stage\\V3_10_readiness_gate.json"
+  },
+  "source_files_preserved": {
+    "v3_9_main": "D:\\ocn\\paper_versions_ordered\\V3_9_pre_gold_complete\\CESE_OCN_V3_9_pre_gold_complete.md",
+    "v3_9_modified": false
+  },
+  "top_3_residual_risks": [
+    "62.5% of silver labels flagged questionable/unclear in author sanity audit — gold may overturn silver patterns",
+    "R4 macro-F1 0.22 lower than LLM judges — screening positioning depends on gold FP/TP <= 10 threshold",
+    "50-sample gold pilot is small for confirmatory claims — may need follow-up expansion"
+  ],
+  "recommended_next_step": "Send V3.10 to advisor with cover note. Do NOT run gold before advisor review. If advisor approves taxonomy + positioning, proceed with 50-sample blind gold pilot per frozen protocol in §VII."
+}

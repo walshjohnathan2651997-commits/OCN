@@ -1,0 +1,15 @@
+table_id,method,n,macro_f1,strong_f1,strong_recall,strong_precision,contra_f1,flat4_f1,use,notes
+Table_1,baseline_flat4,444,,,0.2062,0.3097,0.7308,0.3963,baseline,Flat 4-class classifier; mean over 10 seeds
+Table_1,R4_conservative_strong_router,444,,,0.4562,0.3791,0.7296,0.4238,main_method,Frozen main method (immutable); bootstrap CI [0.1058 0.1988] for strong delta
+Table_1,B_cost_sensitive_cw4.0,444,,,0.4625,0.4109,0.7296,0.4365,auxiliary_module,Delta vs R4 = +0.0254 (below +0.03 threshold; CI crosses zero)
+Table_2,GPT-5.5 standard,100,0.5523,0.0769,0.04,1.0,0.6857,,llm_judge,Single run temp=0; via third-party proxy
+Table_2,GPT-5.5 structured (5-step),100,0.5543,0.0769,0.04,1.0,0.6857,,llm_judge,Structured prompt does NOT improve strong_action
+Table_2,DeepSeek-V3 (matched 100),100,0.5248,0.0769,0.04,1.0,0.8317,,llm_judge,Single run temp=0; via official DeepSeek API
+Table_2,DeepSeek-V3 (full 200),200,0.5270,0.0769,0.04,1.0,0.8317,,llm_judge,Same strong_action blindspot at N=200
+Table_2,R4 (matched 100),100,0.3280,0.3000,,,,,main_method_matched,Absolute gap +0.2231 over LLM judges on strong_F1
+Table_2,R4 (full 200),200,,0.3158,,,,,main_method_matched,Absolute gap +0.2389 over DeepSeek on strong_F1
+Table_3,supported (audit),7,,,,,,,boundary_audit,7 reasonable / 0 questionable / 0 unclear
+Table_3,mild_scope_overclaim (audit),7,,,,,,,boundary_audit,3 reasonable / 0 questionable / 4 unclear; mild_vs_strong confusion
+Table_3,strong_action_overclaim (audit),20,,,,,,,boundary_audit,5 reasonable / 5 questionable / 10 unclear; 75% confusion rate
+Table_3,contradiction_candidate (audit),6,,,,,,,boundary_audit,0 reasonable / 0 questionable / 6 unclear; strong_vs_contradiction confusion (detail-swap missed by audit heuristic)
+Table_3,Total (audit),40,,,,,,,boundary_audit,15 reasonable / 5 questionable / 20 unclear; 62.5% flagged

@@ -1,0 +1,20 @@
+{
+  "v3_9_complete": true,
+  "safe_to_send_advisor": false,
+  "needs_minor_revision_before_advisor": true,
+  "needs_new_experiment_before_advisor": false,
+  "needs_gold_before_advisor": false,
+  "top_3_risks": [
+    "Silver labels are 62.5% questionable/unclear (author's own audit) with strong_action at 75% confusion; all §VI results are computed against these labels. A harsh reviewer/advisor may dismiss all numeric claims as unreliable until gold is done. Fix: add explicit conditional framing to §VI ('if gold supports silver labels, this pattern holds; otherwise downgraded per §VII.G').",
+    "R4 macro-F1 (0.3280) is 0.22 lower than LLM (0.5523) on matched samples. The 'complement not replacement' framing is honest but a reviewer may reject the paper if the macro-F1 gap is seen as disqualifying. Fix: quantify FP/TP ratio from existing data to show the trade-off is operationally reasonable for screening.",
+    "Title page and framing read as apologetic ('pre-gold complete draft', 'not submission-ready'). This signals weakness before the advisor reads a single result. Fix: reframe as 'silver-stage pilot with pre-registered gold validation protocol'; move 'not submission-ready' to a footnote."
+  ],
+  "top_5_required_revisions": [
+    "Reframe title page: remove prominent 'not submission-ready' disclaimer; lead with 'silver-stage pilot with pre-registered gold validation protocol (§VII)'. Move 'not submission-ready' to footnote.",
+    "Add conditional framing to §VI Results opener: 'If gold adjudication (§VII) supports the silver labels, these patterns hold; if not, the paper is downgraded per §VII.G.'",
+    "Add 'on silver labels' qualifier to every §VI numeric claim (R4 strong-F1 0.3967, LLM strong-F1 0.0769, gap +0.2231, etc.). Currently stated in present tense without qualifier.",
+    "Reduce 'pre-gold' repetition from 14 to 4 occurrences (Abstract, §VI opener, §VII opener, §X closer). Replace elsewhere with 'silver-stage' or 'pilot' to avoid reader fatigue.",
+    "Add FP/TP ratio to §VIII.A from existing data: R4 produces 122 false positives (98 supported→strong + 24 mild→strong) on ~25 true strong_action cases ≈ 4.9 FP/TP. State this explicitly to defend the screening use case."
+  ],
+  "recommended_next_step": "Apply the 5 required revisions (1-2 hours of editing), then send V3.9 to advisor with the Chinese cover note in advisor_package_recommendation.md. Do NOT do gold annotation before advisor review — the advisor's structural feedback determines whether the current taxonomy is worth validating. If advisor approves structure, proceed with 50-sample gold pilot per gold_validation_protocol_section.md. If advisor requests structural changes, revise structure first, then do gold. No new experiments are needed before advisor review."
+}

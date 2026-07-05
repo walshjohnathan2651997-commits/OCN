@@ -1,0 +1,13 @@
+{
+  "n_bootstrap": 1000,
+  "n_strong_matched_100": 25,
+  "n_strong_matched_200": 50,
+  "break_even_retention": "~0.5 (CI lower bound crosses 0)",
+  "break_even_retention_value": 0.5,
+  "r4_wins_at_60pct_retention_pct": 0.986,
+  "r4_wins_at_50pct_retention_pct": 0.942,
+  "delta_at_60pct": 0.14077499999999998,
+  "delta_at_50pct": 0.11372504091653028,
+  "method": "Randomly relabel (1-retention) fraction of silver strong_action as mild_scope, 1000 bootstrap resamples, recompute binary strong_action F1.",
+  "key_finding": "R4 strong_action advantage persists at 60% retention (delta=+0.1408, R4 wins 98.6% of bootstraps) and at 50% retention (delta=+0.1137, R4 wins 94.2%). Break-even: ~0.5 (CI lower bound crosses 0)."
+}

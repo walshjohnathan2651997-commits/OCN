@@ -1,0 +1,22 @@
+{
+  "R4_conservative_strong": {
+    "flat4_macro_f1": 0.4238,
+    "flat4_strong_f1": 0.3967,
+    "strong_positive_f1": 0.3967,
+    "strong_precision": 0.3791,
+    "strong_recall": 0.4562,
+    "escalation_macro_f1": 0.6143,
+    "contradiction_positive_f1": 0.7296,
+    "contradiction_macro_f1": 0.8164
+  },
+  "baseline_flat4": {
+    "flat4_macro_f1": 0.3963,
+    "flat4_strong_f1": 0.2408,
+    "strong_positive_f1": 0.2408,
+    "strong_precision": 0.3097,
+    "strong_recall": 0.2062,
+    "escalation_macro_f1": 0.5723,
+    "contradiction_positive_f1": 0.7308,
+    "contradiction_macro_f1": 0.8205
+  }
+}

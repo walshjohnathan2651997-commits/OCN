@@ -1,0 +1,5 @@
+dataset,split,n_records,n_with_evidence,label_field,label_values,claim_field,evidence_field,schema_compatible,notes
+scifact,train,809,505,evidence[doc_id][*].label,SUPPORT|CONTRADICT|NEI,claim,corpus[doc_id].abstract[sentences_indices],True,Per-rationale label; same label per doc_id; NEI = empty evidence dict
+scifact,dev,300,188,evidence[doc_id][*].label,SUPPORT|CONTRADICT|NEI,claim,corpus[doc_id].abstract[sentences_indices],True,Labeled dev set; test set is unlabeled (skipped)
+vitaminc,dev,63054,63054,label,SUPPORTS|REFUTES|NOT ENOUGH INFO,claim,evidence,True,All entries have evidence; case_id groups contrastive pairs
+vitaminc,test,55197,55197,label,SUPPORTS|REFUTES|NOT ENOUGH INFO,claim,evidence,True,16487 unique cases; 10142 cases have both SUPPORTS and REFUTES (contrastive)

@@ -1,0 +1,86 @@
+{
+  "gate_name": "V3_15_hierarchical_taxonomy_gate",
+  "version": "V3.15 Hierarchical Taxonomy Revision",
+  "date": "2026-07-05",
+  "source_version": "V3.14 Mainline Locked + Reviewer-Grade Consistency Audit",
+  "output_directory": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision",
+  "outputs": {
+    "main_md": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\CESE_OCN_V3_15_hierarchical_taxonomy_revision.md",
+    "main_docx": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\CESE_OCN_V3_15_hierarchical_taxonomy_revision.docx",
+    "mapping_csv": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\hierarchical_label_mapping.csv",
+    "gold_plan": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\hierarchical_gold_validation_plan.md",
+    "revision_log": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\V3_15_revision_log.md",
+    "gate_json": "D:\\ocn\\paper_versions_ordered\\V3_15_hierarchical_taxonomy_revision\\V3_15_hierarchical_taxonomy_gate.json"
+  },
+  "n_targeted_replacements": 18,
+  "main_md_size_bytes": 157953,
+  "main_docx_size_bytes": 54349,
+  "taxonomy_structure": {
+    "level_1": [
+      "supported",
+      "overclaim",
+      "contradiction"
+    ],
+    "level_2_under_overclaim": [
+      "scope_expansion",
+      "strong_action"
+    ],
+    "operational_labels_preserved": [
+      "supported",
+      "mild_scope_overclaim",
+      "strong_action_overclaim",
+      "contradiction_candidate"
+    ]
+  },
+  "sections_modified": [
+    "Header / Changes log",
+    "Abstract",
+    "§I Introduction (contributions)",
+    "§III.A Task Formulation (Table 0a + hierarchical interpretation)",
+    "§III.C (title reframed as Level-2 high-risk subtype)",
+    "§IV.A Method (R4 as hierarchical router)",
+    "§VI.A Results (flat operational-label evaluation framing)",
+    "§VI.B Results (Level-2 high-risk screening framing)",
+    "§VII.K Gold Protocol (NEW: hierarchical validation plan)",
+    "§VIII.G Discussion (NEW: why hierarchical rather than flat)",
+    "§X Conclusion (hierarchical framing)"
+  ],
+  "sections_added": [
+    "§VII.K Hierarchical Gold Validation Plan",
+    "§VIII.G Why the Taxonomy Is Hierarchical Rather Than Flat",
+    "Table 0a (hierarchical label mapping)"
+  ],
+  "preserved_numbers_verified": {
+    "r4_strong_f1_silver_444": 0.3967,
+    "r4_strong_f1_matched_100": 0.3,
+    "llm_strong_f1_matched_100": 0.0769,
+    "r4_macro_f1_matched_100": 0.328,
+    "llm_macro_f1_matched_100": 0.5523,
+    "baseline_strong_f1": 0.2408,
+    "absolute_gap": 0.2231,
+    "r4_strong_recall_silver": 0.4562,
+    "baseline_strong_recall": 0.2062,
+    "r4_macro_f1_silver": 0.4238,
+    "bootstrap_ci_lower": 0.1058,
+    "bootstrap_ci_upper": 0.1988
+  },
+  "prohibitions_enforced": {
+    "no_experiments_run": true,
+    "no_api_calls": true,
+    "no_gold_annotation": true,
+    "no_original_data_modification": true,
+    "no_experimental_number_changes": true,
+    "no_deletion_of_four_operational_labels": true,
+    "no_silver_as_gold": true,
+    "no_claim_mild_scope_naturally_stable": true,
+    "no_claim_r4_overall_beats_llm": true,
+    "no_modification_to_v3_14_or_prior": true
+  },
+  "fallback_rules_pre_registered": {
+    "level1_ok_level2_fail": "Downgrade to Level-1 three-class + binary strong_action screening",
+    "strong_action_retention_ge_0_60": "Retain Level-2 high-risk subtype",
+    "strong_action_retention_lt_0_50": "Report strong_action as exploratory risk flag only",
+    "level1_kappa_lt_0_50": "Fundamental taxonomy failure; paper fundamentally downgraded"
+  },
+  "audit_disclaimer": "V3.15 is a wording-level and interpretive-level revision of V3.14. No experiments were run, no API calls made, no gold annotation performed, no original data modified, no experimental numbers changed. The four operational labels remain the experimental label space; only the interpretation changes from flat four-class to hierarchical. mild_scope_overclaim is explicitly NOT claimed to be a naturally stable discrete class. R4 is explicitly NOT claimed to overall beat LLM. All silver labels remain silver; no silver is promoted to gold."
+}

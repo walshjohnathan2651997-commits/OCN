@@ -1,0 +1,45 @@
+{
+  "gate_name": "scalar_vs_relation_deep_test_gate",
+  "task": "V3.15 Task 4/5 — RIGOURATE/Scalar Baseline Deep Comparison + Strong_Action Boundary Test",
+  "date": "2026-07-05",
+  "scalar_can_detect_overclaim": true,
+  "scalar_can_separate_mild_strong": false,
+  "scalar_can_replace_r4": false,
+  "r4_retains_strong_action_advantage": true,
+  "mild_strong_overlap_high": true,
+  "score_collapse_observed": true,
+  "recommended_paper_claim": "RIGOURATE-style scalar overstatement score (rule-based proxy, NOT official RIGOURATE — official code/data unavailable) cannot replace CESE-OCN's relation-specific strong_action screening. On the matched-100 evaluation, scalar positive-F1 = 0.1364 vs R4 positive-F1 = 0.3. Scalar score collapses across relation labels (mean score is ~1.6 for all four labels), and the mild/strong boundary ROC-AUC is near random. R4 retains a strong_action screening advantage (higher recall, higher positive-F1, captures LLM-missed strong cases). Scalar baseline is reported as a complementary reference, NOT as a replacement for R4.",
+  "main_remaining_risk": "Scalar baseline results are based on a rule-based proxy (NOT official RIGOURATE). Official RIGOURATE code/data/model are unavailable (blocked). If a future release of RIGOURATE provides a continuous overstatement score with stronger discriminative power, the conclusion may need to be revisited. Additionally, all results are on silver labels (pre-gold); gold validation may shift the comparison.",
+  "supporting_metrics": {
+    "mild_vs_strong_roc_auc_rule_scalar": 0.5062,
+    "mild_vs_strong_roc_auc_llm_scalar": 0.5874,
+    "strong_screen_positive_f1_rule_scalar": 0.1364,
+    "strong_screen_positive_f1_r4": 0.3,
+    "strong_screen_recall_rule_scalar": 0.12,
+    "strong_screen_recall_r4": 0.36,
+    "strong_screen_llm_missed_captured_rule_scalar": 3,
+    "strong_screen_llm_missed_captured_r4": 8,
+    "score_collapse_indicators": [
+      "mild/strong overlap ratio = 1.02 (mild and strong scores nearly identical)",
+      "contradiction vs strong score overlap = 0.05 (within 15pp)",
+      "supported with high score = 54.1% (supported frequently mis-scored as overclaim)",
+      "strong variance / overall variance = 0.94 (strong does not separate from overall)"
+    ],
+    "case_counts": {
+      "scalar_high_but_mild": 13,
+      "scalar_low_but_strong": 14,
+      "r4_correct_scalar_wrong": 24,
+      "scalar_correct_r4_wrong": 17,
+      "both_wrong": 49
+    }
+  },
+  "prohibitions_enforced": {
+    "no_api_calls": true,
+    "no_llm_training": true,
+    "no_r4_threshold_modification": true,
+    "no_original_data_modification": true,
+    "no_proxy_as_official_rigourate": true,
+    "no_gold": true
+  },
+  "audit_disclaimer": "Scalar baseline is a rule-based / LLM-label-derived PROXY. Official RIGOURATE code/data/model are NOT available. All scalar results are labelled 'rule_scalar_score' or 'llm_scalar_score', NOT 'RIGOURATE'. All comparison is on silver labels (pre-gold)."
+}

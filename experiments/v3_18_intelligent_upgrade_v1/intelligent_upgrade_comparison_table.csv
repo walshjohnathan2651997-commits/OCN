@@ -1,0 +1,6 @@
+﻿method,selector,ranker,strong_F1,strong_recall,macro_F1,precision_at_20,recall_at_100,FP_TP_at_5pct,second_stage_usable,notes
+raw_bm25_top1,raw_top1_chunk,none,0.1806,,,,,,,"Raw BM25 top1 chunk, no canonicalization, no R4 replay"
+V3.17_baseline,best_sentence_top5_overlap,G_conservative_precision,0.4503,0.7064,,0.45,0.3303,11.24,True,FROZEN V3.17 baseline (reference)
+learned_selector_only,learned_selector,G_conservative_precision (baseline),0.4444444444444444,0.6972477064220184,0.36848239985460945,,,,,Learned selector replaces overlap selector; strong_F1 gap vs baseline: -0.0059
+learned_ranker_only,best_sentence_top5_overlap (baseline),learned_ranker,0.4503,0.7064,,0.35,0.3302752293577982,2.0,True,Learned ranker replaces G_conservative_precision; best model: logreg
+learned_selector_plus_learned_ranker,learned_selector,learned_ranker,0.4444444444444444,0.6972477064220184,0.36848239985460945,0.35,0.3302752293577982,2.0,True,Both learned modules; combined end-to-end

@@ -1,0 +1,92 @@
+{
+  "version": "V3.11",
+  "date": "2026-07-04",
+  "pass_type": "high_standard_framework_and_narrative_upgrade",
+  "high_standard_framework_ready": true,
+  "narrative_upgraded": true,
+  "workshop_tone_removed": true,
+  "silver_not_mislabeled_as_gold": true,
+  "gold_validation_positioned_as_protocol": true,
+  "strengthening_roadmap_complete": true,
+  "advisor_send_ready": true,
+  "main_remaining_risk": "62.5% of silver labels flagged questionable/unclear in author sanity audit; all silver-stage numbers (R4 strong-F1 0.3967, LLM strong-F1 0.0769, gap +0.2231) may shift under gold adjudication. The relative pattern (R4 > LLM on strong_action) may survive, but this is not guaranteed. The 50-sample gold pilot (Week 3 of the 30-day plan) is the decisive test.",
+  "recommended_next_action": "Send V3.11 to advisor with the Chinese cover note. Ask advisor to judge 3 questions: (1) is evidence sufficiency calibration worth doing as a distinct task; (2) is the four-class taxonomy worth keeping (especially strong_action as a separate class); (3) is R4's screening-complement positioning viable. If all 3 are approved, proceed to the 50-sample blind gold pilot per the frozen protocol in section VII. Do NOT run gold before advisor review.",
+  "v3_10_1_modified": false,
+  "v3_9_modified": false,
+  "v3_8_modified": false,
+  "new_experiments_run": false,
+  "api_calls_made": false,
+  "gold_annotation_performed": false,
+  "numeric_results_changed": false,
+  "silver_relabeled_as_gold": false,
+  "mojibake_present": false,
+  "narrative_changes": {
+    "title_page": "silver-stage pilot manuscript -> high-standard framework (validation-pending, protocol-locked)",
+    "removed_phrases": ["not submission-ready", "workshop", "pilot only", "weak evidence", "pre-gold complete draft", "cannot support as main tone", "failed as main tone", "downgrade as main tone"],
+    "replacement_phrases": ["validation-pending", "controlled silver-stage evidence", "protocol-locked validation", "pre-registered adjudication", "high-risk boundary class", "screening-oriented complement", "framework-level contribution", "taxonomy-level contribution"],
+    "contributions_count": 5,
+    "contributions": [
+      "1. Problem formulation: evidence sufficiency calibration as distinct from support/refute/NEI",
+      "2. Four-class taxonomy: supported / mild_scope_overclaim / strong_action_overclaim / contradiction_candidate",
+      "3. Controlled diagnostic benchmark: SimClaim (444 pairs, 111 groups, 6 domains)",
+      "4. Structured screening framework: CESE-OCN/R4 (relation-specific routing, frozen thresholds)",
+      "5. Controlled silver-stage evidence + pre-registered gold validation protocol"
+    ],
+    "results_framing": "on the controlled silver-stage evaluation",
+    "gold_validation_framing": "protocol-locked validation mechanism, not self-denial",
+    "pre_gold_occurrences": 0,
+    "workshop_or_pilot_only_as_main_positioning": false
+  },
+  "experimental_numbers_preserved": {
+    "r4_strong_f1": 0.3967,
+    "llm_strong_f1": 0.0769,
+    "r4_baseline_strong_f1": 0.2408,
+    "r4_macro_f1_matched_100": 0.3280,
+    "gpt55_macro_f1_matched_100": 0.5523,
+    "gpt55_structured_macro_f1_matched_100": 0.5543,
+    "deepseek_macro_f1_200": 0.5270,
+    "deepseek_macro_f1_matched_100": 0.5248,
+    "bootstrap_ci": [0.1058, 0.1988],
+    "seeds_positive": "10/10",
+    "ablation_A0_nli_only": 0.3934,
+    "ablation_A1_action_gap_only": 0.3648,
+    "ablation_A2_nli_plus_action_gap": 0.4209,
+    "r4_strong_f1_matched_100": 0.3000,
+    "r4_strong_f1_matched_200": 0.3158,
+    "fp_tp_ratio_estimate": 4.9,
+    "author_sanity_audit_questionable": "25/40 (62.5%)",
+    "strong_action_confusion_rate": "15/20 (75%)",
+    "frozen_thresholds": {"t_contra": 0.48, "t_strong": 0.535, "t_svm": 0.51}
+  },
+  "output_files": {
+    "main_md": "D:\\ocn\\paper_versions_ordered\\V3_11_high_standard_framework_roadmap\\CESE_OCN_V3_11_high_standard_framework.md",
+    "main_docx": "D:\\ocn\\paper_versions_ordered\\V3_11_high_standard_framework_roadmap\\CESE_OCN_V3_11_high_standard_framework.docx",
+    "strengthening_roadmap": "D:\\ocn\\paper_versions_ordered\\V3_11_high_standard_framework_roadmap\\V3_11_strengthening_roadmap.md",
+    "reviewer_risk_map": "D:\\ocn\\paper_versions_ordered\\V3_11_high_standard_framework_roadmap\\reviewer_risk_to_evidence_map.csv",
+    "advisor_cover_note": "D:\\ocn\\paper_versions_ordered\\V3_11_high_standard_framework_roadmap\\advisor_cover_note_cn_v3_11.md",
+    "project_30_day_plan": "D:\\ocn\\paper_versions_ordered\\V3_11_high_standard_framework_roadmap\\project_next_30_days_plan.md",
+    "readiness_gate": "D:\\ocn\\paper_versions_ordered\\V3_11_high_standard_framework_roadmap\\V3_11_readiness_gate.json"
+  },
+  "source_files_preserved": {
+    "v3_10_1_directory": "D:\\ocn\\paper_versions_ordered\\V3_10_1_advisor_send_clean\\",
+    "v3_10_1_modified": false,
+    "v3_9_directory": "D:\\ocn\\paper_versions_ordered\\V3_9_pre_gold_complete\\",
+    "v3_9_modified": false
+  },
+  "strengthening_roadmap_layers": {
+    "layer_1_immediate_no_data": 8,
+    "layer_2_50_gold_pilot": 6,
+    "layer_3_q1_sprint": 6
+  },
+  "reviewer_risks_covered": 12,
+  "quality_checks": {
+    "mojibake_search": "0 matches",
+    "workshop_pilot_only_as_main_positioning": false,
+    "silver_mislabeled_as_gold": false,
+    "r4_macro_f1_lower_than_llm_preserved": true,
+    "gold_not_done_fact_preserved": true,
+    "experimental_numbers_unchanged": true,
+    "docx_generated": true,
+    "v3_10_v3_9_unchanged": true
+  }
+}

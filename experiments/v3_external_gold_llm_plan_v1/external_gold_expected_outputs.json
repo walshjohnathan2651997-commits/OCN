@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-07-04T01:44:35",
+  "scope": "protocol_only_no_execution",
+  "per_dataset_max_sample": 300,
+  "total_max_sample": 1500,
+  "tasks": {
+    "E1_support_vs_contradiction": {
+      "applicable_datasets": [
+        "SciFact",
+        "VitaminC",
+        "FEVER",
+        "PubHealth",
+        "AVeriTeC"
+      ],
+      "metrics": [
+        "accuracy",
+        "macro_f1",
+        "supported_f1",
+        "contradiction_f1"
+      ],
+      "output_files_expected": [
+        "e1_results_by_dataset.csv",
+        "e1_summary.json"
+      ]
+    },
+    "E2_support_vs_non_support": {
+      "applicable_datasets": [
+        "SciFact",
+        "VitaminC",
+        "FEVER",
+        "PubHealth",
+        "AVeriTeC"
+      ],
+      "metrics": [
+        "macro_f1",
+        "non_support_positive_f1",
+        "brier_score_if_feasible"
+      ],
+      "output_files_expected": [
+        "e2_results_by_dataset.csv",
+        "e2_summary.json"
+      ]
+    },
+    "E3_evidence_sensitivity": {
+      "applicable_datasets": [
+        "VitaminC"
+      ],
+      "metrics": [
+        "correct_vs_wrong_delta",
+        "correct_vs_empty_delta",
+        "label_flip_rate",
+        "evidence_sensitivity_rate"
+      ],
+      "output_files_expected": [
+        "e3_vitaminc_results.csv",
+        "e3_summary.json"
+      ]
+    },
+    "E4_transfer_sanity": {
+      "applicable_datasets": [
+        "SciFact",
+        "VitaminC",
+        "FEVER",
+        "PubHealth",
+        "AVeriTeC"
+      ],
+      "metrics": [
+        "r4_macro_f1",
+        "b1_nli_macro_f1",
+        "b3b_tfidf_macro_f1",
+        "r4_vs_b1_delta"
+      ],
+      "output_files_expected": [
+        "e4_transfer_results.csv",
+        "e4_summary.json"
+      ]
+    }
+  },
+  "reporting_constraint": "Public results MUST be in a separate table from SimClaim main results. Must NOT claim validation of strong_action_overclaim."
+}

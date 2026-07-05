@@ -1,0 +1,90 @@
+{
+  "gate_name": "v3_16_integration_gate",
+  "task": "V3.16 Five-Task Integration Summary + Revision Plan",
+  "date": "2026-07-05",
+  "output_directory": "D:\\ocn\\project_synthesis\\v3_16_integration_summary_and_revision_plan\\",
+  "mainline_survives": true,
+  "needs_dataset_redesign": false,
+  "needs_relation_realism_gold": true,
+  "rigourate_overlap_fatal": false,
+  "scalar_baseline_weakens_r4": false,
+  "r4_retains_strong_action_advantage": true,
+  "low_prevalence_supports_standalone_deployment": false,
+  "low_prevalence_supports_first_stage_filter": true,
+  "realism_risk_severe": false,
+  "three_class_fallback_needed_now": false,
+  "v3_16_revision_required": true,
+  "v3_16_revision_scope": "Insertion-only on top of V3.12; preserve all V3.12 numbers; add RIGOURATE proxy baseline section, low-prevalence simulation section, realism audit + gold v2 protocol; reframe R4 as first-stage filter; add 4 new Limitations items.",
+  "default_route": "A (four-class + relation+realism gold)",
+  "fallback_route": "B (strong_action screening focus) if gold kappa borderline",
+  "contingency_route": "C (three-class downgrade) if kappa<0.40 AND retention<0.40",
+  "supporting_evidence": {
+    "t1_rigourate_proxy": {
+      "scalar_cannot_replace_r4": true,
+      "official_rigourate_available": false,
+      "r4_strong_f1_silver": 0.3967,
+      "scalar_best_f1_silver": 0.3844,
+      "llm_missed_strong_captured_by_r4": 8
+    },
+    "t2_low_prevalence": {
+      "r4_recall_stable_across_prevalences": true,
+      "r4_recall_mean": 0.36,
+      "r4_viable_standalone_below_10pct": false,
+      "r4_viable_standalone_at_25pct": true,
+      "fp_tp_at_1pct": 121.0,
+      "fp_tp_at_10pct": 11.5,
+      "fp_tp_at_25pct": 3.8,
+      "two_stage_pipeline_evaluated": false
+    },
+    "t3_realism_audit": {
+      "high_risk_claim_rate": 0.0,
+      "overall_realism_risk": 0.047,
+      "strong_action_realism_risk": 0.09,
+      "safe_as_diagnostic_set": true,
+      "safe_as_naturalistic": false,
+      "audit_is_human_gold": false
+    },
+    "t4_gold_v2_protocol": {
+      "protocol_drafted": true,
+      "annotation_begun": false,
+      "v1_modified": false,
+      "silver_leakage_free": true,
+      "pre_registered_rules_count": 6,
+      "ready_for_blind_annotation": true
+    },
+    "t5_scalar_deep_test": {
+      "scalar_can_separate_mild_strong": false,
+      "rule_scalar_roc_auc": 0.5062,
+      "llm_scalar_roc_auc": 0.5874,
+      "score_collapse_observed": true,
+      "score_collapse_indicators_count": 4,
+      "r4_strong_f1_matched_100": 0.3,
+      "scalar_strong_f1_matched_100": 0.1364,
+      "r4_llm_missed_captured": 8,
+      "scalar_llm_missed_captured": 3
+    }
+  },
+  "revision_plan_sections": [
+    "Abstract",
+    "Introduction",
+    "Related Work",
+    "Data",
+    "Method",
+    "Results",
+    "Discussion",
+    "Limitations",
+    "Gold Protocol"
+  ],
+  "prohibitions_enforced": {
+    "no_experiments": true,
+    "no_api_calls": true,
+    "no_gold_annotation": true,
+    "no_paper_modification": true,
+    "no_original_data_modification": true,
+    "no_submission_draft": true,
+    "no_planned_as_completed": true,
+    "no_silver_as_gold": true,
+    "no_proxy_as_official_rigourate": true
+  },
+  "audit_disclaimer": "This is an integration summary and revision plan only. It does NOT modify the paper, does NOT generate a submission draft, does NOT run experiments, and does NOT create gold. All evidence is drawn from existing T1-T5 gate files and V3.12 readiness gate. All scalar baseline results are PROXY (rule-based / LLM-label-derived), NOT official RIGOURATE. All R4 / LLM / scalar results are on SILVER labels (pre-gold). The two-stage pipeline (R4 -> LLM/human) is PROPOSED, not evaluated."
+}

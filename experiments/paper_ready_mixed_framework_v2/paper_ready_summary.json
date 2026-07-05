@@ -1,0 +1,85 @@
+{
+  "generated_at": "2026-07-03T14:55:28.831782",
+  "task": "Task N - Paper-Ready Result Pack for CESE-OCN Mixed Framework v2",
+  "data_source": "silver-label pilot (strict_silver_max_v1), 444 claims, 111 groups, 4 labels balanced",
+  "main_method": {
+    "name": "CESE-OCN Mixed Framework v2 with R4_conservative_strong router",
+    "frozen_path": "D:\\ocn\\experiments\\mixed_framework_v2_frozen_r4_baseline",
+    "frozen_at": "2026-07-03T12:23:00",
+    "immutable": true,
+    "key_metrics": {
+      "baseline_flat4_macro_f1": 0.3963,
+      "r4_flat4_macro_f1": 0.4238,
+      "baseline_strong_positive_f1": 0.2408,
+      "r4_strong_positive_f1": 0.3967,
+      "strong_positive_delta": 0.1559,
+      "baseline_contradiction_positive_f1": 0.7308,
+      "r4_contradiction_positive_f1": 0.7296,
+      "contradiction_positive_delta": -0.0012,
+      "baseline_escalation_macro_f1": 0.5723,
+      "r4_escalation_macro_f1": 0.6143,
+      "escalation_macro_delta": 0.042,
+      "r4_strong_recall": 0.4562,
+      "r4_strong_precision": 0.3791,
+      "positive_delta_seed_count": 10,
+      "delta_ci_lower": 0.1058,
+      "delta_ci_upper": 0.1988,
+      "delta_ci_crosses_zero": false
+    }
+  },
+  "main_claim_supported": true,
+  "supported_claims": [
+    "Mixed relation-specific routing improves strong_action recognition over flat baseline.",
+    "R4 improves strong positive-F1 from 0.2408 to 0.3967 (+0.1559) while preserving contradiction and escalation performance.",
+    "Cost-sensitive variant (cw4.0) gives small auxiliary improvement (+0.0254) but does not replace R4.",
+    "Scientific claim calibration is not a single flat 4-class problem; relation-specific evidence reasoning is needed.",
+    "Bootstrap CI for R4 strong_positive delta = [0.1058, 0.1988] does not cross zero (10/10 seeds positive)."
+  ],
+  "unsupported_claims": [
+    "Do not claim all four classes are solved.",
+    "Do not claim supported_vs_mild boundary is solved (F1 ~0.52, weakest boundary).",
+    "Do not claim cost-sensitive cw4.0 replaces R4 (delta below threshold, CI crosses 0).",
+    "Do not claim gold/human-audited performance (silver labels only).",
+    "Do not claim final Q1 readiness solely from silver data.",
+    "Do not claim strong_action is solved (F1 = 0.3967, still moderate)."
+  ],
+  "main_limitations": [
+    "Silver labels only (no human gold validation yet)",
+    "Small dataset (444 claims, 111 groups, test ~16 per seed)",
+    "supported/mild ambiguity remains (boundary F1 ~0.52)",
+    "strong_action F1 = 0.3967 is moderate, not solved",
+    "R4 introduces supported/mild->strong false positives (98 + 24 cases)",
+    "Counterfactual robustness still needs improvement",
+    "No human gold validation yet (requires 300-500 audited pairs for high-tier submission)"
+  ],
+  "auxiliary_method": {
+    "name": "B_cost_sensitive_cw4.0",
+    "strong_positive_f1": 0.4221,
+    "delta_vs_r4": 0.0254,
+    "ci_crosses_zero": true,
+    "replace_r4": false,
+    "recommended_use": "auxiliary_module",
+    "note": "Auxiliary sensitivity analysis only; does not meet +0.03 threshold or CI criterion."
+  },
+  "recommended_paper_positioning": "mixed evidence calibration framework / relation-specific router / action-overclaim diagnostic",
+  "frozen_encoder_context": {
+    "best_config": "cross_encoder_nli_pair",
+    "best_macro_f1": 0.6893,
+    "flat4_ready": false,
+    "human_audited": false,
+    "is_gold": false
+  },
+  "structured_algorithm_context": {
+    "best_structured_model": "hierarchical",
+    "best_structured_macro_f1": 0.43814634760535587,
+    "recommend_as_main_method": false,
+    "suitable_as_analysis_diagnostic": true,
+    "biggest_blocker": "CI crosses 0 vs flat baseline; structured model does not stably outperform"
+  },
+  "mixed_framework_v1_context": {
+    "mixed_framework_supported": true,
+    "flat_4class_as_main_task_supported": true,
+    "single_model_all_labels_supported": false,
+    "class_specific_reasoning_needed": true
+  }
+}

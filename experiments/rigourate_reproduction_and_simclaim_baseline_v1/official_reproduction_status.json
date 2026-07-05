@@ -1,0 +1,50 @@
+{
+  "task": "RIGOURATE Reproduction + SimClaim Differentiation v1 - Section 1 Official Resource Audit",
+  "audit_date": "2026-07-05",
+  "paper_identifier": "RIGOURATE, arXiv:2601.04350v2 [cs.CL] 12 Jan 2026",
+  "venue": "Findings of ACL 2026",
+  "authors": [
+    "Joseph James (University of Sheffield)",
+    "Chenghao Xiao (Durham University)",
+    "Yucheng Li (University of Surrey)",
+    "Nafise Sadat Moosavi (University of Sheffield)",
+    "Chenghua Lin (University of Manchester)"
+  ],
+  "official_rigourate_code_available": false,
+  "official_rigourate_data_available": false,
+  "official_rigourate_model_available": false,
+  "official_reproduction_possible": false,
+  "reproduction_status": "blocked",
+  "blocked_reason": "arXiv v2 (12 Jan 2026) of RIGOURATE contains a placeholder string '[Github/HF Link]' in place of the code/data/model URL. As of audit date 2026-07-05, no concrete GitHub repository, HuggingFace model, dataset release, annotation script, supplementary material, or runnable example has been located via web search of arXiv, GitHub, HuggingFace, ACL Anthology, and author homepages. The paper text describes 10K+ claim-evidence sets, 8 LLM annotators, peer-review calibration, a fine-tuned multimodal reranker, and a fine-tuned overstatement scoring model, but none of these artifacts are publicly available. Consequently, a full official reproduction is not currently possible from public resources.",
+  "partial_assets_available": ["arXiv paper text (full methods description)"],
+  "assets_missing": [
+    "GitHub repository (placeholder only in arXiv v2)",
+    "HuggingFace model repository (placeholder only in arXiv v2)",
+    "Training/evaluation dataset (10K+ claim-evidence sets described but not released)",
+    "Fine-tuned reranker weights",
+    "Fine-tuned overstatement scorer weights",
+    "Annotation scripts (LLM annotator + peer-review calibration pipeline)",
+    "Supplementary material",
+    "Runnable end-to-end example",
+    "License specification"
+  ],
+  "feasibility_conclusion": "blocked",
+  "feasibility_conclusion_options": ["full official reproduction possible", "partial official reproduction possible", "blocked"],
+  "next_actions_if_released": [
+    "Re-audit arXiv for v3 or later versions that may replace the placeholder",
+    "Check corresponding author email for code/data request",
+    "Monitor ACL Anthology for camera-ready supplementary",
+    "Monitor OpenReview for ICLR/NeurIPS dataset release"
+  ],
+  "proxy_baseline_path_authorized": true,
+  "proxy_baseline_note": "Per task spec section IV, when official model is unavailable, a RIGOURATE-style scalar proxy baseline may be constructed. The proxy MUST NOT be claimed as official RIGOURATE; it must be labeled as 'RIGOURATE-style' or 'scalar overstatement proxy'. See section IV outputs for proxy construction.",
+  "prohibitions_enforced": [
+    "do_not_claim_proxy_as_official",
+    "do_not_fabricate_reproduction_success",
+    "do_not_call_paid_api",
+    "do_not_modify_V3_12",
+    "do_not_modify_original_data",
+    "do_not_create_gold",
+    "do_not_write_silver_as_gold"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "OBJ1_flat4_macro": {
+    "t_contra_mean": 0.48,
+    "t_strong_mean": 0.535,
+    "t_svm_mean": 0.51,
+    "dev_score_mean": 0.4952
+  },
+  "OBJ2_strong_pf1_constrained": {
+    "t_contra_mean": 0.455,
+    "t_strong_mean": 0.45,
+    "t_svm_mean": 0.4,
+    "dev_score_mean": 0.4872
+  },
+  "OBJ3_weighted": {
+    "t_contra_mean": 0.48,
+    "t_strong_mean": 0.535,
+    "t_svm_mean": 0.51,
+    "dev_score_mean": 0.5515
+  }
+}

@@ -1,0 +1,5 @@
+holdout_type,identifier,n_test,r4_strong_f1,best_baseline_strong_f1,delta,issue
+leave_source_out,POL-007,12,0.3333,0.4000,-0.0667,R4 strong F1 below NLI-only baseline on this source
+leave_source_out,AD-007,12,0.2857,0.5000,-0.2143,R4 strong F1 below NLI-only baseline on this source
+leave_source_out,POL-014,12,0.6667,0.8000,-0.1333,R4 strong F1 below NLI-only baseline on this source
+leave_source_out,MARL-002,8,0.0000,0.6667,-0.6667,R4 strong F1 below NLI-only baseline on this source

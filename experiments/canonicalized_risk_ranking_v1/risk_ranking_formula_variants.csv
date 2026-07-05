@@ -1,0 +1,9 @@
+﻿variant_id,formula,description
+A_flag_only,strong_action_flag * 1000 + p_strong,"Flagged candidates first, then by p_strong descending"
+B_p_strong_desc,p_strong,"Pure p_strong descending, ignores flag"
+C_guarded_strong_score,p_strong - p_contra,Strong score guarded by contradiction probability
+D_confidence_guarded,p_strong - p_contra - 0.2 * entropy,Confidence-guarded with entropy penalty
+E_selector_confidence,p_strong - p_contra + 0.1 * selector_score - 0.05 * selected_rank,Selector confidence weighted
+F_short_span_bonus,p_strong - p_contra - 0.2 * entropy + 0.1 * (10 <= n_words <= 40),Short span bonus for 10-40 word evidence
+G_conservative_precision,if(flag==1 and p_contra<0.36): p_strong - entropy; else: -1000 + p_strong,Conservative: only rank low-contra flagged candidates
+H_balanced_review_score,0.5*p_strong - 0.3*p_contra - 0.2*entropy + 0.1*selector_score - 0.05*selected_rank,Balanced review score with all features

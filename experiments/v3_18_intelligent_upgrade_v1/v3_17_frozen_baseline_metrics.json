@@ -1,0 +1,37 @@
+{
+  "task": "V3.17 frozen baseline (reference for V3.18 intelligent upgrade)",
+  "frozen_at": "2026-07-05T21:01:37",
+  "pipeline": [
+    "PDF corpus",
+    "BM25 top-k retrieval",
+    "best_sentence_top5_overlap canonicalization",
+    "R4 conservative_strong screening (10 seeds, majority vote)",
+    "G_conservative_precision risk ranking",
+    "second-stage review queue"
+  ],
+  "raw_top1_strong_f1": 0.1806,
+  "oracle_strong_f1": 0.4257,
+  "best_sentence_top5_overlap_strong_f1": 0.4503,
+  "strong_recall": 0.7064,
+  "selectors_above_0.40": "6/9",
+  "best_ranking": "G_conservative_precision",
+  "precision_at_20": 0.45,
+  "recall_at_100": 0.3303,
+  "fp_tp_at_5pct": 11.24,
+  "second_stage_usable": true,
+  "standalone_usable": false,
+  "frozen": true,
+  "prohibitions": [
+    "baseline_not_modified",
+    "no_paper_modification",
+    "no_api_calls",
+    "no_network",
+    "no_gold_for_selector",
+    "no_test_leakage",
+    "no_r4_retraining",
+    "no_threshold_change",
+    "no_proxy",
+    "no_silver_as_gold",
+    "no_natural_distribution_claim"
+  ]
+}

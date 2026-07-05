@@ -1,0 +1,26 @@
+{
+  "gate_name": "claim_realism_audit_gate",
+  "task": "V3.15 Claim Realism Audit + Synthetic Counterfactual Risk Scoring",
+  "date": "2026-07-05",
+  "audit_completed": true,
+  "n_claims": 444,
+  "n_groups": 111,
+  "high_risk_claim_rate": 0.0,
+  "high_risk_group_rate": 0.0,
+  "strong_action_forced_rate": 0.009,
+  "contradiction_mechanical_rate": 0.5225,
+  "realism_gold_needed": true,
+  "safe_to_use_as_diagnostic_set": true,
+  "safe_to_claim_naturalistic": false,
+  "recommended_next_action": "Include realism_score_1_to_5 in gold pilot annotation (Layer 2 of gold_pilot_protocol_freeze_v1); prioritize high-risk claims identified here for realism validation; exclude high-risk + extreme/templated claims from paper illustrative examples; report claim_realism_audit_summary in paper limitations section as automatic-author-side audit awaiting human validation",
+  "prohibitions_enforced": {
+    "no_original_data_modification": true,
+    "no_gold_annotation": true,
+    "no_api_calls": true,
+    "no_model_training": true,
+    "no_paper_modification": true,
+    "no_realism_audit_as_human_gold": true,
+    "no_sample_deletion": true
+  },
+  "audit_type_disclaimer": "Automatic, author-side realism risk audit. NOT human gold. NOT a naturalistic study. All risk flags are heuristic and require human validation in the gold pilot."
+}

@@ -1,0 +1,418 @@
+{
+  "release_dir": "release_simclaim_human_pilot",
+  "dataset_name": "simclaim_human_pilot",
+  "dataset_status": "human_audited_pilot",
+  "n_test": 30,
+  "paper_ready": false,
+  "n_claims": 16,
+  "n_complete": 1,
+  "n_diagnostic_only": 11,
+  "n_partial": 2,
+  "n_blocked": 2,
+  "n_not_implemented": 0,
+  "sections": [
+    "Introduction",
+    "Problem Formulation",
+    "CESE-OCN Method",
+    "Dataset / SimClaim-Eval Protocol",
+    "Main Experiments",
+    "Strong Baselines",
+    "Calibration Ablation",
+    "Constraint Ablation",
+    "Adversarial / Robustness",
+    "Oracle / Extracted / Confidence-aware Evidence",
+    "Error Analysis",
+    "Limitations"
+  ],
+  "claims": [
+    {
+      "paper_section": "Introduction",
+      "paper_claim": "CESE-OCN models claim-evidence calibration as ordinal exceedance.",
+      "required_code": [
+        "cese/models/cese_ocn.py",
+        "cese/models/ordinal.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/RESULTS_MANIFEST.json"
+      ],
+      "required_table": [],
+      "current_status": "diagnostic_only",
+      "blocking_reason": [
+        "Release is human pilot (n_test<100, dataset_status=human_audited_pilot). Pilot findings only; not a paper-full benchmark claim."
+      ],
+      "allowed_wording": [
+        "CESE-OCN casts claim-evidence calibration as ordinal exceedance between claim strength and evidence support on a shared tier scale."
+      ],
+      "forbidden_wording": [
+        "CESE-OCN is a production deployment system.",
+        "CESE-OCN is a final benchmark for SimClaim-Eval."
+      ]
+    },
+    {
+      "paper_section": "Problem Formulation",
+      "paper_claim": "escalation_label is derived from ordinal exceedance (claim_tier > support_tier on any dimension).",
+      "required_code": [
+        "cese/utils/labels.py",
+        "scripts/validate_dataset_contract.py",
+        "scripts/audit_label_derivation.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/dataset_contract_validation.json",
+        "release_simclaim_human_pilot/reports/label_derivation_audit.json"
+      ],
+      "required_table": [],
+      "current_status": "diagnostic_only",
+      "blocking_reason": [
+        "Release is human pilot (n_test<100, dataset_status=human_audited_pilot). Pilot findings only; not a paper-full benchmark claim."
+      ],
+      "allowed_wording": [
+        "We define escalation as any ordinal claim tier exceeding its support tier."
+      ],
+      "forbidden_wording": [
+        "The dataset is a final benchmark.",
+        "escalation_label is a free-form human judgement with no rule."
+      ]
+    },
+    {
+      "paper_section": "Problem Formulation",
+      "paper_claim": "Shared thresholds place claim strength and evidence support on a common ordinal scale.",
+      "required_code": [
+        "cese/models/shared_threshold_calibrator.py",
+        "scripts/fit_operating_threshold.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/train_eval/operating_threshold.json"
+      ],
+      "required_table": [],
+      "current_status": "diagnostic_only",
+      "blocking_reason": [
+        "Release is human pilot (n_test<100, dataset_status=human_audited_pilot). Pilot findings only; not a paper-full benchmark claim."
+      ],
+      "allowed_wording": [
+        "A single set of shared thresholds maps claim strength and evidence support onto the same 0..4 ordinal scale."
+      ],
+      "forbidden_wording": [
+        "We calibrate separate thresholds per branch with no shared scale."
+      ]
+    },
+    {
+      "paper_section": "CESE-OCN Method",
+      "paper_claim": "Non-compensatory constraints prevent unsupported dimensions from being compensated by unrelated evidence strength.",
+      "required_code": [
+        "cese/models/inference_constraints.py",
+        "cese/losses/truncation.py",
+        "cese/losses/monotonicity.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/tables/constraint_ablation.csv",
+        "release_simclaim_human_pilot/ablations/constraint_ablation_results.json"
+      ],
+      "required_table": [
+        "constraint_ablation.csv"
+      ],
+      "current_status": "blocked",
+      "blocking_reason": [
+        "code_ok=True full_cese_valid=False no_constraints_valid=False"
+      ],
+      "allowed_wording": [
+        "We enforce a non-compensatory truncation so that an unsupported dimension cannot be rescued by evidence strength on unrelated dimensions."
+      ],
+      "forbidden_wording": [
+        "CESE-OCN sums evidence strengths freely across dimensions."
+      ]
+    },
+    {
+      "paper_section": "Dataset / SimClaim-Eval Protocol",
+      "paper_claim": "Human pilot data contains double-annotated/adjudicated simulation claim-evidence pairs.",
+      "required_code": [
+        "cese/data/annotation_io.py",
+        "scripts/adjudicate_annotations.py",
+        "scripts/compute_annotation_agreement.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/RESULTS_MANIFEST.json",
+        "release_simclaim_human_pilot/reports/dataset_quality_audit.json"
+      ],
+      "required_table": [],
+      "current_status": "diagnostic_only",
+      "blocking_reason": [
+        "Release is human pilot (n_test<100, dataset_status=human_audited_pilot). Pilot findings only; not a paper-full benchmark claim."
+      ],
+      "allowed_wording": [
+        "The pilot split was double-annotated and adjudicated; inter-annotator agreement is reported per dimension."
+      ],
+      "forbidden_wording": [
+        "The dataset is a final benchmark.",
+        "The dataset is a fully adjudicated paper-full benchmark (n_test>=100)."
+      ]
+    },
+    {
+      "paper_section": "Dataset / SimClaim-Eval Protocol",
+      "paper_claim": "Significance is confirmatory only if n_test>=100; otherwise exploratory.",
+      "required_code": [
+        "scripts/split_pilot_data.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/RESULTS_MANIFEST.json"
+      ],
+      "required_table": [],
+      "current_status": "diagnostic_only",
+      "blocking_reason": [
+        "n_test=30 < 100; significance is exploratory, not confirmatory."
+      ],
+      "allowed_wording": [
+        "Statistical significance on the pilot split (n_test<100) is exploratory and must not be reported as confirmatory."
+      ],
+      "forbidden_wording": [
+        "We confirm the hypothesis at p<0.05 on the pilot split."
+      ]
+    },
+    {
+      "paper_section": "Main Experiments",
+      "paper_claim": "Main results compare CESE-OCN with fair lexical and TF-IDF baselines.",
+      "required_code": [
+        "scripts/run_baselines.py",
+        "cese/baselines/text_fair_baselines.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/tables/main_results.csv",
+        "release_simclaim_human_pilot/baselines_results.json"
+      ],
+      "required_table": [
+        "main_results.csv"
+      ],
+      "current_status": "diagnostic_only",
+      "blocking_reason": [
+        "Release is human pilot (n_test<100, dataset_status=human_audited_pilot). Pilot findings only; not a paper-full benchmark claim."
+      ],
+      "allowed_wording": [
+        "On the pilot split, CESE-OCN is compared against lexical-cue and TF-IDF fair baselines under the same train/dev/test protocol."
+      ],
+      "forbidden_wording": [
+        "CESE-OCN outperforms all baselines on a paper-full benchmark.",
+        "evidence_only_tfidf_logistic is a fair baseline."
+      ]
+    },
+    {
+      "paper_section": "Main Experiments",
+      "paper_claim": "Evidence-only baseline is diagnostic/leakage-risk, not a fair comparison.",
+      "required_code": [
+        "cese/baselines/text_fair_baselines.py",
+        "scripts/audit_baseline_dominance.py",
+        "scripts/audit_baseline_feature_leakage.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/tables/main_results.csv",
+        "release_simclaim_human_pilot/reports/baseline_dominance_audit.json",
+        "release_simclaim_human_pilot/tables/baseline_dominance.csv"
+      ],
+      "required_table": [
+        "main_results.csv",
+        "baseline_dominance.csv"
+      ],
+      "current_status": "diagnostic_only",
+      "blocking_reason": [
+        "Release is human pilot (n_test<100, dataset_status=human_audited_pilot). Pilot findings only; not a paper-full benchmark claim."
+      ],
+      "allowed_wording": [
+        "The evidence-only baseline is reported as an oracle / leakage diagnostic and excluded from the fair main comparison."
+      ],
+      "forbidden_wording": [
+        "evidence_only_tfidf_logistic is a fair main baseline.",
+        "CESE-OCN outperforms the evidence-only baseline in a fair comparison."
+      ]
+    },
+    {
+      "paper_section": "Strong Baselines",
+      "paper_claim": "Strong baselines (structured_llm_judge, nli_scifact_style, ragas_style, ares_style, pairwise_llm_judge) are reported only when metric_valid=true.",
+      "required_code": [
+        "scripts/run_strong_baselines.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/tables/strong_baselines.csv",
+        "release_simclaim_human_pilot/strong_baselines/strong_baselines_results.json"
+      ],
+      "required_table": [
+        "strong_baselines.csv"
+      ],
+      "current_status": "partial",
+      "blocking_reason": [
+        "missing valid strong baselines: ['ares_style', 'pairwise_llm_judge', 'ragas_style', 'structured_llm_judge']; skipped_reasons={'structured_llm_judge': 'missing_api_key', 'ragas_style': 'missing_api_key', 'ares_style': 'missing_api_key', 'pairwise_llm_judge': 'missing_api_key'}"
+      ],
+      "allowed_wording": [
+        "Strong baselines that lacked an API key are reported as skipped (missing_api_key) and excluded from any superiority claim."
+      ],
+      "forbidden_wording": [
+        "CESE-OCN outperforms all strong baselines.",
+        "All strong baselines were evaluated."
+      ]
+    },
+    {
+      "paper_section": "Calibration Ablation",
+      "paper_claim": "Calibration ablation shows shared-threshold ordinal calibration improves over no calibration.",
+      "required_code": [
+        "scripts/run_calibration_ablation.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/tables/calibration_ablation.csv",
+        "release_simclaim_human_pilot/ablations/calibration_ablation_results.json"
+      ],
+      "required_table": [
+        "calibration_ablation.csv"
+      ],
+      "current_status": "diagnostic_only",
+      "blocking_reason": [
+        "Release is human pilot (n_test<100, dataset_status=human_audited_pilot). Pilot findings only; not a paper-full benchmark claim."
+      ],
+      "allowed_wording": [
+        "On the pilot split, shared-threshold ordinal calibration reaches macro-F1 at least as high as the no-calibration variant."
+      ],
+      "forbidden_wording": [
+        "Calibration ablation confirms superiority on a paper-full benchmark."
+      ]
+    },
+    {
+      "paper_section": "Constraint Ablation",
+      "paper_claim": "Constraint ablation shows full CESE-OCN beats no-constraints and partial-gate variants on high-strength false support.",
+      "required_code": [
+        "scripts/run_constraint_ablation.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/tables/constraint_ablation.csv",
+        "release_simclaim_human_pilot/ablations/constraint_ablation_results.json"
+      ],
+      "required_table": [
+        "constraint_ablation.csv"
+      ],
+      "current_status": "blocked",
+      "blocking_reason": [
+        "full_cese row metric_valid=false or n_samples=0; constraint ablation cannot support any constraint-superiority claim."
+      ],
+      "allowed_wording": [
+        "On the pilot split, full CESE-OCN achieves a lower high-strength false-support rate than the no-constraints variant."
+      ],
+      "forbidden_wording": [
+        "Constraint ablation confirms superiority on a paper-full benchmark.",
+        "Full CESE-OCN achieves perfect monotonicity on the pilot split."
+      ]
+    },
+    {
+      "paper_section": "Adversarial / Robustness",
+      "paper_claim": "Adversarial robustness is claimed only if adversarial_results has CESE rows with n_samples>0 on standard + >=2 adversarial splits.",
+      "required_code": [
+        "scripts/run_adversarial_eval.py",
+        "scripts/build_adversarial_splits.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/tables/adversarial_results.csv"
+      ],
+      "required_table": [
+        "adversarial_results.csv"
+      ],
+      "current_status": "partial",
+      "blocking_reason": [
+        "cese_ocn valid splits=['Domain-held-out test', 'Lexical-adversarial test', 'Logical-sample-held-out test', 'Standard test', 'Style-balanced test', 'Template-held-out test']; need standard + 2 adversarial splits."
+      ],
+      "allowed_wording": [
+        "Fair baseline robustness on cue_words_removed and style_balanced splits is reported; CESE-OCN adversarial robustness is not claimed because the checkpoint is not available for adversarial evaluation."
+      ],
+      "forbidden_wording": [
+        "CESE-OCN is robust to adversarial cue removal.",
+        "CESE-OCN maintains accuracy on all adversarial splits."
+      ]
+    },
+    {
+      "paper_section": "Oracle / Extracted / Confidence-aware Evidence",
+      "paper_claim": "Oracle / extracted / confidence-aware evidence modes are compared only when all three modes exist with valid metrics.",
+      "required_code": [
+        "scripts/run_oracle_extracted_confidence.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/tables/oracle_extracted_confidence.csv"
+      ],
+      "required_table": [
+        "oracle_extracted_confidence.csv"
+      ],
+      "current_status": "diagnostic_only",
+      "blocking_reason": [
+        "Release is human pilot (n_test<100, dataset_status=human_audited_pilot). Pilot findings only; not a paper-full benchmark claim."
+      ],
+      "allowed_wording": [
+        "On the pilot split, oracle, extracted, and confidence-aware evidence modes are compared on the same logical samples."
+      ],
+      "forbidden_wording": [
+        "We compare only oracle evidence.",
+        "Extracted and confidence-aware modes are not needed."
+      ]
+    },
+    {
+      "paper_section": "Oracle / Extracted / Confidence-aware Evidence",
+      "paper_claim": "CESE-OCN evidence-mode comparison requires the CESE checkpoint.",
+      "required_code": [
+        "scripts/run_oracle_extracted_confidence.py",
+        "cese/utils/checkpoint.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/tables/oracle_extracted_confidence.csv"
+      ],
+      "required_table": [
+        "oracle_extracted_confidence.csv"
+      ],
+      "current_status": "diagnostic_only",
+      "blocking_reason": [
+        "Release is human pilot (n_test<100, dataset_status=human_audited_pilot). Pilot findings only; not a paper-full benchmark claim."
+      ],
+      "allowed_wording": [
+        "Fair-baseline evidence-mode comparison is reported; CESE-OCN evidence-mode comparison is blocked because the checkpoint is not shipped with the pilot release (see docs/checkpoint_policy.md)."
+      ],
+      "forbidden_wording": [
+        "CESE-OCN outperforms fair baselines across all three evidence modes."
+      ]
+    },
+    {
+      "paper_section": "Error Analysis",
+      "paper_claim": "Error analysis is reported at the per-dimension level on the pilot split.",
+      "required_code": [
+        "scripts/error_analysis.py",
+        "cese/eval/error_decomposition.py"
+      ],
+      "required_release_file": [
+        "release_simclaim_human_pilot/train_eval/eval_test_ordinal_per_dim.csv"
+      ],
+      "required_table": [
+        "eval_test_ordinal_per_dim.csv"
+      ],
+      "current_status": "diagnostic_only",
+      "blocking_reason": [
+        "Release is human pilot (n_test<100, dataset_status=human_audited_pilot). Pilot findings only; not a paper-full benchmark claim."
+      ],
+      "allowed_wording": [
+        "We report per-dimension error decomposition on the pilot split as a diagnostic of where CESE-OCN fails."
+      ],
+      "forbidden_wording": [
+        "Error analysis confirms the model is deployment-ready."
+      ]
+    },
+    {
+      "paper_section": "Limitations",
+      "paper_claim": "The current release is a human pilot (n_test<100), not a paper-full benchmark; paper_ready must remain false.",
+      "required_code": [],
+      "required_release_file": [
+        "release_simclaim_human_pilot/RESULTS_MANIFEST.json",
+        "release_simclaim_human_pilot/paper_readiness_report.json"
+      ],
+      "required_table": [],
+      "current_status": "complete",
+      "blocking_reason": [
+        "paper_ready=false; n_test<100; blocking_reasons recorded."
+      ],
+      "allowed_wording": [
+        "This release is a human pilot (n_test<100) and not a paper-full benchmark; all quantitative findings are diagnostic."
+      ],
+      "forbidden_wording": [
+        "We present a final benchmark for SimClaim-Eval.",
+        "paper_ready=true."
+      ]
+    }
+  ]
+}

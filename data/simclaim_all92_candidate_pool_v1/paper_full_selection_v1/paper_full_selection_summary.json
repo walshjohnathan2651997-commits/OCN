@@ -1,0 +1,31 @@
+{
+  "n_total": 644,
+  "n_core": 200,
+  "n_core_b_evidence_gain": 44,
+  "n_core_c_both_wrong": 156,
+  "n_review_queue": 581,
+  "n_exclude_recommended": 56,
+  "n_a_lexical_leakage_flagged": 165,
+  "n_d_exclude_flagged": 50,
+  "n_contradiction_leakage_review": 97,
+  "n_cue_risk_samples": 6,
+  "core_domain_distribution": {
+    "autonomous_driving": 64,
+    "policy_simulation": 34,
+    "cyber_defense": 31,
+    "digital_twin": 31,
+    "marl": 26,
+    "robotics": 14
+  },
+  "core_label_distribution": {
+    "supported": 73,
+    "mild_scope_overclaim": 56,
+    "strong_action_overclaim": 48,
+    "contradiction_candidate": 23
+  },
+  "target_core_size": 200,
+  "can_be_gold": false,
+  "can_be_final": false,
+  "reason_not_gold": "not human audited, no adjudication, AI preannotation only",
+  "recommended_next_step": "small-scale human review of core candidates, then model experiments"
+}

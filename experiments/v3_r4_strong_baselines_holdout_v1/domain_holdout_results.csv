@@ -1,0 +1,7 @@
+domain,n_test,r4_flat4_macro,r4_strong_f1,r4_contra_f1,r4_escalation_f1,b1_nli_strong_f1,b3b_tfidf_strong_f1,best_baseline_strong_f1,delta_r4_vs_best,r4_stable
+autonomous_driving,140,0.4403,0.3684,0.7164,0.6216,0.2778,0.3111,0.3111,0.0573,YES
+cyber_defense,64,0.5807,0.5455,0.8750,0.7149,0.4828,0.3529,0.4828,0.0627,YES
+digital_twin,68,0.4418,0.3556,0.7805,0.6072,0.1935,0.2174,0.2174,0.1382,YES
+marl,52,0.3437,0.3333,0.5806,0.5048,0.2000,0.2791,0.2791,0.0543,YES
+policy_simulation,84,0.4455,0.4390,0.7391,0.6199,0.2222,0.2105,0.2222,0.2168,YES
+robotics,36,0.3865,0.4444,0.6154,0.5765,0.2500,0.3000,0.3000,0.1444,YES

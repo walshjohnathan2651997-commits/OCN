@@ -1,0 +1,5 @@
+﻿k,precision_at_k,recall_at_k,n_true_strong_captured,false_positive_count,fp_tp,nnr,label_composition
+10,0.5,0.045871559633027525,5,5,1.0,2.0,"{""strong_action_overclaim"": 5, ""mild_scope_overclaim"": 4, ""supported"": 1}"
+20,0.35,0.06422018348623854,7,13,1.8571428571428572,2.857142857142857,"{""mild_scope_overclaim"": 7, ""strong_action_overclaim"": 7, ""supported"": 3, ""contradiction_candidate"": 3}"
+50,0.34,0.1559633027522936,17,33,1.9411764705882353,2.941176470588235,"{""strong_action_overclaim"": 17, ""mild_scope_overclaim"": 16, ""supported"": 10, ""contradiction_candidate"": 7}"
+100,0.37,0.3394495412844037,37,63,1.7027027027027026,2.7027027027027026,"{""strong_action_overclaim"": 37, ""mild_scope_overclaim"": 29, ""supported"": 22, ""contradiction_candidate"": 12}"

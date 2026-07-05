@@ -1,0 +1,38 @@
+{
+  "n_total_groups": 161,
+  "n_strict_eligible": 111,
+  "n_core_groups_selected": 50,
+  "n_core_claims": 200,
+  "target_groups": 50,
+  "strict_available_count": 111,
+  "core_label_distribution": {
+    "supported": 50,
+    "mild_scope_overclaim": 50,
+    "strong_action_overclaim": 50,
+    "contradiction_candidate": 50
+  },
+  "core_domain_distribution": {
+    "autonomous_driving": 108,
+    "cyber_defense": 36,
+    "policy_simulation": 24,
+    "digital_twin": 20,
+    "robotics": 8,
+    "marl": 4
+  },
+  "core_tier_distribution": {
+    "tier4_no_B_has_A": 24,
+    "tier2_B_has_A": 13,
+    "tier1_B_no_A": 8,
+    "tier3_no_B_no_A": 5
+  },
+  "n_B_evidence_gain_groups": 21,
+  "n_C_only_groups": 5,
+  "n_A_flagged_groups": 37,
+  "n_excluded_D_groups": 47,
+  "n_excluded_cue_groups": 3,
+  "n_review_queue_groups": 64,
+  "can_be_gold": false,
+  "can_be_final": false,
+  "reason_not_gold": "not human audited, no adjudication, AI preannotation only",
+  "recommended_next_step": "human review of group-complete core, then model experiments"
+}

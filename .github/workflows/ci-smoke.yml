@@ -1,0 +1,58 @@
+name: ci-smoke
+
+# Minimal smoke CI for CESE-OCN.
+#
+# Runs the minimal command set specified in P4c:
+#   * compileall (syntax check)
+#   * focused pytest (schema / thresholds / truncation / confidence /
+#     paper_full_required_results)
+#   * validate_data on toy smoke data
+#   * audit_dataset on toy smoke data
+#   * run_smoke_minimal end-to-end smoke run
+#
+# Full pytest is run as a separate nightly job (ci-nightly) so the smoke
+# CI does not block on long-running tests.
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt || true
+          pip install pytest
+
+      - name: Compile check
+        run: |
+          python -m compileall -q cese scripts tests
+
+      - name: Focused pytest (smoke subset)
+        run: |
+          pytest -q tests/test_schema.py tests/test_shared_thresholds.py tests/test_truncation.py tests/test_confidence_lower_bound_eval.py tests/test_paper_full_required_results.py
+
+      - name: Validate toy smoke data
+        run: |
+          python scripts/validate_data.py --input data/toy/smoke.jsonl
+
+      - name: Audit toy smoke data
+        run: |
+          python scripts/audit_dataset.py --input data/toy/smoke.jsonl --report outputs/audit_smoke.json
+
+      - name: Run smoke minimal
+        run: |
+          python scripts/run_smoke_minimal.py --config configs/smoke_test.yaml --data data/toy/smoke.jsonl --output outputs/smoke_minimal --step_timeout_sec 120

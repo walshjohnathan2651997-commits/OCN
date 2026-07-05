@@ -1,0 +1,4 @@
+label,mean_tfidf_cosine,mean_token_jaccard,mean_sequence_ratio,n_pairs
+mild_scope_overclaim,0.7316,0.7816,0.8822,222
+strong_action_overclaim,0.6832,0.7273,0.8504,111
+contradiction_candidate,0.6059,0.659,0.8106,333

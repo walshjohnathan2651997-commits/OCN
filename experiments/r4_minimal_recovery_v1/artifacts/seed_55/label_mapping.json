@@ -1,0 +1,20 @@
+{
+  "labels_4": [
+    "supported",
+    "mild_scope_overclaim",
+    "strong_action_overclaim",
+    "contradiction_candidate"
+  ],
+  "label_to_idx": {
+    "supported": 0,
+    "mild_scope_overclaim": 1,
+    "strong_action_overclaim": 2,
+    "contradiction_candidate": 3
+  },
+  "idx_to_label": {
+    "0": "supported",
+    "1": "mild_scope_overclaim",
+    "2": "strong_action_overclaim",
+    "3": "contradiction_candidate"
+  }
+}

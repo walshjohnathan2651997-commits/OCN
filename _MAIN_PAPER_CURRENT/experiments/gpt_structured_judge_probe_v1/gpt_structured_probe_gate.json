@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-07-04T10:04:21",
+  "model": "gpt-5.5",
+  "n_samples": 100,
+  "standard_valid_rate": 1.0,
+  "structured_valid_rate": 1.0,
+  "standard_macro_f1": 0.5522664835164834,
+  "structured_macro_f1": 0.5543293369597476,
+  "r4_macro_f1_same_samples": 0.32798319327731096,
+  "deepseek_macro_f1_same_samples": 0.5247649572649573,
+  "standard_strong_f1": 0.07692307692307693,
+  "structured_strong_f1": 0.07692307692307693,
+  "r4_strong_f1_same_samples": 0.3,
+  "deepseek_strong_f1_same_samples": 0.07692307692307693,
+  "standard_strong_recall": 0.04,
+  "structured_strong_recall": 0.04,
+  "standard_contradiction_f1": 0.6857142857142857,
+  "structured_contradiction_f1": 0.6857142857142857,
+  "does_standard_gpt_solve_strong": false,
+  "does_structured_prompt_fix_strong": false,
+  "does_structured_prompt_hurt_contradiction": false,
+  "recommended_paper_positioning": "llm_blindspot_supported",
+  "main_risk": "Small N=100; silver labels (not gold); GPT model accessed via third-party proxy (pricing/availability may change); single temperature=0 run (no variance estimate).",
+  "recommended_next_step": "Use positioning to update paper Section on LLM judge comparison. Do NOT claim GPT as gold; do NOT replace SimClaim gold with GPT labels.",
+  "total_cost_estimate": 1.6269150000000003,
+  "total_api_calls": 200,
+  "interpretation_rule_triggered": {
+    "A_standard_solves_strong": false,
+    "B_structured_fixes_strong_clean": false,
+    "C_both_below_r4": true,
+    "D_structured_helps_but_hurts": false
+  }
+}

@@ -1,0 +1,8 @@
+method,r4_strong_positive_f1,baseline_strong_positive_f1,delta_strong,ci_lower,ci_upper,positive_seed_count,r4_flat4_macro_f1,baseline_flat4_macro_f1,delta_flat4,delta_contra,delta_escalation,r4_wins_strong
+B1_nli_only_flat4,0.3967,0.2408,0.1559,0.1058,0.1988,10/10,0.4238,0.3963,0.0275,-0.0012,0.0420,YES
+B2_nli_plus_action_gap_flat4,0.3967,0.3356,0.0611,0.0303,0.0936,9/10,0.4238,0.4657,-0.0419,-0.0108,-0.0405,YES
+B3a_tfidf_claim_only,0.3967,0.2619,0.1349,0.0852,0.1894,10/10,0.4238,0.2473,0.1765,0.3760,0.1114,YES
+B3b_tfidf_claim_evidence,0.3967,0.2590,0.1377,0.0888,0.1843,10/10,0.4238,0.2495,0.1743,0.3737,0.1205,YES
+"B5_cross_encoder_nli_pair (70/30 split, not comparable)",0.3967,NA,NA,NA,NA,NA,0.4238,0.5453,-0.1215,NA,NA,NA
+"B5_hybrid_tfidf_plus_nli (70/30 split, not comparable)",0.3967,NA,NA,NA,NA,NA,0.4238,0.5393,-0.1155,NA,NA,NA
+B6_cost_sensitive_cw4.0 (auxiliary),0.3967,0.4221,-0.0254,NA,NA,NA,0.4238,0.4365,-0.0127,NA,NA,NO

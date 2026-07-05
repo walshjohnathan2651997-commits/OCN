@@ -1,0 +1,8 @@
+dataset,file,source_url,local_path,license,access_note,download_status,bytes,timestamp
+scifact,data.tar.gz,https://scifact.s3-us-west-2.amazonaws.com/release/latest/data.tar.gz,D:\ocn\data\external_gold\scifact_data.tar.gz,CC BY-NC 2.0 (SciFact),"public S3 download, no auth",ok,3115079,2026-07-04
+scifact,claims_train.jsonl,https://scifact.s3-us-west-2.amazonaws.com/release/latest/data.tar.gz,D:\ocn\data\external_gold\scifact\data\claims_train.jsonl,CC BY-NC 2.0,extracted from data.tar.gz,ok,175616,2026-07-04
+scifact,claims_dev.jsonl,https://scifact.s3-us-west-2.amazonaws.com/release/latest/data.tar.gz,D:\ocn\data\external_gold\scifact\data\claims_dev.jsonl,CC BY-NC 2.0,extracted from data.tar.gz; labeled,ok,65007,2026-07-04
+scifact,corpus.jsonl,https://scifact.s3-us-west-2.amazonaws.com/release/latest/data.tar.gz,D:\ocn\data\external_gold\scifact\data\corpus.jsonl,CC BY-NC 2.0,extracted from data.tar.gz,ok,8307875,2026-07-04
+vitaminc,dev.jsonl,https://hf-mirror.com/datasets/tals/vitaminc/resolve/main/dev.jsonl,D:\ocn\data\external_gold\vitaminc\dev.jsonl,CC BY-SA 3.0 (VitaminC),HF mirror (huggingface.co blocked by network); no auth,ok,32876983,2026-07-04
+vitaminc,test.jsonl,https://hf-mirror.com/datasets/tals/vitaminc/resolve/main/test.jsonl,D:\ocn\data\external_gold\vitaminc\test.jsonl,CC BY-SA 3.0,HF mirror (huggingface.co blocked by network); no auth,ok,28717099,2026-07-04
+vitaminc,train.jsonl,https://hf-mirror.com/datasets/tals/vitaminc/resolve/main/train.jsonl,NOT_DOWNLOADED,CC BY-SA 3.0,"skipped (194MB, not needed for eval subset; dev used for training proxy)",skipped,0,2026-07-04

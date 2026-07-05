@@ -1,0 +1,97 @@
+{
+  "task": "Low-Prevalence Screening Simulation (Canonicalized R4)",
+  "audit_date": "2026-07-05T18:20:15",
+  "best_selector": "best_sentence_top5_overlap",
+  "n_eval": 436,
+  "n_true_strong": 109,
+  "n_bootstrap": 1000,
+  "prevalences": [
+    0.01,
+    0.03,
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25
+  ],
+  "results": [
+    {
+      "prevalence": 0.01,
+      "recall_mean": 0.7064220183486238,
+      "precision_mean": 0.014746562319102907,
+      "positive_f1_mean": 0.028889986825798658,
+      "fp_tp_mean": 66.81920779220779,
+      "fp_tp_median": 66.81818181818181,
+      "nnr_mean": 67.81920779220779,
+      "review_burden_mean": 0.4790898165137614,
+      "accuracy_mean": 0.525038623853211
+    },
+    {
+      "prevalence": 0.03,
+      "recall_mean": 0.7064220183486238,
+      "precision_mean": 0.04381072097088922,
+      "positive_f1_mean": 0.08250346734845235,
+      "fp_tp_mean": 21.831584415584413,
+      "fp_tp_median": 21.83116883116883,
+      "nnr_mean": 22.831584415584416,
+      "review_burden_mean": 0.483906413432425,
+      "accuracy_mean": 0.5284800440407377
+    },
+    {
+      "prevalence": 0.05,
+      "recall_mean": 0.7064220183486238,
+      "precision_mean": 0.07226762752678204,
+      "positive_f1_mean": 0.13111676059693964,
+      "fp_tp_mean": 12.843272727272728,
+      "fp_tp_median": 12.844155844155845,
+      "nnr_mean": 13.843272727272728,
+      "review_burden_mean": 0.48895963302752293,
+      "accuracy_mean": 0.5316825688073394
+    },
+    {
+      "prevalence": 0.1,
+      "recall_mean": 0.7064220183486238,
+      "precision_mean": 0.1414680770405839,
+      "positive_f1_mean": 0.23570143665322116,
+      "fp_tp_mean": 6.074688311688311,
+      "fp_tp_median": 6.064935064935065,
+      "nnr_mean": 7.074688311688311,
+      "review_burden_mean": 0.49977155963302755,
+      "accuracy_mean": 0.5415128440366973
+    },
+    {
+      "prevalence": 0.15,
+      "recall_mean": 0.7064220183486238,
+      "precision_mean": 0.20716788896451432,
+      "positive_f1_mean": 0.32031748842590274,
+      "fp_tp_mean": 3.8323636363636364,
+      "fp_tp_median": 3.831168831168831,
+      "nnr_mean": 4.832363636363636,
+      "review_burden_mean": 0.511818431911967,
+      "accuracy_mean": 0.550079779917469
+    },
+    {
+      "prevalence": 0.2,
+      "recall_mean": 0.7064220183486238,
+      "precision_mean": 0.2708157988090166,
+      "positive_f1_mean": 0.3914290787014292,
+      "fp_tp_mean": 2.6974285714285715,
+      "fp_tp_median": 2.7012987012987013,
+      "nnr_mean": 3.6974285714285715,
+      "review_burden_mean": 0.5223889908256881,
+      "accuracy_mean": 0.5601798165137615
+    },
+    {
+      "prevalence": 0.25,
+      "recall_mean": 0.7064220183486238,
+      "precision_mean": 0.33047210300429175,
+      "positive_f1_mean": 0.4502923976608189,
+      "fp_tp_mean": 2.0259740259740258,
+      "fp_tp_median": 2.0259740259740258,
+      "nnr_mean": 3.025974025974025,
+      "review_burden_mean": 0.5344036697247707,
+      "accuracy_mean": 0.5688073394495411
+    }
+  ],
+  "note": "Simulated prevalence, NOT real deployment. Silver labels only."
+}

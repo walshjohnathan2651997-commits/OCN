@@ -1,0 +1,445 @@
+candidate_id,paper_id,silver_label,failure_type,reason,pdf_missing,oracle_found,oracle_method,top1_same_paper,top1_is_oracle,retrieval_failure
+SBV2-ALL92-G002-SUPPORTED,AD-001,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G002-MILD,AD-001,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G002-STRONG,AD-001,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G002-CONTRA,AD-001,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G003-SUPPORTED,AD-001,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G003-MILD,AD-001,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G003-STRONG,AD-001,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G003-CONTRA,AD-001,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G004-SUPPORTED,AD-002,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G004-MILD,AD-002,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G004-STRONG,AD-002,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G004-CONTRA,AD-002,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G007-SUPPORTED,AD-003,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G007-MILD,AD-003,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G007-STRONG,AD-003,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G007-CONTRA,AD-003,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G008-SUPPORTED,AD-003,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G008-MILD,AD-003,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G008-STRONG,AD-003,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G008-CONTRA,AD-003,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G011-SUPPORTED,AD-004,supported,relation_screening_failed_after_good_retrieval,"Oracle flagged=False, retrieved flagged=True",False,True,exact_substring,True,True,False
+SBV2-ALL92-G011-MILD,AD-004,mild_scope_overclaim,relation_screening_failed_after_good_retrieval,"Oracle flagged=False, retrieved flagged=True",False,True,exact_substring,True,True,False
+SBV2-ALL92-G011-STRONG,AD-004,strong_action_overclaim,relation_screening_failed_after_good_retrieval,"Oracle flagged=False, retrieved flagged=True",False,True,exact_substring,True,True,False
+SBV2-ALL92-G011-CONTRA,AD-004,contradiction_candidate,relation_screening_failed_after_good_retrieval,"Oracle flagged=False, retrieved flagged=True",False,True,exact_substring,True,True,False
+SBV2-ALL92-G013-C01,AD-005,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G013-C02,AD-005,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G013-C03,AD-005,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G013-C04,AD-005,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G014-C01,AD-005,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G014-C02,AD-005,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G014-C03,AD-005,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G014-C04,AD-005,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G018-C01,AD-006,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G018-C02,AD-006,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G018-C03,AD-006,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G018-C04,AD-006,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G019-C01,AD-007,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G019-C02,AD-007,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G019-C03,AD-007,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G019-C04,AD-007,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G020-C01,AD-007,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G020-C02,AD-007,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G020-C03,AD-007,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G020-C04,AD-007,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G021-C01,AD-007,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G021-C02,AD-007,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G021-C03,AD-007,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G021-C04,AD-007,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G025-C01,AD-009,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G025-C02,AD-009,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G025-C03,AD-009,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G025-C04,AD-009,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G027-C01,AD-009,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G027-C02,AD-009,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G027-C03,AD-009,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G027-C04,AD-009,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G028-C01,AD-010,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G028-C02,AD-010,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G028-C03,AD-010,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G028-C04,AD-010,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G030-C01,AD-010,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G030-C02,AD-010,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G030-C03,AD-010,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G030-C04,AD-010,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G031-C01,AD-011,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G031-C02,AD-011,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G031-C03,AD-011,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G031-C04,AD-011,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G032-C01,AD-011,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G032-C02,AD-011,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G032-C03,AD-011,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G032-C04,AD-011,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G033-C01,AD-011,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G033-C02,AD-011,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G033-C03,AD-011,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G033-C04,AD-011,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G034-C01,AD-012,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G034-C02,AD-012,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G034-C03,AD-012,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G034-C04,AD-012,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G035-C01,AD-012,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G035-C02,AD-012,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G035-C03,AD-012,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G035-C04,AD-012,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G036-C01,AD-012,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G036-C02,AD-012,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G036-C03,AD-012,strong_action_overclaim,relation_screening_failed_after_good_retrieval,"Oracle flagged=False, retrieved flagged=True",False,True,exact_substring,True,True,False
+SBV2-ALL92-G036-C04,AD-012,contradiction_candidate,relation_screening_failed_after_good_retrieval,"Oracle flagged=False, retrieved flagged=True",False,True,exact_substring,True,True,False
+SBV2-ALL92-G037-C01,AD-014,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G037-C02,AD-014,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G037-C03,AD-014,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G037-C04,AD-014,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G038-C01,AD-014,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G038-C02,AD-014,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G038-C03,AD-014,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G038-C04,AD-014,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G040-C01,AD-015,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G040-C02,AD-015,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G040-C03,AD-015,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G040-C04,AD-015,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G042-C01,AD-015,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G042-C02,AD-015,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G042-C03,AD-015,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G042-C04,AD-015,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G043-C01,AD-016,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G043-C02,AD-016,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G043-C03,AD-016,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G043-C04,AD-016,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G047-C01,AD-017,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G047-C02,AD-017,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G047-C03,AD-017,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G047-C04,AD-017,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G051-C01,AD-018,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G051-C02,AD-018,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G051-C03,AD-018,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G051-C04,AD-018,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G052-C01,AD-019,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G052-C02,AD-019,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G052-C03,AD-019,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G052-C04,AD-019,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G055-C01,AD-020,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G055-C02,AD-020,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G055-C03,AD-020,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G055-C04,AD-020,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G057-C01,AD-020,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G057-C02,AD-020,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G057-C03,AD-020,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G057-C04,AD-020,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G060-C01,AD-021,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G060-C02,AD-021,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G060-C03,AD-021,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G060-C04,AD-021,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G062-C01,AD-023,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G062-C02,AD-023,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G062-C03,AD-023,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G062-C04,AD-023,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G065-C01,AD-024,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G065-C02,AD-024,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G065-C03,AD-024,strong_action_overclaim,relation_screening_failed_after_good_retrieval,"Oracle flagged=True, retrieved flagged=False",False,True,exact_substring,True,True,False
+SBV2-ALL92-G065-C04,AD-024,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G067-C01,CYB-001,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G067-C02,CYB-001,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G067-C03,CYB-001,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G067-C04,CYB-001,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G069-C01,CYB-001,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G069-C02,CYB-001,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G069-C03,CYB-001,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G069-C04,CYB-001,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G077-C01,CYB-004,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G077-C02,CYB-004,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G077-C03,CYB-004,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G077-C04,CYB-004,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G079-C01,CYB-005,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G079-C02,CYB-005,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G079-C03,CYB-005,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G079-C04,CYB-005,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G082-C01,CYB-006,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G082-C02,CYB-006,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G082-C03,CYB-006,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G082-C04,CYB-006,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G083-C01,CYB-006,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G083-C02,CYB-006,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G083-C03,CYB-006,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G083-C04,CYB-006,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G085-C01,CYB-007,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G085-C02,CYB-007,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G085-C03,CYB-007,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G085-C04,CYB-007,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G086-C01,CYB-007,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G086-C02,CYB-007,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G086-C03,CYB-007,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G086-C04,CYB-007,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G087-C01,CYB-007,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G087-C02,CYB-007,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G087-C03,CYB-007,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G087-C04,CYB-007,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G089-C01,CYB-008,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G089-C02,CYB-008,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G089-C03,CYB-008,strong_action_overclaim,retrieved_wrong_paper,"Top-1 from CYB-009, expected CYB-008",False,True,exact_substring,False,False,True
+SBV2-ALL92-G089-C04,CYB-008,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G091-C01,CYB-009,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G091-C02,CYB-009,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G091-C03,CYB-009,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G091-C04,CYB-009,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G092-C01,CYB-009,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G092-C02,CYB-009,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G092-C03,CYB-009,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G092-C04,CYB-009,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G093-C01,CYB-009,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G093-C02,CYB-009,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G093-C03,CYB-009,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G093-C04,CYB-009,contradiction_candidate,relation_screening_failed_after_good_retrieval,"Oracle flagged=True, retrieved flagged=False",False,True,exact_substring,True,True,False
+SBV2-ALL92-G094-C01,CYB-010,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G094-C02,CYB-010,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G094-C03,CYB-010,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G094-C04,CYB-010,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G098-C01,CYB-011,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G098-C02,CYB-011,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G098-C03,CYB-011,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G098-C04,CYB-011,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G099-C01,CYB-011,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G099-C02,CYB-011,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G099-C03,CYB-011,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G099-C04,CYB-011,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G106-C01,DT-002,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G106-C02,DT-002,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G106-C03,DT-002,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G106-C04,DT-002,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G107-C01,DT-002,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G107-C02,DT-002,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G107-C03,DT-002,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G107-C04,DT-002,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G108-C01,DT-002,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G108-C02,DT-002,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G108-C03,DT-002,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G108-C04,DT-002,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G110-C01,DT-003,supported,relation_screening_failed_after_good_retrieval,"Oracle flagged=True, retrieved flagged=False",False,True,exact_substring,True,True,False
+SBV2-ALL92-G110-C02,DT-003,mild_scope_overclaim,relation_screening_failed_after_good_retrieval,"Oracle flagged=True, retrieved flagged=False",False,True,exact_substring,True,True,False
+SBV2-ALL92-G110-C03,DT-003,strong_action_overclaim,relation_screening_failed_after_good_retrieval,"Oracle flagged=True, retrieved flagged=False",False,True,exact_substring,True,True,False
+SBV2-ALL92-G110-C04,DT-003,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G111-C01,DT-003,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G111-C02,DT-003,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G111-C03,DT-003,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G111-C04,DT-003,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G116-C01,DT-005,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G116-C02,DT-005,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G116-C03,DT-005,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G116-C04,DT-005,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G119-C01,DT-006,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G119-C02,DT-006,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G119-C03,DT-006,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G119-C04,DT-006,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G122-C01,DT-007,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G122-C02,DT-007,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G122-C03,DT-007,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G122-C04,DT-007,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G124-C01,DT-009,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G124-C02,DT-009,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G124-C03,DT-009,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G124-C04,DT-009,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G128-C01,DT-010,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G128-C02,DT-010,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G128-C03,DT-010,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G128-C04,DT-010,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G131-C01,DT-011,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G131-C02,DT-011,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G131-C03,DT-011,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G131-C04,DT-011,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G135-C01,DT-012,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G135-C02,DT-012,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G135-C03,DT-012,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G135-C04,DT-012,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G140-C01,DT-014,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G140-C02,DT-014,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G140-C03,DT-014,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G140-C04,DT-014,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G141-C01,DT-014,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G141-C02,DT-014,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G141-C03,DT-014,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G141-C04,DT-014,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G144-C01,DT-015,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G144-C02,DT-015,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G144-C03,DT-015,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G144-C04,DT-015,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G145-C01,DT-016,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G145-C02,DT-016,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G145-C03,DT-016,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G145-C04,DT-016,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G146-C01,DT-016,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G146-C02,DT-016,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G146-C03,DT-016,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G146-C04,DT-016,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G158-C01,MARL-014,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G158-C02,MARL-014,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G158-C03,MARL-014,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G158-C04,MARL-014,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G161-C01,MARL-015,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G161-C02,MARL-015,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G161-C03,MARL-015,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G161-C04,MARL-015,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G163-C01,MARL-016,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G163-C02,MARL-016,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G163-C03,MARL-016,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G163-C04,MARL-016,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G164-C01,MARL-016,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G164-C02,MARL-016,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G164-C03,MARL-016,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G164-C04,MARL-016,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G166-C01,MARL-017,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G166-C02,MARL-017,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G166-C03,MARL-017,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G166-C04,MARL-017,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G167-C01,MARL-017,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G167-C02,MARL-017,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G167-C03,MARL-017,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G167-C04,MARL-017,contradiction_candidate,retrieved_wrong_paper,"Top-1 from MARL-005, expected MARL-017",False,True,exact_substring,False,False,True
+SBV2-ALL92-G168-C01,MARL-017,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G168-C02,MARL-017,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G168-C03,MARL-017,strong_action_overclaim,retrieved_wrong_paper,"Top-1 from MARL-013, expected MARL-017",False,True,exact_substring,False,False,True
+SBV2-ALL92-G168-C04,MARL-017,contradiction_candidate,retrieved_wrong_paper,"Top-1 from MARL-015, expected MARL-017",False,True,exact_substring,False,False,True
+SBV2-ALL92-G170-C01,MARL-018,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G170-C02,MARL-018,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G170-C03,MARL-018,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G170-C04,MARL-018,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G172-C01,MARL-019,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G172-C02,MARL-019,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G172-C03,MARL-019,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G172-C04,MARL-019,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G175-C01,MARL-001,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G175-C02,MARL-001,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G175-C03,MARL-001,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G175-C04,MARL-001,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G178-C01,MARL-002,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G178-C02,MARL-002,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G178-C03,MARL-002,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G178-C04,MARL-002,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G180-C01,MARL-002,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G180-C02,MARL-002,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G180-C03,MARL-002,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G180-C04,MARL-002,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G185-C01,MARL-004,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G185-C02,MARL-004,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G185-C03,MARL-004,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G185-C04,MARL-004,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G186-C01,MARL-004,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G186-C02,MARL-004,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G186-C03,MARL-004,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G186-C04,MARL-004,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G187-C01,MARL-005,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G187-C02,MARL-005,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G187-C03,MARL-005,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G187-C04,MARL-005,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G190-C01,MARL-006,supported,oracle_not_in_pdf_text,Oracle evidence not found in PDF text (no substring or Jaccard match),False,False,,True,False,True
+SBV2-ALL92-G190-C02,MARL-006,mild_scope_overclaim,oracle_not_in_pdf_text,Oracle evidence not found in PDF text (no substring or Jaccard match),False,False,,True,False,True
+SBV2-ALL92-G190-C03,MARL-006,strong_action_overclaim,oracle_not_in_pdf_text,Oracle evidence not found in PDF text (no substring or Jaccard match),False,False,,True,False,True
+SBV2-ALL92-G190-C04,MARL-006,contradiction_candidate,oracle_not_in_pdf_text,Oracle evidence not found in PDF text (no substring or Jaccard match),False,False,,True,False,True
+SBV2-ALL92-G193-C01,MARL-007,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G193-C02,MARL-007,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G193-C03,MARL-007,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G193-C04,MARL-007,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G196-C01,MARL-008,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G196-C02,MARL-008,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G196-C03,MARL-008,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G196-C04,MARL-008,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G197-C01,MARL-008,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G197-C02,MARL-008,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G197-C03,MARL-008,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G197-C04,MARL-008,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G198-C01,MARL-008,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G198-C02,MARL-008,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G198-C03,MARL-008,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G198-C04,MARL-008,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G205-C01,MARL-011,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G205-C02,MARL-011,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G205-C03,MARL-011,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G205-C04,MARL-011,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G213-C01,MARL-013,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G213-C02,MARL-013,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G213-C03,MARL-013,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G213-C04,MARL-013,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G214-C01,POL-001,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G214-C02,POL-001,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G214-C03,POL-001,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G214-C04,POL-001,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G215-C01,POL-001,supported,retrieved_wrong_paper,"Top-1 from AD-024, expected POL-001",False,True,exact_substring,False,False,True
+SBV2-ALL92-G215-C02,POL-001,mild_scope_overclaim,retrieved_wrong_paper,"Top-1 from AD-024, expected POL-001",False,True,exact_substring,False,False,True
+SBV2-ALL92-G215-C03,POL-001,strong_action_overclaim,retrieved_wrong_paper,"Top-1 from AD-024, expected POL-001",False,True,exact_substring,False,False,True
+SBV2-ALL92-G215-C04,POL-001,contradiction_candidate,retrieved_wrong_paper,"Top-1 from AD-024, expected POL-001",False,True,exact_substring,False,False,True
+SBV2-ALL92-G224-C01,POL-004,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G224-C02,POL-004,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G224-C03,POL-004,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G224-C04,POL-004,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G226-C01,POL-005,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G226-C02,POL-005,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G226-C03,POL-005,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G226-C04,POL-005,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G232-C01,POL-007,supported,relation_screening_failed_after_good_retrieval,"Oracle flagged=True, retrieved flagged=False",False,True,exact_substring,True,True,False
+SBV2-ALL92-G232-C02,POL-007,mild_scope_overclaim,relation_screening_failed_after_good_retrieval,"Oracle flagged=True, retrieved flagged=False",False,True,exact_substring,True,True,False
+SBV2-ALL92-G232-C03,POL-007,strong_action_overclaim,relation_screening_failed_after_good_retrieval,"Oracle flagged=True, retrieved flagged=False",False,True,exact_substring,True,True,False
+SBV2-ALL92-G232-C04,POL-007,contradiction_candidate,relation_screening_failed_after_good_retrieval,"Oracle flagged=True, retrieved flagged=False",False,True,exact_substring,True,True,False
+SBV2-ALL92-G233-C01,POL-007,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G233-C02,POL-007,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G233-C03,POL-007,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G233-C04,POL-007,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G234-C01,POL-007,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G234-C02,POL-007,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G234-C03,POL-007,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G234-C04,POL-007,contradiction_candidate,retrieved_wrong_paper,"Top-1 from MARL-007, expected POL-007",False,True,exact_substring,False,False,True
+SBV2-ALL92-G248-C01,POL-012,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G248-C02,POL-012,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G248-C03,POL-012,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G248-C04,POL-012,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G251-C01,POL-013,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G251-C02,POL-013,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G251-C03,POL-013,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G251-C04,POL-013,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G252-C01,POL-013,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G252-C02,POL-013,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G252-C03,POL-013,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G252-C04,POL-013,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G253-C01,POL-014,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G253-C02,POL-014,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G253-C03,POL-014,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G253-C04,POL-014,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G254-C01,POL-014,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G254-C02,POL-014,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G254-C03,POL-014,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G254-C04,POL-014,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G255-C01,POL-014,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G255-C02,POL-014,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G255-C03,POL-014,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G255-C04,POL-014,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G256-C01,POL-015,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G256-C02,POL-015,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G256-C03,POL-015,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G256-C04,POL-015,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G257-C01,POL-015,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G257-C02,POL-015,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G257-C03,POL-015,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G257-C04,POL-015,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G259-C01,POL-016,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G259-C02,POL-016,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G259-C03,POL-016,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G259-C04,POL-016,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G261-C01,POL-016,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G261-C02,POL-016,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G261-C03,POL-016,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G261-C04,POL-016,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G264-C01,POL-017,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G264-C02,POL-017,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G264-C03,POL-017,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G264-C04,POL-017,contradiction_candidate,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G266-C01,POL-018,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G266-C02,POL-018,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G266-C03,POL-018,strong_action_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G266-C04,POL-018,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G271-C01,POL-020,supported,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G271-C02,POL-020,mild_scope_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G271-C03,POL-020,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G271-C04,POL-020,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G272-C01,POL-020,supported,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G272-C02,POL-020,mild_scope_overclaim,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True
+SBV2-ALL92-G272-C03,POL-020,strong_action_overclaim,none,No failure,False,True,exact_substring,True,True,False
+SBV2-ALL92-G272-C04,POL-020,contradiction_candidate,oracle_chunk_not_retrieved,Same paper but oracle chunk not in top-20,False,True,exact_substring,True,False,True

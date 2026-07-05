@@ -1,0 +1,7 @@
+method,strong_positive_f1,strong_positive_delta,flat4_macro_f1,flat4_macro_delta,flat4_strong_f1,contradiction_positive_f1,contradiction_positive_delta,escalation_macro_f1,escalation_macro_delta,strong_recall,strong_recall_delta,strong_precision,strong_precision_delta,positive_delta_seed_count
+R5_strong_recall_router,0.4399,0.1991,0.368,-0.0284,0.4399,0.7363,0.0054,0.4878,-0.0844,0.7,0.4937,0.3235,0.0138,10
+R3_margin_router,0.4047,0.1639,0.3565,-0.0398,0.4047,0.7308,0.0,0.5488,-0.0235,0.6937,0.4875,0.2875,-0.0222,10
+R4_conservative_strong,0.3967,0.1559,0.4238,0.0275,0.3967,0.7296,-0.0012,0.6143,0.042,0.4562,0.25,0.3791,0.0693,10
+R1_contra_first,0.3467,0.1059,0.4124,0.0161,0.3467,0.7344,0.0035,0.5955,0.0232,0.4,0.1938,0.3534,0.0437,8
+R2_strong_first,0.34,0.0992,0.3925,-0.0038,0.34,0.6755,-0.0553,0.5947,0.0224,0.4125,0.2062,0.3313,0.0216,9
+baseline_flat4,0.2408,0.0,0.3963,0.0,0.2408,0.7308,0.0,0.5723,0.0,0.2062,0.0,0.3097,0.0,10

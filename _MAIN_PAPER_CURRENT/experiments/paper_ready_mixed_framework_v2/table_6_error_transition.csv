@@ -1,0 +1,13 @@
+source_class,predicted_class,count
+strong_action_overclaim,strong_action_overclaim,64
+strong_action_overclaim,mild_scope_overclaim,27
+strong_action_overclaim,contradiction_candidate,14
+strong_action_overclaim,supported,12
+supported,supported,156
+supported,strong_action_overclaim,98
+supported,mild_scope_overclaim,43
+mild_scope_overclaim,mild_scope_overclaim,25
+mild_scope_overclaim,strong_action_overclaim,24
+mild_scope_overclaim,supported,17
+contradiction_candidate,contradiction_candidate,159
+contradiction_candidate,strong_action_overclaim,1

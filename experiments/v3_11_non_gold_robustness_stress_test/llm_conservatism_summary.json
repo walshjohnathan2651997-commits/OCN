@@ -1,0 +1,80 @@
+{
+  "matched_100_gpt_standard": {
+    "n_silver_strong": 25.0,
+    "pred_as_supported": 0.0,
+    "pred_as_mild": 10.0,
+    "pred_as_strong": 1.0,
+    "pred_as_contradiction": 14.0,
+    "pct_supported": 0.0,
+    "pct_mild": 0.4,
+    "pct_strong": 0.04,
+    "pct_contradiction": 0.56,
+    "pct_conservative_collapse_sup_or_mild": 0.4,
+    "pct_correct_strong": 0.04
+  },
+  "matched_100_gpt_structured": {
+    "n_silver_strong": 25.0,
+    "pred_as_supported": 0.0,
+    "pred_as_mild": 10.0,
+    "pred_as_strong": 1.0,
+    "pred_as_contradiction": 14.0,
+    "pct_supported": 0.0,
+    "pct_mild": 0.4,
+    "pct_strong": 0.04,
+    "pct_contradiction": 0.56,
+    "pct_conservative_collapse_sup_or_mild": 0.4,
+    "pct_correct_strong": 0.04
+  },
+  "matched_100_deepseek": {
+    "n_silver_strong": 25.0,
+    "pred_as_supported": 9.0,
+    "pred_as_mild": 10.0,
+    "pred_as_strong": 1.0,
+    "pred_as_contradiction": 5.0,
+    "pct_supported": 0.36,
+    "pct_mild": 0.4,
+    "pct_strong": 0.04,
+    "pct_contradiction": 0.2,
+    "pct_conservative_collapse_sup_or_mild": 0.76,
+    "pct_correct_strong": 0.04
+  },
+  "matched_100_r4": {
+    "n_silver_strong": 25.0,
+    "pred_as_supported": 2.0,
+    "pred_as_mild": 8.0,
+    "pred_as_strong": 9.0,
+    "pred_as_contradiction": 6.0,
+    "pct_supported": 0.08,
+    "pct_mild": 0.32,
+    "pct_strong": 0.36,
+    "pct_contradiction": 0.24,
+    "pct_conservative_collapse_sup_or_mild": 0.4,
+    "pct_correct_strong": 0.36
+  },
+  "matched_200_deepseek": {
+    "n_silver_strong": 50.0,
+    "pred_as_supported": 19.0,
+    "pred_as_mild": 21.0,
+    "pred_as_strong": 2.0,
+    "pred_as_contradiction": 8.0,
+    "pct_supported": 0.38,
+    "pct_mild": 0.42,
+    "pct_strong": 0.04,
+    "pct_contradiction": 0.16,
+    "pct_conservative_collapse_sup_or_mild": 0.8,
+    "pct_correct_strong": 0.04
+  },
+  "structured_prompt_fixes_strong_action": false,
+  "llm_conservatism_confirmed": true,
+  "llm_conservatism_pattern": {
+    "gpt_standard": "collapses to contradiction 56%, sup/mild 40%",
+    "gpt_structured": "collapses to contradiction 56%, sup/mild 40%",
+    "deepseek_100": "collapses to sup/mild 76%, contradiction 20%",
+    "deepseek_200": "collapses to sup/mild 80%, contradiction 16%"
+  },
+  "gpt_standard_vs_structured_difference": {
+    "pct_strong": 0.0,
+    "pct_conservative_collapse": 0.0
+  },
+  "key_finding": "LLM conservatism CONFIRMED: all LLM judges predict strong_action correctly only 4% of the time on silver-strong samples (vs R4 36%). Two distinct error patterns: GPT-5.5 collapses to contradiction (56%), DeepSeek collapses to supported/mild (76%). Both patterns are systematic non-detection of strong_action, not random errors. Structured prompt does NOT fix this (strong predictions: std=1, struct=1). R4 correctly identifies 9/25 strong_action cases."
+}

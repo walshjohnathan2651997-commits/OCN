@@ -1,0 +1,14 @@
+{
+  "flat4_macro_f1": 0.5543293369597476,
+  "flat4_supported_f1": 0.9056603773584906,
+  "flat4_mild_f1": 0.5490196078431373,
+  "flat4_strong_f1": 0.07692307692307693,
+  "flat4_contradiction_f1": 0.6857142857142857,
+  "strong_positive_f1": 0.07692307692307693,
+  "strong_precision": 1.0,
+  "strong_recall": 0.04,
+  "escalation_macro_f1": 0.9358233859581568,
+  "contradiction_positive_f1": 0.6857142857142857,
+  "accuracy": 0.63,
+  "n_valid": 100
+}

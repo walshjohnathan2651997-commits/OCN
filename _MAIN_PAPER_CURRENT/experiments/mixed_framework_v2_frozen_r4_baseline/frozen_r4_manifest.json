@@ -1,0 +1,40 @@
+{
+  "frozen_at": "2026-07-03T12:23:00",
+  "frozen_by": "Task M - Phase 1 (R4 freeze)",
+  "best_router": "R4_conservative_strong",
+  "source_directory": "D:\\ocn\\experiments\\mixed_framework_router_optimization_v2",
+  "source_files": [
+    "mixed_framework_router_readiness_gate.json -> frozen_r4_readiness_gate.json",
+    "method_selection_corrected.csv -> frozen_r4_method_selection.csv",
+    "routing_variant_results_by_seed.csv -> frozen_r4_routing_results_by_seed.csv",
+    "strong_expert_ablation_summary.json -> frozen_r4_ablation_summary.json",
+    "computed from routing_variant_results_by_seed.csv -> frozen_r4_metrics_summary.json"
+  ],
+  "key_metrics": {
+    "baseline_flat4_macro_f1": 0.3963,
+    "r4_flat4_macro_f1": 0.4238,
+    "baseline_strong_positive_f1": 0.2408,
+    "r4_strong_positive_f1": 0.3967,
+    "strong_positive_delta": 0.1559,
+    "baseline_contradiction_positive_f1": 0.7308,
+    "r4_contradiction_positive_f1": 0.7296,
+    "contradiction_positive_delta": -0.0012,
+    "baseline_escalation_macro_f1": 0.5723,
+    "r4_escalation_macro_f1": 0.6143,
+    "escalation_macro_delta": 0.0420,
+    "r4_strong_recall": 0.4562,
+    "r4_strong_precision": 0.3791,
+    "positive_delta_seed_count": 10,
+    "delta_ci_lower": 0.1058,
+    "delta_ci_upper": 0.1988,
+    "delta_ci_crosses_zero": false
+  },
+  "selection_thresholds_mean": {
+    "t_contra": 0.48,
+    "t_strong": 0.535,
+    "t_svm": 0.51
+  },
+  "recommended_use": "current_best_baseline",
+  "notes": "Frozen baseline for Task M new algorithm comparison. Do not overwrite. New algorithms must beat R4 by strong_positive_f1 >= +0.03 with all constraints met to replace.",
+  "immutable": true
+}

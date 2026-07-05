@@ -1,0 +1,24 @@
+{
+  "task": "No-Gold Evidence Integration V3.16 - Section 1 (reuse Part 1)",
+  "source": "part1_scalar_baseline_gate.json",
+  "audit_date": "2026-07-05",
+  "official_rigourate_status": "blocked",
+  "rule_scalar_completed": true,
+  "nli_scalar_completed": false,
+  "nli_scalar_blocked_reason": "no HCM/NLI features available in repo",
+  "llm_scalar_proxy_completed": true,
+  "llm_scalar_proxy_coverage": "200/444 candidates (DeepSeek 200 + GPT 100 matched)",
+  "scalar_distinguishes_mild_strong": false,
+  "scalar_distinguishes_mild_strong_evidence": "rule_scalar ROC-AUC=0.5054 if available; llm_scalar ROC-AUC=0.5874 if available; threshold 0.60; result=False",
+  "scalar_detects_strong_action": true,
+  "scalar_detects_strong_action_evidence": "rule_scalar recall=0.7838 F1=0.3791 if available; llm_scalar recall=0.6200 F1=0.3974 if available; threshold recall>=0.30 and F1>=0.20; result=True",
+  "prohibitions_enforced": [
+    "no_gold_created",
+    "no_api_calls",
+    "no_paper_modification",
+    "no_original_data_modification",
+    "no_proxy_as_official",
+    "no_silver_as_gold"
+  ],
+  "note": "Reused verbatim from Part 1; no new analysis performed in this section."
+}

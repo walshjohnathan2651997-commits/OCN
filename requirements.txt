@@ -1,0 +1,16 @@
+# CESE-OCN dependencies
+torch>=2.0.0
+transformers>=4.30.0
+scikit-learn>=1.2.0
+pandas>=2.0.0
+numpy>=1.23.0
+pydantic>=2.0.0
+matplotlib>=3.7.0
+PyYAML>=6.0
+tqdm>=4.65.0
+
+# Optional: graph mode (R-GCN evidence encoder)
+# Install separately to enable graph_branch.py:
+#   torch_geometric>=2.3.0
+#   torch-scatter
+#   torch-sparse

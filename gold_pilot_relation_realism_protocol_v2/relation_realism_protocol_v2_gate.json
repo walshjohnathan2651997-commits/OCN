@@ -1,0 +1,72 @@
+{
+  "gate_name": "relation_realism_protocol_v2_gate",
+  "task": "V3.15 Task 3/5 — Relation + Realism Gold Protocol Upgrade",
+  "date": "2026-07-05",
+  "version": "2.0 (DRAFT)",
+  "predecessor": "D:\\ocn\\gold_pilot_protocol_freeze_v1\\ (FROZEN, not modified)",
+  "output_directory": "D:\\ocn\\gold_pilot_relation_realism_protocol_v2\\",
+  "templates_created": true,
+  "silver_leakage_free": true,
+  "relation_layer_present": true,
+  "realism_layer_present": true,
+  "agreement_plan_present": true,
+  "adjudication_plan_present": true,
+  "ready_for_blind_annotation": true,
+  "does_not_modify_v1": true,
+  "main_remaining_risk": "v2 protocol is DRAFT and has not been piloted. Annotators have not been trained on Layer 2 (realism). The 9-class realism issue taxonomy may have low inter-annotator agreement (heuristic rules from the automatic audit may not align with human judgment). The pre-registered 25% class-level and 25% paper-level realism downgrade thresholds are untested — if realism agreement is poor (Pearson r < 0.40), the realism layer becomes exploratory and the downgrade triggers cannot fire. Additionally, the 50-row pilot is small; wide confidence intervals mean borderline cases (e.g., 24% vs 26% high-realism rate) should not trigger mechanical decisions without qualitative review.",
+  "recommended_next_action": "1) Identify two independent annotators + one adjudicator (same as v1 plan, but train on v2 guideline including Layer 2). 2) Distribute v2 A/B templates + v2 guideline + v2 decision tree + v2 agreement plan + v2 adjudication protocol. 3) Annotators work independently (~4 hours each, including Layer 2). 4) Adjudicator performs two-layer adjudication per v2 protocol. 5) Compute v2 agreement metrics (Layer 1 + Layer 2). 6) Apply pre-registered decision rules (taxonomy revision, paper claim downgrade, realism downgrade). 7) Cross-check automatic realism audit (v3_15_claim_realism_audit) against gold realism scores to calibrate heuristic rules. 8) Decide: proceed to full 444-pair gold annotation, revise taxonomy, or downgrade paper claim.",
+  "template_details": {
+    "pilot_50_relation_realism_annotation_A.csv": {
+      "rows": 50,
+      "cols": 15,
+      "basic_fields_populated": ["pilot_id", "candidate_id", "domain", "evidence_text", "claim_text"],
+      "layer1_fields_empty": ["annotator_relation_label", "relation_confidence_1_to_5", "relation_rationale_one_sentence", "relation_confusion_if_any", "needs_relation_adjudication"],
+      "layer2_fields_empty": ["claim_realism_score_1_to_5", "claim_realism_issue", "realism_rationale_one_sentence", "claim_usable_for_paper_example", "needs_realism_adjudication"],
+      "silver_leakage_check": "PASS — no silver_label, candidate_label_guess, sample_source, why_selected, final_label, gold_label, or human_audited fields present"
+    },
+    "pilot_50_relation_realism_annotation_B.csv": {
+      "rows": 50,
+      "cols": 15,
+      "schema_identical_to_A": true,
+      "silver_leakage_check": "PASS"
+    }
+  },
+  "layer_details": {
+    "layer1_relation": {
+      "labels": ["supported", "mild_scope_overclaim", "strong_action_overclaim", "contradiction_candidate", "unsure"],
+      "fields": ["annotator_relation_label", "relation_confidence_1_to_5", "relation_rationale_one_sentence", "relation_confusion_if_any", "needs_relation_adjudication"],
+      "source": "Carried over from v1 (FROZEN). Definitions in annotation_guideline_v1_frozen.md and annotation_decision_tree_v1.md."
+    },
+    "layer2_realism": {
+      "score_scale": "1=unrealistic, 2=artificial/forced, 3=somewhat artificial but usable, 4=mostly natural, 5=very natural",
+      "issue_types": ["none", "too_template_like", "too_extreme", "unnatural_wording", "not_scientific_claim", "contradiction_too_mechanical", "strong_action_too_forced", "mild_strong_boundary_unclear", "ambiguous_or_vague"],
+      "fields": ["claim_realism_score_1_to_5", "claim_realism_issue", "realism_rationale_one_sentence", "claim_usable_for_paper_example", "needs_realism_adjudication"],
+      "source": "NEW in v2. Driven by v3_15_claim_realism_audit findings (52.3% contradiction_mechanical, 76.6% group_template_risk, 0.9% strong_forced)."
+    }
+  },
+  "pre_registered_decision_rules": [
+    {"rule": "mild_vs_strong kappa < 0.40", "trigger": "taxonomy_revision_required", "action": "Revise taxonomy; re-pilot."},
+    {"rule": "strong_action_retention < 0.40", "trigger": "paper_claim_downgrade", "action": "Downgrade paper claim."},
+    {"rule": ">= 5/50 taxonomy_revision_needed", "trigger": "taxonomy_revision_required", "action": "Revise taxonomy."},
+    {"rule": "class-level realism_score<=2 rate > 25%", "trigger": "class_level_realism_downgrade", "action": "Downgrade paper claim (class-level)."},
+    {"rule": "paper-level realism_score<=2 rate > 25%", "trigger": "paper_level_realism_downgrade", "action": "Major paper downgrade."},
+    {"rule": "Layer 2 Pearson r < 0.40", "trigger": "realism_annotation_unreliable", "action": "Retraining required; realism results exploratory only."}
+  ],
+  "prohibitions_enforced": {
+    "does_not_modify_v1": true,
+    "does_not_fill_gold": true,
+    "does_not_perform_human_annotation": true,
+    "does_not_modify_original_data": true,
+    "does_not_delete_old_templates": true,
+    "does_not_claim_v2_completed": true
+  },
+  "file_inventory": {
+    "pilot_50_relation_realism_annotation_A.csv": "v2 blind template A (50 rows, 15 cols, all to-fill fields empty)",
+    "pilot_50_relation_realism_annotation_B.csv": "v2 blind template B (50 rows, 15 cols, all to-fill fields empty)",
+    "relation_realism_annotation_guideline_v2.md": "v2 annotation guideline (Layer 1 + Layer 2, independence rules, examples)",
+    "relation_realism_decision_tree_v2.md": "v2 decision trees (Tree A relation + Tree B realism, with worked examples)",
+    "relation_realism_agreement_plan_v2.md": "v2 agreement metrics plan (Layer 1 metrics + Layer 2 metrics + cross-layer)",
+    "relation_realism_adjudication_protocol_v2.md": "v2 adjudication protocol (two-layer order, cross-layer high-risk rules, final gold fields)",
+    "relation_realism_protocol_v2_gate.json": "This gate file"
+  }
+}

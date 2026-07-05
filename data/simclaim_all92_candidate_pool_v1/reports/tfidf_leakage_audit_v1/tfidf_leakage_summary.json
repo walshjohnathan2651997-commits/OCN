@@ -1,0 +1,183 @@
+{
+  "input": "D:\\ocn\\data\\simclaim_all92_candidate_pool_v1\\all92_claim_candidates_merged.csv",
+  "n_samples": 644,
+  "n_groups": 161,
+  "n_splits": 5,
+  "model": "TfidfVectorizer(1,2)+LogisticRegression(balanced)",
+  "metrics": {
+    "claim_only": {
+      "accuracy": 0.3339,
+      "macro_f1": 0.3098,
+      "per_class_f1": {
+        "contradiction_candidate": 0.4399,
+        "mild_scope_overclaim": 0.2909,
+        "strong_action_overclaim": 0.3371,
+        "supported": 0.1712
+      },
+      "per_class_precision": {
+        "contradiction_candidate": 0.3464,
+        "mild_scope_overclaim": 0.3509,
+        "strong_action_overclaim": 0.3122,
+        "supported": 0.3115
+      },
+      "per_class_recall": {
+        "contradiction_candidate": 0.6025,
+        "mild_scope_overclaim": 0.2484,
+        "strong_action_overclaim": 0.3665,
+        "supported": 0.118
+      }
+    },
+    "evidence_only": {
+      "accuracy": 0.25,
+      "macro_f1": 0.1,
+      "per_class_f1": {
+        "contradiction_candidate": 0.4,
+        "mild_scope_overclaim": 0.0,
+        "strong_action_overclaim": 0.0,
+        "supported": 0.0
+      },
+      "per_class_precision": {
+        "contradiction_candidate": 0.25,
+        "mild_scope_overclaim": 0.0,
+        "strong_action_overclaim": 0.0,
+        "supported": 0.0
+      },
+      "per_class_recall": {
+        "contradiction_candidate": 1.0,
+        "mild_scope_overclaim": 0.0,
+        "strong_action_overclaim": 0.0,
+        "supported": 0.0
+      }
+    },
+    "claim_evidence": {
+      "accuracy": 0.3245,
+      "macro_f1": 0.3192,
+      "per_class_f1": {
+        "contradiction_candidate": 0.375,
+        "mild_scope_overclaim": 0.2993,
+        "strong_action_overclaim": 0.3352,
+        "supported": 0.2672
+      },
+      "per_class_precision": {
+        "contradiction_candidate": 0.3333,
+        "mild_scope_overclaim": 0.3308,
+        "strong_action_overclaim": 0.3005,
+        "supported": 0.3465
+      },
+      "per_class_recall": {
+        "contradiction_candidate": 0.4286,
+        "mild_scope_overclaim": 0.2733,
+        "strong_action_overclaim": 0.3789,
+        "supported": 0.2174
+      }
+    }
+  },
+  "leakage_category_counts": {
+    "C_both_wrong": 385,
+    "A_claim_only_correct": 165,
+    "D_claim_only_better": 50,
+    "B_evidence_gain": 44
+  },
+  "domain_stats": {
+    "autonomous_driving": {
+      "n": 204,
+      "claim_only_correct": 69,
+      "claim_evidence_correct": 67,
+      "leak_rate": 0.3382
+    },
+    "cyber_defense": {
+      "n": 96,
+      "claim_only_correct": 32,
+      "claim_evidence_correct": 33,
+      "leak_rate": 0.3333
+    },
+    "digital_twin": {
+      "n": 104,
+      "claim_only_correct": 36,
+      "claim_evidence_correct": 34,
+      "leak_rate": 0.3462
+    },
+    "marl": {
+      "n": 92,
+      "claim_only_correct": 33,
+      "claim_evidence_correct": 28,
+      "leak_rate": 0.3587
+    },
+    "policy_simulation": {
+      "n": 104,
+      "claim_only_correct": 31,
+      "claim_evidence_correct": 32,
+      "leak_rate": 0.2981
+    },
+    "robotics": {
+      "n": 44,
+      "claim_only_correct": 14,
+      "claim_evidence_correct": 15,
+      "leak_rate": 0.3182
+    }
+  },
+  "evidence_type_stats": {
+    "comparison": {
+      "n": 4,
+      "claim_only_correct": 1,
+      "claim_evidence_correct": 1,
+      "leak_rate": 0.25
+    },
+    "deployment_boundary": {
+      "n": 24,
+      "claim_only_correct": 11,
+      "claim_evidence_correct": 10,
+      "leak_rate": 0.4583
+    },
+    "experiment_setup": {
+      "n": 160,
+      "claim_only_correct": 52,
+      "claim_evidence_correct": 56,
+      "leak_rate": 0.325
+    },
+    "limitation": {
+      "n": 204,
+      "claim_only_correct": 72,
+      "claim_evidence_correct": 74,
+      "leak_rate": 0.3529
+    },
+    "metric_result": {
+      "n": 252,
+      "claim_only_correct": 79,
+      "claim_evidence_correct": 68,
+      "leak_rate": 0.3135
+    }
+  },
+  "label_stats": {
+    "contradiction_candidate": {
+      "n": 161,
+      "claim_only_correct": 97,
+      "claim_evidence_correct": 69,
+      "leak_rate": 0.6025
+    },
+    "mild_scope_overclaim": {
+      "n": 161,
+      "claim_only_correct": 40,
+      "claim_evidence_correct": 44,
+      "leak_rate": 0.2484
+    },
+    "strong_action_overclaim": {
+      "n": 161,
+      "claim_only_correct": 59,
+      "claim_evidence_correct": 61,
+      "leak_rate": 0.3665
+    },
+    "supported": {
+      "n": 161,
+      "claim_only_correct": 19,
+      "claim_evidence_correct": 35,
+      "leak_rate": 0.118
+    }
+  },
+  "recommendation_counts": {
+    "review": 385,
+    "review_flag_leakage": 165,
+    "exclude_flag_leakage": 50,
+    "include": 44
+  }
+}

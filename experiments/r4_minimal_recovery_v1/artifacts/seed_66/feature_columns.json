@@ -1,0 +1,39 @@
+{
+  "nli_features": [
+    "entailment_correct",
+    "neutral_correct",
+    "contradiction_correct",
+    "ent_minus_con_correct",
+    "con_minus_ent_correct",
+    "max_prob_correct",
+    "entropy_correct"
+  ],
+  "expert_features": [
+    "entailment_correct",
+    "neutral_correct",
+    "contradiction_correct",
+    "ent_minus_con_correct",
+    "con_minus_ent_correct",
+    "max_prob_correct",
+    "entropy_correct",
+    "action_escalation_gap",
+    "claim_action_strength",
+    "evidence_action_support",
+    "deployment_gap",
+    "metric_to_action_gap",
+    "certainty_gap",
+    "scope_gap",
+    "length_diff",
+    "claim_evidence_overlap"
+  ],
+  "svm_features": [
+    "entailment_correct",
+    "neutral_correct",
+    "contradiction_correct",
+    "ent_minus_con_correct",
+    "con_minus_ent_correct",
+    "max_prob_correct",
+    "entropy_correct",
+    "scope_gap"
+  ]
+}

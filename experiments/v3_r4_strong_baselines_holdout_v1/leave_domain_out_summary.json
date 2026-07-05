@@ -1,0 +1,9 @@
+{
+  "n_domains": 6,
+  "r4_stable_domains": 6,
+  "r4_unstable_domains": 0,
+  "fragile_domains": [],
+  "mean_r4_strong_f1": 0.4143666666666666,
+  "mean_best_baseline_strong_f1": 0.3021,
+  "r4_generalizes_beyond_random_split": true
+}

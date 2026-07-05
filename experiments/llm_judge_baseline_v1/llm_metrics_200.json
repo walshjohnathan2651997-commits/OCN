@@ -1,0 +1,19 @@
+{
+  "flat4_macro_f1": 0.526976264654098,
+  "flat4_supported_f1": 0.6944444444444444,
+  "flat4_mild_f1": 0.5048543689320388,
+  "flat4_strong_f1": 0.07692307692307693,
+  "flat4_contradiction_f1": 0.8316831683168316,
+  "strong_positive_f1": 0.07692307692307693,
+  "strong_precision": 1.0,
+  "strong_recall": 0.04,
+  "escalation_macro_f1": 0.7612847222222222,
+  "contradiction_positive_f1": 0.8316831683168316,
+  "accuracy": 0.6,
+  "n_valid": 200,
+  "valid_rate": 1.0,
+  "evidence_used_rate": 1.0,
+  "uncertain_rate": 0.0,
+  "mean_confidence": 0.9660000000000001,
+  "support_vs_non_support_macro_f1": 0.7612847222222222
+}

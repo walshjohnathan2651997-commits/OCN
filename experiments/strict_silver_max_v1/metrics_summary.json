@@ -1,0 +1,204 @@
+{
+  "experiment": "strict_silver_max_v1",
+  "label_source": "candidate_label_guess (AI-preannotated silver label)",
+  "human_audited": false,
+  "is_gold": false,
+  "is_final": false,
+  "n_train": 308,
+  "n_dev": 64,
+  "n_test": 72,
+  "labels": [
+    "contradiction_candidate",
+    "mild_scope_overclaim",
+    "strong_action_overclaim",
+    "supported"
+  ],
+  "baselines": {
+    "claim_only": {
+      "accuracy": 0.2778,
+      "macro_f1": 0.2164,
+      "per_class": {
+        "contradiction_candidate": {
+          "precision": 0.2826,
+          "recall": 0.7222,
+          "f1": 0.4062,
+          "support": 18
+        },
+        "mild_scope_overclaim": {
+          "precision": 0.375,
+          "recall": 0.1667,
+          "f1": 0.2308,
+          "support": 18
+        },
+        "strong_action_overclaim": {
+          "precision": 0.2353,
+          "recall": 0.2222,
+          "f1": 0.2286,
+          "support": 18
+        },
+        "supported": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 18
+        }
+      },
+      "confusion_matrix": [
+        [
+          13,
+          1,
+          4,
+          0
+        ],
+        [
+          10,
+          3,
+          4,
+          1
+        ],
+        [
+          11,
+          3,
+          4,
+          0
+        ],
+        [
+          12,
+          1,
+          5,
+          0
+        ]
+      ],
+      "confusion_matrix_labels": [
+        "contradiction_candidate",
+        "mild_scope_overclaim",
+        "strong_action_overclaim",
+        "supported"
+      ]
+    },
+    "evidence_only": {
+      "accuracy": 0.25,
+      "macro_f1": 0.1,
+      "per_class": {
+        "contradiction_candidate": {
+          "precision": 0.25,
+          "recall": 1.0,
+          "f1": 0.4,
+          "support": 18
+        },
+        "mild_scope_overclaim": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 18
+        },
+        "strong_action_overclaim": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 18
+        },
+        "supported": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 18
+        }
+      },
+      "confusion_matrix": [
+        [
+          18,
+          0,
+          0,
+          0
+        ],
+        [
+          18,
+          0,
+          0,
+          0
+        ],
+        [
+          18,
+          0,
+          0,
+          0
+        ],
+        [
+          18,
+          0,
+          0,
+          0
+        ]
+      ],
+      "confusion_matrix_labels": [
+        "contradiction_candidate",
+        "mild_scope_overclaim",
+        "strong_action_overclaim",
+        "supported"
+      ]
+    },
+    "claim_evidence": {
+      "accuracy": 0.2778,
+      "macro_f1": 0.2592,
+      "per_class": {
+        "contradiction_candidate": {
+          "precision": 0.3182,
+          "recall": 0.3889,
+          "f1": 0.35,
+          "support": 18
+        },
+        "mild_scope_overclaim": {
+          "precision": 0.2727,
+          "recall": 0.1667,
+          "f1": 0.2069,
+          "support": 18
+        },
+        "strong_action_overclaim": {
+          "precision": 0.25,
+          "recall": 0.4444,
+          "f1": 0.32,
+          "support": 18
+        },
+        "supported": {
+          "precision": 0.2857,
+          "recall": 0.1111,
+          "f1": 0.16,
+          "support": 18
+        }
+      },
+      "confusion_matrix": [
+        [
+          7,
+          2,
+          8,
+          1
+        ],
+        [
+          5,
+          3,
+          8,
+          2
+        ],
+        [
+          5,
+          3,
+          8,
+          2
+        ],
+        [
+          5,
+          3,
+          8,
+          2
+        ]
+      ],
+      "confusion_matrix_labels": [
+        "contradiction_candidate",
+        "mild_scope_overclaim",
+        "strong_action_overclaim",
+        "supported"
+      ]
+    }
+  }
+}

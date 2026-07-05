@@ -1,0 +1,4 @@
+﻿file_path,rows,columns,has_candidate_id,has_entailment_correct,has_neutral_correct,has_contradiction_correct,has_entropy_correct,usable_for_r4,notes
+D:\ocn_backup_20260704_1606\experiments\cese_ocn_hcm_v1\hcm_features.csv,444,candidate_id|label_4class|label_escalation_binary|s_correct|s_wrong|margin|lambda_00_score|lambda_025_score|lambda_05_score|lambda_10_score|entailment_correct|neutral_correct|contradiction_correct|ent_minus_con_correct|con_minus_ent_correct|max_prob_correct|entropy_correct,True,True,True,True,True,True,ALL_REQUIRED_COLS_PRESENT
+D:\ocn_backup_20260704_1606\experiments\cese_ocn_hcm_v1\hcm_readiness_gate.json,-1,,False,False,False,False,False,False,non-csv (.json)
+D:\ocn_backup_20260704_1606\scripts\run_cese_ocn_hcm_v1.py,-1,,False,False,False,False,False,False,non-csv (.py)
