@@ -1,0 +1,100 @@
+name: smoke
+
+# Confidential Lightweight V3.17 smoke CI.
+#
+# Runs ONLY toy / synthetic data tests. Never touches real PDFs, never
+# requires the real dataset, never calls any API or network.
+#
+# Test coverage:
+#   - forbidden fields not used for retrieval / selection / sorting
+#   - SmartQueue output schema (all 7 files, valid buckets, group diversity)
+#   - toy end-to-end demo completes successfully
+#   - sentence corpus JSONL schema (fields, unit_id format, no leakage)
+#
+# Acceptance requirements (from task spec):
+#   - forbidden fields not in scoring source columns
+#   - toy demo can complete
+#   - output schema complete
+#   - README / CURRENT_MAINLINE mentions V3.17 confidential lightweight
+#   - data release policy exists
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  smoke-toy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt || true
+          pip install pytest
+
+      - name: Compile check
+        run: |
+          python -m compileall -q scripts tests
+
+      - name: Smoke tests (toy only, no real data)
+        run: |
+          pytest -q \
+            tests/test_no_leakage_fields.py \
+            tests/test_smart_queue_outputs.py \
+            tests/test_sentence_corpus_schema.py \
+            tests/test_toy_demo_runs.py
+
+      - name: Verify V3.17 confidential lightweight mentioned in docs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          repo = Path(".")
+          needles = ["V3.17", "confidential", "lightweight"]
+          candidates = [
+              repo / "experiments" / "README.md",
+              repo / "README.md",
+          ]
+          # Find at least one file mentioning all three keywords.
+          found = False
+          for p in candidates:
+              if p.exists():
+                  text = p.read_text(encoding="utf-8").lower()
+                  if all(n.lower() in text for n in needles):
+                      found = True
+                      break
+          assert found, "No README mentions V3.17 + confidential + lightweight"
+          PY
+
+      - name: Verify data release policy exists
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          repo = Path(".")
+          # Look for a data release policy document in common locations.
+          candidates = [
+              repo / "docs" / "data_release_policy.md",
+              repo / "docs" / "DATA_RELEASE_POLICY.md",
+              repo / "DATA_RELEASE_POLICY.md",
+              repo / "docs" / "data_release.md",
+          ]
+          # Also search docs/ for any file with "release" and "policy" in the name.
+          docs_dir = repo / "docs"
+          if docs_dir.exists():
+              for p in docs_dir.iterdir():
+                  if p.is_file():
+                      name_lower = p.name.lower()
+                      if "release" in name_lower and "policy" in name_lower:
+                          candidates.append(p)
+          found = any(p.exists() for p in candidates)
+          assert found, "No data release policy document found"
+          PY
