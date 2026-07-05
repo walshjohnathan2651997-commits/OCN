@@ -1,40 +1,48 @@
 # Current Mainline
 
-The current empirical mainline is:
+## Confidential Lightweight V3.17
 
-## V3.17 Canonicalized R4 Baseline
+The current empirical mainline is **Confidential Lightweight V3.17: Local Evidence Canonicalization and Review Queueing for Simulation Claim Escalation Screening**.
 
 ```text
-PDF corpus
-→ BM25 top-k retrieval
+private/local PDFs
+→ local PDF text extraction
+→ BM25 sentence/window retrieval
 → best_sentence_top5_overlap evidence canonicalization
-→ frozen R4 OOF screening
-→ G_conservative_precision risk ranking
-→ second-stage human review queue
+→ frozen R4 out-of-fold screening
+→ conservative/SmartQueue ranking
+→ human review queue
 ```
 
-## What this project currently claims
+## Safe claims
 
-This project studies retrieval-to-screening format shift in offline simulation claim evidence-sufficiency review. It shows that raw retrieved PDF chunks can harm downstream R4 screening, and that simple unsupervised evidence canonicalization restores strong_action_overclaim screening signal sufficiently for second-stage review queue construction.
+- local / no-API / no-cloud / no-training pipeline
+- controlled silver diagnostic setting
+- retrieval-to-screening format shift analysis
+- evidence canonicalization restores strong_action_overclaim screening signal
+- second-stage review queue support
 
-## What this project does not claim
+## Not safe claims (do NOT make)
 
-- not gold labels
-- not human-audited benchmark
-- not SOTA
-- not natural-distribution prevalence
-- not full shared-threshold CESE-OCN validation
-- not a standalone classifier
-- not automatic peer review
-- not a replacement for human judgment
+- no gold benchmark claim
+- no human-audited dataset claim
+- no SOTA claim
+- no natural-prevalence claim
+- no full shared-threshold CESE-OCN validation claim
+- no automatic peer review claim
+- no standalone detector claim
 
 ## Current key scripts
 
-- `scripts/run_simclaim_pdf_retrieval_v1.py`
-- `scripts/run_r4_evidence_canonicalization_v1.py`
-- `scripts/run_canonicalized_review_queue_v1.py`
-- `scripts/run_canonicalized_risk_ranking_v1.py`
+- `scripts/run_simclaim_pdf_retrieval_v1.py` — local PDF text extraction + BM25 retrieval
+- `scripts/run_r4_evidence_canonicalization_v1.py` — evidence canonicalization (best_sentence_top5_overlap)
+- `scripts/run_canonicalized_review_queue_v1.py` — frozen R4 OOF screening + review queue
+- `scripts/run_canonicalized_risk_ranking_v1.py` — conservative/SmartQueue ranking
 
-## Legacy material
+## Legacy / future materials
 
-Older V2 paper-readiness, simclaim_human_pilot, and full CESE-OCN architecture materials are preserved as development history or future work unless explicitly referenced by this file. See `docs/current_mainline_v3_17.md` for the detailed mainline specification, and the "Historical / development context" section of `README.md` for the legacy architecture description.
+- **V2 evidence-aware hierarchical pilot** = legacy pilot (superseded)
+- **simclaim_human_pilot** = legacy workflow (superseded)
+- **full shared-threshold CESE-OCN neural architecture** = future architecture, not current empirical claim
+
+See `docs/current_mainline_v3_17_confidential.md` for the detailed mainline specification, `docs/data_release_policy.md` for confidentiality, and `docs/leakage_and_confidentiality_policy.md` for forbidden-field rules.
