@@ -13,6 +13,7 @@ name: smoke
 #   - schema registry health (9 schemas load, required metadata present)
 #   - redacted outputs contain no raw text or forbidden scoring fields
 #   - config guards (no_api/no_network/no_training enforced)
+#   - confidentiality red-team scanner (toy vs real text, public release gate)
 #
 # Acceptance requirements (from task spec):
 #   - forbidden fields not in scoring source columns
@@ -58,7 +59,8 @@ jobs:
             tests/test_toy_demo_runs.py \
             tests/test_config_guards.py \
             tests/test_schema_registry.py \
-            tests/test_redacted_outputs_no_text.py
+            tests/test_redacted_outputs_no_text.py \
+            tests/test_redteam_scan_toy_passes.py
 
       - name: Verify V3.17 confidential lightweight mentioned in docs
         run: |
