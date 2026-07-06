@@ -1,6 +1,6 @@
 # Legacy Narrative Scan — V3.17 Confidential Lightweight
 
-Generated: 2026-07-06T19:47:22.361762+00:00
+Generated: 2026-07-06T20:06:52.444845+00:00
 
 > Read-only scan. No files were modified.
 
@@ -8,12 +8,12 @@ Generated: 2026-07-06T19:47:22.361762+00:00
 
 | Classification | Count |
 |---|---|
-| safe_negation | 159 |
+| safe_negation | 166 |
 | legacy_section | 39 |
 | future_work | 3 |
 | unsafe_current_claim | 0 |
 | ambiguous | 0 |
-| **total** | **201** |
+| **total** | **208** |
 
 ## Gate status
 
@@ -23,7 +23,7 @@ Generated: 2026-07-06T19:47:22.361762+00:00
 
 ## All findings by classification
 
-### safe_negation (159)
+### safe_negation (166)
 
 | Path | Line | Phrase | Context |
 |---|---|---|---|
@@ -68,6 +68,10 @@ Generated: 2026-07-06T19:47:22.361762+00:00
 | docs/dataset_shortcut_risk_v1.md | 176 | human-audited | silver-labeled, not human-audited)" |
 | docs/dataset_shortcut_risk_v1.md | 189 | SOTA | 5. **No SOTA claim**: "This is not a SOTA result; it is a controlled |
 | docs/dataset_shortcut_risk_v1.md | 189 | SOTA | 5. **No SOTA claim**: "This is not a SOTA result; it is a controlled |
+| docs/dataset_version_lock_v3_17.md | 32 | gold benchmark | - **Not** a gold benchmark. |
+| docs/dataset_version_lock_v3_17.md | 33 | human-audited | - **Not** a human-audited benchmark. |
+| docs/dataset_version_lock_v3_17.md | 40 | human-audited | > labels are not gold or human-audited, and results should not be |
+| docs/dataset_version_lock_v3_17.md | 171 | human-audited | 2. **Not human-audited.** `human_audited=False` for all 444 rows. The |
 | docs/human_audit_protocol_v1.md | 6 | gold benchmark | diagnostic candidate pool. The audit is **not** a gold benchmark and must not be |
 | docs/human_audit_protocol_v1.md | 26 | gold benchmark | - Not a gold benchmark. |
 | docs/human_audit_protocol_v1.md | 132 | gold benchmark | - "small targeted audit, not a gold benchmark" |
@@ -186,6 +190,9 @@ Generated: 2026-07-06T19:47:22.361762+00:00
 | reports/current_project_status_v3_17.md | 223 | human-audited | - Note: BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references... |
 | reports/current_project_status_v3_17.md | 223 | SOTA | - Note: BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references... |
 | reports/current_project_status_v3_17.md | 255 | human-audited | > All results are controlled silver diagnostic, not gold/human-audited. |
+| reports/dataset_provenance_ledger_v3_17.md | 13 | gold benchmark | - not gold benchmark |
+| reports/dataset_provenance_ledger_v3_17.md | 14 | human-audited | - not human-audited benchmark |
+| reports/dataset_provenance_ledger_v3_17.md | 20 | human-audited | > We use a source-traceable controlled silver diagnostic set. The labels are not gold or human-audited, and results s... |
 
 ### legacy_section (39)
 
@@ -251,6 +258,7 @@ Generated: 2026-07-06T19:47:22.361762+00:00
 - `docs/data_release_policy.md`
 - `docs/data_versions.md`
 - `docs/dataset_shortcut_risk_v1.md`
+- `docs/dataset_version_lock_v3_17.md`
 - `docs/how_to_upgrade_to_paper_full.md`
 - `docs/human_audit_protocol_v1.md`
 - `docs/next_phase_benchmark_plan.md`
@@ -267,3 +275,4 @@ Generated: 2026-07-06T19:47:22.361762+00:00
 - `paper_assets/v3_17_confidential/tables/table7_complexity_utility.md`
 - `paper_assets/v3_17_confidential/tables/table8_human_audit_if_available.md`
 - `reports/current_project_status_v3_17.md`
+- `reports/dataset_provenance_ledger_v3_17.md`

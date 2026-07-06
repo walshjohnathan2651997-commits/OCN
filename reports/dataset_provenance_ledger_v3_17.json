@@ -1,0 +1,147 @@
+{
+  "ledger_version": "v3_17",
+  "generated_at_utc": "2026-07-06T20:04:13.113207+00:00",
+  "dataset_name": "SimClaim Strict Silver Diagnostic Set v1",
+  "dataset_role": "controlled silver diagnostic set for retrieval-to-screening format shift",
+  "not_claims": [
+    "gold benchmark",
+    "human-audited benchmark",
+    "natural prevalence dataset",
+    "general scientific claim benchmark"
+  ],
+  "source_csv": {
+    "path_repo_relative": "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv",
+    "size_bytes": 448144,
+    "sha256": "13d6c66171cf54e1a456d5ef8674f00f91939aa79a60f0c65066f2a3ebe0a812",
+    "mtime_utc": "2026-07-02T04:40:34.878117+00:00",
+    "row_count": 444,
+    "column_count": 36
+  },
+  "schema": {
+    "columns": [
+      "candidate_id",
+      "target_candidate_group_id",
+      "span_id",
+      "source_id",
+      "domain",
+      "title",
+      "url",
+      "arxiv_id",
+      "pdf_filename",
+      "page_number",
+      "source_location",
+      "evidence_type",
+      "evidence_text",
+      "evidence_text_sha256",
+      "candidate_label_guess",
+      "issue_binary_label_guess",
+      "escalation_binary_label_guess",
+      "contradiction_binary_label_guess",
+      "claim_text",
+      "claim_text_sha256",
+      "claim_generation_status",
+      "claim_generation_policy",
+      "annotation_status",
+      "human_audited",
+      "final_label",
+      "gold_label",
+      "source_trace_complete",
+      "generation_notes",
+      "leakage_category",
+      "claim_only_correct",
+      "claim_evidence_correct",
+      "lexical_leakage_risk",
+      "exclude_recommended",
+      "group_quality_tier",
+      "silver_label_source",
+      "dataset_role"
+    ],
+    "redacted_fields_present_in_csv": [
+      "claim_text",
+      "evidence_text",
+      "generation_notes",
+      "title",
+      "url"
+    ],
+    "redaction_note": "Fields listed in redacted_fields_present_in_csv exist in the source CSV but their raw values are NEVER copied into this ledger. Only SHA256 hashes and aggregate counts are emitted."
+  },
+  "statistics": {
+    "rows": 444,
+    "groups": 111,
+    "candidate_label_guess_counts": {
+      "supported": 111,
+      "mild_scope_overclaim": 111,
+      "strong_action_overclaim": 111,
+      "contradiction_candidate": 111
+    },
+    "domain_counts": {
+      "autonomous_driving": 140,
+      "policy_simulation": 84,
+      "digital_twin": 68,
+      "cyber_defense": 64,
+      "marl": 52,
+      "robotics": 36
+    },
+    "human_audited_counts": {
+      "False": 444
+    },
+    "human_audited_true": 0,
+    "human_audited_false": 444,
+    "annotation_status_counts": {
+      "ai_preannotated": 444
+    },
+    "dataset_role_counts": {
+      "strict_silver_train_candidate": 444
+    },
+    "final_label_nonempty": 0,
+    "gold_label_nonempty": 0,
+    "source_trace_complete_true": 444,
+    "source_trace_complete_false": 0,
+    "silver_label_source_counts": {
+      "candidate_label_guess": 444
+    },
+    "claim_generation_policy_counts": {
+      "simclaim_ai_preannotated_candidates_no_gold_no_final_label": 196,
+      "simclaim_candidate_v1": 56,
+      "simclaim_four_variant_v1": 40,
+      "four_label_simclaim_candidate_generation_no_gold_no_final_no_human_audit": 36,
+      "four_label_ai_preannotation_clean_evidence_only": 36,
+      "four_label_balanced_candidate_generation": 32,
+      "same_frame_four_variant_generation": 24,
+      "four_label_simclaim_candidate_generation_v1_strict_no_gold": 12,
+      "four_label_balanced_ai_preannotation_clean_evidence_only": 12
+    },
+    "group_quality_tier_counts": {
+      "tier4_no_B_has_A": 340,
+      "tier2_B_has_A": 52,
+      "tier1_B_no_A": 32,
+      "tier3_no_B_no_A": 20
+    },
+    "leakage_category_counts": {
+      "C_both_wrong": 294,
+      "A_claim_only_correct": 127,
+      "B_evidence_gain": 23
+    },
+    "evidence_text_sha256_unique": 111,
+    "evidence_text_sha256_duplicates": 333,
+    "evidence_text_sha256_duplicate_rows": 333,
+    "claim_text_sha256_unique": 444,
+    "claim_text_sha256_duplicates": 0,
+    "claim_text_sha256_duplicate_rows": 0,
+    "groups_with_four_labels_complete": 111,
+    "groups_missing_labels": 0
+  },
+  "invariants": {
+    "human_audited_all_false": true,
+    "gold_label_all_empty": true,
+    "final_label_all_empty": true,
+    "source_trace_complete_all_true": true,
+    "silver_label_source_all_candidate_label_guess": true,
+    "four_labels_each_111": true,
+    "row_count_444": true,
+    "groups_111": true,
+    "evidence_text_sha256_unique_is_111": true,
+    "claim_text_sha256_unique_is_444": true
+  },
+  "safe_caveat": "We use a source-traceable controlled silver diagnostic set. The labels are not gold or human-audited, and results should not be interpreted as benchmark-level model validation."
+}
