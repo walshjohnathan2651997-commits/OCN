@@ -1,0 +1,330 @@
+{
+  "manifest_version": "1.0",
+  "generated_at": "2026-07-06T20:38:48.102856+00:00",
+  "mainline": "V3.17 Confidential Lightweight",
+  "summary": {
+    "total_artifacts": 54,
+    "exists_on_disk": 54,
+    "safe_to_release_count": 46,
+    "private_sensitive_count": 8,
+    "contains_raw_text_count": 4,
+    "blocked_count": 3,
+    "missing_count": 0
+  },
+  "release_safety_gate": {
+    "status": "PASS",
+    "unsafe_public_artifacts": [],
+    "private_in_release": []
+  },
+  "safe_to_release": [
+    {
+      "artifact_id": "A002_strict_silver_groups",
+      "path": "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_groups_v1.csv",
+      "type": "dataset_metadata"
+    },
+    {
+      "artifact_id": "A003_dataset_version_lock",
+      "path": "docs/dataset_version_lock_v3_17.md",
+      "type": "documentation"
+    },
+    {
+      "artifact_id": "A011_pdf_corpus_toy",
+      "path": "data/pdf_corpus_toy_v1/pdf_manifest.csv",
+      "type": "pdf_corpus_toy"
+    },
+    {
+      "artifact_id": "A020_retrieval_metrics",
+      "path": "experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_metrics_bm25.json",
+      "type": "metrics_json"
+    },
+    {
+      "artifact_id": "A022_bm25_sentence_blocked",
+      "path": "experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json",
+      "type": "blocked_metrics_json"
+    },
+    {
+      "artifact_id": "A030_canonicalizer_metrics",
+      "path": "experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv",
+      "type": "metrics_csv"
+    },
+    {
+      "artifact_id": "A032_canonicalizer_redacted",
+      "path": "experiments/canonicalizer_ablation_v1/selector_examples_redacted.csv",
+      "type": "redacted_csv"
+    },
+    {
+      "artifact_id": "A041_format_shift_redacted",
+      "path": "experiments/format_shift_ablation_v1/format_shift_inputs_redacted.csv",
+      "type": "redacted_csv"
+    },
+    {
+      "artifact_id": "A042_format_shift_blocked",
+      "path": "experiments/format_shift_ablation_v1/r4_eval_blocked.json",
+      "type": "blocked_metrics_json"
+    },
+    {
+      "artifact_id": "A052_risk_ranking_results",
+      "path": "experiments/canonicalized_risk_ranking_v1/risk_ranking_results_by_variant.csv",
+      "type": "metrics_csv"
+    },
+    {
+      "artifact_id": "A053_risk_ranking_report",
+      "path": "experiments/canonicalized_risk_ranking_v1/risk_ranking_report.md",
+      "type": "report_md"
+    },
+    {
+      "artifact_id": "A060_leakage_audit_summary",
+      "path": "experiments/leakage_audit_v1/audit_summary.md",
+      "type": "report_md"
+    },
+    {
+      "artifact_id": "A061_claim_only_baseline",
+      "path": "experiments/leakage_audit_v1/claim_only_baseline.json",
+      "type": "metrics_json"
+    },
+    {
+      "artifact_id": "A062_shuffled_evidence_baseline",
+      "path": "experiments/leakage_audit_v1/shuffled_evidence_baseline.json",
+      "type": "metrics_json"
+    },
+    {
+      "artifact_id": "A070_error_taxonomy_summary",
+      "path": "experiments/error_taxonomy_v1/error_taxonomy_summary.csv",
+      "type": "metrics_csv"
+    },
+    {
+      "artifact_id": "A071_error_cases_redacted",
+      "path": "experiments/error_taxonomy_v1/error_cases_redacted.csv",
+      "type": "redacted_csv"
+    },
+    {
+      "artifact_id": "A080_classification_metrics_ci",
+      "path": "experiments/metric_robustness_v1/classification_metrics_with_ci.csv",
+      "type": "metrics_csv"
+    },
+    {
+      "artifact_id": "A081_robustness_summary",
+      "path": "experiments/metric_robustness_v1/robustness_summary.md",
+      "type": "report_md"
+    },
+    {
+      "artifact_id": "A090_pareto_table",
+      "path": "experiments/complexity_vs_utility_ablation_v1/method_pareto_table.csv",
+      "type": "metrics_csv"
+    },
+    {
+      "artifact_id": "A091_complexity_summary",
+      "path": "experiments/complexity_vs_utility_ablation_v1/complexity_vs_utility_summary.md",
+      "type": "report_md"
+    },
+    {
+      "artifact_id": "A100_stress_summary",
+      "path": "experiments/pdf_extraction_stress_test_v1/stress_test_summary.md",
+      "type": "report_md"
+    },
+    {
+      "artifact_id": "A101_stress_blocks_redacted",
+      "path": "experiments/pdf_extraction_stress_test_v1/stress_blocks_redacted.jsonl",
+      "type": "redacted_jsonl"
+    },
+    {
+      "artifact_id": "A110_audit_template",
+      "path": "data/audit_templates/human_audit_template.csv",
+      "type": "template_csv"
+    },
+    {
+      "artifact_id": "A111_audit_queue_redacted",
+      "path": "data/audit_templates/human_audit_queue_seed_v1_redacted.csv",
+      "type": "redacted_csv"
+    },
+    {
+      "artifact_id": "A112_audit_protocol",
+      "path": "docs/human_audit_protocol_v1.md",
+      "type": "documentation"
+    },
+    {
+      "artifact_id": "A120_smart_queue_summary",
+      "path": "experiments/lightweight_smart_queue_v1/smart_queue_metric_summary.json",
+      "type": "metrics_json"
+    },
+    {
+      "artifact_id": "A130_paper_results_summary",
+      "path": "paper_assets/v3_17_confidential/paper_results_summary.md",
+      "type": "paper_summary_md"
+    },
+    {
+      "artifact_id": "A131_paper_claims_checklist",
+      "path": "paper_assets/v3_17_confidential/paper_claims_checklist.md",
+      "type": "paper_checklist_md"
+    },
+    {
+      "artifact_id": "A132_abstract_draft",
+      "path": "paper_assets/v3_17_confidential/abstract_draft.md",
+      "type": "paper_draft_md"
+    },
+    {
+      "artifact_id": "A133_contribution_bullets",
+      "path": "paper_assets/v3_17_confidential/contribution_bullets.md",
+      "type": "paper_draft_md"
+    },
+    {
+      "artifact_id": "A134_limitations_draft",
+      "path": "paper_assets/v3_17_confidential/limitations_draft.md",
+      "type": "paper_draft_md"
+    },
+    {
+      "artifact_id": "A135_table1_dataset",
+      "path": "paper_assets/v3_17_confidential/tables/table1_dataset_summary.md",
+      "type": "paper_table_md"
+    },
+    {
+      "artifact_id": "A136_table2_retrieval",
+      "path": "paper_assets/v3_17_confidential/tables/table2_retrieval_recall.md",
+      "type": "paper_table_md"
+    },
+    {
+      "artifact_id": "A137_table4_canonicalizer",
+      "path": "paper_assets/v3_17_confidential/tables/table4_canonicalizer_ablation.md",
+      "type": "paper_table_md"
+    },
+    {
+      "artifact_id": "A138_table5_review_queue",
+      "path": "paper_assets/v3_17_confidential/tables/table5_review_queue.md",
+      "type": "paper_table_md"
+    },
+    {
+      "artifact_id": "A139_table6_leakage",
+      "path": "paper_assets/v3_17_confidential/tables/table6_leakage_audit.md",
+      "type": "paper_table_md"
+    },
+    {
+      "artifact_id": "A140_table7_complexity",
+      "path": "paper_assets/v3_17_confidential/tables/table7_complexity_utility.md",
+      "type": "paper_table_md"
+    },
+    {
+      "artifact_id": "A141_table3_format_shift",
+      "path": "paper_assets/v3_17_confidential/tables/table3_format_shift_ablation.md",
+      "type": "paper_table_md"
+    },
+    {
+      "artifact_id": "A142_table8_human_audit",
+      "path": "paper_assets/v3_17_confidential/tables/table8_human_audit_if_available.md",
+      "type": "paper_table_md"
+    },
+    {
+      "artifact_id": "A150_release_manifest",
+      "path": "release_bundles/v3_17_confidential_public/MANIFEST.json",
+      "type": "release_manifest"
+    },
+    {
+      "artifact_id": "A151_release_redaction_report",
+      "path": "release_bundles/v3_17_confidential_public/REDACTION_REPORT.json",
+      "type": "redaction_report"
+    },
+    {
+      "artifact_id": "A160_paper_outline",
+      "path": "docs/paper_outline_v3_17_confidential.md",
+      "type": "documentation"
+    },
+    {
+      "artifact_id": "A161_result_narrative_freeze",
+      "path": "docs/result_narrative_freeze_v3_17.md",
+      "type": "documentation"
+    },
+    {
+      "artifact_id": "A162_reviewer_risk_register",
+      "path": "docs/reviewer_risk_register_v3_17.md",
+      "type": "documentation"
+    },
+    {
+      "artifact_id": "A163_safe_claims_dictionary",
+      "path": "docs/safe_claims_dictionary_v3_17.md",
+      "type": "documentation"
+    },
+    {
+      "artifact_id": "A164_reproducibility_guide",
+      "path": "docs/reproducibility_guide_v3_17.md",
+      "type": "documentation"
+    }
+  ],
+  "private_sensitive": [
+    {
+      "artifact_id": "A001_strict_silver_csv",
+      "path": "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv",
+      "type": "dataset_csv"
+    },
+    {
+      "artifact_id": "A010_pdf_corpus_chunks",
+      "path": "data/simclaim_pdf_corpus_retrieval_v1/local_pdf_corpus_chunks.csv",
+      "type": "pdf_corpus"
+    },
+    {
+      "artifact_id": "A021_retrieval_results",
+      "path": "experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_results_bm25.csv",
+      "type": "retrieval_results_csv"
+    },
+    {
+      "artifact_id": "A031_canonicalizer_variant_evidence",
+      "path": "experiments/canonicalizer_ablation_v1/selector_variant_evidence.csv",
+      "type": "evidence_csv"
+    },
+    {
+      "artifact_id": "A040_format_shift_inputs",
+      "path": "experiments/format_shift_ablation_v1/format_shift_inputs.csv",
+      "type": "inputs_csv"
+    },
+    {
+      "artifact_id": "A050_review_queue_scores",
+      "path": "experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv",
+      "type": "scores_csv"
+    },
+    {
+      "artifact_id": "A051_review_queue_top100",
+      "path": "experiments/canonicalized_review_queue_v1/review_queue_top100.csv",
+      "type": "queue_csv"
+    },
+    {
+      "artifact_id": "A121_smart_queue_top100",
+      "path": "experiments/lightweight_smart_queue_v1/smart_queue_top100.csv",
+      "type": "queue_csv"
+    }
+  ],
+  "contains_raw_text": [
+    {
+      "artifact_id": "A001_strict_silver_csv",
+      "path": "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv",
+      "detected_columns": "claim_text, evidence_text, generation_notes, title, url"
+    },
+    {
+      "artifact_id": "A031_canonicalizer_variant_evidence",
+      "path": "experiments/canonicalizer_ablation_v1/selector_variant_evidence.csv",
+      "detected_columns": "selected_evidence"
+    },
+    {
+      "artifact_id": "A050_review_queue_scores",
+      "path": "experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv",
+      "detected_columns": "selected_evidence"
+    },
+    {
+      "artifact_id": "A051_review_queue_top100",
+      "path": "experiments/canonicalized_review_queue_v1/review_queue_top100.csv",
+      "detected_columns": "claim_text, selected_evidence"
+    }
+  ],
+  "blocked_artifacts": [
+    {
+      "artifact_id": "A022_bm25_sentence_blocked",
+      "path": "experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json"
+    },
+    {
+      "artifact_id": "A042_format_shift_blocked",
+      "path": "experiments/format_shift_ablation_v1/r4_eval_blocked.json"
+    },
+    {
+      "artifact_id": "A141_table3_format_shift",
+      "path": "paper_assets/v3_17_confidential/tables/table3_format_shift_ablation.md"
+    }
+  ],
+  "missing_artifacts": []
+}
