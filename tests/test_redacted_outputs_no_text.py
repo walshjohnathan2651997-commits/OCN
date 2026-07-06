@@ -85,6 +85,8 @@ class TestRedactedFilesHaveNoText:
                 col_lower = col.lower()
                 if col_lower.endswith("_sha256"):
                     continue  # hash columns are OK
+                if "hash" in col_lower or "sha256" in col_lower:
+                    continue  # hash columns (e.g. evidence_hash_a) are OK
                 if any(kw in col_lower for kw in ("evidence", "claim", "page_text", "raw_text", "clean_text")):
                     violations.append((rp.name, col))
 
