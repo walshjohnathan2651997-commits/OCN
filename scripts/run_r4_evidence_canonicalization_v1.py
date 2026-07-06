@@ -42,31 +42,33 @@ from sklearn.metrics import (
     recall_score,
 )
 
-# ---------------- Paths (defaults — can be overridden by --config) ----------------
+# ---------------- Paths (defaults — repo-root relative; can be overridden by --config) ----------------
 # Shared config utilities
 sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
-from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+from config_utils import load_and_validate, resolve_path, write_run_config, print_guards, get_repo_root  # noqa: E402
 
-REPLAY_DIR = Path(r"D:\ocn\experiments\r4_retrieved_replay_v1")
-RECOVERY_DIR = Path(r"D:\ocn\experiments\r4_minimal_recovery_v1")
+_REPO_ROOT = get_repo_root()
+REPLAY_DIR = _REPO_ROOT / "experiments" / "r4_retrieved_replay_v1"
+RECOVERY_DIR = _REPO_ROOT / "experiments" / "r4_minimal_recovery_v1"
 RECOVERY_ARTIFACTS = RECOVERY_DIR / "artifacts"
 RECOVERED_HCM = RECOVERY_DIR / "recovered_hcm_features.csv"
 RECOVERY_PREDICTIONS = RECOVERY_DIR / "r4_recovered_predictions_444.csv"
 RECOVERY_SPLIT_MANIFEST = RECOVERY_DIR / "r4_recovery_split_manifest.csv"
 
-RETRIEVAL_RESULTS_BM25 = Path(r"D:\ocn\experiments\simclaim_pdf_corpus_retrieval_v1\retrieval_results_bm25.csv")
-PDF_CHUNKS = Path(r"D:\ocn\data\simclaim_pdf_corpus_retrieval_v1\local_pdf_corpus_chunks.csv")
-PAPER_STRICT_CSV = Path(
-    r"D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"
+RETRIEVAL_RESULTS_BM25 = _REPO_ROOT / "experiments" / "simclaim_pdf_corpus_retrieval_v1" / "retrieval_results_bm25.csv"
+PDF_CHUNKS = _REPO_ROOT / "data" / "simclaim_pdf_corpus_retrieval_v1" / "local_pdf_corpus_chunks.csv"
+PAPER_STRICT_CSV = (
+    _REPO_ROOT / "data" / "simclaim_all92_candidate_pool_v1" / "strict_silver_max_v1"
+    / "strict_silver_max_candidates_v1.csv"
 )
 
-RETRIEVAL_INPUT_DIR = Path(r"D:\ocn\experiments\r4_on_retrieved_evidence_v1")
+RETRIEVAL_INPUT_DIR = _REPO_ROOT / "experiments" / "r4_on_retrieved_evidence_v1"
 ORACLE_INPUT_CSV = RETRIEVAL_INPUT_DIR / "r4_input_oracle.csv"
 
 ORACLE_HCM_REPLAY = REPLAY_DIR / "hcm_features_replay_oracle.csv"
 BM25_TOP1_HCM_REPLAY = REPLAY_DIR / "hcm_features_replay_bm25_top1.csv"
 
-OUTPUT_DIR = Path(r"D:\ocn\experiments\r4_evidence_canonicalization_v1")
+OUTPUT_DIR = _REPO_ROOT / "experiments" / "r4_evidence_canonicalization_v1"
 
 # ---------------- Constants ----------------
 SEEDS = [11, 22, 33, 44, 55, 66, 77, 88, 99, 111]
@@ -468,7 +470,15 @@ def main():
 
     parser = argparse.ArgumentParser(description="R4 evidence canonicalization.")
     parser.add_argument("--config", default=None, help="Path to YAML config (optional, overrides defaults)")
+    parser.add_argument("--repo_root", default=None, help="Repository root directory (defaults to auto-detected location)")
+    parser.add_argument("--output_dir", default=None, help="Output directory (overrides default experiments/ path)")
     args = parser.parse_args()
+
+    # --- Apply repo_root override if provided ---
+    if args.repo_root:
+        repo = Path(args.repo_root).resolve()
+    else:
+        repo = _REPO_ROOT
 
     # --- Load config if provided ---
     if args.config:
@@ -482,6 +492,20 @@ def main():
             PAPER_STRICT_CSV = resolve_path(config, "candidate_csv")
     else:
         config = None
+
+    # --- Apply output_dir override ---
+    if args.output_dir:
+        OUTPUT_DIR = Path(args.output_dir).resolve()
+
+    # --- Re-derive repo-relative defaults if repo_root was overridden ---
+    if args.repo_root and not args.config:
+        RETRIEVAL_RESULTS_BM25 = repo / "experiments" / "simclaim_pdf_corpus_retrieval_v1" / "retrieval_results_bm25.csv"
+        PAPER_STRICT_CSV = (
+            repo / "data" / "simclaim_all92_candidate_pool_v1" / "strict_silver_max_v1"
+            / "strict_silver_max_candidates_v1.csv"
+        )
+        if not args.output_dir:
+            OUTPUT_DIR = repo / "experiments" / "r4_evidence_canonicalization_v1"
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 

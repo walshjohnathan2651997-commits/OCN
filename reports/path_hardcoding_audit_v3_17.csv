@@ -1,0 +1,139 @@
+path,hardcoded_count,classification,context
+scripts/_v2_qc_check.py,2,legacy_exempt,"L3: a = pd.read_csv(r""D:\ocn\gold_pilot_relation_realism_protocol_v2\pilot_50_relation_realism_annotation_A.csv"", keep_defau | L4: b = pd.read_csv(r""D:\ocn\gold_pilot_relation_realism_protocol_v2\pilot_50_relation_realism_annotation_B.csv"", keep_defau"
+scripts/_v3_15_scalar_gate_view.py,1,legacy_exempt,"L2: g = json.load(open(r""D:\ocn\experiments\v3_15_scalar_vs_relation_screening_deep_test\scalar_vs_relation_deep_test_gate.j"
+scripts/_v3_15_view_metrics.py,2,legacy_exempt,"L4: df = pd.read_csv(r""D:\ocn\experiments\v3_15_low_prevalence_screening_simulation\low_prevalence_screening_metrics.csv"") | L22: budget = pd.read_csv(r""D:\ocn\experiments\v3_15_low_prevalence_screening_simulation\review_budget_curve.csv"")"
+scripts/audit_path_hardcoding_v1.py,8,safe,L5: - current_pipeline_blocker  : P0 mainline script with D:\ocn hardcoding | L6: - current_pipeline_warning  : non-P0 V3.17 script with D:\ocn hardcoding | L8: - safe                      : no D:\ocn hardcoding
+scripts/build_gold_pilot_preparation_v1.py,5,legacy_exempt,"L17: HIGH_RISK_CSV = r""D:\ocn\paper_versions_ordered\V3_4_taxonomy_hardened\high_risk_sample_bank.csv"" | L18: TRUSTED_CSV = r""D:\ocn\paper_versions_ordered\V3_4_taxonomy_hardened\trusted_case_bank.csv"" | L19: STRICT_SILVER_CSV = r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1."
+scripts/build_human_audit_queue_v1.py,0,safe,
+scripts/build_paper_ready_mixed_framework_v2.py,7,legacy_exempt,"L21: FROZEN_R4_DIR = Path(r""D:\ocn\experiments\mixed_framework_v2_frozen_r4_baseline"") | L22: NEW_ALGO_DIR = Path(r""D:\ocn\experiments\mixed_framework_new_algorithm_sweep_v1"") | L23: ROUTER_OPT_DIR = Path(r""D:\ocn\experiments\mixed_framework_router_optimization_v2"")"
+scripts/build_pdf_sentence_corpus_v1.py,0,safe,
+scripts/build_pdf_stress_suite_v1.py,0,safe,
+scripts/build_public_sanitized_release_v1.py,0,safe,
+scripts/build_rigourate_style_scalar_baselines.py,4,legacy_exempt,"L29: BASE = r""D:\ocn\experiments\rigourate_reproduction_and_simclaim_baseline_v1"" | L30: SILVER_DIR = r""D:\ocn\experiments\strict_silver_max_v1"" | L31: LLM_200 = r""D:\ocn\experiments\llm_judge_baseline_v1\llm_parsed_outputs_200.csv"""
+scripts/build_v2_relation_realism_templates.py,2,legacy_exempt,"L16: V1_DIR = Path(r""D:\ocn\gold_pilot_protocol_freeze_v1"") | L17: V2_DIR = Path(r""D:\ocn\gold_pilot_relation_realism_protocol_v2"")"
+scripts/build_v3_10_1_docx.py,2,legacy_exempt,"L7: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_10_1_advisor_send_clean\CESE_OCN_V3_10_1_advisor_send_clean.md"" | L8: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_10_1_advisor_send_clean\CESE_OCN_V3_10_1_advisor_send_clean.docx"""
+scripts/build_v3_10_docx.py,2,legacy_exempt,"L7: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_10_advisor_ready_silver_stage\CESE_OCN_V3_10_advisor_ready_silver_stage.md"" | L8: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_10_advisor_ready_silver_stage\CESE_OCN_V3_10_advisor_ready_silver_stage.d"
+scripts/build_v3_11_docx.py,2,legacy_exempt,"L7: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_11_high_standard_framework_roadmap\CESE_OCN_V3_11_high_standard_framework.m | L8: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_11_high_standard_framework_roadmap\CESE_OCN_V3_11_high_standard_framework"
+scripts/build_v3_12_1_docx.py,2,legacy_exempt,"L10: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_12_1_advisor_send_clean\CESE_OCN_V3_12_1_advisor_send_clean.md"" | L11: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_12_1_advisor_send_clean\CESE_OCN_V3_12_1_advisor_send_clean.docx"""
+scripts/build_v3_12_docx.py,2,legacy_exempt,"L10: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_12_with_three_credibility_checks\CESE_OCN_V3_12_with_three_credibility_chec | L11: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_12_with_three_credibility_checks\CESE_OCN_V3_12_with_three_credibility_ch"
+scripts/build_v3_13_docx.py,2,legacy_exempt,"L10: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_13_differentiated_against_rigourate_forcebench\CESE_OCN_V3_13_differentiate | L11: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_13_differentiated_against_rigourate_forcebench\CESE_OCN_V3_13_differentia"
+scripts/build_v3_13_rigourate_aware_docx.py,2,legacy_exempt,"L10: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_13_rigourate_differentiated_realism_aware\CESE_OCN_V3_13_rigourate_differen | L11: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_13_rigourate_differentiated_realism_aware\CESE_OCN_V3_13_rigourate_differ"
+scripts/build_v3_14_docx.py,2,legacy_exempt,"L10: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_14_mainline_locked_consistency_audit\CESE_OCN_V3_14_mainline_locked.md"" | L11: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_14_mainline_locked_consistency_audit\CESE_OCN_V3_14_mainline_locked.docx"""
+scripts/build_v3_15_attack_response_and_gate.py,1,legacy_exempt,"L10: OUT_DIR = r""D:\ocn\paper_versions_ordered\V3_15_hierarchical_taxonomy_revision"""
+scripts/build_v3_15_hierarchical_taxonomy.py,2,legacy_exempt,"L35: SRC_MD = r""D:\ocn\paper_versions_ordered\V3_14_mainline_locked_consistency_audit\CESE_OCN_V3_14_mainline_locked.md"" | L36: OUT_DIR = r""D:\ocn\paper_versions_ordered\V3_15_hierarchical_taxonomy_revision"""
+scripts/build_v3_16_no_gold_evidence_integration.py,3,legacy_exempt,"L24: SRC_DIR = Path(r""D:\ocn\paper_versions_ordered\V3_15_hierarchical_taxonomy_revision"") | L25: DST_DIR = Path(r""D:\ocn\project_synthesis\no_gold_evidence_integration_v3_16_plan"") | L26: OUT_DIR = Path(r""D:\ocn\paper_versions_ordered\V3_16_no_gold_evidence_integration"")"
+scripts/build_v3_1_docx.py,2,legacy_exempt,"L8: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_1_evidence_sufficiency_llm_blindspot\CESE_OCN_V3_1_evidence_sufficiency_llm | L9: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_1_evidence_sufficiency_llm_blindspot\CESE_OCN_V3_1_evidence_sufficiency_l"
+scripts/build_v3_2_docx.py,2,legacy_exempt,"L7: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_2_p0_repaired_evidence_sufficiency\CESE_OCN_V3_2_p0_repaired_evidence_suffi | L8: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_2_p0_repaired_evidence_sufficiency\CESE_OCN_V3_2_p0_repaired_evidence_suf"
+scripts/build_v3_2_table0_and_audit.py,3,legacy_exempt,"L8: CSV_PATH = r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"" | L9: TABLE0_OUT = r""D:\ocn\paper_versions_ordered\V3_2_p0_repaired_evidence_sufficiency\table_0_taxonomy_examples.csv"" | L10: AUDIT_OUT = r""D:\ocn\paper_versions_ordered\V3_2_p0_repaired_evidence_sufficiency\author_sanity_audit_40.csv"""
+scripts/build_v3_3_docx.py,2,legacy_exempt,"L7: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_3_reviewer_defense_polished\CESE_OCN_V3_3_reviewer_defense_polished.md"" | L8: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_3_reviewer_defense_polished\CESE_OCN_V3_3_reviewer_defense_polished.docx"""
+scripts/build_v3_3_main_paper.py,2,legacy_exempt,"L16: V32_PATH = r""D:\ocn\paper_versions_ordered\V3_2_p0_repaired_evidence_sufficiency\CESE_OCN_V3_2_p0_repaired_evidence_suff | L17: V33_PATH = r""D:\ocn\paper_versions_ordered\V3_3_reviewer_defense_polished\CESE_OCN_V3_3_reviewer_defense_polished.md"""
+scripts/build_v3_4_docx.py,2,legacy_exempt,"L7: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_4_taxonomy_hardened\CESE_OCN_V3_4_taxonomy_hardened.md"" | L8: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_4_taxonomy_hardened\CESE_OCN_V3_4_taxonomy_hardened.docx"""
+scripts/build_v3_4_main_paper.py,2,legacy_exempt,"L15: V33_PATH = r""D:\ocn\paper_versions_ordered\V3_3_reviewer_defense_polished\CESE_OCN_V3_3_reviewer_defense_polished.md"" | L16: V34_PATH = r""D:\ocn\paper_versions_ordered\V3_4_taxonomy_hardened\CESE_OCN_V3_4_taxonomy_hardened.md"""
+scripts/build_v3_4_taxonomy_hardening.py,4,legacy_exempt,"L20: AUDIT_PATH = r""D:\ocn\paper_versions_ordered\V3_2_p0_repaired_evidence_sufficiency\author_sanity_audit_40.csv"" | L21: SILVER_PATH = r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"" | L22: TABLE0_PATH = r""D:\ocn\paper_versions_ordered\V3_2_p0_repaired_evidence_sufficiency\table_0_taxonomy_examples.csv"""
+scripts/build_v3_5_docx.py,2,legacy_exempt,"L7: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_5_presentation_ready\CESE_OCN_V3_5_presentation_ready.md"" | L8: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_5_presentation_ready\CESE_OCN_V3_5_presentation_ready.docx"""
+scripts/build_v3_6_docx.py,2,legacy_exempt,"L7: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_6_case_figure_integrity_checked\CESE_OCN_V3_6_case_figure_integrity_checked | L8: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_6_case_figure_integrity_checked\CESE_OCN_V3_6_case_figure_integrity_check"
+scripts/build_v3_7_docx.py,2,legacy_exempt,"L7: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_7_advisor_handoff_clean\CESE_OCN_V3_7_advisor_handoff_clean.md"" | L8: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_7_advisor_handoff_clean\CESE_OCN_V3_7_advisor_handoff_clean.docx"""
+scripts/build_v3_9_docx.py,2,legacy_exempt,"L7: MD_PATH = r""D:\ocn\paper_versions_ordered\V3_9_pre_gold_complete\CESE_OCN_V3_9_pre_gold_complete.md"" | L8: DOCX_PATH = r""D:\ocn\paper_versions_ordered\V3_9_pre_gold_complete\CESE_OCN_V3_9_pre_gold_complete.docx"""
+scripts/build_v3_external_gold_llm_plan_v1.py,4,legacy_exempt,"L24: r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"" | L26: FROZEN_R4_DIR = Path(r""D:\ocn\experiments\mixed_framework_v2_frozen_r4_baseline"") | L27: TASK_P_DIR = Path(r""D:\ocn\experiments\v3_r4_strong_baselines_holdout_v1"")"
+scripts/case_level_comparison.py,1,legacy_exempt,"L19: BASE = r""D:\ocn\experiments\rigourate_reproduction_and_simclaim_baseline_v1"""
+scripts/check_v3_15_quality.py,2,legacy_exempt,"L7: OUT_DIR = r""D:\ocn\paper_versions_ordered\V3_15_hierarchical_taxonomy_revision"" | L10: V3_14_MD = r""D:\ocn\paper_versions_ordered\V3_14_mainline_locked_consistency_audit\CESE_OCN_V3_14_mainline_locked.md"""
+scripts/claim_realism_audit.py,1,legacy_exempt,"L21: BASE = r""D:\ocn\experiments\rigourate_reproduction_and_simclaim_baseline_v1"""
+scripts/clean_legacy_narrative_scan_v1.py,0,safe,
+scripts/clean_project_state_consolidation_v1.py,2,legacy_exempt,"L24: SRC = r""D:\ocn\project_synthesis\current_project_state_consolidation_v1"" | L25: OUT = r""D:\ocn\project_synthesis\current_project_state_consolidation_clean_v1"""
+scripts/compare_rigourate_style_vs_r4.py,9,legacy_exempt,"L24: BASE = r""D:\ocn\experiments\rigourate_reproduction_and_simclaim_baseline_v1"" | L26: COMPARISON_CSV = r""D:\ocn\experiments\gpt_structured_judge_probe_v1\gpt_vs_r4_deepseek_comparison.csv"" | L27: R4_METRICS_JSON = r""D:\ocn\experiments\mixed_framework_v2_frozen_r4_baseline\frozen_r4_metrics_summary.json"""
+scripts/eval_scalar_baselines.py,1,legacy_exempt,"L27: BASE = r""D:\ocn\experiments\rigourate_reproduction_and_simclaim_baseline_v1"""
+scripts/evaluate_r4_on_evidence_variants_v1.py,0,safe,
+scripts/formal_baseline_v1_150/run_formal_baselines.py,1,legacy_exempt,"L14: ROOT = Path(r""D:\ocn"")"
+scripts/formal_baseline_v1_150/run_leakage_diagnostics.py,1,legacy_exempt,"L12: ROOT = Path(r""D:\ocn"")"
+scripts/formal_baseline_v1_150/run_prefix_stripped_baselines.py,1,legacy_exempt,"L16: ROOT = Path(r""D:\ocn"")"
+scripts/generate_paper_assets_v3_17.py,0,safe,
+scripts/generate_project_status_report_v1.py,4,safe,"L322: # Check scripts for hardcoded D:\ocn paths | L327: if ""D:\\ocn"" in content or ""D:/ocn"" in content or ""D:\\\\ocn"" in content: | L329: count = content.count(""D:\\ocn"") + content.count(""D:/ocn"")"
+scripts/lib/config_utils.py,0,safe,
+scripts/lib/schema_utils.py,0,safe,
+scripts/llm_baseline_v1_150/prepare_llm_inputs.py,1,legacy_exempt,"L11: ROOT = Path(r""D:\ocn"")"
+scripts/llm_baseline_v1_150/run_llm_baseline.py,1,legacy_exempt,"L12: ROOT = Path(r""D:\ocn"")"
+scripts/llm_baseline_v1_150/score_llm_baseline.py,1,legacy_exempt,"L10: ROOT = Path(r""D:\ocn"")"
+scripts/run_bm25_sentence_retrieval_v1.py,0,safe,
+scripts/run_canonical_selector_robustness_v1.py,7,legacy_exempt,"L48: CANON_DIR = Path(r""D:\ocn\experiments\r4_evidence_canonicalization_v1"") | L49: RECOVERY_DIR = Path(r""D:\ocn\experiments\r4_minimal_recovery_v1"") | L54: RETRIEVAL_RESULTS_BM25 = Path(r""D:\ocn\experiments\simclaim_pdf_corpus_retrieval_v1\retrieval_results_bm25.csv"")"
+scripts/run_canonicalized_review_queue_v1.py,0,safe,
+scripts/run_canonicalized_risk_ranking_v1.py,0,safe,
+scripts/run_canonicalizer_ablation_v1.py,0,safe,
+scripts/run_cese_ocn_lite_v3.py,0,safe,
+scripts/run_complexity_vs_utility_ablation_v1.py,0,safe,
+scripts/run_confidentiality_redteam_scan_v1.py,0,safe,
+scripts/run_error_taxonomy_v1.py,0,safe,
+scripts/run_external_gold_scifact_vitaminc_v1.py,2,legacy_exempt,"L50: EXTERNAL_GOLD_ROOT = Path(r""D:\ocn\data\external_gold"") | L60: EXP_DIR = Path(r""D:\ocn\experiments\external_gold_scifact_vitaminc_v1"")"
+scripts/run_format_shift_ablation_v1.py,0,safe,
+scripts/run_gpt_structured_judge_probe_v1.py,6,legacy_exempt,"L56: SAMPLE_PLAN_CSV = Path(r""D:\ocn\experiments\v3_external_gold_llm_plan_v1\llm_baseline_sample_plan.csv"") | L57: SIMCLAIM_CSV = Path(r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1. | L58: DEEPSEEK_RESULTS_CSV = Path(r""D:\ocn\experiments\llm_judge_baseline_v1\llm_vs_r4_200.csv"")"
+scripts/run_leakage_audit_v1.py,0,safe,
+scripts/run_lightweight_smart_queue_v1.py,0,safe,
+scripts/run_llm_judge_baseline_v1.py,5,legacy_exempt,"L45: r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"" | L47: HCM_FEATURES_CSV = Path(r""D:\ocn\experiments\cese_ocn_hcm_v1\hcm_features.csv"") | L48: SAMPLE_PLAN_CSV = Path(r""D:\ocn\experiments\v3_external_gold_llm_plan_v1\llm_baseline_sample_plan.csv"")"
+scripts/run_metric_robustness_v1.py,0,safe,
+scripts/run_mixed_framework_new_algorithm_sweep_v1.py,4,legacy_exempt,"L40: r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"" | L42: HCM_FEATURES_CSV = Path(r""D:\ocn\experiments\cese_ocn_hcm_v1\hcm_features.csv"") | L43: FROZEN_R4_DIR = Path(r""D:\ocn\experiments\mixed_framework_v2_frozen_r4_baseline"")"
+scripts/run_mixed_framework_router_optimization_v2.py,3,legacy_exempt,"L45: r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"" | L47: HCM_FEATURES_CSV = Path(r""D:\ocn\experiments\cese_ocn_hcm_v1\hcm_features.csv"") | L49: EXP_DIR = Path(r""D:\ocn\experiments\mixed_framework_router_optimization_v2"")"
+scripts/run_no_gold_evidence_integration_v3_16.py,4,legacy_exempt,"L30: OUT_DIR = Path(r""D:\ocn\project_synthesis\no_gold_evidence_integration_v3_16_plan"") | L31: PART1_DIR = Path(r""D:\ocn\project_synthesis\no_gold_rigourate_public_benchmark_pipeline_v1\part1_scalar_baseline"") | L32: PART2_DIR = Path(r""D:\ocn\project_synthesis\no_gold_rigourate_public_benchmark_pipeline_v1\part2_comparison_and_synthesi"
+scripts/run_no_gold_rigourate_part1.py,8,legacy_exempt,"L29: OUT_DIR = r""D:\ocn\project_synthesis\no_gold_rigourate_public_benchmark_pipeline_v1\part1_scalar_baseline"" | L30: EXISTING_SCALAR_CSV = r""D:\ocn\experiments\rigourate_reproduction_and_simclaim_baseline_v1\rigourate_style_scalar_scores | L31: EXISTING_INVENTORY_CSV = r""D:\ocn\experiments\rigourate_reproduction_and_simclaim_baseline_v1\official_resource_inventor"
+scripts/run_no_gold_rigourate_part2.py,7,legacy_exempt,"L31: OUT_DIR = r""D:\ocn\project_synthesis\no_gold_rigourate_public_benchmark_pipeline_v1\part2_comparison_and_synthesis"" | L32: PART1_DIR = r""D:\ocn\project_synthesis\no_gold_rigourate_public_benchmark_pipeline_v1\part1_scalar_baseline"" | L39: SIMCLAIM_CSV = r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"""
+scripts/run_overnight_non_api_pipeline_v1.py,7,legacy_exempt,"L35: ROOT = r""D:\ocn\experiments\overnight_non_api_compute_pipeline_v1"" | L39: CAND_CSV = r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"" | L40: GROUPS_CSV = r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_groups_v1.csv"""
+scripts/run_pdf_extraction_stress_test_v1.py,0,safe,
+scripts/run_pdf_extraction_to_bm25_stress_v1.py,0,safe,
+scripts/run_project_state_consolidation_v1.py,49,legacy_exempt,"L28: ROOT = r""D:\ocn"" | L29: OUT_DIR = r""D:\ocn\project_synthesis\current_project_state_consolidation_v1"" | L33: (""overnight_non_api_compute_pipeline_v1"", r""D:\ocn\experiments\overnight_non_api_compute_pipeline_v1""),"
+scripts/run_r4_backup_asset_search_v1.py,4,legacy_exempt,"L5: Outputs (7 files) -> D:\ocn\experiments\r4_backup_asset_search_v1\ | L31: OUTPUT_DIR = Path(r""D:\ocn\experiments\r4_backup_asset_search_v1"") | L36: Path(r""D:\ocn_backup_20260704_1606""),"
+scripts/run_r4_evidence_canonicalization_v1.py,0,safe,
+scripts/run_r4_minimal_recovery_v1.py,6,legacy_exempt,"L42: BACKUP_HCM = Path(r""D:\ocn_backup_20260704_1606\experiments\cese_ocn_hcm_v1\hcm_features.csv"") | L44: r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"" | L46: FROZEN_MANIFEST = Path(r""D:\ocn\experiments\mixed_framework_v2_frozen_r4_baseline\frozen_r4_manifest.json"")"
+scripts/run_r4_on_retrieved_evidence_v1.py,0,safe,
+scripts/run_r4_retrieved_replay_v1.py,4,legacy_exempt,"L47: RECOVERY_DIR = Path(r""D:\ocn\experiments\r4_minimal_recovery_v1"") | L53: RETRIEVAL_INPUT_DIR = Path(r""D:\ocn\experiments\r4_on_retrieved_evidence_v1"") | L55: r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"""
+scripts/run_simclaim_pdf_retrieval_v1.py,0,safe,
+scripts/run_toy_end_to_end_demo_v1.py,0,safe,
+scripts/run_v3_15_claim_realism_audit.py,2,legacy_exempt,"L17: INPUT_CSV = r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"" | L18: OUT_DIR = Path(r""D:\ocn\experiments\v3_15_claim_realism_audit"")"
+scripts/run_v3_15_low_prevalence_screening_simulation.py,2,legacy_exempt,"L23: INPUT_CSV = r""D:\ocn\experiments\gpt_structured_judge_probe_v1\gpt_vs_r4_deepseek_comparison.csv"" | L24: OUT_DIR = r""D:\ocn\experiments\v3_15_low_prevalence_screening_simulation"""
+scripts/run_v3_15_scalar_vs_relation_deep_test.py,6,legacy_exempt,"L23: SCALAR_CSV = r""D:\ocn\experiments\rigourate_reproduction_and_simclaim_baseline_v1\rigourate_style_scalar_scores.csv"" | L24: BINARY_CSV = r""D:\ocn\experiments\rigourate_reproduction_and_simclaim_baseline_v1\scalar_baseline_binary_results.csv"" | L25: VS_R4_CSV = r""D:\ocn\experiments\rigourate_reproduction_and_simclaim_baseline_v1\rigourate_style_vs_r4_results.csv"""
+scripts/run_v3_16_integration_summary.py,7,legacy_exempt,"L19: OUT_DIR = r""D:\ocn\project_synthesis\v3_16_integration_summary_and_revision_plan"" | L23: ""T1_rigourate"": r""D:\ocn\experiments\rigourate_reproduction_and_simclaim_baseline_v1\rigourate_reproduction_readiness_ga | L24: ""T2_low_prev"": r""D:\ocn\experiments\v3_15_low_prevalence_screening_simulation\low_prevalence_screening_gate.json"","
+scripts/run_v3_17_confidential_pipeline.py,0,safe,
+scripts/run_v3_18_intelligent_upgrade_v1.py,7,legacy_exempt,"L57: RETRIEVAL_DIR = Path(r""D:\ocn\experiments\simclaim_pdf_corpus_retrieval_v1"") | L58: RECOVERY_DIR = Path(r""D:\ocn\experiments\r4_minimal_recovery_v1"") | L62: CANON_DIR = Path(r""D:\ocn\experiments\r4_evidence_canonicalization_v1"")"
+scripts/run_v3_r4_strong_baselines_holdout_v1.py,6,legacy_exempt,"L32: r""D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"" | L34: HCM_FEATURES_CSV = Path(r""D:\ocn\experiments\cese_ocn_hcm_v1\hcm_features.csv"") | L35: FROZEN_R4_DIR = Path(r""D:\ocn\experiments\mixed_framework_v2_frozen_r4_baseline"")"
+scripts/simclaim_detemplate_v1_150/build_small_eval_comparison.py,1,legacy_exempt,"L5: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_detemplate_v1_150/finalize_detemplate_dataset.py,1,legacy_exempt,"L8: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_detemplate_v1_150/run_detemplate_pipeline.py,1,legacy_exempt,"L19: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_detemplate_v1_150/run_llm_small_eval.py,1,legacy_exempt,"L15: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_detemplate_v1_150/run_small_data_baselines.py,1,legacy_exempt,"L9: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v2/run_hardpair_generation.py,1,legacy_exempt,"L18: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v2/run_small_data_baselines.py,1,legacy_exempt,"L8: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v2b/build_final_readout.py,1,legacy_exempt,"L5: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v2b/run_llm_small_eval.py,1,legacy_exempt,"L7: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v2b/run_small_data_baselines.py,1,legacy_exempt,"L7: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v2b/run_style_neutralization.py,1,legacy_exempt,"L15: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v3/analyze_targeted_optimization.py,1,legacy_exempt,"L9: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v3/build_final_readout.py,1,legacy_exempt,"L6: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v3/run_counterfactual_decoy_generation.py,1,legacy_exempt,"L16: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v3/run_llm_small_eval.py,1,legacy_exempt,"L7: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v3/run_small_data_baselines.py,1,legacy_exempt,"L7: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v3/run_v3_resplit_seed_sweep.py,1,legacy_exempt,"L9: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v3_targeted/run_balanced_resplit_diagnostic.py,1,legacy_exempt,"L9: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v3_targeted/run_balanced_resplit_seed_sweep.py,1,legacy_exempt,"L9: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v3_targeted/run_small_data_baselines.py,1,legacy_exempt,"L7: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v3_targeted/run_targeted_repair_generation.py,1,legacy_exempt,"L15: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v3b/build_v3b_gate_report.py,1,legacy_exempt,"L6: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v3b/run_small_data_baselines.py,1,legacy_exempt,"L7: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_hardpair_v3b/run_v3b_generation.py,1,legacy_exempt,"L14: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_release_candidate/build_release_seed_v1.py,1,legacy_exempt,"L11: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/analyze_v4_pilot_leakage.py,1,legacy_exempt,"L9: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/analyze_v4b_pilot_leakage.py,1,legacy_exempt,"L5: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/audit_v4_source_pool.py,1,legacy_exempt,"L7: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/build_v4_evidence_registry.py,1,legacy_exempt,"L9: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/build_v4_generation_queue.py,1,legacy_exempt,"L9: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/build_v4b_no_llm_style_control.py,1,legacy_exempt,"L8: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/run_v4_claim_generation.py,1,legacy_exempt,"L14: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/run_v4_pilot_cue_ablation.py,1,legacy_exempt,"L8: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/run_v4_pilot_small_baselines.py,1,legacy_exempt,"L7: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/run_v4b_claim_generation.py,1,legacy_exempt,"L5: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/run_v4b_no_llm_style_control_baselines.py,1,legacy_exempt,"L5: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/run_v4b_pilot_small_baselines.py,1,legacy_exempt,"L5: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/run_v4b_pilot_strict_pass_baselines.py,1,legacy_exempt,"L6: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/salvage_v4b_raw_outputs_with_local_repair.py,1,legacy_exempt,"L7: ROOT = Path(r""D:\ocn"")"
+scripts/simclaim_v4_scaffold/validate_generated_candidates.py,1,legacy_exempt,"L10: ROOT = Path(r""D:\ocn"")"
+scripts/summarize_human_audit_v1.py,0,safe,
+scripts/summarize_pdf_stress_report_v1.py,0,safe,
+scripts/validate_experiment_outputs_v1.py,0,safe,
+scripts/verify_v3_16_consistency.py,1,legacy_exempt,"L12: OUT_DIR = Path(r""D:\ocn\paper_versions_ordered\V3_16_no_gold_evidence_integration"")"
+scripts/verify_v3_16_integration_quality.py,3,legacy_exempt,"L7: OUT_DIR = Path(r""D:\ocn\project_synthesis\no_gold_evidence_integration_v3_16_plan"") | L8: PAPER_DIR = Path(r""D:\ocn\paper_versions_ordered"") | L9: DATA_DIR = Path(r""D:\ocn\data"")"

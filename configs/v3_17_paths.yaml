@@ -1,0 +1,51 @@
+# V3.17 Confidential Lightweight — Path Configuration
+#
+# Single source of truth for path layout. All paths are relative to the
+# repository root (the directory containing this file's parent). Scripts
+# that accept --config configs/v3_17_paths.yaml will resolve these paths
+# via config_utils.resolve_path().
+#
+# To override any path for a specific run, either:
+#   1. Edit this file (affects all runs), or
+#   2. Copy this file, edit the copy, and pass --config <copy_path>, or
+#   3. Pass --output_dir / --repo_root on the command line (per-script).
+#
+# IMPORTANT: This config does NOT enable private/real-data mode. Real-mode
+# runs still require --allow_private_data true on the script or the
+# OCN_ALLOW_PRIVATE_DATA=true environment variable.
+
+project_root: "."
+
+# --- Data paths ---
+candidate_csv: "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv"
+pdf_dir: "data/source_bank_v2/pdfs"
+pdf_corpus_dir: "data/simclaim_pdf_corpus_retrieval_v1"
+
+# --- Output directories ---
+experiments_dir: "experiments"
+paper_assets_dir: "paper_assets/v3_17_confidential"
+reports_dir: "reports"
+release_dir: "release_bundles/v3_17_confidential_public"
+
+# --- Experiment subdirectories (relative to experiments_dir) ---
+retrieval_dir: "experiments/simclaim_pdf_corpus_retrieval_v1"
+canonicalizer_dir: "experiments/r4_evidence_canonicalization_v1"
+review_queue_dir: "experiments/canonicalized_review_queue_v1"
+risk_ranking_dir: "experiments/canonicalized_risk_ranking_v1"
+smart_queue_dir: "experiments/lightweight_smart_queue_v1"
+leakage_audit_dir: "experiments/leakage_audit_v1"
+
+# --- R4 frozen artifacts ---
+r4_recovery_dir: "experiments/r4_minimal_recovery_v1"
+r4_replay_dir: "experiments/r4_retrieved_replay_v1"
+r4_on_retrieved_dir: "experiments/r4_on_retrieved_evidence_v1"
+canonical_selector_robustness_dir: "experiments/canonical_selector_robustness_v1"
+
+# --- Guards (always True for V3.17 confidential mainline) ---
+no_api: true
+no_network: true
+no_training: true
+no_original_data_modification: true
+
+# --- Toy/demo data ---
+toy_data_dir: "data/toy_synthetic"

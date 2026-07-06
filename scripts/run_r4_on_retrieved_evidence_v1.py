@@ -21,19 +21,25 @@ Hard prohibitions:
 
 import json
 import re
+import sys
 from pathlib import Path
 from collections import Counter, defaultdict
 import pandas as pd
 import numpy as np
 
-# ============ Configuration ============
-RETR_DIR = Path(r"D:\ocn\experiments\simclaim_pdf_corpus_retrieval_v1")
-CHUNKS_CSV = Path(r"D:\ocn\data\simclaim_pdf_corpus_retrieval_v1\local_pdf_corpus_chunks.csv")
-STRICT_SILVER_CSV = Path(r"D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv")
-R4_FROZEN_DIR = Path(r"D:\ocn\experiments\mixed_framework_v2_frozen_r4_baseline")
-SCRIPTS_DIR = Path(r"D:\ocn\scripts")
-EXPERIMENTS_DIR = Path(r"D:\ocn\experiments")
-OUT_DIR = Path(r"D:\ocn\experiments\r4_on_retrieved_evidence_v1")
+# Shared config utilities
+sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
+from config_utils import get_repo_root  # noqa: E402
+
+# ============ Configuration (defaults — repo-root relative) ============
+_REPO_ROOT = get_repo_root()
+RETR_DIR = _REPO_ROOT / "experiments" / "simclaim_pdf_corpus_retrieval_v1"
+CHUNKS_CSV = _REPO_ROOT / "data" / "simclaim_pdf_corpus_retrieval_v1" / "local_pdf_corpus_chunks.csv"
+STRICT_SILVER_CSV = _REPO_ROOT / "data" / "simclaim_all92_candidate_pool_v1" / "strict_silver_max_v1" / "strict_silver_max_candidates_v1.csv"
+R4_FROZEN_DIR = _REPO_ROOT / "experiments" / "mixed_framework_v2_frozen_r4_baseline"
+SCRIPTS_DIR = _REPO_ROOT / "scripts"
+EXPERIMENTS_DIR = _REPO_ROOT / "experiments"
+OUT_DIR = _REPO_ROOT / "experiments" / "r4_on_retrieved_evidence_v1"
 
 # ============ Step 1: R4 Pipeline Inventory ============
 def build_r4_pipeline_inventory() -> pd.DataFrame:
@@ -54,11 +60,11 @@ def build_r4_pipeline_inventory() -> pd.DataFrame:
         (SCRIPTS_DIR / "run_v3_r4_strong_baselines_holdout_v1.py", "script"),
         (SCRIPTS_DIR / "run_llm_judge_baseline_v1.py", "script"),
         (SCRIPTS_DIR / "run_cese_ocn_lite_v3.py", "script"),
-        (Path(r"D:\ocn\experiments\gpt_structured_judge_probe_v1\gpt_vs_r4_deepseek_comparison.csv"), "csv"),
-        (Path(r"D:\ocn\experiments\mixed_framework_router_optimization_v2\routing_variant_results_by_seed.csv"), "csv"),
-        (Path(r"D:\ocn\experiments\mixed_framework_router_optimization_v2\strong_action_error_cases_after_router.csv"), "csv"),
-        (Path(r"D:\ocn\experiments\cese_ocn_hcm_v1\hcm_features.csv"), "csv"),
-        (Path(r"D:\ocn\experiments\cese_ocn_lite_v3\v3_seed11_predictions.csv"), "csv"),
+        (EXPERIMENTS_DIR / "gpt_structured_judge_probe_v1" / "gpt_vs_r4_deepseek_comparison.csv", "csv"),
+        (EXPERIMENTS_DIR / "mixed_framework_router_optimization_v2" / "routing_variant_results_by_seed.csv", "csv"),
+        (EXPERIMENTS_DIR / "mixed_framework_router_optimization_v2" / "strong_action_error_cases_after_router.csv", "csv"),
+        (EXPERIMENTS_DIR / "cese_ocn_hcm_v1" / "hcm_features.csv", "csv"),
+        (EXPERIMENTS_DIR / "cese_ocn_lite_v3" / "v3_seed11_predictions.csv", "csv"),
     ]
 
     for fpath, ftype in files_to_check:

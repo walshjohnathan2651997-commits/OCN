@@ -31,7 +31,7 @@ import numpy as np
 
 # Shared config utilities
 sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
-from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+from config_utils import load_and_validate, resolve_path, write_run_config, print_guards, get_repo_root  # noqa: E402
 
 # Try pymupdf
 try:
@@ -40,16 +40,15 @@ try:
 except ImportError:
     PYMUPDF_OK = False
 
-# ============ Configuration (defaults — can be overridden by --config) ============
-STRICT_SILVER_CSV = Path(r"D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv")
+# ============ Configuration (defaults — repo-root relative; can be overridden by --config) ============
+_REPO_ROOT = get_repo_root()
+STRICT_SILVER_CSV = _REPO_ROOT / "data" / "simclaim_all92_candidate_pool_v1" / "strict_silver_max_v1" / "strict_silver_max_candidates_v1.csv"
 PDF_SEARCH_DIRS = [
-    Path(r"D:\ocn_backup_20260704_1606\data\source_bank_v2\pdfs"),
-    Path(r"D:\ocn\data\source_bank_v2\pdfs"),
-    Path(r"D:\ocn_backup_20260704_1606"),
-    Path(r"D:\ocn"),
+    _REPO_ROOT / "data" / "source_bank_v2" / "pdfs",
+    _REPO_ROOT,
 ]
-EXP_OUT = Path(r"D:\ocn\experiments\simclaim_pdf_corpus_retrieval_v1")
-DATA_OUT = Path(r"D:\ocn\data\simclaim_pdf_corpus_retrieval_v1")
+EXP_OUT = _REPO_ROOT / "experiments" / "simclaim_pdf_corpus_retrieval_v1"
+DATA_OUT = _REPO_ROOT / "data" / "simclaim_pdf_corpus_retrieval_v1"
 
 CHUNK_WORDS = 200
 CHUNK_OVERLAP = 50
@@ -1084,7 +1083,15 @@ def main() -> None:
 
     parser = argparse.ArgumentParser(description="SimClaim PDF-corpus retrieval prototype.")
     parser.add_argument("--config", default=None, help="Path to YAML config (optional, overrides defaults)")
+    parser.add_argument("--repo_root", default=None, help="Repository root directory (defaults to auto-detected location)")
+    parser.add_argument("--output_dir", default=None, help="Output directory (overrides default experiments/ path)")
     args = parser.parse_args()
+
+    # --- Apply repo_root override if provided ---
+    if args.repo_root:
+        repo = Path(args.repo_root).resolve()
+    else:
+        repo = _REPO_ROOT
 
     # --- Load config if provided ---
     if args.config:
@@ -1099,6 +1106,17 @@ def main() -> None:
             DATA_OUT = resolve_path(config, "pdf_corpus_dir")
     else:
         config = None
+
+    # --- Apply output_dir override ---
+    if args.output_dir:
+        EXP_OUT = Path(args.output_dir).resolve()
+
+    # --- Re-derive repo-relative defaults if repo_root was overridden ---
+    if args.repo_root and not args.config:
+        STRICT_SILVER_CSV = repo / "data" / "simclaim_all92_candidate_pool_v1" / "strict_silver_max_v1" / "strict_silver_max_candidates_v1.csv"
+        if not args.output_dir:
+            EXP_OUT = repo / "experiments" / "simclaim_pdf_corpus_retrieval_v1"
+        DATA_OUT = repo / "data" / "simclaim_pdf_corpus_retrieval_v1"
 
     EXP_OUT.mkdir(parents=True, exist_ok=True)
     DATA_OUT.mkdir(parents=True, exist_ok=True)

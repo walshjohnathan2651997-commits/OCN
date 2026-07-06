@@ -36,21 +36,23 @@ from sklearn.metrics import (
 
 # Shared config utilities
 sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
-from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+from config_utils import load_and_validate, resolve_path, write_run_config, print_guards, get_repo_root  # noqa: E402
 
-# ---------------- Paths (defaults — can be overridden by --config) ----------------
-ROBUST_DIR = Path(r"D:\ocn\experiments\canonical_selector_robustness_v1")
-CANON_DIR = Path(r"D:\ocn\experiments\r4_evidence_canonicalization_v1")
-RECOVERY_DIR = Path(r"D:\ocn\experiments\r4_minimal_recovery_v1")
+# ---------------- Paths (defaults — repo-root relative; can be overridden by --config) ----------------
+_REPO_ROOT = get_repo_root()
+ROBUST_DIR = _REPO_ROOT / "experiments" / "canonical_selector_robustness_v1"
+CANON_DIR = _REPO_ROOT / "experiments" / "r4_evidence_canonicalization_v1"
+RECOVERY_DIR = _REPO_ROOT / "experiments" / "r4_minimal_recovery_v1"
 RECOVERY_ARTIFACTS = RECOVERY_DIR / "artifacts"
 RECOVERY_PREDICTIONS = RECOVERY_DIR / "r4_recovered_predictions_444.csv"
 RECOVERY_SPLIT_MANIFEST = RECOVERY_DIR / "r4_recovery_split_manifest.csv"
-RETRIEVAL_RESULTS_BM25 = Path(r"D:\ocn\experiments\simclaim_pdf_corpus_retrieval_v1\retrieval_results_bm25.csv")
-PAPER_STRICT_CSV = Path(
-    r"D:\ocn\data\simclaim_all92_candidate_pool_v1\strict_silver_max_v1\strict_silver_max_candidates_v1.csv"
+RETRIEVAL_RESULTS_BM25 = _REPO_ROOT / "experiments" / "simclaim_pdf_corpus_retrieval_v1" / "retrieval_results_bm25.csv"
+PAPER_STRICT_CSV = (
+    _REPO_ROOT / "data" / "simclaim_all92_candidate_pool_v1" / "strict_silver_max_v1"
+    / "strict_silver_max_candidates_v1.csv"
 )
 
-OUTPUT_DIR = Path(r"D:\ocn\experiments\canonicalized_review_queue_v1")
+OUTPUT_DIR = _REPO_ROOT / "experiments" / "canonicalized_review_queue_v1"
 
 # ---------------- Constants ----------------
 SEEDS = [11, 22, 33, 44, 55, 66, 77, 88, 99, 111]
@@ -213,7 +215,15 @@ def main():
 
     parser = argparse.ArgumentParser(description="Canonicalized review queue and low-prevalence screening.")
     parser.add_argument("--config", default=None, help="Path to YAML config (optional, overrides defaults)")
+    parser.add_argument("--repo_root", default=None, help="Repository root directory (defaults to auto-detected location)")
+    parser.add_argument("--output_dir", default=None, help="Output directory (overrides default experiments/ path)")
     args = parser.parse_args()
+
+    # --- Apply repo_root override if provided ---
+    if args.repo_root:
+        repo = Path(args.repo_root).resolve()
+    else:
+        repo = _REPO_ROOT
 
     # --- Load config if provided ---
     if args.config:
@@ -229,6 +239,22 @@ def main():
             PAPER_STRICT_CSV = resolve_path(config, "candidate_csv")
     else:
         config = None
+
+    # --- Apply output_dir override ---
+    if args.output_dir:
+        OUTPUT_DIR = Path(args.output_dir).resolve()
+
+    # --- Re-derive repo-relative defaults if repo_root was overridden ---
+    if args.repo_root and not args.config:
+        ROBUST_DIR = repo / "experiments" / "canonical_selector_robustness_v1"
+        CANON_DIR = repo / "experiments" / "r4_evidence_canonicalization_v1"
+        RETRIEVAL_RESULTS_BM25 = repo / "experiments" / "simclaim_pdf_corpus_retrieval_v1" / "retrieval_results_bm25.csv"
+        PAPER_STRICT_CSV = (
+            repo / "data" / "simclaim_all92_candidate_pool_v1" / "strict_silver_max_v1"
+            / "strict_silver_max_candidates_v1.csv"
+        )
+        if not args.output_dir:
+            OUTPUT_DIR = repo / "experiments" / "canonicalized_review_queue_v1"
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
