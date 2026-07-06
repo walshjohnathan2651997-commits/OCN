@@ -1,0 +1,8 @@
+{
+  "status": "pass",
+  "forbidden_fields_used_for_variant_construction": [],
+  "oracle_clean_marked_as_diagnostic": true,
+  "production_selector": "canonicalized_best_sentence_top5",
+  "true_label_used_only_for_metrics": true,
+  "note": "Variant construction uses claim_text, retrieved_text, selected_evidence, and metadata only. true_label is loaded but only passed to R4 evaluation (blocked). oracle_clean variant uses evidence_text as diagnostic upper bound, clearly marked."
+}

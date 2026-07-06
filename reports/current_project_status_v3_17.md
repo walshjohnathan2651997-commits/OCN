@@ -1,6 +1,6 @@
 # Current Project Status — V3.17 Confidential Lightweight
 
-Generated: 2026-07-06T14:41:24.647937+00:00
+Generated: 2026-07-06T17:06:03.212931+00:00
 
 > This is a read-only inventory. No experiments were re-run, no data modified.
 
@@ -85,12 +85,12 @@ Generated: 2026-07-06T14:41:24.647937+00:00
 |---|---|---|---|---|
 | simclaim_pdf_corpus_retrieval_v1 | Yes | No | claim_queries.csv, downstream_screening_bm25.csv, downstream_screening_metrics_bm25.json (+8 more) | 2026-07-05 |
 | r4_evidence_canonicalization_v1 | Yes | No | canonicalization_error_analysis.csv, canonicalized_evidence_spans.csv, evidence_canonicalization_gate.json (+6 more) | 2026-07-05 |
-| canonicalized_review_queue_v1 | Yes | No | canonicalized_r4_review_scores.csv, canonicalized_review_queue_gate.json, canonicalized_review_queue_report.md (+6 more) | 2026-07-05 |
+| canonicalized_review_queue_v1 | Yes | No | canonicalized_r4_review_scores.csv, canonicalized_review_queue_gate.json, canonicalized_review_queue_report.md (+6 more) | 2026-07-06 |
 | canonicalized_risk_ranking_v1 | Yes | No | low_prevalence_ranking_results.csv, review_queue_top100_best.csv, risk_ranking_error_analysis.csv (+5 more) | 2026-07-05 |
-| bm25_sentence_retrieval_v1 | No | Yes | oracle_recall_summary.json, retrieval_config.json, retrieval_examples_redacted.csv (+4 more) | 2026-07-06 |
-| canonicalizer_ablation_v1 | No | Yes | canonicalizer_config.json, leakage_guard_report.json, run_config.json (+4 more) | 2026-07-06 |
-| format_shift_ablation_v1 | No | Yes | format_shift_config.json, format_shift_inputs.csv, format_shift_inputs_redacted.csv (+2 more) | 2026-07-06 |
-| leakage_audit_v1 | No | Yes | audit_summary.md, claim_only_baseline.json, group_split_integrity.json (+7 more) | 2026-07-06 |
+| bm25_sentence_retrieval_v1 | Yes | Yes | blocked_by_missing_pdf_corpus.json, leakage_guard_report.json, oracle_recall_summary.json (+11 more) | 2026-07-06 |
+| canonicalizer_ablation_v1 | Yes | Yes | canonicalizer_config.json, leakage_guard_report.json, run_config.json (+11 more) | 2026-07-06 |
+| format_shift_ablation_v1 | Yes | Yes | format_shift_config.json, format_shift_inputs.csv, format_shift_inputs_redacted.csv (+10 more) | 2026-07-06 |
+| leakage_audit_v1 | Yes | Yes | audit_summary.md, claim_only_baseline.json, group_split_integrity.json (+17 more) | 2026-07-06 |
 | error_taxonomy_v1 | Yes | No | error_cases_redacted.csv, error_taxonomy_summary.csv, error_taxonomy_summary.json (+2 more) | 2026-07-06 |
 | complexity_vs_utility_ablation_v1 | No | No | (none) | N/A |
 | lightweight_smart_queue_v1 | No | Yes | leakage_guard_report.json, run_config.json, schema_validation_report.json (+6 more) | 2026-07-06 |
@@ -199,11 +199,11 @@ Generated: 2026-07-06T14:41:24.647937+00:00
 | Claim | Evidence File | Status | Safe Wording | Risk |
 |---|---|---|---|---|
 | Raw PDF chunk / BM25 retrieval has results | `experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_results_bm25.csv` | exists | BM25 retrieval on local PDF corpus achieves measurable oracle recall | Oracle recall is on silver labels only |
-| Sentence-level BM25 retrieval has results | `experiments/bm25_sentence_retrieval_v1_toy/oracle_recall_summary.json` | exists | Sentence-level BM25 outperforms window-level on oracle recall (toy) | Only toy data; real data run not yet executed |
-| Canonicalization improves over raw chunks | `experiments/canonicalizer_ablation_v1_toy/selector_metrics_summary.csv` | exists | best_sentence_top5_overlap has higher oracle recall than raw_top1_chunk | Only toy data; real ablation not yet run |
+| Sentence-level BM25 retrieval has results | `experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json` | exists | Sentence/window BM25 retrieval blocked by missing PDF corpus; toy results show sentence-level outperforms window-level | Real PDFs no longer in workspace; sentence/window retrieval blocked. Toy data only. |
+| Canonicalization improves over raw chunks | `experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv` | exists | best_sentence_top5_overlap oracle_recall=0.387 vs raw_top1_chunk=0.043 on 444 real candidates (9x improvement) | Silver labels only; 2/8 selectors (sentence_bm25, window_bm25) blocked by missing PDF corpus |
 | Frozen R4 review queue has results | `experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv` | exists | Frozen R4 screening achieves strong_F1=0.4503 on 436 candidates | Silver labels only; not human-audited |
 | Risk ranking has results | `experiments/canonicalized_risk_ranking_v1/risk_ranking_features.csv` | exists | G_conservative_precision ranking provides top-100 review queue | Threshold not fitted on test; silver labels only |
-| Leakage audit has results | `experiments/leakage_audit_v1_toy/claim_only_baseline.json` | exists | All 6 leakage checks pass on toy data | Only toy data; real data audit not yet run |
+| Leakage audit has results | `experiments/leakage_audit_v1/claim_only_baseline.json` | exists | All 7 leakage checks pass on 444 real candidates; claim-only ratio=0.74 (below WARNING threshold) | Silver labels (candidate_label_guess) used as true_label for audit; queue guard from toy SmartQueue |
 | Bootstrap CI metrics have results | `experiments/metric_robustness_v1/classification_metrics_with_ci.csv` | exists | strong_F1=0.4503 with 95% CI [0.4086, 0.4833] (group-aware bootstrap) | CI reflects controlled pool variability, not natural prevalence |
 | Error taxonomy has results | `experiments/error_taxonomy_v1/error_taxonomy_summary.csv` | exists | 9 error types tagged; top FP cause is mild_vs_strong_boundary | Silver labels only; error type thresholds are heuristic |
 | PDF-start extraction has results | `experiments/pdf_extraction_stress_test_v1/` | missing | Not yet implemented | No PDF extraction stress test has been run |
@@ -213,14 +213,6 @@ Generated: 2026-07-06T14:41:24.647937+00:00
 
 - **P0**: Clean up old narratives in docs (V2/gold/SOTA references)
   - Reason: 62 old narrative references found
-- **P0**: Run BM25 sentence retrieval on real data (not just toy)
-  - Reason: Only toy data exists; real retrieval needed for paper
-- **P0**: Run canonicalizer ablation on real data
-  - Reason: Only toy data exists; real ablation needed for Table 4
-- **P0**: Run format shift ablation on real data
-  - Reason: Only toy data exists; real ablation needed for Table 3
-- **P0**: Run leakage audit on real data
-  - Reason: Only toy data exists; real audit needed for Table 6
 - **P1**: Run SmartQueue on real data
   - Reason: Only toy data exists; real queue needed for paper
 - **P1**: Remove hardcoded D:\ocn paths from scripts
@@ -231,6 +223,10 @@ Generated: 2026-07-06T14:41:24.647937+00:00
   - Reason: Script missing; needed to validate extraction robustness
 - **P1**: Define small human audit protocol (2-annotator, adjudication)
   - Reason: human_audited=False for all 444 candidates; no gold labels exist
+- **P1**: Restore PDF corpus for sentence/window BM25 retrieval
+  - Reason: Real PDFs no longer in workspace; sentence/window retrieval blocked
+- **P1**: Resolve sklearn version mismatch for R4 evaluation on evidence variants
+  - Reason: R4 artifacts pickled with sklearn 1.9.0; current env has 1.4.1; format_shift_metrics blocked
 - **P2**: Publish sanitized public release bundle
   - Reason: Bundle builder exists; ready to package for external review
 - **P2**: Generate final paper PDF from paper_assets

@@ -1,0 +1,7 @@
+{
+  "status": "blocked",
+  "forbidden_fields_used_for_retrieval": [],
+  "query_field": "claim_text",
+  "oracle_fields_used_only_after_ranking": true,
+  "note": "No retrieval performed; blocked by missing PDF corpus."
+}

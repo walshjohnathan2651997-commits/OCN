@@ -384,17 +384,31 @@ def build_evidence_chain() -> list:
         },
         {
             "claim": "Sentence-level BM25 retrieval has results",
-            "evidence_file": "experiments/bm25_sentence_retrieval_v1_toy/oracle_recall_summary.json",
-            "status": "exists" if (exp / "bm25_sentence_retrieval_v1_toy" / "oracle_recall_summary.json").exists() else "missing",
-            "safe_wording": "Sentence-level BM25 outperforms window-level on oracle recall (toy)",
-            "risk": "Only toy data; real data run not yet executed",
+            "evidence_file": ("experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json"
+                              if (exp / "bm25_sentence_retrieval_v1" / "oracle_recall_summary.json").exists()
+                              else "experiments/bm25_sentence_retrieval_v1_toy/oracle_recall_summary.json"),
+            "status": ("exists" if (exp / "bm25_sentence_retrieval_v1" / "oracle_recall_summary.json").exists()
+                       else ("exists" if (exp / "bm25_sentence_retrieval_v1_toy" / "oracle_recall_summary.json").exists() else "missing")),
+            "safe_wording": ("Sentence/window BM25 retrieval blocked by missing PDF corpus; toy results show sentence-level outperforms window-level"
+                             if (exp / "bm25_sentence_retrieval_v1" / "blocked_by_missing_pdf_corpus.json").exists()
+                             else "Sentence-level BM25 outperforms window-level on oracle recall (toy)"),
+            "risk": ("Real PDFs no longer in workspace; sentence/window retrieval blocked. Toy data only."
+                     if (exp / "bm25_sentence_retrieval_v1" / "blocked_by_missing_pdf_corpus.json").exists()
+                     else "Only toy data; real data run not yet executed"),
         },
         {
             "claim": "Canonicalization improves over raw chunks",
-            "evidence_file": "experiments/canonicalizer_ablation_v1_toy/selector_metrics_summary.csv",
-            "status": "exists" if (exp / "canonicalizer_ablation_v1_toy" / "selector_metrics_summary.csv").exists() else "missing",
-            "safe_wording": "best_sentence_top5_overlap has higher oracle recall than raw_top1_chunk",
-            "risk": "Only toy data; real ablation not yet run",
+            "evidence_file": ("experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv"
+                              if (exp / "canonicalizer_ablation_v1" / "selector_metrics_summary.csv").exists()
+                              else "experiments/canonicalizer_ablation_v1_toy/selector_metrics_summary.csv"),
+            "status": ("exists" if (exp / "canonicalizer_ablation_v1" / "selector_metrics_summary.csv").exists()
+                       else ("exists" if (exp / "canonicalizer_ablation_v1_toy" / "selector_metrics_summary.csv").exists() else "missing")),
+            "safe_wording": ("best_sentence_top5_overlap oracle_recall=0.387 vs raw_top1_chunk=0.043 on 444 real candidates (9x improvement)"
+                             if (exp / "canonicalizer_ablation_v1" / "selector_metrics_summary.csv").exists()
+                             else "best_sentence_top5_overlap has higher oracle recall than raw_top1_chunk (toy)"),
+            "risk": ("Silver labels only; 2/8 selectors (sentence_bm25, window_bm25) blocked by missing PDF corpus"
+                     if (exp / "canonicalizer_ablation_v1" / "selector_metrics_summary.csv").exists()
+                     else "Only toy data; real ablation not yet run"),
         },
         {
             "claim": "Frozen R4 review queue has results",
@@ -412,10 +426,17 @@ def build_evidence_chain() -> list:
         },
         {
             "claim": "Leakage audit has results",
-            "evidence_file": "experiments/leakage_audit_v1_toy/claim_only_baseline.json",
-            "status": "exists" if (exp / "leakage_audit_v1_toy" / "claim_only_baseline.json").exists() else "missing",
-            "safe_wording": "All 6 leakage checks pass on toy data",
-            "risk": "Only toy data; real data audit not yet run",
+            "evidence_file": ("experiments/leakage_audit_v1/claim_only_baseline.json"
+                              if (exp / "leakage_audit_v1" / "claim_only_baseline.json").exists()
+                              else "experiments/leakage_audit_v1_toy/claim_only_baseline.json"),
+            "status": ("exists" if (exp / "leakage_audit_v1" / "claim_only_baseline.json").exists()
+                       else ("exists" if (exp / "leakage_audit_v1_toy" / "claim_only_baseline.json").exists() else "missing")),
+            "safe_wording": ("All 7 leakage checks pass on 444 real candidates; claim-only ratio=0.74 (below WARNING threshold)"
+                             if (exp / "leakage_audit_v1" / "claim_only_baseline.json").exists()
+                             else "All 6 leakage checks pass on toy data"),
+            "risk": ("Silver labels (candidate_label_guess) used as true_label for audit; queue guard from toy SmartQueue"
+                     if (exp / "leakage_audit_v1" / "claim_only_baseline.json").exists()
+                     else "Only toy data; real data audit not yet run"),
         },
         {
             "claim": "Bootstrap CI metrics have results",
@@ -534,6 +555,23 @@ def build_priority_actions(scripts: dict, experiments: dict, leakage: dict, main
         "action": "Define small human audit protocol (2-annotator, adjudication)",
         "reason": "human_audited=False for all 444 candidates; no gold labels exist",
     })
+
+    # Check for blocked real-data experiments
+    bm25_blocked = (REPO_ROOT / "experiments" / "bm25_sentence_retrieval_v1" / "blocked_by_missing_pdf_corpus.json").exists()
+    if bm25_blocked:
+        actions.append({
+            "priority": "P1",
+            "action": "Restore PDF corpus for sentence/window BM25 retrieval",
+            "reason": "Real PDFs no longer in workspace; sentence/window retrieval blocked",
+        })
+
+    r4_blocked = (REPO_ROOT / "experiments" / "format_shift_ablation_v1" / "r4_eval_blocked.json").exists()
+    if r4_blocked:
+        actions.append({
+            "priority": "P1",
+            "action": "Resolve sklearn version mismatch for R4 evaluation on evidence variants",
+            "reason": "R4 artifacts pickled with sklearn 1.9.0; current env has 1.4.1; format_shift_metrics blocked",
+        })
 
     # P2: Optional
     actions.append({

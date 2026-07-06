@@ -1,0 +1,17 @@
+{
+  "status": "pass",
+  "oracle_used_for_selection": false,
+  "labels_used_for_selection": false,
+  "forbidden_fields": [
+    "candidate_label_guess",
+    "contradiction_binary_label_guess",
+    "escalation_binary_label_guess",
+    "final_label",
+    "gold_label",
+    "human_audited",
+    "issue_binary_label_guess",
+    "oracle_hit",
+    "true_label"
+  ],
+  "path": "experiments/canonicalizer_ablation_v1/leakage_guard_report.json"
+}

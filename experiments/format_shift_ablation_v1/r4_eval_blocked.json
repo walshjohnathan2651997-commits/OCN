@@ -1,0 +1,17 @@
+{
+  "status": "blocked",
+  "reason": "sklearn_version_mismatch",
+  "blocked_at": "2026-07-06T17:02:19.707463+00:00",
+  "details": "R4 frozen artifacts were pickled with scikit-learn 1.9.0 but current environment has 1.4.1.post1. LogisticRegression.multi_class attribute removed in 1.9.0 but accessed by 1.4.1 predict_proba.",
+  "variant_construction": "success",
+  "variant_inputs_csv": "format_shift_inputs.csv (3552 rows, 8 variants x 444 candidates)",
+  "nli_features_computed": true,
+  "nli_features_shape": [
+    3552,
+    7
+  ],
+  "r4_prediction": "blocked",
+  "r4_prediction_error": "AttributeError: LogisticRegression object has no attribute multi_class",
+  "impact": "format_shift_metrics.csv and format_shift_summary.json cannot be generated. Variant inputs are available for manual analysis.",
+  "fix_required": "Upgrade scikit-learn to >=1.9.0 (requires network access, violates no_network boundary)"
+}

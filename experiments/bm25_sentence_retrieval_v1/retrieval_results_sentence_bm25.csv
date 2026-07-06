@@ -1,0 +1,1 @@
+candidate_id,target_candidate_group_id,rank,unit_id,paper_id,pdf_filename,page_number,section_hint,retrieved_text,bm25_score,query_n_tokens,retrieved_n_words,oracle_overlap_score,oracle_hash_exact,oracle_page_match,oracle_hit

@@ -1,0 +1,19 @@
+{
+  "status": "partial",
+  "variant_construction": "success",
+  "r4_evaluation": "blocked",
+  "n_variants": 8,
+  "n_candidates": 444,
+  "n_variant_rows": 3552,
+  "variants": [
+    "oracle_clean",
+    "oracle_plus_metadata",
+    "oracle_lengthened",
+    "oracle_plus_metadata_lengthened",
+    "raw_bm25_top1_chunk",
+    "cleaned_bm25_top1_chunk",
+    "canonicalized_best_sentence_top5",
+    "canonicalized_three_sentence_window_top5"
+  ],
+  "note": "oracle_clean is diagnostic upper-bound. canonicalized_best_sentence_top5 is production-like selector. R4 metrics blocked by sklearn version mismatch."
+}

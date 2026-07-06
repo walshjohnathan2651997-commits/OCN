@@ -1,0 +1,7 @@
+{
+  "status": "pass",
+  "mean_page_purity": 0.25,
+  "n_multi_candidate_pages": 97,
+  "threshold_warning": 0.7,
+  "threshold_fail": 0.9
+}

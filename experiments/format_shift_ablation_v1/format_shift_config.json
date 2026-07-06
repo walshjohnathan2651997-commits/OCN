@@ -1,0 +1,6 @@
+{
+  "no_network": true,
+  "no_api": true,
+  "no_training": true,
+  "no_threshold_change": true
+}

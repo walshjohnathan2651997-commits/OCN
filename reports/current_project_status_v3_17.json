@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T14:41:24.649446+00:00",
+  "generated_at": "2026-07-06T17:06:03.213934+00:00",
   "mainline_docs": {
     "readme_mentions_v3_17": true,
     "current_mainline_points_to_v3_17": true,
@@ -507,7 +507,7 @@
         "run.log"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-05T10:20:15.555519+00:00"
+      "last_modified": "2026-07-06T16:45:24.300976+00:00"
     },
     "canonicalized_risk_ranking_v1": {
       "exists": true,
@@ -526,9 +526,16 @@
       "last_modified": "2026-07-05T11:27:36.029143+00:00"
     },
     "bm25_sentence_retrieval_v1": {
-      "exists": false,
+      "exists": true,
       "toy_exists": true,
       "key_files": [
+        "blocked_by_missing_pdf_corpus.json",
+        "leakage_guard_report.json",
+        "oracle_recall_summary.json",
+        "retrieval_config.json",
+        "retrieval_examples_redacted.csv",
+        "retrieval_results_sentence_bm25.csv",
+        "retrieval_results_window_bm25.csv",
         "oracle_recall_summary.json",
         "retrieval_config.json",
         "retrieval_examples_redacted.csv",
@@ -538,12 +545,19 @@
         "schema_validation_report.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T11:44:09.042032+00:00"
+      "last_modified": "2026-07-06T16:39:12.665707+00:00"
     },
     "canonicalizer_ablation_v1": {
-      "exists": false,
+      "exists": true,
       "toy_exists": true,
       "key_files": [
+        "canonicalizer_config.json",
+        "leakage_guard_report.json",
+        "run_config.json",
+        "schema_validation_report.json",
+        "selector_examples_redacted.csv",
+        "selector_metrics_summary.csv",
+        "selector_variant_evidence.csv",
         "canonicalizer_config.json",
         "leakage_guard_report.json",
         "run_config.json",
@@ -553,12 +567,20 @@
         "selector_variant_evidence.csv"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T05:32:44.923118+00:00"
+      "last_modified": "2026-07-06T16:41:26.543708+00:00"
     },
     "format_shift_ablation_v1": {
-      "exists": false,
+      "exists": true,
       "toy_exists": true,
       "key_files": [
+        "format_shift_config.json",
+        "format_shift_inputs.csv",
+        "format_shift_inputs_redacted.csv",
+        "format_shift_summary.json",
+        "leakage_guard_report.json",
+        "r4_eval_blocked.json",
+        "run_config.json",
+        "schema_validation_report.json",
         "format_shift_config.json",
         "format_shift_inputs.csv",
         "format_shift_inputs_redacted.csv",
@@ -566,12 +588,22 @@
         "schema_validation_report.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T02:28:18.372951+00:00"
+      "last_modified": "2026-07-06T17:02:37.987253+00:00"
     },
     "leakage_audit_v1": {
-      "exists": false,
+      "exists": true,
       "toy_exists": true,
       "key_files": [
+        "audit_summary.md",
+        "claim_only_baseline.json",
+        "group_split_integrity.json",
+        "lexical_overlap_by_label.csv",
+        "metadata_only_retrieval_baseline.json",
+        "no_label_in_queue_sorting_check.json",
+        "no_oracle_in_selector_check.json",
+        "run_config.json",
+        "schema_validation_report.json",
+        "title_only_retrieval_baseline.json",
         "audit_summary.md",
         "claim_only_baseline.json",
         "group_split_integrity.json",
@@ -584,7 +616,7 @@
         "title_only_retrieval_baseline.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T05:32:46.127969+00:00"
+      "last_modified": "2026-07-06T17:04:03.015063+00:00"
     },
     "error_taxonomy_v1": {
       "exists": true,
@@ -1014,17 +1046,17 @@
     },
     {
       "claim": "Sentence-level BM25 retrieval has results",
-      "evidence_file": "experiments/bm25_sentence_retrieval_v1_toy/oracle_recall_summary.json",
+      "evidence_file": "experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json",
       "status": "exists",
-      "safe_wording": "Sentence-level BM25 outperforms window-level on oracle recall (toy)",
-      "risk": "Only toy data; real data run not yet executed"
+      "safe_wording": "Sentence/window BM25 retrieval blocked by missing PDF corpus; toy results show sentence-level outperforms window-level",
+      "risk": "Real PDFs no longer in workspace; sentence/window retrieval blocked. Toy data only."
     },
     {
       "claim": "Canonicalization improves over raw chunks",
-      "evidence_file": "experiments/canonicalizer_ablation_v1_toy/selector_metrics_summary.csv",
+      "evidence_file": "experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv",
       "status": "exists",
-      "safe_wording": "best_sentence_top5_overlap has higher oracle recall than raw_top1_chunk",
-      "risk": "Only toy data; real ablation not yet run"
+      "safe_wording": "best_sentence_top5_overlap oracle_recall=0.387 vs raw_top1_chunk=0.043 on 444 real candidates (9x improvement)",
+      "risk": "Silver labels only; 2/8 selectors (sentence_bm25, window_bm25) blocked by missing PDF corpus"
     },
     {
       "claim": "Frozen R4 review queue has results",
@@ -1042,10 +1074,10 @@
     },
     {
       "claim": "Leakage audit has results",
-      "evidence_file": "experiments/leakage_audit_v1_toy/claim_only_baseline.json",
+      "evidence_file": "experiments/leakage_audit_v1/claim_only_baseline.json",
       "status": "exists",
-      "safe_wording": "All 6 leakage checks pass on toy data",
-      "risk": "Only toy data; real data audit not yet run"
+      "safe_wording": "All 7 leakage checks pass on 444 real candidates; claim-only ratio=0.74 (below WARNING threshold)",
+      "risk": "Silver labels (candidate_label_guess) used as true_label for audit; queue guard from toy SmartQueue"
     },
     {
       "claim": "Bootstrap CI metrics have results",
@@ -1083,26 +1115,6 @@
       "reason": "62 old narrative references found"
     },
     {
-      "priority": "P0",
-      "action": "Run BM25 sentence retrieval on real data (not just toy)",
-      "reason": "Only toy data exists; real retrieval needed for paper"
-    },
-    {
-      "priority": "P0",
-      "action": "Run canonicalizer ablation on real data",
-      "reason": "Only toy data exists; real ablation needed for Table 4"
-    },
-    {
-      "priority": "P0",
-      "action": "Run format shift ablation on real data",
-      "reason": "Only toy data exists; real ablation needed for Table 3"
-    },
-    {
-      "priority": "P0",
-      "action": "Run leakage audit on real data",
-      "reason": "Only toy data exists; real audit needed for Table 6"
-    },
-    {
       "priority": "P1",
       "action": "Run SmartQueue on real data",
       "reason": "Only toy data exists; real queue needed for paper"
@@ -1126,6 +1138,16 @@
       "priority": "P1",
       "action": "Define small human audit protocol (2-annotator, adjudication)",
       "reason": "human_audited=False for all 444 candidates; no gold labels exist"
+    },
+    {
+      "priority": "P1",
+      "action": "Restore PDF corpus for sentence/window BM25 retrieval",
+      "reason": "Real PDFs no longer in workspace; sentence/window retrieval blocked"
+    },
+    {
+      "priority": "P1",
+      "action": "Resolve sklearn version mismatch for R4 evaluation on evidence variants",
+      "reason": "R4 artifacts pickled with sklearn 1.9.0; current env has 1.4.1; format_shift_metrics blocked"
     },
     {
       "priority": "P2",

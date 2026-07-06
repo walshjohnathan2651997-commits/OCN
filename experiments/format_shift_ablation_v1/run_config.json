@@ -1,0 +1,36 @@
+{
+  "script_name": "run_format_shift_ablation_v1.py",
+  "timestamp": "2026-07-06T16:42:57.210789+00:00",
+  "config_source": "D:\\ocn\\configs\\v3_17_confidential_default.yaml",
+  "guards": {
+    "no_api": true,
+    "no_network": true,
+    "no_training": true
+  },
+  "no_original_data_modification": true,
+  "forbidden_scoring_fields": [
+    "true_label",
+    "is_strong_action",
+    "oracle_hit",
+    "candidate_label_guess",
+    "final_label",
+    "gold_label",
+    "human_audited",
+    "evidence_text",
+    "evidence_text_sha256"
+  ],
+  "paths": {
+    "project_root": ".",
+    "private_pdf_dir": "pdfs",
+    "candidate_csv": "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv",
+    "pdf_corpus_dir": "data/pdf_corpus_v1",
+    "retrieval_dir": "experiments/simclaim_pdf_corpus_retrieval_v1",
+    "canonicalizer_dir": "experiments/canonicalizer_ablation_v1",
+    "review_queue_dir": "experiments/canonicalized_review_queue_v1",
+    "risk_ranking_dir": "experiments/canonicalized_risk_ranking_v1",
+    "smart_queue_dir": "experiments/lightweight_smart_queue_v1",
+    "leakage_audit_dir": "experiments/leakage_audit_v1",
+    "toy_data_dir": "data/toy_synthetic"
+  },
+  "toy_mode": false
+}
