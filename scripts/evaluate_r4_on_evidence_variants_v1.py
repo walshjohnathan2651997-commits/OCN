@@ -34,6 +34,7 @@ import numpy as np
 # Shared config utilities
 sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
 from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+from schema_utils import validate_csv_file, write_schema_validation_report  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Config
@@ -790,6 +791,15 @@ def main():
     guard_json = output_dir / "r4_leakage_guard_report.json"
     write_leakage_guard(guard_json)
     print(f"Wrote {guard_json}")
+
+    # --- Schema validation ---
+    schema_reports = [
+        validate_csv_file(metrics_csv, "format_shift_metrics"),
+    ]
+    write_schema_validation_report(
+        output_dir, schema_reports, script_name="evaluate_r4_on_evidence_variants_v1.py"
+    )
+    print(f"Wrote schema_validation_report.json")
 
     write_run_config(output_dir, config, "evaluate_r4_on_evidence_variants_v1.py",
                      extra={"toy_mode": args.toy_mode, "r4_mode": args.r4_mode})

@@ -10,6 +10,9 @@ name: smoke
 #   - SmartQueue output schema (all 7 files, valid buckets, group diversity)
 #   - toy end-to-end demo completes successfully
 #   - sentence corpus JSONL schema (fields, unit_id format, no leakage)
+#   - schema registry health (9 schemas load, required metadata present)
+#   - redacted outputs contain no raw text or forbidden scoring fields
+#   - config guards (no_api/no_network/no_training enforced)
 #
 # Acceptance requirements (from task spec):
 #   - forbidden fields not in scoring source columns
@@ -52,7 +55,10 @@ jobs:
             tests/test_no_leakage_fields.py \
             tests/test_smart_queue_outputs.py \
             tests/test_sentence_corpus_schema.py \
-            tests/test_toy_demo_runs.py
+            tests/test_toy_demo_runs.py \
+            tests/test_config_guards.py \
+            tests/test_schema_registry.py \
+            tests/test_redacted_outputs_no_text.py
 
       - name: Verify V3.17 confidential lightweight mentioned in docs
         run: |

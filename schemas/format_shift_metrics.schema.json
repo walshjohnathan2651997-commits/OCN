@@ -1,0 +1,29 @@
+{
+  "name": "format_shift_metrics",
+  "version": "1.0.0",
+  "description": "R4 metrics per format-shift variant (8 variants: oracle_clean, oracle_plus_metadata, oracle_lengthened, oracle_plus_metadata_lengthened, raw_bm25_top1_chunk, cleaned_bm25_top1_chunk, canonicalized_best_sentence_top5, canonicalized_three_sentence_window_top5). Produced by scripts/evaluate_r4_on_evidence_variants_v1.py. Inputs are produced by scripts/run_format_shift_ablation_v1.py (format_shift_inputs.csv / format_shift_inputs_redacted.csv).",
+  "file_format": "csv",
+  "primary_file": "format_shift_metrics.csv",
+  "sibling_files": [
+    "format_shift_predictions.csv",
+    "format_shift_inputs.csv"
+  ],
+  "redacted_file": "format_shift_inputs_redacted.csv",
+  "required_columns": [
+    "variant",
+    "strong_F1",
+    "strong_precision",
+    "strong_recall",
+    "macro_F1",
+    "n_eval"
+  ],
+  "optional_columns": [
+    "delta_vs_oracle_clean",
+    "delta_vs_raw_bm25_top1"
+  ],
+  "forbidden_columns_for_public_release": [],
+  "forbidden_columns_for_scoring": [],
+  "hash_columns": [],
+  "text_columns": [],
+  "redaction_required": false
+}

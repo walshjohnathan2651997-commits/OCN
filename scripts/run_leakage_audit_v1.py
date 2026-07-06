@@ -24,6 +24,7 @@ from pathlib import Path
 # Shared config utilities
 sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
 from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+from schema_utils import validate_json_file, write_schema_validation_report  # noqa: E402
 
 FORBIDDEN_SELECTOR_FIELDS = {
     "true_label", "candidate_label_guess", "gold_label", "human_audited",
@@ -535,6 +536,21 @@ def main():
                        ("group_split", group_split), ("selector_oracle", selector_oracle),
                        ("queue_forbidden", queue_forbidden)]:
         print(f"  {name}: {res.get('status', 'skip')}")
+
+    # --- Schema validation (leakage_audit schema covers all per-check JSON files) ---
+    schema_reports = [
+        validate_json_file(output_dir / "claim_only_baseline.json", "leakage_audit"),
+        validate_json_file(output_dir / "title_only_retrieval_baseline.json", "leakage_audit"),
+        validate_json_file(output_dir / "metadata_only_retrieval_baseline.json", "leakage_audit"),
+        validate_json_file(output_dir / "group_split_integrity.json", "leakage_audit"),
+        validate_json_file(output_dir / "no_oracle_in_selector_check.json", "leakage_audit"),
+        validate_json_file(output_dir / "no_label_in_queue_sorting_check.json", "leakage_audit"),
+    ]
+    write_schema_validation_report(
+        output_dir, schema_reports, script_name="run_leakage_audit_v1.py"
+    )
+    print("Wrote schema_validation_report.json")
+
     write_run_config(output_dir, config, "run_leakage_audit_v1.py",
                      extra={"toy_mode": args.toy_mode})
     print("Wrote run_config.json")

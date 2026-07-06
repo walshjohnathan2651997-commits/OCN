@@ -28,6 +28,11 @@ from pathlib import Path
 # Shared config utilities
 sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
 from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+from schema_utils import (  # noqa: E402
+    validate_csv_file,
+    validate_redacted_csv_file,
+    write_schema_validation_report,
+)
 
 # ---------------------------------------------------------------------------
 # Config (single source of truth)
@@ -792,6 +797,16 @@ def main():
     with open(config_json, "w", encoding="utf-8") as f:
         json.dump(CONFIG, f, indent=2, ensure_ascii=False)
     print(f"Wrote {config_json}")
+
+    # --- Schema validation ---
+    schema_reports = [
+        validate_csv_file(output_dir / "selector_variant_evidence.csv", "selector_variant_evidence"),
+        validate_redacted_csv_file(output_dir / "selector_examples_redacted.csv", "selector_variant_evidence"),
+    ]
+    write_schema_validation_report(
+        output_dir, schema_reports, script_name="run_canonicalizer_ablation_v1.py"
+    )
+    print(f"Wrote schema_validation_report.json")
 
     write_run_config(output_dir, config, "run_canonicalizer_ablation_v1.py",
                      extra={"toy_mode": args.toy_mode})

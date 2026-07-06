@@ -22,6 +22,7 @@ PYTHON = sys.executable
 # Shared config utilities
 sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
 from config_utils import load_and_validate, write_run_config, print_guards  # noqa: E402
+from schema_utils import validate_csv_file, write_schema_validation_report  # noqa: E402
 
 STEPS = [
     {
@@ -159,6 +160,17 @@ def main():
     with open(summary_path, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
     log(f"\nWrote {summary_path}")
+
+    # --- Schema validation (sub-scripts already wrote per-dir reports;
+    # here we validate the canonical SmartQueue scores output as a demo-level check) ---
+    smart_queue_scores_path = REPO_ROOT / "experiments" / "lightweight_smart_queue_v1_toy" / "smart_queue_scores.csv"
+    schema_reports = [
+        validate_csv_file(smart_queue_scores_path, "smart_queue_scores"),
+    ]
+    write_schema_validation_report(
+        output_dir, schema_reports, script_name="run_toy_end_to_end_demo_v1.py"
+    )
+    log("Wrote schema_validation_report.json")
 
     write_run_config(output_dir, config, "run_toy_end_to_end_demo_v1.py",
                      extra={"toy_mode": True, "all_steps_success": all_success})

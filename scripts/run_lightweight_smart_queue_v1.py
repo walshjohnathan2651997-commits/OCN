@@ -26,6 +26,7 @@ from pathlib import Path
 # Shared config utilities
 sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
 from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+from schema_utils import validate_csv_file, write_schema_validation_report  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Config (single source of truth)
@@ -541,6 +542,15 @@ def main():
 
     write_leakage_guard(output_dir / "leakage_guard_report.json")
     print(f"Wrote leakage_guard_report.json")
+
+    # --- Schema validation ---
+    schema_reports = [
+        validate_csv_file(output_dir / "smart_queue_scores.csv", "smart_queue_scores"),
+    ]
+    write_schema_validation_report(
+        output_dir, schema_reports, script_name="run_lightweight_smart_queue_v1.py"
+    )
+    print(f"Wrote schema_validation_report.json")
 
     # --- Write run_config.json ---
     write_run_config(output_dir, config, "run_lightweight_smart_queue_v1.py",

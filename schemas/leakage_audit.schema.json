@@ -1,0 +1,54 @@
+{
+  "name": "leakage_audit",
+  "version": "1.0.0",
+  "description": "Leakage audit check report (one JSON file per check, produced by scripts/run_leakage_audit_v1.py). The audit emits 7 per-check JSON files plus a markdown summary and a lexical_overlap_by_label.csv. Each per-check JSON shares a common status field; remaining keys are check-specific. The CSV (lexical_overlap_by_label.csv) has columns: label, token, lab_count, other_count, ratio_or_rate.",
+  "file_format": "json",
+  "primary_file": "claim_only_baseline.json",
+  "sibling_files": [
+    "title_only_retrieval_baseline.json",
+    "metadata_only_retrieval_baseline.json",
+    "group_split_integrity.json",
+    "no_oracle_in_selector_check.json",
+    "no_label_in_queue_sorting_check.json",
+    "lexical_overlap_by_label.csv",
+    "audit_summary.md"
+  ],
+  "required_columns": [
+    "status"
+  ],
+  "optional_columns": [
+    "reason",
+    "same_label_overlap",
+    "cross_label_overlap",
+    "ratio",
+    "threshold_warning",
+    "threshold_fail",
+    "mean_overlap",
+    "max_overlap",
+    "mean_page_purity",
+    "n_multi_candidate_pages",
+    "n_groups",
+    "n_cross_split_groups",
+    "cross_split_groups",
+    "oracle_used_for_selection",
+    "labels_used_for_selection",
+    "forbidden_fields",
+    "path",
+    "true_label_used_for_sorting",
+    "oracle_hit_used_for_sorting",
+    "evidence_text_used_for_sorting",
+    "allowed_sort_fields",
+    "forbidden_sort_fields"
+  ],
+  "forbidden_columns_for_public_release": [],
+  "forbidden_columns_for_scoring": [],
+  "hash_columns": [],
+  "text_columns": [],
+  "redaction_required": false,
+  "status_values": [
+    "ok",
+    "warning",
+    "fail",
+    "skipped"
+  ]
+}

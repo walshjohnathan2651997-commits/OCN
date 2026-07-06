@@ -30,6 +30,11 @@ from pathlib import Path
 # Shared config utilities
 sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
 from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+from schema_utils import (  # noqa: E402
+    validate_csv_file,
+    validate_redacted_csv_file,
+    write_schema_validation_report,
+)
 
 # ---------------------------------------------------------------------------
 # Config (single source of truth, no scattered magic numbers)
@@ -537,6 +542,17 @@ def main():
     redacted_path = output_dir / "retrieval_examples_redacted.csv"
     save_redacted_csv(redacted_path, sentence_results)
     print(f"Wrote {redacted_path}")
+
+    # --- Schema validation ---
+    schema_reports = [
+        validate_csv_file(output_dir / "retrieval_results_sentence_bm25.csv", "bm25_retrieval_results"),
+        validate_csv_file(output_dir / "retrieval_results_window_bm25.csv", "bm25_retrieval_results"),
+        validate_redacted_csv_file(redacted_path, "bm25_retrieval_results"),
+    ]
+    write_schema_validation_report(
+        output_dir, schema_reports, script_name="run_bm25_sentence_retrieval_v1.py"
+    )
+    print(f"Wrote schema_validation_report.json")
 
     write_run_config(output_dir, config, "run_bm25_sentence_retrieval_v1.py",
                      extra={"toy_mode": args.toy_mode})
