@@ -1,8 +1,8 @@
 {
   "script_name": "run_leakage_audit_v1.py",
-  "timestamp": "2026-07-07T01:04:03",
-  "n_reports": 6,
-  "n_ok": 6,
+  "timestamp": "2026-07-07T01:36:51",
+  "n_reports": 9,
+  "n_ok": 9,
   "n_fail": 0,
   "all_ok": true,
   "reports": [
@@ -12,17 +12,73 @@
       "ok": true,
       "keys": [
         "status",
-        "same_label_overlap",
-        "cross_label_overlap",
-        "ratio",
-        "threshold_warning",
-        "threshold_fail"
+        "method",
+        "n_samples",
+        "n_groups",
+        "n_folds",
+        "strong_f1_mean",
+        "strong_f1_std",
+        "strong_f1_ci95_low",
+        "strong_f1_ci95_high",
+        "macro_f1_mean",
+        "macro_f1_std",
+        "p_at_20_mean",
+        "p_at_20_std",
+        "r4_strong_f1_reference",
+        "ratio_claim_only_to_r4",
+        "threshold_warning_ratio",
+        "threshold_fail_ratio",
+        "fold_strong_f1",
+        "fold_macro_f1"
       ],
       "required_missing": [],
       "forbidden_scoring_present": [],
       "unexpected_keys": [],
       "strict": false,
-      "file_path": "experiments\\leakage_audit_v1\\claim_only_baseline.json",
+      "file_path": "D:\\ocn\\experiments\\leakage_audit_v1\\claim_only_baseline.json",
+      "file_exists": true
+    },
+    {
+      "schema": "leakage_audit",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "keys": [
+        "status",
+        "method",
+        "n_samples",
+        "mean_correct_evidence_overlap",
+        "mean_empty_evidence_overlap",
+        "note"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_keys": [],
+      "strict": false,
+      "file_path": "D:\\ocn\\experiments\\leakage_audit_v1\\empty_evidence_baseline.json",
+      "file_exists": true
+    },
+    {
+      "schema": "leakage_audit",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "keys": [
+        "status",
+        "method",
+        "n_samples",
+        "mean_correct_evidence_overlap",
+        "mean_cross_group_shuffled_overlap",
+        "mean_same_domain_shuffled_overlap",
+        "mean_title_only_overlap",
+        "ratio_correct_to_shuffled",
+        "threshold_warning_ratio",
+        "expected_ordering",
+        "ordering_holds"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_keys": [],
+      "strict": false,
+      "file_path": "D:\\ocn\\experiments\\leakage_audit_v1\\shuffled_evidence_baseline.json",
       "file_exists": true
     },
     {
@@ -40,7 +96,7 @@
       "forbidden_scoring_present": [],
       "unexpected_keys": [],
       "strict": false,
-      "file_path": "experiments\\leakage_audit_v1\\title_only_retrieval_baseline.json",
+      "file_path": "D:\\ocn\\experiments\\leakage_audit_v1\\title_only_retrieval_baseline.json",
       "file_exists": true
     },
     {
@@ -58,7 +114,7 @@
       "forbidden_scoring_present": [],
       "unexpected_keys": [],
       "strict": false,
-      "file_path": "experiments\\leakage_audit_v1\\metadata_only_retrieval_baseline.json",
+      "file_path": "D:\\ocn\\experiments\\leakage_audit_v1\\metadata_only_retrieval_baseline.json",
       "file_exists": true
     },
     {
@@ -75,7 +131,32 @@
       "forbidden_scoring_present": [],
       "unexpected_keys": [],
       "strict": false,
-      "file_path": "experiments\\leakage_audit_v1\\group_split_integrity.json",
+      "file_path": "D:\\ocn\\experiments\\leakage_audit_v1\\group_split_integrity.json",
+      "file_exists": true
+    },
+    {
+      "schema": "leakage_audit",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "keys": [
+        "status",
+        "n_policies",
+        "n_domains",
+        "policy_counts",
+        "domain_counts",
+        "silver_label_source_counts",
+        "policy_label_crosstab",
+        "domain_label_crosstab",
+        "policy_label_concentration",
+        "max_policy_label_concentration",
+        "expected_concentration",
+        "threshold_warning"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_keys": [],
+      "strict": false,
+      "file_path": "D:\\ocn\\experiments\\leakage_audit_v1\\generation_policy_distribution.json",
       "file_exists": true
     },
     {
@@ -93,7 +174,7 @@
       "forbidden_scoring_present": [],
       "unexpected_keys": [],
       "strict": false,
-      "file_path": "experiments\\leakage_audit_v1\\no_oracle_in_selector_check.json",
+      "file_path": "D:\\ocn\\experiments\\leakage_audit_v1\\no_oracle_in_selector_check.json",
       "file_exists": true
     },
     {
@@ -102,18 +183,14 @@
       "ok": true,
       "keys": [
         "status",
-        "true_label_used_for_sorting",
-        "oracle_hit_used_for_sorting",
-        "evidence_text_used_for_sorting",
-        "allowed_sort_fields",
-        "forbidden_sort_fields",
+        "reason",
         "path"
       ],
       "required_missing": [],
       "forbidden_scoring_present": [],
       "unexpected_keys": [],
       "strict": false,
-      "file_path": "experiments\\leakage_audit_v1\\no_label_in_queue_sorting_check.json",
+      "file_path": "D:\\ocn\\experiments\\leakage_audit_v1\\no_label_in_queue_sorting_check.json",
       "file_exists": true
     }
   ]

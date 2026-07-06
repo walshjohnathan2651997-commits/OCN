@@ -1,0 +1,216 @@
+{
+  "status": "pass",
+  "n_policies": 9,
+  "n_domains": 6,
+  "policy_counts": {
+    "same_frame_four_variant_generation": 24,
+    "simclaim_ai_preannotated_candidates_no_gold_no_final_label": 196,
+    "simclaim_four_variant_v1": 40,
+    "four_label_simclaim_candidate_generation_v1_strict_no_gold": 12,
+    "four_label_balanced_candidate_generation": 32,
+    "four_label_simclaim_candidate_generation_no_gold_no_final_no_human_audit": 36,
+    "four_label_balanced_ai_preannotation_clean_evidence_only": 12,
+    "four_label_ai_preannotation_clean_evidence_only": 36,
+    "simclaim_candidate_v1": 56
+  },
+  "domain_counts": {
+    "autonomous_driving": 140,
+    "cyber_defense": 64,
+    "digital_twin": 68,
+    "robotics": 36,
+    "marl": 52,
+    "policy_simulation": 84
+  },
+  "silver_label_source_counts": {
+    "candidate_label_guess": 444
+  },
+  "policy_label_crosstab": {
+    "same_frame_four_variant_generation": {
+      "supported": 6,
+      "mild_scope_overclaim": 6,
+      "strong_action_overclaim": 6,
+      "contradiction_candidate": 6
+    },
+    "simclaim_ai_preannotated_candidates_no_gold_no_final_label": {
+      "supported": 49,
+      "mild_scope_overclaim": 49,
+      "strong_action_overclaim": 49,
+      "contradiction_candidate": 49
+    },
+    "simclaim_four_variant_v1": {
+      "supported": 10,
+      "mild_scope_overclaim": 10,
+      "strong_action_overclaim": 10,
+      "contradiction_candidate": 10
+    },
+    "four_label_simclaim_candidate_generation_v1_strict_no_gold": {
+      "supported": 3,
+      "mild_scope_overclaim": 3,
+      "strong_action_overclaim": 3,
+      "contradiction_candidate": 3
+    },
+    "four_label_balanced_candidate_generation": {
+      "supported": 8,
+      "mild_scope_overclaim": 8,
+      "strong_action_overclaim": 8,
+      "contradiction_candidate": 8
+    },
+    "four_label_simclaim_candidate_generation_no_gold_no_final_no_human_audit": {
+      "supported": 9,
+      "mild_scope_overclaim": 9,
+      "strong_action_overclaim": 9,
+      "contradiction_candidate": 9
+    },
+    "four_label_balanced_ai_preannotation_clean_evidence_only": {
+      "supported": 3,
+      "mild_scope_overclaim": 3,
+      "strong_action_overclaim": 3,
+      "contradiction_candidate": 3
+    },
+    "four_label_ai_preannotation_clean_evidence_only": {
+      "supported": 9,
+      "mild_scope_overclaim": 9,
+      "strong_action_overclaim": 9,
+      "contradiction_candidate": 9
+    },
+    "simclaim_candidate_v1": {
+      "supported": 14,
+      "mild_scope_overclaim": 14,
+      "strong_action_overclaim": 14,
+      "contradiction_candidate": 14
+    }
+  },
+  "domain_label_crosstab": {
+    "autonomous_driving": {
+      "supported": 35,
+      "mild_scope_overclaim": 35,
+      "strong_action_overclaim": 35,
+      "contradiction_candidate": 35
+    },
+    "cyber_defense": {
+      "supported": 16,
+      "mild_scope_overclaim": 16,
+      "strong_action_overclaim": 16,
+      "contradiction_candidate": 16
+    },
+    "digital_twin": {
+      "supported": 17,
+      "mild_scope_overclaim": 17,
+      "strong_action_overclaim": 17,
+      "contradiction_candidate": 17
+    },
+    "robotics": {
+      "supported": 9,
+      "mild_scope_overclaim": 9,
+      "strong_action_overclaim": 9,
+      "contradiction_candidate": 9
+    },
+    "marl": {
+      "supported": 13,
+      "mild_scope_overclaim": 13,
+      "strong_action_overclaim": 13,
+      "contradiction_candidate": 13
+    },
+    "policy_simulation": {
+      "supported": 21,
+      "mild_scope_overclaim": 21,
+      "strong_action_overclaim": 21,
+      "contradiction_candidate": 21
+    }
+  },
+  "policy_label_concentration": {
+    "same_frame_four_variant_generation": {
+      "n": 24,
+      "max_label_fraction": 0.25,
+      "labels": {
+        "supported": 6,
+        "mild_scope_overclaim": 6,
+        "strong_action_overclaim": 6,
+        "contradiction_candidate": 6
+      }
+    },
+    "simclaim_ai_preannotated_candidates_no_gold_no_final_label": {
+      "n": 196,
+      "max_label_fraction": 0.25,
+      "labels": {
+        "supported": 49,
+        "mild_scope_overclaim": 49,
+        "strong_action_overclaim": 49,
+        "contradiction_candidate": 49
+      }
+    },
+    "simclaim_four_variant_v1": {
+      "n": 40,
+      "max_label_fraction": 0.25,
+      "labels": {
+        "supported": 10,
+        "mild_scope_overclaim": 10,
+        "strong_action_overclaim": 10,
+        "contradiction_candidate": 10
+      }
+    },
+    "four_label_simclaim_candidate_generation_v1_strict_no_gold": {
+      "n": 12,
+      "max_label_fraction": 0.25,
+      "labels": {
+        "supported": 3,
+        "mild_scope_overclaim": 3,
+        "strong_action_overclaim": 3,
+        "contradiction_candidate": 3
+      }
+    },
+    "four_label_balanced_candidate_generation": {
+      "n": 32,
+      "max_label_fraction": 0.25,
+      "labels": {
+        "supported": 8,
+        "mild_scope_overclaim": 8,
+        "strong_action_overclaim": 8,
+        "contradiction_candidate": 8
+      }
+    },
+    "four_label_simclaim_candidate_generation_no_gold_no_final_no_human_audit": {
+      "n": 36,
+      "max_label_fraction": 0.25,
+      "labels": {
+        "supported": 9,
+        "mild_scope_overclaim": 9,
+        "strong_action_overclaim": 9,
+        "contradiction_candidate": 9
+      }
+    },
+    "four_label_balanced_ai_preannotation_clean_evidence_only": {
+      "n": 12,
+      "max_label_fraction": 0.25,
+      "labels": {
+        "supported": 3,
+        "mild_scope_overclaim": 3,
+        "strong_action_overclaim": 3,
+        "contradiction_candidate": 3
+      }
+    },
+    "four_label_ai_preannotation_clean_evidence_only": {
+      "n": 36,
+      "max_label_fraction": 0.25,
+      "labels": {
+        "supported": 9,
+        "mild_scope_overclaim": 9,
+        "strong_action_overclaim": 9,
+        "contradiction_candidate": 9
+      }
+    },
+    "simclaim_candidate_v1": {
+      "n": 56,
+      "max_label_fraction": 0.25,
+      "labels": {
+        "supported": 14,
+        "mild_scope_overclaim": 14,
+        "strong_action_overclaim": 14,
+        "contradiction_candidate": 14
+      }
+    }
+  },
+  "max_policy_label_concentration": 0.25,
+  "expected_concentration": 0.25,
+  "threshold_warning": 0.6
+}

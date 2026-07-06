@@ -1,0 +1,8 @@
+{
+  "status": "pass",
+  "method": "Jaccard token overlap (claim vs evidence); empty evidence → 0 by construction",
+  "n_samples": 444,
+  "mean_correct_evidence_overlap": 0.361437,
+  "mean_empty_evidence_overlap": 0.0,
+  "note": "Empty evidence produces zero overlap by definition. This check verifies correct evidence has non-trivial overlap."
+}

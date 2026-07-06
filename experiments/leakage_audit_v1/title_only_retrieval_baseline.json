@@ -1,7 +1,7 @@
 {
   "status": "pass",
-  "mean_overlap": 0.039894,
-  "max_overlap": 0.4,
+  "mean_overlap": 0.042765,
+  "max_overlap": 0.454545,
   "threshold_warning": 0.3,
   "threshold_fail": 0.5
 }

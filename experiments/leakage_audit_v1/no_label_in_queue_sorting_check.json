@@ -1,29 +1,5 @@
 {
-  "status": "pass",
-  "true_label_used_for_sorting": false,
-  "oracle_hit_used_for_sorting": false,
-  "evidence_text_used_for_sorting": false,
-  "allowed_sort_fields": [
-    "bm25_score",
-    "entropy",
-    "p_contra",
-    "p_strong",
-    "p_svm",
-    "selected_n_words",
-    "selected_rank",
-    "selector_score",
-    "strong_action_flag"
-  ],
-  "forbidden_sort_fields": [
-    "candidate_label_guess",
-    "evidence_text",
-    "evidence_text_sha256",
-    "final_label",
-    "gold_label",
-    "human_audited",
-    "is_strong_action",
-    "oracle_hit",
-    "true_label"
-  ],
-  "path": "experiments/lightweight_smart_queue_v1_toy/leakage_guard_report.json"
+  "status": "skip",
+  "reason": "guard report not found",
+  "path": "D:\\ocn\\experiments\\lightweight_smart_queue_v1\\leakage_guard_report.json"
 }

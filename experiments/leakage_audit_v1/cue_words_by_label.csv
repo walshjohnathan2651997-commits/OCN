@@ -1,0 +1,5 @@
+label,n,mean_action_cue_rate,mean_certainty_cue_rate,mean_deployment_cue_rate,mean_safety_cue_rate
+supported,111,0.009247,0.000474,0.002712,0.00538
+mild_scope_overclaim,111,0.008977,0.000474,0.002647,0.005603
+strong_action_overclaim,111,0.009069,0.000501,0.004255,0.007694
+contradiction_candidate,111,0.007821,0.000474,0.003104,0.004813

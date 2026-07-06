@@ -1,1 +1,5 @@
-label,token,lab_count,other_count,ratio_or_rate
+label,n,mean_claim_evidence_overlap,mean_claim_tokens,median_claim_tokens
+supported,111,0.421491,16.32,16
+mild_scope_overclaim,111,0.378778,17.01,17
+strong_action_overclaim,111,0.331969,17.23,17
+contradiction_candidate,111,0.31351,16.37,16
