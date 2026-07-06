@@ -1,0 +1,6 @@
+comparison_id,method_a,method_b,metric,available,n_paired,mean_a,mean_b,mean_delta,ci_low,ci_high,prob_delta_positive,n_bootstrap,bootstrap_unit,notes
+cmp_selector_overlap_vs_raw,best_sentence_top5_overlap,raw_bm25_top1_chunk,selector_score,False,,,,,,,,,,selector_score is overlap (0..1) for best_sentence but BM25 score for raw; not directly comparable. Per-candidate oracle_hit not saved in canonicalizer artifacts.
+cmp_selector_overlap_vs_cleaned,best_sentence_top5_overlap,cleaned_bm25_top1_chunk,selector_score,False,,,,,,,,,,selector_score is overlap for best_sentence but BM25 score for cleaned; not directly comparable.
+cmp_ranking_gconservative_vs_pstrong,G_conservative_precision,p_strong_only,precision_at_20,True,444,0.35,0.35,-0.004,-0.3,0.3,0.435,200,group,"Paired bootstrap of precision@20, group-level resampling."
+cmp_smartqueue_conservative_vs_gconservative,SmartQueue_conservative,G_conservative_precision,precision_at_20,True,444,0.3,0.35,0.045,-0.3,0.35,0.57,200,group,"Paired bootstrap of precision@20, group-level resampling."
+cmp_learned_ranker_vs_gconservative,learned_ranker_only,G_conservative_precision,precision_at_20,False,,,,,,,,,,Per-candidate learned ranker scores not saved in v3_18_intelligent_upgrade_v1 artifacts (only aggregate metrics available).

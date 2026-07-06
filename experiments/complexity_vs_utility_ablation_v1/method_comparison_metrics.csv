@@ -1,0 +1,9 @@
+method_id,method_family,available,uses_training,uses_api,uses_external_llm,uses_oracle_for_selection,uses_label_for_ranking,requires_gpu,deterministic,auditable,private_data_leaves_machine,strong_F1,precision_at_20,recall_at_100,fp_tp_at_5pct,notes
+raw_retrieval_baseline,raw_retrieval,True,False,False,False,False,False,False,True,True,False,0.1806,,,,"Raw BM25 top1 chunk, no canonicalization, no R4 screening."
+deterministic_canonicalization,deterministic_canonicalization,True,False,False,False,False,False,False,True,True,False,0.4503,0.45,0.3303,11.24,best_sentence_top5_overlap selector + frozen R4 screening.
+conservative_rule_queue,rule_queue,True,False,False,False,False,False,False,True,True,False,0.4503,0.45,0.330275,,G_conservative_precision ranking formula (frozen weights).
+lightweight_smart_queue,smart_queue,True,False,False,False,False,False,False,True,True,False,0.4503,0.35,0.348624,,"SmartQueue routing/usability layer (3 profiles, group diversity). Not a new model."
+learned_selector_only,higher_complexity,True,True,False,False,False,False,False,False,False,False,0.4444444444444444,,,,Learned selector (RF) replaces overlap selector. Trained on silver labels.
+learned_ranker_only,higher_complexity,True,True,False,False,False,False,False,False,False,False,0.4503,0.35,0.3302752293577982,2.0,Learned ranker (LogReg) replaces G_conservative_precision. Trained on silver labels.
+learned_selector_plus_learned_ranker,higher_complexity,True,True,False,False,False,False,False,False,False,False,0.4444444444444444,0.35,0.3302752293577982,2.0,Both learned modules end-to-end. Trained on silver labels.
+external_llm_baseline,external_llm,False,False,True,True,False,False,False,False,False,True,,,,,External LLM baseline (DeepSeek V3). NOT run in this experiment (no-API guard). Listed for tradeoff reference only.

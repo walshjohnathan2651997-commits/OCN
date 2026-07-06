@@ -1,0 +1,20 @@
+{
+  "script_name": "run_complexity_vs_utility_ablation_v1.py",
+  "timestamp": "2026-07-06T17:58:16.173353+00:00",
+  "guards": {
+    "no_api": true,
+    "no_network": true,
+    "no_training": true,
+    "no_original_data_modification": true
+  },
+  "no_raw_text_in_outputs": true,
+  "forbidden_fields_checked": [
+    "claim_text",
+    "evidence_text",
+    "selected_evidence"
+  ],
+  "outputs_all_hash_only_or_aggregate": true,
+  "true_label_usage": "true_label is used ONLY for metric computation (precision@k, strong_F1). It is NEVER used for selection, ranking, or feature engineering. Group-aware bootstrap resampling uses target_candidate_group_id, not true_label.",
+  "learned_variants_note": "Learned selector and ranker were trained in a prior experiment (v3_18_intelligent_upgrade_v1) with group-aware train/dev/test splitting and no test leakage. This script does NOT retrain them; it only reads their saved aggregate metrics.",
+  "disclaimer": "This analysis does NOT prove rules beat learning. It is a deployment-specific tradeoff analysis."
+}
