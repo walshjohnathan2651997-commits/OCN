@@ -1,0 +1,37 @@
+{
+  "script_name": "evaluate_r4_on_evidence_variants_v1.py",
+  "timestamp": "2026-07-06T11:44:18.975704+00:00",
+  "config_source": "D:\\ocn\\configs\\toy_demo.yaml",
+  "guards": {
+    "no_api": true,
+    "no_network": true,
+    "no_training": true
+  },
+  "no_original_data_modification": true,
+  "forbidden_scoring_fields": [
+    "true_label",
+    "is_strong_action",
+    "oracle_hit",
+    "candidate_label_guess",
+    "final_label",
+    "gold_label",
+    "human_audited",
+    "evidence_text",
+    "evidence_text_sha256"
+  ],
+  "paths": {
+    "project_root": ".",
+    "private_pdf_dir": "data/toy_synthetic",
+    "candidate_csv": "data/toy_synthetic/toy_candidates_v1.csv",
+    "pdf_corpus_dir": "data/pdf_corpus_toy_v1",
+    "retrieval_dir": "experiments/bm25_sentence_retrieval_v1_toy",
+    "canonicalizer_dir": "experiments/canonicalizer_ablation_v1_toy",
+    "review_queue_dir": "experiments/canonicalized_review_queue_v1_toy",
+    "risk_ranking_dir": "experiments/canonicalized_risk_ranking_v1_toy",
+    "smart_queue_dir": "experiments/lightweight_smart_queue_v1_toy",
+    "leakage_audit_dir": "experiments/leakage_audit_v1_toy",
+    "toy_data_dir": "data/toy_synthetic"
+  },
+  "toy_mode": true,
+  "r4_mode": "frozen"
+}

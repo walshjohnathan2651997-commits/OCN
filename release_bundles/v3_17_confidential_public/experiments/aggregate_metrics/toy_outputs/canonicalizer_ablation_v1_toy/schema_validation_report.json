@@ -1,0 +1,59 @@
+{
+  "script_name": "run_canonicalizer_ablation_v1.py",
+  "timestamp": "2026-07-06T13:32:44",
+  "n_reports": 2,
+  "n_ok": 2,
+  "n_fail": 0,
+  "all_ok": true,
+  "reports": [
+    {
+      "schema": "selector_variant_evidence",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "n_rows": 48,
+      "n_cols": 13,
+      "columns": [
+        "candidate_id",
+        "target_candidate_group_id",
+        "selector",
+        "selected_evidence",
+        "selected_source_unit_id",
+        "selected_chunk_id",
+        "selected_rank",
+        "selected_page_number",
+        "selector_score",
+        "n_words",
+        "source_type",
+        "selection_reason",
+        "selected_evidence_sha256"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_columns": [],
+      "strict": false,
+      "file_path": "experiments\\canonicalizer_ablation_v1_toy\\selector_variant_evidence.csv",
+      "file_exists": true
+    },
+    {
+      "schema": "selector_variant_evidence",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "leaked_public_columns": [],
+      "leaked_text_columns": [],
+      "leaked_scoring_columns": [],
+      "columns": [
+        "candidate_id",
+        "selector",
+        "selected_evidence_sha256",
+        "n_words",
+        "selector_score",
+        "selected_rank",
+        "source_type",
+        "selection_reason"
+      ],
+      "file_path": "experiments\\canonicalizer_ablation_v1_toy\\selector_examples_redacted.csv",
+      "file_exists": true,
+      "is_redacted": true
+    }
+  ]
+}

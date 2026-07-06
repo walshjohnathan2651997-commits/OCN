@@ -1,0 +1,10 @@
+| Selector | N | Mean Score | Median Words | % Short | % Long | Oracle Recall | Mean Overlap |
+|---|---|---|---|---|---|---|---|
+| raw_top1_chunk | 444 | 46.0614 | 70.0 | 0.0% | 0.9% | 0.0428 | 0.1993 |
+| cleaned_top1_chunk | 444 | 46.0614 | 70.0 | 0.0% | 0.9% | 0.0428 | 0.1994 |
+| first_sentence_top1 | 444 | 46.0614 | 18.0 | 0.2% | 0.1% | 0.0270 | 0.0860 |
+| best_sentence_top1_overlap | 444 | 0.2169 | 23.0 | 0.0% | 0.1% | 0.2207 | 0.3185 |
+| best_sentence_top5_overlap | 444 | 0.3530 | 23.0 | 0.0% | 0.0% | 0.3874 | 0.5236 |
+| three_sentence_window_top5 | 444 | 0.3530 | 52.0 | 0.0% | 0.3% | 0.2027 | 0.3755 |
+| sentence_bm25_top1 | 444 | 0.0000 | 0.0 | 1.0% | 0.0% | 0.0000 | 0.0000 |
+| window_bm25_top1 | 444 | 0.0000 | 0.0 | 1.0% | 0.0% | 0.0000 | 0.0000 |

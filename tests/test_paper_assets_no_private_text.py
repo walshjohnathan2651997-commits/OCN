@@ -74,12 +74,16 @@ class TestPaperAssetsGenerated:
             "tables/table2_retrieval_recall.tex",
             "tables/table3_format_shift_ablation.md",
             "tables/table3_format_shift_ablation.tex",
-            "tables/table4_selector_ablation.md",
-            "tables/table4_selector_ablation.tex",
+            "tables/table4_canonicalizer_ablation.md",
+            "tables/table4_canonicalizer_ablation.tex",
             "tables/table5_review_queue.md",
             "tables/table5_review_queue.tex",
             "tables/table6_leakage_audit.md",
             "tables/table6_leakage_audit.tex",
+            "tables/table7_complexity_utility.md",
+            "tables/table7_complexity_utility.tex",
+            "tables/table8_human_audit_if_available.md",
+            "tables/table8_human_audit_if_available.tex",
             "figures/pipeline_ascii.md",
             "figures/format_shift_bar_data.csv",
             "figures/queue_precision_recall_data.csv",
@@ -253,7 +257,7 @@ class TestClaimsChecklist:
         # Each safe claim (S1-S5) should have an Evidence line
         for i in range(1, 6):
             assert f"S{i}:" in md, f"Missing safe claim S{i}"
-        assert "**Evidence**" in md, "Missing evidence references"
+        assert "**Evidence file**" in md, "Missing evidence references"
 
     def test_unsafe_claims_have_reasons(self, tmp_path):
         out_dir = tmp_path / "paper_assets"
@@ -278,7 +282,7 @@ class TestTableCaptions:
         _run_script(["--toy_mode", "--output_dir", str(out_dir)])
 
         tex_files = list((out_dir / "tables").glob("*.tex"))
-        assert len(tex_files) == 6, f"Expected 6 tex files, got {len(tex_files)}"
+        assert len(tex_files) == 8, f"Expected 8 tex files, got {len(tex_files)}"
 
         for tex_path in tex_files:
             content = tex_path.read_text(encoding="utf-8")
@@ -313,7 +317,7 @@ class TestPaperResultsSummary:
         _run_script(["--toy_mode", "--output_dir", str(out_dir)])
 
         md = (out_dir / "paper_results_summary.md").read_text(encoding="utf-8")
-        for rq in ["RQ1", "RQ2", "RQ3", "RQ4", "RQ5", "RQ6"]:
+        for rq in ["RQ1", "RQ2", "RQ3", "RQ4", "RQ5", "RQ6", "RQ7", "RQ8"]:
             assert rq in md, f"Missing {rq} in results summary"
 
     def test_has_caveat(self, tmp_path):

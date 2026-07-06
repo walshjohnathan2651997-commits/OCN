@@ -1,0 +1,42 @@
+{
+  "forbidden_sort_fields": [
+    "candidate_label_guess",
+    "evidence_text",
+    "evidence_text_sha256",
+    "final_label",
+    "gold_label",
+    "human_audited",
+    "is_strong_action",
+    "oracle_hit",
+    "true_label"
+  ],
+  "allowed_sort_fields": [
+    "bm25_score",
+    "entropy",
+    "p_contra",
+    "p_strong",
+    "p_svm",
+    "selected_n_words",
+    "selected_rank",
+    "selector_score",
+    "strong_action_flag"
+  ],
+  "fields_actually_used_for_sorting": [
+    "p_strong",
+    "p_contra",
+    "p_svm",
+    "strong_action_flag",
+    "entropy",
+    "selector_score",
+    "selected_rank",
+    "selected_n_words",
+    "bm25_score"
+  ],
+  "true_label_used_for_sorting": false,
+  "true_label_used_for_metrics_only": true,
+  "oracle_hit_used_for_sorting": false,
+  "evidence_text_used_for_sorting": false,
+  "no_network": true,
+  "no_api": true,
+  "no_training": true
+}

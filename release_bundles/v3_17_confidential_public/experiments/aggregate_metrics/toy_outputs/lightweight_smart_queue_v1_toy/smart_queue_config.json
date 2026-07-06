@@ -1,0 +1,81 @@
+{
+  "selector": "best_sentence_top5_overlap",
+  "profiles": {
+    "conservative": {
+      "p_strong_w": 1.2,
+      "p_contra_w": -0.9,
+      "entropy_w": -0.35,
+      "strong_flag_w": 0.4,
+      "evidence_w": 0.15
+    },
+    "balanced": {
+      "p_strong_w": 1.0,
+      "p_contra_w": -0.6,
+      "entropy_w": -0.25,
+      "strong_flag_w": 0.25,
+      "evidence_w": 0.25
+    },
+    "high_recall": {
+      "p_strong_w": 1.1,
+      "p_contra_w": -0.35,
+      "entropy_w": -0.15,
+      "strong_flag_w": 0.0,
+      "evidence_w": 0.1
+    }
+  },
+  "evidence_score_weights": {
+    "selector_score": 0.4,
+    "bm25_score": 0.25,
+    "selected_rank": -0.15,
+    "length_penalty": -0.2
+  },
+  "length_penalty": {
+    "optimal_min": 10,
+    "optimal_max": 45,
+    "borderline_min": 6,
+    "borderline_max": 70,
+    "optimal_penalty": 0.0,
+    "borderline_penalty": 0.15,
+    "extreme_penalty": 0.35
+  },
+  "bucket_thresholds": {
+    "contradiction_p_contra": 0.55,
+    "high_priority_p_strong": 0.55,
+    "high_priority_p_contra_max": 0.36,
+    "high_priority_entropy_max": 0.85,
+    "high_priority_evidence_min": 0.35,
+    "evidence_check_evidence_max": 0.35
+  },
+  "group_diversity": {
+    "top20_max_per_group": 1,
+    "top50_max_per_group": 2,
+    "top100_max_per_group": 3
+  },
+  "no_network": true,
+  "no_api": true,
+  "no_training": true,
+  "no_threshold_change": true,
+  "selected_profile": "balanced",
+  "allowed_sort_fields": [
+    "bm25_score",
+    "entropy",
+    "p_contra",
+    "p_strong",
+    "p_svm",
+    "selected_n_words",
+    "selected_rank",
+    "selector_score",
+    "strong_action_flag"
+  ],
+  "forbidden_sort_fields": [
+    "candidate_label_guess",
+    "evidence_text",
+    "evidence_text_sha256",
+    "final_label",
+    "gold_label",
+    "human_audited",
+    "is_strong_action",
+    "oracle_hit",
+    "true_label"
+  ]
+}

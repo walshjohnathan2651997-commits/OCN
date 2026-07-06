@@ -1,0 +1,9 @@
+variant,n_candidates,mean_n_words
+canonicalized_best_sentence_top5,444,23.083333333333332
+canonicalized_three_sentence_window_top5,444,51.77927927927928
+cleaned_bm25_top1_chunk,444,71.13288288288288
+oracle_clean,444,26.74774774774775
+oracle_lengthened,444,97.77477477477477
+oracle_plus_metadata,444,37.34234234234234
+oracle_plus_metadata_lengthened,444,108.36936936936937
+raw_bm25_top1_chunk,444,71.14189189189189

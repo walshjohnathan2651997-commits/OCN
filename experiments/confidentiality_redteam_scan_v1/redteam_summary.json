@@ -1,0 +1,35 @@
+{
+  "scan_timestamp": "2026-07-07T02:11:28",
+  "scanned_files": 778,
+  "scan_dirs": [
+    "README.md",
+    "CURRENT_MAINLINE.md",
+    "docs/",
+    "scripts/",
+    "schemas/",
+    "experiments/",
+    "data/toy_synthetic/"
+  ],
+  "high_risk_count": 0,
+  "medium_risk_count": 22,
+  "low_risk_count": 65,
+  "total_findings": 87,
+  "pass_public_release_gate": true,
+  "strict_mode": false,
+  "gitignore_report": {
+    "existing_count": 59,
+    "missing": [
+      "pdfs/",
+      "private_pdfs/",
+      "data/private/",
+      "experiments/private/",
+      "*.pdf",
+      "*.docx",
+      "*.xlsx",
+      "*.npz",
+      "*.pkl",
+      "*.joblib"
+    ],
+    "missing_count": 10
+  }
+}

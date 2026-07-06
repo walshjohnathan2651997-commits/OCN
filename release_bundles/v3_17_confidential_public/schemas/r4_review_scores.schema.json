@@ -1,0 +1,66 @@
+{
+  "name": "r4_review_scores",
+  "version": "1.0.0",
+  "description": "R4 review scores per candidate (canonicalized evidence, priority score, predicted label). Produced by scripts/run_canonicalized_review_queue_v1.py and scripts/run_canonicalized_risk_ranking_v1.py. This is a REVIEW OUTPUT (not a scoring input): true_label and oracle_hit legitimately appear for offline metrics computation, and the source-code test tests/test_no_leakage_fields.py verifies they are not used for sorting. Public release MUST strip true_label, oracle_hit, selected_evidence, claim_text, and source_pdf.",
+  "file_format": "csv",
+  "primary_file": "canonicalized_r4_review_scores.csv",
+  "sibling_files": [
+    "risk_ranking_features.csv",
+    "review_queue_top100.csv",
+    "review_queue_top100_best.csv"
+  ],
+  "required_columns": [
+    "candidate_id",
+    "pred_label",
+    "strong_action_flag"
+  ],
+  "optional_columns": [
+    "priority_score",
+    "selected_rank",
+    "route",
+    "n_seeds_voted",
+    "vote_share_strong",
+    "strong_action_score",
+    "p_strong",
+    "p_contra_mean",
+    "p_contra",
+    "p_svm_mean",
+    "p_svm",
+    "selected_evidence",
+    "selected_chunk_id",
+    "source_pdf",
+    "page",
+    "true_label",
+    "entropy",
+    "selector_score",
+    "selected_n_words",
+    "bm25_score",
+    "oracle_hit",
+    "ranking_score",
+    "review_rank",
+    "rank",
+    "claim_text",
+    "reason",
+    "entailment",
+    "neutral",
+    "contradiction_nli"
+  ],
+  "forbidden_columns_for_public_release": [
+    "selected_evidence",
+    "claim_text",
+    "source_pdf",
+    "true_label",
+    "oracle_hit"
+  ],
+  "forbidden_columns_for_scoring": [],
+  "hash_columns": [],
+  "text_columns": [
+    "selected_evidence",
+    "claim_text"
+  ],
+  "redaction_required": true,
+  "notes": [
+    "This schema describes a REVIEW OUTPUT (post-scoring) — true_label and oracle_hit are present for offline metrics only. Their absence from sorting keys is verified by tests/test_no_leakage_fields.py at the source-code level, NOT by this schema's forbidden_columns_for_scoring list.",
+    "The smart_queue_scores.schema.json (the modern SmartQueue output) DOES enforce forbidden_columns_for_scoring because SmartQueue is the canonical scoring input for the review queue."
+  ]
+}

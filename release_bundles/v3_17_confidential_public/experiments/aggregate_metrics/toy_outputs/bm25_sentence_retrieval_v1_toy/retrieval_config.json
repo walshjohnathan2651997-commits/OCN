@@ -1,0 +1,15 @@
+{
+  "top_k": 10,
+  "bm25_k1": 1.5,
+  "bm25_b": 0.75,
+  "exclude_references": true,
+  "oracle_overlap_threshold": 0.65,
+  "tokenizer": {
+    "lowercase": true,
+    "regex": "[a-z0-9]+(?:[-'][a-z0-9]+)*",
+    "remove_stopwords": true
+  },
+  "no_network": true,
+  "no_api": true,
+  "no_training": true
+}

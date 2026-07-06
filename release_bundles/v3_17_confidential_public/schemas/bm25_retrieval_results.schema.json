@@ -1,0 +1,44 @@
+{
+  "name": "bm25_retrieval_results",
+  "version": "1.0.0",
+  "description": "BM25 retrieval results per candidate. Same column schema is shared by sentence-level (retrieval_results_sentence_bm25.csv) and window-level (retrieval_results_window_bm25.csv) outputs. Redacted variant: retrieval_examples_redacted.csv (drops retrieved_text, replaces with text_sha256, top-3 rows per candidate only). The oracle_* fields are computed AFTER retrieval for offline recall evaluation only; they are not used for candidate scoring or sorting. They are withheld from public release to avoid leaking oracle evaluation metadata.",
+  "file_format": "csv",
+  "primary_file": "retrieval_results_sentence_bm25.csv",
+  "sibling_files": [
+    "retrieval_results_window_bm25.csv"
+  ],
+  "redacted_file": "retrieval_examples_redacted.csv",
+  "required_columns": [
+    "candidate_id",
+    "target_candidate_group_id",
+    "rank",
+    "unit_id",
+    "paper_id",
+    "pdf_filename",
+    "page_number",
+    "section_hint",
+    "retrieved_text",
+    "bm25_score",
+    "query_n_tokens",
+    "retrieved_n_words"
+  ],
+  "optional_columns": [
+    "oracle_overlap_score",
+    "oracle_hash_exact",
+    "oracle_page_match",
+    "oracle_hit"
+  ],
+  "forbidden_columns_for_public_release": [
+    "retrieved_text",
+    "oracle_overlap_score",
+    "oracle_hash_exact",
+    "oracle_page_match",
+    "oracle_hit"
+  ],
+  "forbidden_columns_for_scoring": [],
+  "hash_columns": [],
+  "text_columns": [
+    "retrieved_text"
+  ],
+  "redaction_required": true
+}

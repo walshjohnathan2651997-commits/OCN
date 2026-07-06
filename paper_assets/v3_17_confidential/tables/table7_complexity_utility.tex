@@ -1,0 +1,19 @@
+\begin{table}[ht]
+\centering
+\caption{Complexity-vs-utility method comparison. Controlled silver diagnostic, not gold/human-audited.}
+\label{tab:complexity_utility}
+\begin{tabular}{llccccc}
+\toprule
+Method & Family & strong\_F1 & P@20 & R@100 & determ. & audit. \\
+\midrule
+raw_retrieval_baseline & raw_retrieval & 0.1806 &  &  & True & True \\
+deterministic_canonicalization & deterministic_canonicalization & 0.4503 & 0.4500 & 0.3303 & True & True \\
+conservative_rule_queue & rule_queue & 0.4503 & 0.4500 & 0.3303 & True & True \\
+lightweight_smart_queue & smart_queue & 0.4503 & 0.3500 & 0.3486 & True & True \\
+learned_selector_only & higher_complexity & 0.4444 &  &  & False & False \\
+learned_ranker_only & higher_complexity & 0.4503 & 0.3500 & 0.3303 & False & False \\
+learned_selector_plus_learned_ranker & higher_complexity & 0.4444 & 0.3500 & 0.3303 & False & False \\
+external_llm_baseline & external_llm &  &  &  & False & False \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,17 @@
+{
+  "best_variant": "oracle_clean",
+  "raw_chunk_drop": 0.0,
+  "canonicalization_gain": 0.0,
+  "lengthening_drop": 0.0,
+  "metadata_drop": 0.0,
+  "no_training": true,
+  "no_api": true,
+  "no_network": true,
+  "no_threshold_change": true,
+  "r4_mode": "frozen",
+  "n_seeds": 10,
+  "n_candidates": 6,
+  "oracle_clean_is_diagnostic": true,
+  "canonicalized_best_sentence_top5_is_production": true,
+  "true_label_used_only_for_metrics": true
+}

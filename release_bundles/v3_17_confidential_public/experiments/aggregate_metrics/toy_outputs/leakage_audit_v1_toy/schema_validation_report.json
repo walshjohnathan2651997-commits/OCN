@@ -1,0 +1,118 @@
+{
+  "script_name": "run_leakage_audit_v1.py",
+  "timestamp": "2026-07-06T13:32:46",
+  "n_reports": 6,
+  "n_ok": 6,
+  "n_fail": 0,
+  "all_ok": true,
+  "reports": [
+    {
+      "schema": "leakage_audit",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "keys": [
+        "status",
+        "same_label_overlap",
+        "cross_label_overlap",
+        "ratio",
+        "threshold_warning",
+        "threshold_fail"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_keys": [],
+      "strict": false,
+      "file_path": "experiments\\leakage_audit_v1_toy\\claim_only_baseline.json",
+      "file_exists": true
+    },
+    {
+      "schema": "leakage_audit",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "keys": [
+        "status",
+        "mean_overlap",
+        "max_overlap",
+        "threshold_warning",
+        "threshold_fail"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_keys": [],
+      "strict": false,
+      "file_path": "experiments\\leakage_audit_v1_toy\\title_only_retrieval_baseline.json",
+      "file_exists": true
+    },
+    {
+      "schema": "leakage_audit",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "keys": [
+        "status",
+        "reason",
+        "mean_page_purity"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_keys": [],
+      "strict": false,
+      "file_path": "experiments\\leakage_audit_v1_toy\\metadata_only_retrieval_baseline.json",
+      "file_exists": true
+    },
+    {
+      "schema": "leakage_audit",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "keys": [
+        "status",
+        "n_groups",
+        "n_cross_split_groups",
+        "cross_split_groups"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_keys": [],
+      "strict": false,
+      "file_path": "experiments\\leakage_audit_v1_toy\\group_split_integrity.json",
+      "file_exists": true
+    },
+    {
+      "schema": "leakage_audit",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "keys": [
+        "status",
+        "oracle_used_for_selection",
+        "labels_used_for_selection",
+        "forbidden_fields",
+        "path"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_keys": [],
+      "strict": false,
+      "file_path": "experiments\\leakage_audit_v1_toy\\no_oracle_in_selector_check.json",
+      "file_exists": true
+    },
+    {
+      "schema": "leakage_audit",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "keys": [
+        "status",
+        "true_label_used_for_sorting",
+        "oracle_hit_used_for_sorting",
+        "evidence_text_used_for_sorting",
+        "allowed_sort_fields",
+        "forbidden_sort_fields",
+        "path"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_keys": [],
+      "strict": false,
+      "file_path": "experiments\\leakage_audit_v1_toy\\no_label_in_queue_sorting_check.json",
+      "file_exists": true
+    }
+  ]
+}

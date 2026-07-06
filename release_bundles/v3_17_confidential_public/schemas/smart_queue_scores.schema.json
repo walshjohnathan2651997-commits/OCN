@@ -1,0 +1,56 @@
+{
+  "name": "smart_queue_scores",
+  "version": "1.0.0",
+  "description": "SmartQueue scores per candidate with bucket assignment and per-profile scores. Produced by scripts/run_lightweight_smart_queue_v1.py. Buckets: contradiction_or_conflict_review, high_priority_strong_review, evidence_check_needed, low_priority. Profiles: conservative, balanced, high_recall. Sibling queue CSVs (smart_queue_top20/50/100.csv) share the same forbidden_columns_for_scoring list.",
+  "file_format": "csv",
+  "primary_file": "smart_queue_scores.csv",
+  "sibling_files": [
+    "smart_queue_top20.csv",
+    "smart_queue_top50.csv",
+    "smart_queue_top100.csv"
+  ],
+  "required_columns": [
+    "candidate_id",
+    "target_candidate_group_id",
+    "bucket",
+    "p_strong",
+    "p_contra",
+    "p_svm",
+    "strong_action_flag",
+    "entropy",
+    "selector_score",
+    "selected_rank",
+    "selected_n_words",
+    "bm25_score",
+    "evidence_score",
+    "length_penalty",
+    "score_conservative",
+    "score_balanced",
+    "score_high_recall",
+    "selected_profile",
+    "final_score"
+  ],
+  "optional_columns": [
+    "rank",
+    "selected_page_number"
+  ],
+  "forbidden_columns_for_public_release": [],
+  "forbidden_columns_for_scoring": [
+    "true_label",
+    "is_strong_action",
+    "oracle_hit",
+    "candidate_label_guess",
+    "final_label",
+    "gold_label",
+    "human_audited",
+    "evidence_text",
+    "evidence_text_sha256"
+  ],
+  "hash_columns": [],
+  "text_columns": [],
+  "redaction_required": false,
+  "notes": [
+    "true_label may appear in optional_columns for metrics-only evaluation (true_label_used_for_metrics_only=true is enforced by the producer); it must NEVER be used in scoring/sorting.",
+    "All 9 fields in forbidden_columns_for_scoring must be absent from sorting keys; their absence from the scores CSV is verified by tests/test_no_leakage_fields.py."
+  ]
+}

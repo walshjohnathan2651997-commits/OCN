@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T17:06:03.213934+00:00",
+  "generated_at": "2026-07-06T18:19:48.291308+00:00",
   "mainline_docs": {
     "readme_mentions_v3_17": true,
     "current_mainline_points_to_v3_17": true,
@@ -141,6 +141,46 @@
         "matched_text": "automatic peer review"
       },
       {
+        "file": "docs\\dataset_shortcut_risk_v1.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\dataset_shortcut_risk_v1.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\dataset_shortcut_risk_v1.md",
+        "pattern": "gold benchmark",
+        "matched_text": "Gold benchmark"
+      },
+      {
+        "file": "docs\\dataset_shortcut_risk_v1.md",
+        "pattern": "human-audited",
+        "matched_text": "Human-audited"
+      },
+      {
+        "file": "docs\\dataset_shortcut_risk_v1.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\dataset_shortcut_risk_v1.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\dataset_shortcut_risk_v1.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\dataset_shortcut_risk_v1.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
         "file": "docs\\data_card_simclaim_eval.md",
         "pattern": "human-audited",
         "matched_text": "human-audited"
@@ -186,6 +226,31 @@
         "matched_text": "human-audited"
       },
       {
+        "file": "docs\\human_audit_protocol_v1.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\human_audit_protocol_v1.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\human_audit_protocol_v1.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\human_audit_protocol_v1.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\human_audit_protocol_v1.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
         "file": "docs\\next_phase_benchmark_plan.md",
         "pattern": "human-audited",
         "matched_text": "Human-audited"
@@ -217,6 +282,21 @@
       },
       {
         "file": "docs\\paper_v2_reproduction_path.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\pdf_extraction_stress_test_v1.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\pdf_extraction_stress_test_v1.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\pdf_extraction_stress_test_v1.md",
         "pattern": "SOTA",
         "matched_text": "SOTA"
       },
@@ -354,7 +434,7 @@
       "build_pdf_sentence_corpus_v1.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 24668
+        "size_bytes": 30728
       },
       "run_bm25_sentence_retrieval_v1.py": {
         "exists": true,
@@ -379,7 +459,7 @@
       "run_leakage_audit_v1.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 23322
+        "size_bytes": 51299
       },
       "run_error_taxonomy_v1.py": {
         "exists": true,
@@ -387,9 +467,9 @@
         "size_bytes": 38243
       },
       "run_complexity_vs_utility_ablation_v1.py": {
-        "exists": false,
-        "status": "missing",
-        "size_bytes": 0
+        "exists": true,
+        "status": "exists",
+        "size_bytes": 52866
       },
       "run_lightweight_smart_queue_v1.py": {
         "exists": true,
@@ -404,27 +484,27 @@
       "generate_paper_assets_v3_17.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 40962
+        "size_bytes": 58158
       },
       "build_pdf_stress_suite_v1.py": {
-        "exists": false,
-        "status": "missing",
-        "size_bytes": 0
+        "exists": true,
+        "status": "exists",
+        "size_bytes": 7268
       },
       "run_pdf_extraction_stress_test_v1.py": {
-        "exists": false,
-        "status": "missing",
-        "size_bytes": 0
+        "exists": true,
+        "status": "exists",
+        "size_bytes": 21237
       },
       "run_pdf_extraction_to_bm25_stress_v1.py": {
-        "exists": false,
-        "status": "missing",
-        "size_bytes": 0
+        "exists": true,
+        "status": "exists",
+        "size_bytes": 19679
       },
       "summarize_pdf_stress_report_v1.py": {
-        "exists": false,
-        "status": "missing",
-        "size_bytes": 0
+        "exists": true,
+        "status": "exists",
+        "size_bytes": 12034
       }
     },
     "C_infra": {
@@ -436,7 +516,7 @@
       "run_confidentiality_redteam_scan_v1.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 35180
+        "size_bytes": 37746
       },
       "validate_experiment_outputs_v1.py": {
         "exists": true,
@@ -460,6 +540,7 @@
       "exists": true,
       "toy_exists": false,
       "key_files": [
+        "bm25_scores_per_candidate.csv",
         "claim_queries.csv",
         "downstream_screening_bm25.csv",
         "downstream_screening_metrics_bm25.json",
@@ -473,7 +554,7 @@
         "simclaim_pdf_retrieval_report.md"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-05T05:48:01.990001+00:00"
+      "last_modified": "2026-07-06T17:53:20.099404+00:00"
     },
     "r4_evidence_canonicalization_v1": {
       "exists": true,
@@ -596,6 +677,9 @@
       "key_files": [
         "audit_summary.md",
         "claim_only_baseline.json",
+        "cue_words_by_label.csv",
+        "empty_evidence_baseline.json",
+        "generation_policy_distribution.json",
         "group_split_integrity.json",
         "lexical_overlap_by_label.csv",
         "metadata_only_retrieval_baseline.json",
@@ -603,6 +687,7 @@
         "no_oracle_in_selector_check.json",
         "run_config.json",
         "schema_validation_report.json",
+        "shuffled_evidence_baseline.json",
         "title_only_retrieval_baseline.json",
         "audit_summary.md",
         "claim_only_baseline.json",
@@ -616,7 +701,7 @@
         "title_only_retrieval_baseline.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T17:04:03.015063+00:00"
+      "last_modified": "2026-07-06T17:36:51.833777+00:00"
     },
     "error_taxonomy_v1": {
       "exists": true,
@@ -632,18 +717,34 @@
       "last_modified": "2026-07-06T07:18:42.601799+00:00"
     },
     "complexity_vs_utility_ablation_v1": {
-      "exists": false,
+      "exists": true,
       "toy_exists": false,
-      "key_files": [],
-      "missing_expected": [
-        "Neither complexity_vs_utility_ablation_v1 nor complexity_vs_utility_ablation_v1_toy found"
+      "key_files": [
+        "complexity_cost_audit.csv",
+        "complexity_vs_utility_claims_checklist.md",
+        "complexity_vs_utility_summary.md",
+        "leakage_guard_report.json",
+        "method_comparison_metrics.csv",
+        "method_pareto_table.csv",
+        "paired_bootstrap_comparison.csv",
+        "run_config.json"
       ],
-      "last_modified": null
+      "missing_expected": [],
+      "last_modified": "2026-07-06T17:58:16.174360+00:00"
     },
     "lightweight_smart_queue_v1": {
-      "exists": false,
+      "exists": true,
       "toy_exists": true,
       "key_files": [
+        "leakage_guard_report.json",
+        "run_config.json",
+        "schema_validation_report.json",
+        "smart_queue_config.json",
+        "smart_queue_metric_summary.json",
+        "smart_queue_scores.csv",
+        "smart_queue_top100.csv",
+        "smart_queue_top20.csv",
+        "smart_queue_top50.csv",
         "leakage_guard_report.json",
         "run_config.json",
         "schema_validation_report.json",
@@ -655,16 +756,27 @@
         "smart_queue_top50.csv"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T11:44:16.632910+00:00"
+      "last_modified": "2026-07-06T17:53:33.203916+00:00"
     },
     "pdf_extraction_stress_test_v1": {
-      "exists": false,
+      "exists": true,
       "toy_exists": false,
-      "key_files": [],
-      "missing_expected": [
-        "Neither pdf_extraction_stress_test_v1 nor pdf_extraction_stress_test_v1_toy found"
+      "key_files": [
+        "extraction_quality_metrics.csv",
+        "failure_cases_redacted.csv",
+        "leakage_guard_report.json",
+        "retrieval_stress_summary.json",
+        "retrieval_under_extraction_stress.csv",
+        "run_config.json",
+        "stress_blocks_redacted.jsonl",
+        "stress_pages_redacted.jsonl",
+        "stress_sentences_redacted.jsonl",
+        "stress_suite_manifest.csv",
+        "stress_test_summary.md",
+        "stress_windows_redacted.jsonl"
       ],
-      "last_modified": null
+      "missing_expected": [],
+      "last_modified": "2026-07-06T17:27:34.745593+00:00"
     },
     "toy_end_to_end_demo_v1": {
       "exists": true,
@@ -676,7 +788,7 @@
         "toy_run_summary.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T02:28:19.796214+00:00"
+      "last_modified": "2026-07-06T18:13:14.587649+00:00"
     },
     "metric_robustness_v1": {
       "exists": true,
@@ -696,6 +808,7 @@
       "exists": true,
       "toy_exists": true,
       "key_files": [
+        "private_intermediate_allowlist.json",
         "redteam_findings.csv",
         "redteam_summary.json",
         "redteam_summary.md",
@@ -706,7 +819,7 @@
         "run_config.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T05:32:47.005408+00:00"
+      "last_modified": "2026-07-06T18:11:28.534986+00:00"
     }
   },
   "dataset": {
@@ -1041,13 +1154,15 @@
       "claim": "Raw PDF chunk / BM25 retrieval has results",
       "evidence_file": "experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_results_bm25.csv",
       "status": "exists",
+      "data_provenance": "private-only",
       "safe_wording": "BM25 retrieval on local PDF corpus achieves measurable oracle recall",
-      "risk": "Oracle recall is on silver labels only"
+      "risk": "Oracle recall is on silver labels only; retrieval output is private-only (contains source text)"
     },
     {
       "claim": "Sentence-level BM25 retrieval has results",
       "evidence_file": "experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json",
       "status": "exists",
+      "data_provenance": "blocked",
       "safe_wording": "Sentence/window BM25 retrieval blocked by missing PDF corpus; toy results show sentence-level outperforms window-level",
       "risk": "Real PDFs no longer in workspace; sentence/window retrieval blocked. Toy data only."
     },
@@ -1055,6 +1170,7 @@
       "claim": "Canonicalization improves over raw chunks",
       "evidence_file": "experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv",
       "status": "exists",
+      "data_provenance": "real",
       "safe_wording": "best_sentence_top5_overlap oracle_recall=0.387 vs raw_top1_chunk=0.043 on 444 real candidates (9x improvement)",
       "risk": "Silver labels only; 2/8 selectors (sentence_bm25, window_bm25) blocked by missing PDF corpus"
     },
@@ -1062,27 +1178,31 @@
       "claim": "Frozen R4 review queue has results",
       "evidence_file": "experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv",
       "status": "exists",
+      "data_provenance": "real",
       "safe_wording": "Frozen R4 screening achieves strong_F1=0.4503 on 436 candidates",
-      "risk": "Silver labels only; not human-audited"
+      "risk": "Silver labels only; not human-audited; review queue output is private-only (contains labels for audit join)"
     },
     {
       "claim": "Risk ranking has results",
       "evidence_file": "experiments/canonicalized_risk_ranking_v1/risk_ranking_features.csv",
       "status": "exists",
+      "data_provenance": "real",
       "safe_wording": "G_conservative_precision ranking provides top-100 review queue",
-      "risk": "Threshold not fitted on test; silver labels only"
+      "risk": "Threshold not fitted on test; silver labels only; feature matrix is private-only (contains labels for audit join)"
     },
     {
       "claim": "Leakage audit has results",
       "evidence_file": "experiments/leakage_audit_v1/claim_only_baseline.json",
       "status": "exists",
-      "safe_wording": "All 7 leakage checks pass on 444 real candidates; claim-only ratio=0.74 (below WARNING threshold)",
+      "data_provenance": "real",
+      "safe_wording": "All 12 leakage checks pass on 444 real candidates; claim-only ratio=0.74 (below WARNING threshold)",
       "risk": "Silver labels (candidate_label_guess) used as true_label for audit; queue guard from toy SmartQueue"
     },
     {
       "claim": "Bootstrap CI metrics have results",
       "evidence_file": "experiments/metric_robustness_v1/classification_metrics_with_ci.csv",
       "status": "exists",
+      "data_provenance": "real",
       "safe_wording": "strong_F1=0.4503 with 95% CI [0.4086, 0.4833] (group-aware bootstrap)",
       "risk": "CI reflects controlled pool variability, not natural prevalence"
     },
@@ -1090,74 +1210,141 @@
       "claim": "Error taxonomy has results",
       "evidence_file": "experiments/error_taxonomy_v1/error_taxonomy_summary.csv",
       "status": "exists",
+      "data_provenance": "real",
       "safe_wording": "9 error types tagged; top FP cause is mild_vs_strong_boundary",
       "risk": "Silver labels only; error type thresholds are heuristic"
     },
     {
-      "claim": "PDF-start extraction has results",
+      "claim": "PDF-start extraction stress test has results",
       "evidence_file": "experiments/pdf_extraction_stress_test_v1/",
-      "status": "missing",
-      "safe_wording": "Not yet implemented",
-      "risk": "No PDF extraction stress test has been run"
+      "status": "exists",
+      "data_provenance": "toy",
+      "safe_wording": "12 synthetic PDF stress documents processed; 0 failures; 123 sentences extracted. Extraction robustness test, not SOTA.",
+      "risk": "Synthetic stress fixtures only; not real PDFs; not an empirical claim about real-world extraction"
+    },
+    {
+      "claim": "Complexity-vs-utility tradeoff analysis has results",
+      "evidence_file": "experiments/complexity_vs_utility_ablation_v1/method_comparison_metrics.csv",
+      "status": "exists",
+      "data_provenance": "real",
+      "safe_wording": "Deterministic canonicalization is Pareto-optimal under confidential/no-API/no-training/silver-diagnostic constraints",
+      "risk": "Does not prove rules generally beat learned models; deployment-specific tradeoff"
     },
     {
       "claim": "Human audit has results",
-      "evidence_file": "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv",
+      "evidence_file": "experiments/human_audit_v1/audit_agreement_summary.json",
       "status": "partial",
-      "safe_wording": "human_audited=False for all 444 candidates; no gold labels exist",
-      "risk": "No human audit has been performed; all labels are silver"
+      "data_provenance": "blocked",
+      "safe_wording": "Small targeted human audit protocol and seed queue are in place; auditor labels pending. Not a gold benchmark.",
+      "risk": "No human audit has been completed; all silver labels remain un-audited. Audit seed built (111 candidates); empirical results deferred."
+    },
+    {
+      "claim": "Paper assets generated",
+      "evidence_file": "paper_assets/v3_17_confidential/tables/",
+      "status": "exists",
+      "data_provenance": "real",
+      "safe_wording": "8 tables (md+tex), 4 figure data CSVs, paper_results_summary.md (RQ1-8), paper_claims_checklist.md generated",
+      "risk": "All tables include caveat: controlled silver diagnostic, not gold/human-audited"
+    },
+    {
+      "claim": "Public sanitized release bundle built",
+      "evidence_file": "release_bundles/v3_17_confidential_public/",
+      "status": "exists",
+      "data_provenance": "real",
+      "safe_wording": "221 files; redteam scan PASS (high_risk=0); no raw claim/evidence/PDF text",
+      "risk": "Bundle excludes private scoring files, real review queues, PDFs, and label-bearing intermediates"
     }
   ],
   "priority_next_actions": [
     {
       "priority": "P0",
       "action": "Clean up old narratives in docs (V2/gold/SOTA references)",
-      "reason": "62 old narrative references found"
+      "reason": "78 old narrative references found (majority are denials like 'not a gold benchmark')",
+      "status": "blocked",
+      "blocker": "scanner_limitation",
+      "note": "BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references are predominantly in denial/qualification context (e.g., 'not a gold benchmark', 'not human-audited', 'not SOTA'). Improving scanner to distinguish denials from claims requires NLP context analysis, out of scope for V3.17 confidential lightweight. Non-blocking for release."
+    },
+    {
+      "priority": "P0",
+      "action": "Fix leaked text fields in public/redacted files",
+      "reason": "No forbidden text columns in public/redacted files",
+      "status": "done"
+    },
+    {
+      "priority": "P0",
+      "action": "Run BM25 sentence retrieval on real data",
+      "reason": "BLOCKED: real PDFs no longer in workspace",
+      "status": "blocked",
+      "blocker": "missing_pdf_corpus"
+    },
+    {
+      "priority": "P0",
+      "action": "Run canonicalizer ablation on real data",
+      "reason": "Real data ablation completed (6/8 selectors)",
+      "status": "done"
+    },
+    {
+      "priority": "P0",
+      "action": "Run format shift ablation on real data",
+      "reason": "Format-shift inputs generated; R4 eval blocked (sklearn version)",
+      "status": "blocked",
+      "blocker": "sklearn_version_mismatch"
+    },
+    {
+      "priority": "P0",
+      "action": "Run leakage audit on real data",
+      "reason": "Real data audit completed (12 checks, PASS)",
+      "status": "done"
     },
     {
       "priority": "P1",
       "action": "Run SmartQueue on real data",
-      "reason": "Only toy data exists; real queue needed for paper"
+      "reason": "Real data SmartQueue completed (436 candidates, 4 buckets)",
+      "status": "done"
     },
     {
       "priority": "P1",
       "action": "Remove hardcoded D:\\ocn paths from scripts",
-      "reason": "65 scripts with hardcoded paths"
+      "reason": "65 scripts with hardcoded paths (all in deprecated/legacy scripts, not V3.17 pipeline)",
+      "status": "pending",
+      "note": "Non-blocking; all hardcoded paths are in pre-V3.17 deprecated scripts"
     },
     {
       "priority": "P1",
-      "action": "Implement complexity-vs-utility ablation",
-      "reason": "Script missing; needed for paper safe wording on cost-benefit"
+      "action": "Implement and run complexity-vs-utility ablation",
+      "reason": "Script exists and has been run on real data",
+      "status": "done"
     },
     {
       "priority": "P1",
-      "action": "Implement PDF extraction stress test",
-      "reason": "Script missing; needed to validate extraction robustness"
+      "action": "Implement and run PDF extraction stress test",
+      "reason": "Script exists and has been run on synthetic stress fixtures",
+      "status": "done"
     },
     {
       "priority": "P1",
       "action": "Define small human audit protocol (2-annotator, adjudication)",
-      "reason": "human_audited=False for all 444 candidates; no gold labels exist"
-    },
-    {
-      "priority": "P1",
-      "action": "Restore PDF corpus for sentence/window BM25 retrieval",
-      "reason": "Real PDFs no longer in workspace; sentence/window retrieval blocked"
-    },
-    {
-      "priority": "P1",
-      "action": "Resolve sklearn version mismatch for R4 evaluation on evidence variants",
-      "reason": "R4 artifacts pickled with sklearn 1.9.0; current env has 1.4.1; format_shift_metrics blocked"
+      "reason": "Protocol and seed queue built; auditor labels pending",
+      "status": "done",
+      "note": "Protocol exists; empirical audit deferred (not a release blocker)"
     },
     {
       "priority": "P2",
       "action": "Publish sanitized public release bundle",
-      "reason": "Bundle builder exists; ready to package for external review"
+      "reason": "Bundle built: 221 files, redteam PASS",
+      "status": "done"
     },
     {
       "priority": "P2",
-      "action": "Generate final paper PDF from paper_assets",
-      "reason": "Tables/figures in LaTeX+MD; ready for paper compilation"
+      "action": "Generate paper assets (8 tables, RQ1-8, claims checklist)",
+      "reason": "Paper assets generated",
+      "status": "done"
+    },
+    {
+      "priority": "P2",
+      "action": "Compile final paper PDF from paper_assets",
+      "reason": "Tables/figures in LaTeX+MD; requires LaTeX compilation (out of scope for V3.17 confidential lightweight)",
+      "status": "pending"
     }
   ]
 }

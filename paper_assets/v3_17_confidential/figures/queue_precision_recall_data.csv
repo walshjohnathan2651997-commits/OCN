@@ -1,0 +1,5 @@
+variant_or_profile,metric,k_or_prevalence,point_estimate,ci_low_2_5,ci_high_97_5
+priority_score,precision_at_10,10.0,0.5,0.2,0.8
+priority_score,precision_at_20,20.0,0.35,0.2,0.55
+priority_score,precision_at_50,50.0,0.34,0.24,0.3905
+priority_score,recall_at_100,100.0,0.33945,0.247706,0.376147

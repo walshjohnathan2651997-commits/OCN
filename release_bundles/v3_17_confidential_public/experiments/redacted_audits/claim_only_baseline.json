@@ -1,0 +1,8 @@
+{
+  "status": "pass",
+  "same_label_overlap": 0.057566,
+  "cross_label_overlap": 0.079935,
+  "ratio": 0.720156,
+  "threshold_warning": 2.0,
+  "threshold_fail": 3.0
+}

@@ -1,0 +1,52 @@
+{
+  "demo_name": "toy_end_to_end_demo_v1",
+  "timestamp": "2026-07-06T18:13:14.583040+00:00",
+  "all_steps_success": true,
+  "n_steps": 6,
+  "n_steps_completed": 6,
+  "steps": [
+    {
+      "name": "1. Build sentence corpus",
+      "script": "scripts/build_pdf_sentence_corpus_v1.py",
+      "success": true,
+      "check_output": "data/pdf_corpus_toy_v1/sentences.jsonl"
+    },
+    {
+      "name": "2. BM25 sentence/window retrieval",
+      "script": "scripts/run_bm25_sentence_retrieval_v1.py",
+      "success": true,
+      "check_output": "experiments/bm25_sentence_retrieval_v1_toy/oracle_recall_summary.json"
+    },
+    {
+      "name": "3. Canonicalizer ablation",
+      "script": "scripts/run_canonicalizer_ablation_v1.py",
+      "success": true,
+      "check_output": "experiments/canonicalizer_ablation_v1_toy/selector_metrics_summary.csv"
+    },
+    {
+      "name": "4. Format-shift ablation",
+      "script": "scripts/run_format_shift_ablation_v1.py",
+      "success": true,
+      "check_output": "experiments/format_shift_ablation_v1_toy/format_shift_inputs.csv"
+    },
+    {
+      "name": "5. Mock R4 + SmartQueue",
+      "script": "scripts/run_lightweight_smart_queue_v1.py",
+      "success": true,
+      "check_output": "experiments/lightweight_smart_queue_v1_toy/smart_queue_top100.csv"
+    },
+    {
+      "name": "6. Leakage audit",
+      "script": "scripts/run_leakage_audit_v1.py",
+      "success": true,
+      "check_output": "experiments/leakage_audit_v1_toy/audit_summary.md"
+    }
+  ],
+  "mock_r4_warning": "All R4 scores in this demo are MOCK/TOY. Do NOT mix with real experiment results.",
+  "pipeline": [
+    "toy texts → sentence corpus → BM25 → canonicalizer → mock R4 → SmartQueue → review queue"
+  ],
+  "no_network": true,
+  "no_api": true,
+  "no_training": true
+}

@@ -1,0 +1,44 @@
+{
+  "script_name": "run_lightweight_smart_queue_v1.py",
+  "timestamp": "2026-07-06T19:44:16",
+  "n_reports": 1,
+  "n_ok": 1,
+  "n_fail": 0,
+  "all_ok": true,
+  "reports": [
+    {
+      "schema": "smart_queue_scores",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "n_rows": 6,
+      "n_cols": 19,
+      "columns": [
+        "candidate_id",
+        "target_candidate_group_id",
+        "bucket",
+        "p_strong",
+        "p_contra",
+        "p_svm",
+        "strong_action_flag",
+        "entropy",
+        "selector_score",
+        "selected_rank",
+        "selected_n_words",
+        "bm25_score",
+        "evidence_score",
+        "length_penalty",
+        "score_conservative",
+        "score_balanced",
+        "score_high_recall",
+        "selected_profile",
+        "final_score"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_columns": [],
+      "strict": false,
+      "file_path": "experiments\\lightweight_smart_queue_v1_toy\\smart_queue_scores.csv",
+      "file_exists": true
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "selector_variant_evidence",
+  "version": "1.0.0",
+  "description": "Selected evidence per candidate per selector variant (8 variants: raw_top1_chunk, cleaned_top1_chunk, first_sentence_top1, best_sentence_top1_overlap, best_sentence_top5_overlap, three_sentence_window_top5, sentence_bm25_top1, window_bm25_top1). Public redacted version (selector_examples_redacted.csv) MUST NOT contain selected_evidence.",
+  "file_format": "csv",
+  "primary_file": "selector_variant_evidence.csv",
+  "redacted_file": "selector_examples_redacted.csv",
+  "required_columns": [
+    "candidate_id",
+    "target_candidate_group_id",
+    "selector",
+    "selected_evidence",
+    "selected_source_unit_id",
+    "selected_rank",
+    "selector_score",
+    "n_words",
+    "selected_evidence_sha256"
+  ],
+  "optional_columns": [
+    "selected_chunk_id",
+    "selected_page_number",
+    "source_type",
+    "selection_reason"
+  ],
+  "forbidden_columns_for_public_release": [
+    "selected_evidence"
+  ],
+  "forbidden_columns_for_scoring": [],
+  "hash_columns": [
+    "selected_evidence_sha256"
+  ],
+  "text_columns": [
+    "selected_evidence"
+  ],
+  "redaction_required": true,
+  "redaction_rules": {
+    "selected_evidence": "DROP entirely from public release; selected_evidence_sha256 retained for traceability",
+    "selected_source_unit_id": "DROP from public redacted file (corpus-internal identifier)",
+    "selected_chunk_id": "DROP from public redacted file",
+    "selected_page_number": "DROP from public redacted file",
+    "target_candidate_group_id": "DROP from public redacted file (group identifier)"
+  }
+}

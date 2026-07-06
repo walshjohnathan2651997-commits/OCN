@@ -1,0 +1,64 @@
+{
+  "script_name": "run_error_taxonomy_v1.py",
+  "timestamp": "2026-07-06T07:18:42.601799+00:00",
+  "config_source": "unknown",
+  "guards": {
+    "no_api": true,
+    "no_network": true,
+    "no_training": true,
+    "no_original_data_modification": true
+  },
+  "no_original_data_modification": true,
+  "forbidden_scoring_fields": [
+    "true_label",
+    "is_strong_action",
+    "oracle_hit",
+    "candidate_label_guess",
+    "final_label",
+    "gold_label",
+    "human_audited",
+    "evidence_text",
+    "evidence_text_sha256"
+  ],
+  "paths": {},
+  "inputs": {
+    "review_scores_csv": "experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv",
+    "selector_csv": "experiments/canonicalized_risk_ranking_v1/risk_ranking_features.csv",
+    "retrieval_csv": "experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_results_bm25.csv",
+    "candidate_csv": "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv",
+    "smart_queue_csv": null
+  },
+  "output_dir": "D:\\ocn\\experiments\\error_taxonomy_v1",
+  "toy_mode": false,
+  "thresholds": {
+    "selector_score_low": 0.3,
+    "entropy_high": 0.5,
+    "p_contra_high": 0.3,
+    "contra_nli_high": 0.3,
+    "evidence_words_short": 5,
+    "evidence_words_long": 50,
+    "evidence_sentences_multi": 3,
+    "selected_rank_high": 5
+  },
+  "data_disclaimer": "Controlled silver diagnostic data, NOT natural prevalence. Balanced 4-class pool. Error rates reflect this controlled setting.",
+  "label_usage_policy": "true_label used ONLY for error analysis (FP/FN definition). Never used for scoring, ranking, or feature engineering.",
+  "error_counts": {
+    "n_total": 436,
+    "n_tp": 77,
+    "n_fp": 156,
+    "n_fn": 32,
+    "n_tn": 171,
+    "n_groups": 109
+  },
+  "error_type_counts": {
+    "retrieval_miss": 5,
+    "evidence_format_noise": 22,
+    "weak_selector_overlap": 65,
+    "contradiction_confusion": 36,
+    "action_lexicon_shortcut": 31,
+    "mild_vs_strong_boundary": 73,
+    "supported_overflag": 62,
+    "uncertainty_high_entropy": 22,
+    "group_variant_artifact": 53
+  }
+}

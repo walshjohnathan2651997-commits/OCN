@@ -1,0 +1,40 @@
+# V3.17 Confidential Lightweight Pipeline — Default Config
+#
+# This is the default configuration for all V3.17 scripts. Paths are
+# relative to project_root (which is relative to the repo root when not
+# absolute). Override individual paths by passing --config <path> to any
+# script that supports it.
+#
+# Hard boundaries (enforced by assert_confidential_guards):
+#   no_api: true      — no LLM/API calls
+#   no_network: true  — no network access
+#   no_training: true — no model training, frozen R4 only
+
+project_root: "."
+
+private_pdf_dir: "pdfs"
+candidate_csv: "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv"
+pdf_corpus_dir: "data/pdf_corpus_v1"
+retrieval_dir: "experiments/simclaim_pdf_corpus_retrieval_v1"
+canonicalizer_dir: "experiments/canonicalizer_ablation_v1"
+review_queue_dir: "experiments/canonicalized_review_queue_v1"
+risk_ranking_dir: "experiments/canonicalized_risk_ranking_v1"
+smart_queue_dir: "experiments/lightweight_smart_queue_v1"
+leakage_audit_dir: "experiments/leakage_audit_v1"
+toy_data_dir: "data/toy_synthetic"
+
+no_api: true
+no_network: true
+no_training: true
+no_original_data_modification: true
+
+forbidden_scoring_fields:
+  - true_label
+  - is_strong_action
+  - oracle_hit
+  - candidate_label_guess
+  - final_label
+  - gold_label
+  - human_audited
+  - evidence_text
+  - evidence_text_sha256

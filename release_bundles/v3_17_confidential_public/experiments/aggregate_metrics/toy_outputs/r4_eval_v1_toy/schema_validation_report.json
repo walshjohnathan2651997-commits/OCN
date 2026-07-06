@@ -1,0 +1,33 @@
+{
+  "script_name": "evaluate_r4_on_evidence_variants_v1.py",
+  "timestamp": "2026-07-06T19:44:18",
+  "n_reports": 1,
+  "n_ok": 1,
+  "n_fail": 0,
+  "all_ok": true,
+  "reports": [
+    {
+      "schema": "format_shift_metrics",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "n_rows": 8,
+      "n_cols": 8,
+      "columns": [
+        "variant",
+        "strong_F1",
+        "strong_precision",
+        "strong_recall",
+        "macro_F1",
+        "n_eval",
+        "delta_vs_oracle_clean",
+        "delta_vs_raw_bm25_top1"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_columns": [],
+      "strict": false,
+      "file_path": "experiments\\r4_eval_v1_toy\\format_shift_metrics.csv",
+      "file_exists": true
+    }
+  ]
+}

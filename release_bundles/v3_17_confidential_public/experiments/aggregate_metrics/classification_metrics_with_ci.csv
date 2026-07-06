@@ -1,0 +1,5 @@
+metric,point_estimate,ci_low_2_5,ci_high_97_5,bootstrap_unit,n_bootstrap
+strong_precision,0.330472,0.300779,0.357775,group,100
+strong_recall,0.706422,0.619037,0.779817,group,100
+strong_F1,0.450292,0.408576,0.483338,group,100
+macro_F1,0.384699,0.347549,0.42402,group,100

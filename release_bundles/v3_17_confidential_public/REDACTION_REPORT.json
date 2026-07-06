@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-07-06T18:13:56.791805+00:00",
+  "excluded_patterns": [
+    "pdfs/",
+    "private_pdfs/",
+    "data/private/",
+    "experiments/private/",
+    "experiments/error_taxonomy_v1/private/",
+    "gold_pilot_preparation_v1/",
+    "gold_pilot_protocol_freeze_v1/",
+    "gold_pilot_relation_realism_protocol_v2/",
+    "external_repos/",
+    "paper_versions_ordered/",
+    "project_synthesis/",
+    "_MAINLINE_CURRENT/",
+    "_MAIN_PAPER_CURRENT/",
+    "_PROJECT_INDEX/",
+    ".xlsx",
+    ".pdf",
+    ".pyo",
+    ".joblib",
+    ".pkl",
+    ".npz",
+    ".docx",
+    ".egg-info",
+    ".pyc",
+    "error_cases_private",
+    "private_",
+    "_private",
+    "real_review_queue",
+    "gold_label",
+    "human_audited",
+    "GPT_HANDOFF",
+    "handoff_context"
+  ],
+  "excluded_files_count": 12,
+  "included_files_count": 221,
+  "redteam_pass": true,
+  "redteam_summary": {
+    "scan_timestamp": "2026-07-07T02:13:56",
+    "scanned_files": 220,
+    "scan_dirs": [
+      "D:\\ocn\\release_bundles\\v3_17_confidential_public"
+    ],
+    "high_risk_count": 0,
+    "medium_risk_count": 0,
+    "low_risk_count": 45,
+    "total_findings": 45,
+    "pass_public_release_gate": true,
+    "strict_mode": false,
+    "gitignore_report": {
+      "existing_count": 59,
+      "missing": [
+        "pdfs/",
+        "private_pdfs/",
+        "data/private/",
+        "experiments/private/",
+        "*.pdf",
+        "*.docx",
+        "*.xlsx",
+        "*.npz",
+        "*.pkl",
+        "*.joblib"
+      ],
+      "missing_count": 10
+    }
+  },
+  "contains_real_pdf": false,
+  "contains_raw_evidence_text": false,
+  "contains_real_claim_text": false,
+  "excluded_files_sample": [
+    "data/toy_synthetic/toy_candidates_v1.csv (forbidden_text_columns)",
+    "bm25_sentence_retrieval_v1_toy/retrieval_results_sentence_bm25.csv (forbidden_text_columns)",
+    "bm25_sentence_retrieval_v1_toy/retrieval_results_window_bm25.csv (forbidden_text_columns)",
+    "canonicalizer_ablation_v1_toy/selector_variant_evidence.csv (forbidden_text_columns)",
+    "format_shift_ablation_v1_toy/format_shift_inputs.csv (text_columns:['evidence_input', 'uses_oracle_text'])",
+    "lightweight_smart_queue_v1_toy/smart_queue_scores.csv (text_columns:['evidence_score'])",
+    "lightweight_smart_queue_v1_toy/smart_queue_top100.csv (text_columns:['evidence_score'])",
+    "lightweight_smart_queue_v1_toy/smart_queue_top20.csv (text_columns:['evidence_score'])",
+    "lightweight_smart_queue_v1_toy/smart_queue_top50.csv (text_columns:['evidence_score'])",
+    "toy_end_to_end_demo_v1/toy_review_queue.csv (text_columns:['evidence_score'])",
+    "configs/local_private_template.yaml (file_pattern:private_)",
+    "tests/test_paper_assets_no_private_text.py (file_pattern:private_)"
+  ],
+  "guards": {
+    "no_api": true,
+    "no_network": true,
+    "no_training": true,
+    "no_original_data_modification": true
+  }
+}

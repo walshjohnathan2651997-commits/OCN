@@ -1,0 +1,9 @@
+selector,n_candidates,mean_selector_score,median_n_words,pct_empty,pct_short_lt8,pct_long_gt60,mean_selected_rank,oracle_recall_at_selected,mean_oracle_overlap
+raw_top1_chunk,6,0.188413,84,0.0,0.0,1.0,1.0,0.0,0.304411
+cleaned_top1_chunk,6,0.188413,84,0.0,0.0,1.0,1.0,0.0,0.304411
+first_sentence_top1,6,0.188413,13,0.0,0.166667,0.0,1.0,0.833333,0.793103
+best_sentence_top1_overlap,6,0.576961,12,0.0,0.166667,0.0,1.0,0.666667,0.644955
+best_sentence_top5_overlap,6,0.585294,12,0.0,0.0,0.0,1.333333,0.666667,0.644955
+three_sentence_window_top5,6,0.585294,33,0.0,0.0,0.0,1.333333,0.0,0.412871
+sentence_bm25_top1,6,13.48843,12,0.0,0.166667,0.0,1.0,0.666667,0.685185
+window_bm25_top1,6,10.066921,35,0.0,0.0,0.0,1.0,0.166667,0.488179

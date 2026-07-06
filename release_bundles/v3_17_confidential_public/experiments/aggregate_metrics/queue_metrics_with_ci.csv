@@ -1,0 +1,13 @@
+variant_or_profile,metric,k_or_prevalence,point_estimate,ci_low_2_5,ci_high_97_5
+priority_score,precision_at_10,10,0.5,0.2,0.8
+priority_score,precision_at_20,20,0.35,0.2,0.55
+priority_score,precision_at_50,50,0.34,0.24,0.3905
+priority_score,recall_at_100,100,0.33945,0.247706,0.376147
+priority_score,tp_at_20,20,7,4.0,11.0
+priority_score,fp_at_20,20,13,9.0,16.0
+priority_score,fp_tp_ratio_at_0.01,0.01,1.5,0.03125,4.0
+priority_score,fp_tp_ratio_at_0.03,0.03,1.333333,0.473889,4.891667
+priority_score,fp_tp_ratio_at_0.05,0.05,2.142857,0.833333,4.5
+priority_score,fp_tp_ratio_at_0.1,0.1,1.933333,1.3769,3.4
+priority_score,fp_tp_ratio_at_0.15,0.15,2.3,1.586693,3.269375
+priority_score,fp_tp_ratio_at_0.2,0.2,2.034483,1.444444,3.1

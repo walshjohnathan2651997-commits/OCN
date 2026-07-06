@@ -1,0 +1,31 @@
+{
+  "name": "format_shift_inputs",
+  "version": "1.0.0",
+  "description": "Format-shift experiment INPUTS per candidate per variant (8 variants: oracle_clean, oracle_plus_metadata, oracle_lengthened, oracle_plus_metadata_lengthened, raw_bm25_top1_chunk, cleaned_bm25_top1_chunk, canonicalized_best_sentence_top5, canonicalized_three_sentence_window_top5). Produced by scripts/run_format_shift_ablation_v1.py. Redacted variant (format_shift_inputs_redacted.csv) drops evidence_input and keeps only the SHA-256 hash.",
+  "file_format": "csv",
+  "primary_file": "format_shift_inputs.csv",
+  "redacted_file": "format_shift_inputs_redacted.csv",
+  "required_columns": [
+    "candidate_id",
+    "variant",
+    "evidence_input",
+    "evidence_input_sha256",
+    "n_words",
+    "source",
+    "uses_oracle_text",
+    "contains_metadata",
+    "is_lengthened"
+  ],
+  "optional_columns": [],
+  "forbidden_columns_for_public_release": [
+    "evidence_input"
+  ],
+  "forbidden_columns_for_scoring": [],
+  "hash_columns": [
+    "evidence_input_sha256"
+  ],
+  "text_columns": [
+    "evidence_input"
+  ],
+  "redaction_required": true
+}

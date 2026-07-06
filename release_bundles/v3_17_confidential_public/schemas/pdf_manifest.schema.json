@@ -1,0 +1,38 @@
+{
+  "name": "pdf_manifest",
+  "version": "1.0.0",
+  "description": "PDF extraction manifest listing source PDFs and per-file extraction status. Produced by scripts/build_pdf_sentence_corpus_v1.py (and pdf_source_inventory.csv by run_simclaim_pdf_retrieval_v1.py).",
+  "file_format": "csv",
+  "required_columns": [
+    "paper_id",
+    "pdf_filename",
+    "pdf_path",
+    "pdf_sha256",
+    "n_pages",
+    "extraction_status"
+  ],
+  "optional_columns": [
+    "n_pages_extracted",
+    "n_blocks",
+    "n_sentences",
+    "error_message",
+    "source_pair_id",
+    "title",
+    "arxiv_id",
+    "source_url",
+    "file_exists",
+    "file_size",
+    "match_method",
+    "confidence",
+    "domain"
+  ],
+  "forbidden_columns_for_public_release": [
+    "pdf_path"
+  ],
+  "forbidden_columns_for_scoring": [],
+  "hash_columns": [
+    "pdf_sha256"
+  ],
+  "text_columns": [],
+  "redaction_required": false
+}
