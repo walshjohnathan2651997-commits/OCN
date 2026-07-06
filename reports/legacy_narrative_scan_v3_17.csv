@@ -54,6 +54,23 @@ docs/human_audit_protocol_v1.md,132,gold benchmark,"- ""small targeted audit, no
 docs/human_audit_protocol_v1.md,139,gold benchmark,"- ""gold benchmark""",safe_negation,Keep as-is (safe negation).
 docs/human_audit_protocol_v1.md,142,SOTA,"- ""SOTA""",safe_negation,Keep as-is (safe negation).
 docs/next_phase_benchmark_plan.md,31,Human-audited,| Human-audited | 0 | 100% of test + 30% of train (stratified) | Adjudicated gold for every reported number |,future_work,Keep as future work.
+docs/paper_outline_v3_17_confidential.md,35,gold benchmark,gold benchmark.,safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,48,gold benchmark,"The abstract must **not** contain: gold benchmark, SOTA, automatic",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,48,SOTA,"The abstract must **not** contain: gold benchmark, SOTA, automatic",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,82,gold benchmark,"- **Not** a gold benchmark, SOTA detector, automatic peer reviewer, or",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,82,SOTA,"- **Not** a gold benchmark, SOTA detector, automatic peer reviewer, or",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,82,automatic peer reviewer,"- **Not** a gold benchmark, SOTA detector, automatic peer reviewer, or",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,109,gold benchmark,"- **Not** a gold benchmark, not human-audited, not natural prevalence.",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,109,human-audited,"- **Not** a gold benchmark, not human-audited, not natural prevalence.",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,137,standalone detector,router — **not** a standalone detector.,safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,259,gold benchmark,"- ""gold benchmark"" — dataset is silver",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,260,human-audited,"- ""human-audited benchmark"" — human_audited=False for all rows",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,261,SOTA,"- ""SOTA"" / ""state-of-the-art"" — not SOTA",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,261,SOTA,"- ""SOTA"" / ""state-of-the-art"" — not SOTA",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,261,state-of-the-art,"- ""SOTA"" / ""state-of-the-art"" — not SOTA",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,262,automatic peer reviewer,"- ""automatic peer reviewer"" — not automatic peer review",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,262,automatic peer review,"- ""automatic peer reviewer"" — not automatic peer review",safe_negation,Keep as-is (safe negation).
+docs/paper_outline_v3_17_confidential.md,272,human-audited,"> labels are not gold or human-audited, and results should not be",safe_negation,Keep as-is (safe negation).
 docs/paper_v2_reproduction_path.md,16,gold benchmark,"The V2 manuscript is a silver-label pilot paper. It is **not** a gold benchmark, **not** a human-audited dataset paper, and **not** a completed full CESE-OCN neural architecture paper.",safe_negation,Keep as-is (safe negation).
 docs/paper_v2_reproduction_path.md,16,human-audited,"The V2 manuscript is a silver-label pilot paper. It is **not** a gold benchmark, **not** a human-audited dataset paper, and **not** a completed full CESE-OCN neural architecture paper.",safe_negation,Keep as-is (safe negation).
 docs/paper_v2_reproduction_path.md,42,human-audited,- silver only; not gold; not human-audited,safe_negation,Keep as-is (safe negation).
@@ -63,6 +80,23 @@ docs/paper_v2_reproduction_path.md,95,SOTA,- Do not claim SOTA.,safe_negation,Ke
 docs/pdf_extraction_stress_test_v1.md,12,SOTA,SOTA benchmark.,safe_negation,Keep as-is (safe negation).
 docs/pdf_extraction_stress_test_v1.md,214,SOTA,"extraction robustness test, not SOTA.""",safe_negation,Keep as-is (safe negation).
 docs/pdf_extraction_stress_test_v1.md,250,SOTA,"| `tests/test_pdf_stress_summary_exists.py` | Summary exists, disclaims SOTA, mentions robustness/OCR/synthetic/confidentiality |",safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,15,SOTA,- No SOTA / general detector / automatic peer reviewer claims.,safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,15,automatic peer reviewer,- No SOTA / general detector / automatic peer reviewer claims.,safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,29,SOTA,- **Not supported interpretation:** BM25 is SOTA for scientific claim,safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,141,SOTA,detector; R4 achieves SOTA on simulation claim screening; the F1,safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,159,standalone detector,the queue acting as a standalone detector (not supported);,safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,188,gold benchmark,all possible attacks; the dataset is a gold benchmark; the PASS,safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,247,human-audited,- **Not supported interpretation:** The dataset is human-audited;,safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,253,SOTA,"## Result R13 — PDF extraction stress test (robustness, not SOTA)",safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,263,SOTA,SOTA claim.,safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,264,SOTA,- **Not supported interpretation:** The extractor is SOTA on,safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,275,gold benchmark,"- ""gold benchmark"" — `human_audited=False` for all rows",safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,276,human-audited,"- ""human-audited benchmark"" — no full human audit completed",safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,277,SOTA,"- ""SOTA"" / ""state-of-the-art"" — no shared-benchmark comparison",safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,277,state-of-the-art,"- ""SOTA"" / ""state-of-the-art"" — no shared-benchmark comparison",safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,278,automatic peer reviewer,"- ""automatic peer reviewer"" — pipeline produces a review queue,",safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,279,automatic peer review,not automatic peer review,safe_negation,Keep as-is (safe negation).
+docs/result_narrative_freeze_v3_17.md,289,human-audited,"> labels are not gold or human-audited, and results should not be",safe_negation,Keep as-is (safe negation).
 docs/reviewer_response_playbook_v3_17.md,17,gold benchmark,"> review. It is **not** a gold benchmark, SOTA detector, or automatic",safe_negation,Keep as-is (safe negation).
 docs/reviewer_response_playbook_v3_17.md,17,SOTA,"> review. It is **not** a gold benchmark, SOTA detector, or automatic",safe_negation,Keep as-is (safe negation).
 docs/reviewer_response_playbook_v3_17.md,30,gold benchmark,"We acknowledge the dataset is a controlled silver diagnostic set, not a gold benchmark. Labels are AI-preannotated (annotation_status=ai_preannotated, human_audited=False for all 444 rows). We miti...",safe_negation,Keep as-is (safe negation).
@@ -130,7 +164,30 @@ docs/simclaim_eval_v1_data_status.md,71,human-audited,- human-audited test set,s
 docs/simclaim_eval_v1_data_status.md,100,human-audited,"- ""human-audited""",safe_negation,Keep as-is (safe negation).
 docs/simclaim_paper_full_data_generation_rules.md,164,human-audited,- no human-audited gold labels,safe_negation,Keep as-is (safe negation).
 docs/tfidf_as_leakage_auditor.md,33,human-audited,- no human-audited gold labels,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/abstract_draft.md,28,human-audited,source-traceable but not gold and not human-audited,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/abstract_draft.md,45,standalone detector,queue augments human review; it is not a standalone detector and does,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/abstract_draft.md,55,SOTA,"general detector, not SOTA, and not an automatic peer reviewer.",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/abstract_draft.md,55,automatic peer reviewer,"general detector, not SOTA, and not an automatic peer reviewer.",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/abstract_draft.md,75,gold benchmark,| gold benchmark | no |,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/abstract_draft.md,76,SOTA,| SOTA / state-of-the-art | no |,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/abstract_draft.md,76,state-of-the-art,| SOTA / state-of-the-art | no |,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/abstract_draft.md,77,automatic peer review,| automatic peer review | no |,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/abstract_draft.md,79,human-audited,| human-audited benchmark | no |,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/contribution_bullets.md,5,SOTA,"bullet claims gold, SOTA, automatic peer review, or general detector",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/contribution_bullets.md,5,automatic peer review,"bullet claims gold, SOTA, automatic peer review, or general detector",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/contribution_bullets.md,62,gold benchmark,- We do **not** claim a gold benchmark.,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/contribution_bullets.md,63,human-audited,- We do **not** claim a human-audited dataset.,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/contribution_bullets.md,64,SOTA,- We do **not** claim SOTA on simulation claim screening.,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/contribution_bullets.md,65,automatic peer reviewer,- We do **not** claim an automatic peer reviewer.,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/contribution_bullets.md,77,human-audited,"> labels are not gold or human-audited, and results should not be",safe_negation,Keep as-is (safe negation).
 paper_assets/v3_17_confidential/figures/pipeline_ascii.md,25,human-audited,"<!-- Controlled silver diagnostic, not gold/human-audited. -->",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,22,human-audited,"diagnostic set. The labels are not gold or human-audited, and",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,88,standalone detector,"## L6 — Second-stage queue, not standalone detector",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,92,standalone detector,"FP/TP = 66.82, which is unusable as a standalone detector.",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,98,standalone detector,queue that augments human review; it is not a standalone detector,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,134,full shared-threshold CESE-OCN,claim. There is no full shared-threshold CESE-OCN validation in,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,150,human-audited,"> labels are not gold or human-audited, and results should not be",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,152,SOTA,"> a validated general detector, not SOTA, and not an automatic peer",safe_negation,Keep as-is (safe negation).
 paper_assets/v3_17_confidential/paper_claims_checklist.md,3,human-audited,"> Controlled silver diagnostic, not gold/human-audited.",safe_negation,Keep as-is (safe negation).
 paper_assets/v3_17_confidential/paper_claims_checklist.md,10,human-audited,"| C2 | not human-audited benchmark | YES (see U7, S8) |",safe_negation,Keep as-is (safe negation).
 paper_assets/v3_17_confidential/paper_claims_checklist.md,11,SOTA,| C3 | not SOTA | YES (see U8) |,safe_negation,Keep as-is (safe negation).

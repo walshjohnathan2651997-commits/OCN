@@ -1,6 +1,6 @@
 # Legacy Narrative Scan — V3.17 Confidential Lightweight
 
-Generated: 2026-07-06T20:14:36.737023+00:00
+Generated: 2026-07-06T20:29:56.199830+00:00
 
 > Read-only scan. No files were modified.
 
@@ -8,12 +8,12 @@ Generated: 2026-07-06T20:14:36.737023+00:00
 
 | Classification | Count |
 |---|---|
-| safe_negation | 186 |
+| safe_negation | 243 |
 | legacy_section | 39 |
 | future_work | 3 |
 | unsafe_current_claim | 0 |
 | ambiguous | 0 |
-| **total** | **228** |
+| **total** | **285** |
 
 ## Gate status
 
@@ -23,7 +23,7 @@ Generated: 2026-07-06T20:14:36.737023+00:00
 
 ## All findings by classification
 
-### safe_negation (186)
+### safe_negation (243)
 
 | Path | Line | Phrase | Context |
 |---|---|---|---|
@@ -77,6 +77,23 @@ Generated: 2026-07-06T20:14:36.737023+00:00
 | docs/human_audit_protocol_v1.md | 132 | gold benchmark | - "small targeted audit, not a gold benchmark" |
 | docs/human_audit_protocol_v1.md | 139 | gold benchmark | - "gold benchmark" |
 | docs/human_audit_protocol_v1.md | 142 | SOTA | - "SOTA" |
+| docs/paper_outline_v3_17_confidential.md | 35 | gold benchmark | gold benchmark. |
+| docs/paper_outline_v3_17_confidential.md | 48 | gold benchmark | The abstract must **not** contain: gold benchmark, SOTA, automatic |
+| docs/paper_outline_v3_17_confidential.md | 48 | SOTA | The abstract must **not** contain: gold benchmark, SOTA, automatic |
+| docs/paper_outline_v3_17_confidential.md | 82 | gold benchmark | - **Not** a gold benchmark, SOTA detector, automatic peer reviewer, or |
+| docs/paper_outline_v3_17_confidential.md | 82 | SOTA | - **Not** a gold benchmark, SOTA detector, automatic peer reviewer, or |
+| docs/paper_outline_v3_17_confidential.md | 82 | automatic peer reviewer | - **Not** a gold benchmark, SOTA detector, automatic peer reviewer, or |
+| docs/paper_outline_v3_17_confidential.md | 109 | gold benchmark | - **Not** a gold benchmark, not human-audited, not natural prevalence. |
+| docs/paper_outline_v3_17_confidential.md | 109 | human-audited | - **Not** a gold benchmark, not human-audited, not natural prevalence. |
+| docs/paper_outline_v3_17_confidential.md | 137 | standalone detector | router — **not** a standalone detector. |
+| docs/paper_outline_v3_17_confidential.md | 259 | gold benchmark | - "gold benchmark" — dataset is silver |
+| docs/paper_outline_v3_17_confidential.md | 260 | human-audited | - "human-audited benchmark" — human_audited=False for all rows |
+| docs/paper_outline_v3_17_confidential.md | 261 | SOTA | - "SOTA" / "state-of-the-art" — not SOTA |
+| docs/paper_outline_v3_17_confidential.md | 261 | SOTA | - "SOTA" / "state-of-the-art" — not SOTA |
+| docs/paper_outline_v3_17_confidential.md | 261 | state-of-the-art | - "SOTA" / "state-of-the-art" — not SOTA |
+| docs/paper_outline_v3_17_confidential.md | 262 | automatic peer reviewer | - "automatic peer reviewer" — not automatic peer review |
+| docs/paper_outline_v3_17_confidential.md | 262 | automatic peer review | - "automatic peer reviewer" — not automatic peer review |
+| docs/paper_outline_v3_17_confidential.md | 272 | human-audited | > labels are not gold or human-audited, and results should not be |
 | docs/paper_v2_reproduction_path.md | 16 | gold benchmark | The V2 manuscript is a silver-label pilot paper. It is **not** a gold benchmark, **not** a human-audited dataset pape... |
 | docs/paper_v2_reproduction_path.md | 16 | human-audited | The V2 manuscript is a silver-label pilot paper. It is **not** a gold benchmark, **not** a human-audited dataset pape... |
 | docs/paper_v2_reproduction_path.md | 42 | human-audited | - silver only; not gold; not human-audited |
@@ -86,6 +103,23 @@ Generated: 2026-07-06T20:14:36.737023+00:00
 | docs/pdf_extraction_stress_test_v1.md | 12 | SOTA | SOTA benchmark. |
 | docs/pdf_extraction_stress_test_v1.md | 214 | SOTA | extraction robustness test, not SOTA." |
 | docs/pdf_extraction_stress_test_v1.md | 250 | SOTA | \| `tests/test_pdf_stress_summary_exists.py` \| Summary exists, disclaims SOTA, mentions robustness/OCR/synthetic/con... |
+| docs/result_narrative_freeze_v3_17.md | 15 | SOTA | - No SOTA / general detector / automatic peer reviewer claims. |
+| docs/result_narrative_freeze_v3_17.md | 15 | automatic peer reviewer | - No SOTA / general detector / automatic peer reviewer claims. |
+| docs/result_narrative_freeze_v3_17.md | 29 | SOTA | - **Not supported interpretation:** BM25 is SOTA for scientific claim |
+| docs/result_narrative_freeze_v3_17.md | 141 | SOTA | detector; R4 achieves SOTA on simulation claim screening; the F1 |
+| docs/result_narrative_freeze_v3_17.md | 159 | standalone detector | the queue acting as a standalone detector (not supported); |
+| docs/result_narrative_freeze_v3_17.md | 188 | gold benchmark | all possible attacks; the dataset is a gold benchmark; the PASS |
+| docs/result_narrative_freeze_v3_17.md | 247 | human-audited | - **Not supported interpretation:** The dataset is human-audited; |
+| docs/result_narrative_freeze_v3_17.md | 253 | SOTA | ## Result R13 — PDF extraction stress test (robustness, not SOTA) |
+| docs/result_narrative_freeze_v3_17.md | 263 | SOTA | SOTA claim. |
+| docs/result_narrative_freeze_v3_17.md | 264 | SOTA | - **Not supported interpretation:** The extractor is SOTA on |
+| docs/result_narrative_freeze_v3_17.md | 275 | gold benchmark | - "gold benchmark" — `human_audited=False` for all rows |
+| docs/result_narrative_freeze_v3_17.md | 276 | human-audited | - "human-audited benchmark" — no full human audit completed |
+| docs/result_narrative_freeze_v3_17.md | 277 | SOTA | - "SOTA" / "state-of-the-art" — no shared-benchmark comparison |
+| docs/result_narrative_freeze_v3_17.md | 277 | state-of-the-art | - "SOTA" / "state-of-the-art" — no shared-benchmark comparison |
+| docs/result_narrative_freeze_v3_17.md | 278 | automatic peer reviewer | - "automatic peer reviewer" — pipeline produces a review queue, |
+| docs/result_narrative_freeze_v3_17.md | 279 | automatic peer review | not automatic peer review |
+| docs/result_narrative_freeze_v3_17.md | 289 | human-audited | > labels are not gold or human-audited, and results should not be |
 | docs/reviewer_response_playbook_v3_17.md | 17 | gold benchmark | > review. It is **not** a gold benchmark, SOTA detector, or automatic |
 | docs/reviewer_response_playbook_v3_17.md | 17 | SOTA | > review. It is **not** a gold benchmark, SOTA detector, or automatic |
 | docs/reviewer_response_playbook_v3_17.md | 30 | gold benchmark | We acknowledge the dataset is a controlled silver diagnostic set, not a gold benchmark. Labels are AI-preannotated (a... |
@@ -150,7 +184,30 @@ Generated: 2026-07-06T20:14:36.737023+00:00
 | docs/simclaim_eval_v1_data_status.md | 100 | human-audited | - "human-audited" |
 | docs/simclaim_paper_full_data_generation_rules.md | 164 | human-audited | - no human-audited gold labels |
 | docs/tfidf_as_leakage_auditor.md | 33 | human-audited | - no human-audited gold labels |
+| paper_assets/v3_17_confidential/abstract_draft.md | 28 | human-audited | source-traceable but not gold and not human-audited |
+| paper_assets/v3_17_confidential/abstract_draft.md | 45 | standalone detector | queue augments human review; it is not a standalone detector and does |
+| paper_assets/v3_17_confidential/abstract_draft.md | 55 | SOTA | general detector, not SOTA, and not an automatic peer reviewer. |
+| paper_assets/v3_17_confidential/abstract_draft.md | 55 | automatic peer reviewer | general detector, not SOTA, and not an automatic peer reviewer. |
+| paper_assets/v3_17_confidential/abstract_draft.md | 75 | gold benchmark | \| gold benchmark \| no \| |
+| paper_assets/v3_17_confidential/abstract_draft.md | 76 | SOTA | \| SOTA / state-of-the-art \| no \| |
+| paper_assets/v3_17_confidential/abstract_draft.md | 76 | state-of-the-art | \| SOTA / state-of-the-art \| no \| |
+| paper_assets/v3_17_confidential/abstract_draft.md | 77 | automatic peer review | \| automatic peer review \| no \| |
+| paper_assets/v3_17_confidential/abstract_draft.md | 79 | human-audited | \| human-audited benchmark \| no \| |
+| paper_assets/v3_17_confidential/contribution_bullets.md | 5 | SOTA | bullet claims gold, SOTA, automatic peer review, or general detector |
+| paper_assets/v3_17_confidential/contribution_bullets.md | 5 | automatic peer review | bullet claims gold, SOTA, automatic peer review, or general detector |
+| paper_assets/v3_17_confidential/contribution_bullets.md | 62 | gold benchmark | - We do **not** claim a gold benchmark. |
+| paper_assets/v3_17_confidential/contribution_bullets.md | 63 | human-audited | - We do **not** claim a human-audited dataset. |
+| paper_assets/v3_17_confidential/contribution_bullets.md | 64 | SOTA | - We do **not** claim SOTA on simulation claim screening. |
+| paper_assets/v3_17_confidential/contribution_bullets.md | 65 | automatic peer reviewer | - We do **not** claim an automatic peer reviewer. |
+| paper_assets/v3_17_confidential/contribution_bullets.md | 77 | human-audited | > labels are not gold or human-audited, and results should not be |
 | paper_assets/v3_17_confidential/figures/pipeline_ascii.md | 25 | human-audited | <!-- Controlled silver diagnostic, not gold/human-audited. --> |
+| paper_assets/v3_17_confidential/limitations_draft.md | 22 | human-audited | diagnostic set. The labels are not gold or human-audited, and |
+| paper_assets/v3_17_confidential/limitations_draft.md | 88 | standalone detector | ## L6 — Second-stage queue, not standalone detector |
+| paper_assets/v3_17_confidential/limitations_draft.md | 92 | standalone detector | FP/TP = 66.82, which is unusable as a standalone detector. |
+| paper_assets/v3_17_confidential/limitations_draft.md | 98 | standalone detector | queue that augments human review; it is not a standalone detector |
+| paper_assets/v3_17_confidential/limitations_draft.md | 134 | full shared-threshold CESE-OCN | claim. There is no full shared-threshold CESE-OCN validation in |
+| paper_assets/v3_17_confidential/limitations_draft.md | 150 | human-audited | > labels are not gold or human-audited, and results should not be |
+| paper_assets/v3_17_confidential/limitations_draft.md | 152 | SOTA | > a validated general detector, not SOTA, and not an automatic peer |
 | paper_assets/v3_17_confidential/paper_claims_checklist.md | 3 | human-audited | > Controlled silver diagnostic, not gold/human-audited. |
 | paper_assets/v3_17_confidential/paper_claims_checklist.md | 10 | human-audited | \| C2 \| not human-audited benchmark \| YES (see U7, S8) \| |
 | paper_assets/v3_17_confidential/paper_claims_checklist.md | 11 | SOTA | \| C3 \| not SOTA \| YES (see U8) \| |
@@ -282,8 +339,10 @@ Generated: 2026-07-06T20:14:36.737023+00:00
 - `docs/how_to_upgrade_to_paper_full.md`
 - `docs/human_audit_protocol_v1.md`
 - `docs/next_phase_benchmark_plan.md`
+- `docs/paper_outline_v3_17_confidential.md`
 - `docs/paper_v2_reproduction_path.md`
 - `docs/pdf_extraction_stress_test_v1.md`
+- `docs/result_narrative_freeze_v3_17.md`
 - `docs/reviewer_response_playbook_v3_17.md`
 - `docs/reviewer_risk_register_v3_17.md`
 - `docs/safe_claims_dictionary_v3_17.md`
@@ -291,7 +350,10 @@ Generated: 2026-07-06T20:14:36.737023+00:00
 - `docs/simclaim_eval_v1_data_status.md`
 - `docs/simclaim_paper_full_data_generation_rules.md`
 - `docs/tfidf_as_leakage_auditor.md`
+- `paper_assets/v3_17_confidential/abstract_draft.md`
+- `paper_assets/v3_17_confidential/contribution_bullets.md`
 - `paper_assets/v3_17_confidential/figures/pipeline_ascii.md`
+- `paper_assets/v3_17_confidential/limitations_draft.md`
 - `paper_assets/v3_17_confidential/paper_claims_checklist.md`
 - `paper_assets/v3_17_confidential/paper_results_summary.md`
 - `paper_assets/v3_17_confidential/reviewer_risk_table.md`
