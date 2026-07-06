@@ -1,6 +1,6 @@
 # Legacy Narrative Scan — V3.17 Confidential Lightweight
 
-Generated: 2026-07-06T20:06:52.444845+00:00
+Generated: 2026-07-06T20:14:36.737023+00:00
 
 > Read-only scan. No files were modified.
 
@@ -8,12 +8,12 @@ Generated: 2026-07-06T20:06:52.444845+00:00
 
 | Classification | Count |
 |---|---|
-| safe_negation | 166 |
+| safe_negation | 186 |
 | legacy_section | 39 |
 | future_work | 3 |
 | unsafe_current_claim | 0 |
 | ambiguous | 0 |
-| **total** | **208** |
+| **total** | **228** |
 
 ## Gate status
 
@@ -23,7 +23,7 @@ Generated: 2026-07-06T20:06:52.444845+00:00
 
 ## All findings by classification
 
-### safe_negation (166)
+### safe_negation (186)
 
 | Path | Line | Phrase | Context |
 |---|---|---|---|
@@ -86,6 +86,24 @@ Generated: 2026-07-06T20:06:52.444845+00:00
 | docs/pdf_extraction_stress_test_v1.md | 12 | SOTA | SOTA benchmark. |
 | docs/pdf_extraction_stress_test_v1.md | 214 | SOTA | extraction robustness test, not SOTA." |
 | docs/pdf_extraction_stress_test_v1.md | 250 | SOTA | \| `tests/test_pdf_stress_summary_exists.py` \| Summary exists, disclaims SOTA, mentions robustness/OCR/synthetic/con... |
+| docs/reviewer_response_playbook_v3_17.md | 17 | gold benchmark | > review. It is **not** a gold benchmark, SOTA detector, or automatic |
+| docs/reviewer_response_playbook_v3_17.md | 17 | SOTA | > review. It is **not** a gold benchmark, SOTA detector, or automatic |
+| docs/reviewer_response_playbook_v3_17.md | 30 | gold benchmark | We acknowledge the dataset is a controlled silver diagnostic set, not a gold benchmark. Labels are AI-preannotated (a... |
+| docs/reviewer_response_playbook_v3_17.md | 72 | gold benchmark | We acknowledge the human audit is not complete. The protocol (2-annotator independent review + adjudication) and seed... |
+| docs/reviewer_response_playbook_v3_17.md | 92 | full shared-threshold CESE-OCN | We explicitly state there is no full shared-threshold CESE-OCN validation in V3.17; the full architecture is future w... |
+| docs/reviewer_response_playbook_v3_17.md | 147 | SOTA | **Safe response:** We test PDF extraction robustness with 12 synthetic stress documents covering multi-column, table-... |
+| docs/reviewer_response_playbook_v3_17.md | 159 | general scientific overstatement detector | **Safe response:** We explicitly state the system is NOT a general scientific overstatement detector. It is a simulat... |
+| docs/reviewer_response_playbook_v3_17.md | 181 | gold benchmark | - "Our gold benchmark shows..." (dataset is silver, not gold) |
+| docs/reviewer_response_playbook_v3_17.md | 183 | SOTA | - "State-of-the-art detector..." (not SOTA) |
+| docs/reviewer_response_playbook_v3_17.md | 183 | State-of-the-art | - "State-of-the-art detector..." (not SOTA) |
+| docs/reviewer_response_playbook_v3_17.md | 184 | Automatic peer review | - "Automatic peer review..." (not automatic peer review) |
+| docs/reviewer_response_playbook_v3_17.md | 184 | automatic peer review | - "Automatic peer review..." (not automatic peer review) |
+| docs/reviewer_response_playbook_v3_17.md | 195 | gold benchmark | - "Small targeted audit (not a gold benchmark)..." |
+| docs/reviewer_risk_register_v3_17.md | 47 | gold benchmark | - **safe_response:** We acknowledge the dataset is a controlled silver diagnostic set, not a gold benchmark. Labels a... |
+| docs/reviewer_risk_register_v3_17.md | 121 | gold benchmark | - **safe_response:** We acknowledge the human audit is not complete. The protocol (2-annotator independent review + a... |
+| docs/reviewer_risk_register_v3_17.md | 136 | SOTA | - **safe_response:** We test PDF extraction robustness with 12 synthetic stress documents covering multi-column, tabl... |
+| docs/reviewer_risk_register_v3_17.md | 151 | general scientific overstatement detector | - **safe_response:** We explicitly state the system is NOT a general scientific overstatement detector. It is a simul... |
+| docs/reviewer_risk_register_v3_17.md | 180 | full shared-threshold CESE-OCN | - **safe_response:** We explicitly state there is no full shared-threshold CESE-OCN validation in V3.17; the full arc... |
 | docs/safe_claims_dictionary_v3_17.md | 16 | gold benchmark | \| Project type \| controlled silver diagnostic study \| gold benchmark study / validated detector study \| "This wor... |
 | docs/safe_claims_dictionary_v3_17.md | 17 | gold benchmark | \| Dataset \| source-traceable silver set \| gold-standard dataset / human-verified benchmark \| "The 444-candidate d... |
 | docs/safe_claims_dictionary_v3_17.md | 18 | standalone detector | \| Pipeline output \| second-stage review queue \| automatic detector / standalone detector \| "The pipeline produces... |
@@ -153,6 +171,8 @@ Generated: 2026-07-06T20:06:52.444845+00:00
 | paper_assets/v3_17_confidential/paper_claims_checklist.md | 124 | human-audited | > Controlled silver diagnostic, not gold/human-audited. |
 | paper_assets/v3_17_confidential/paper_results_summary.md | 3 | human-audited | > Controlled silver diagnostic, not gold/human-audited. |
 | paper_assets/v3_17_confidential/paper_results_summary.md | 59 | human-audited | - All results are silver-label diagnostic, not gold/human-audited. |
+| paper_assets/v3_17_confidential/reviewer_risk_table.md | 8 | human-audited | a controlled silver diagnostic, not gold or human-audited. --> |
+| paper_assets/v3_17_confidential/reviewer_risk_table.md | 28 | human-audited | set. The labels are not gold or human-audited, and results should not be |
 | paper_assets/v3_17_confidential/tables/table7_complexity_utility.md | 12 | human-audited | *Controlled silver diagnostic, not gold/human-audited.* |
 | paper_assets/v3_17_confidential/tables/table8_human_audit_if_available.md | 5 | gold benchmark | *Small targeted audit, not a gold benchmark. Audit seed is built; auditor labels pending.* |
 | README.md | 9 | gold benchmark | > confidential local PDF review. It is **not** a gold benchmark, SOTA |
@@ -264,6 +284,8 @@ Generated: 2026-07-06T20:06:52.444845+00:00
 - `docs/next_phase_benchmark_plan.md`
 - `docs/paper_v2_reproduction_path.md`
 - `docs/pdf_extraction_stress_test_v1.md`
+- `docs/reviewer_response_playbook_v3_17.md`
+- `docs/reviewer_risk_register_v3_17.md`
 - `docs/safe_claims_dictionary_v3_17.md`
 - `docs/simclaim_current_data_status_lock.md`
 - `docs/simclaim_eval_v1_data_status.md`
@@ -272,6 +294,7 @@ Generated: 2026-07-06T20:06:52.444845+00:00
 - `paper_assets/v3_17_confidential/figures/pipeline_ascii.md`
 - `paper_assets/v3_17_confidential/paper_claims_checklist.md`
 - `paper_assets/v3_17_confidential/paper_results_summary.md`
+- `paper_assets/v3_17_confidential/reviewer_risk_table.md`
 - `paper_assets/v3_17_confidential/tables/table7_complexity_utility.md`
 - `paper_assets/v3_17_confidential/tables/table8_human_audit_if_available.md`
 - `reports/current_project_status_v3_17.md`
