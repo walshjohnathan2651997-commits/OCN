@@ -75,3 +75,7 @@ data/external_gold/
 
 # macOS metadata
 ._*
+
+# Private full-text outputs (PDF extraction stress test, private mode)
+private/
+**/private/

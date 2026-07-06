@@ -1,0 +1,36 @@
+{
+  "script": "run_pdf_extraction_stress_test_v1.py",
+  "created_at": "2026-07-06T17:27:14.728015+00:00",
+  "config": {
+    "sources": "data\\toy_synthetic\\pdf_stress_sources.jsonl",
+    "output_dir": "experiments\\pdf_extraction_stress_test_v1",
+    "window_size": 3,
+    "n_records": 12,
+    "n_pages_total": 12,
+    "n_blocks_total": 62,
+    "n_sentences_total": 123,
+    "n_windows_total": 102,
+    "n_failures": 0
+  },
+  "no_api": true,
+  "no_network": true,
+  "no_training": true,
+  "no_ocr_by_default": true,
+  "purpose": "Extraction robustness test, not SOTA",
+  "bm25_stress": {
+    "script": "run_pdf_extraction_to_bm25_stress_v1.py",
+    "sources": "data\\toy_synthetic\\pdf_stress_sources.jsonl",
+    "n_anchors": 12,
+    "n_nonempty_anchors": 10,
+    "n_sentence_candidates_total": 123,
+    "n_window_candidates_total": 102,
+    "sentence_recall1": 1.0,
+    "sentence_recall5": 1.0,
+    "sentence_recall10": 1.0,
+    "sentence_mrr": 1.0,
+    "window_recall1": 0.2,
+    "window_recall5": 0.2,
+    "window_recall10": 0.2,
+    "window_mrr": 0.2
+  }
+}

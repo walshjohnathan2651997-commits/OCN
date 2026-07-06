@@ -26,6 +26,7 @@ import os
 import re
 import sys
 import unicodedata
+from collections import defaultdict, Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -408,6 +409,64 @@ def build_corpus_from_pages(paper_id, pdf_filename, pdf_sha256, raw_pages):
     return page_rows, block_rows, sentence_rows, stats
 
 
+def build_windows(sentence_rows, window_size=3):
+    """Group consecutive sentences (same paper, same page) into sliding windows.
+
+    Each window contains up to `window_size` consecutive sentences.
+    Window text is the concatenation of sentence clean_text with spaces.
+    """
+    window_rows = []
+    # Group sentences by (paper_id, page_number)
+    by_page = defaultdict(list)
+    for s in sentence_rows:
+        key = (s["paper_id"], s["page_number"])
+        by_page[key].append(s)
+
+    global_window_id = 0
+    for (paper_id, page_number), sents in by_page.items():
+        sents_sorted = sorted(sents, key=lambda x: x["sentence_id"])
+        n = len(sents_sorted)
+        if n == 0:
+            continue
+        # Sliding window of size window_size
+        for start in range(max(1, n - window_size + 1)):
+            end = min(start + window_size, n)
+            window_sents = sents_sorted[start:end]
+            if not window_sents:
+                continue
+            window_text = " ".join(s["clean_text"] for s in window_sents)
+            sentence_ids = [s["sentence_id"] for s in window_sents]
+            unit_ids = [s["unit_id"] for s in window_sents]
+            section_hints = [s["section_hint"] for s in window_sents]
+            # Use the most common section hint
+            hint = Counter(section_hints).most_common(1)[0][0] if section_hints else "unknown"
+
+            pdf_filename = window_sents[0]["pdf_filename"]
+            pdf_sha256 = window_sents[0]["pdf_sha256"]
+            block_ids = [s["block_id"] for s in window_sents]
+
+            window_rows.append({
+                "paper_id": paper_id,
+                "pdf_filename": pdf_filename,
+                "pdf_sha256": pdf_sha256,
+                "page_number": page_number,
+                "window_id": global_window_id,
+                "unit_id": f"{paper_id}::p{page_number}::w{global_window_id}",
+                "sentence_ids": json.dumps(sentence_ids),
+                "sentence_unit_ids": json.dumps(unit_ids),
+                "block_ids": json.dumps(block_ids),
+                "clean_text": window_text,
+                "clean_text_sha256": sha256_text(window_text),
+                "n_chars": len(window_text),
+                "n_words": count_words(window_text),
+                "n_sentences_in_window": len(window_sents),
+                "section_hint": hint,
+            })
+            global_window_id += 1
+
+    return window_rows
+
+
 def sha256_file(path):
     """Return SHA-256 hex digest of a file's bytes."""
     h = hashlib.sha256()
@@ -481,6 +540,11 @@ def main():
     parser.add_argument("--manifest", default=None, help="Optional CSV manifest mapping paper_id to pdf_path")
     parser.add_argument("--max_pages", type=int, default=None, help="Max pages to extract per PDF (optional)")
     parser.add_argument("--toy_mode", action="store_true", help="Use toy synthetic text instead of real PDFs")
+    parser.add_argument("--private_mode", action="store_true",
+                        help="Hash-only public outputs (no raw/clean text in pages/blocks/sentences/windows.jsonl). "
+                             "Full text saved to private/ subdirectory (gitignored).")
+    parser.add_argument("--window_size", type=int, default=3,
+                        help="Number of consecutive sentences per window (default: 3)")
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
@@ -589,7 +653,27 @@ def main():
                 })
                 print(f"  FAILED {paper_id}: {e}", file=sys.stderr)
 
+    # --- Build windows from sentences ---
+    all_window_rows = build_windows(all_sentence_rows, window_size=args.window_size)
+    total_windows = len(all_window_rows)
+    print(f"\nBuilt {total_windows} windows (window_size={args.window_size})")
+
     # --- Write outputs ---
+
+    # In private_mode, public files are hash-only (no raw/clean text).
+    # Full text goes to private/ subdirectory (should be gitignored).
+    TEXT_FIELDS_PAGES = {"raw_page_text", "clean_page_text"}
+    TEXT_FIELDS_BLOCKS = {"raw_block_text", "clean_block_text"}
+    TEXT_FIELDS_SENTS = {"raw_text", "clean_text"}
+    TEXT_FIELDS_WINDOWS = {"clean_text"}
+
+    def redact_row(row, text_fields):
+        """Return a copy of row with text fields removed."""
+        return {k: v for k, v in row.items() if k not in text_fields}
+
+    private_dir = output_dir / "private" if args.private_mode else None
+    if private_dir:
+        private_dir.mkdir(parents=True, exist_ok=True)
 
     # pdf_manifest.csv
     manifest_path = output_dir / "pdf_manifest.csv"
@@ -609,22 +693,57 @@ def main():
     pages_path = output_dir / "pages.jsonl"
     with open(pages_path, "w", encoding="utf-8") as f:
         for row in all_page_rows:
-            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+            out_row = redact_row(row, TEXT_FIELDS_PAGES) if args.private_mode else row
+            f.write(json.dumps(out_row, ensure_ascii=False) + "\n")
     print(f"Wrote {pages_path} ({len(all_page_rows)} rows)")
+    if private_dir:
+        priv_path = private_dir / "pages_full.jsonl"
+        with open(priv_path, "w", encoding="utf-8") as f:
+            for row in all_page_rows:
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")
+        print(f"Wrote {priv_path} (private, full text)")
 
     # blocks.jsonl
     blocks_path = output_dir / "blocks.jsonl"
     with open(blocks_path, "w", encoding="utf-8") as f:
         for row in all_block_rows:
-            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+            out_row = redact_row(row, TEXT_FIELDS_BLOCKS) if args.private_mode else row
+            f.write(json.dumps(out_row, ensure_ascii=False) + "\n")
     print(f"Wrote {blocks_path} ({len(all_block_rows)} rows)")
+    if private_dir:
+        priv_path = private_dir / "blocks_full.jsonl"
+        with open(priv_path, "w", encoding="utf-8") as f:
+            for row in all_block_rows:
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")
+        print(f"Wrote {priv_path} (private, full text)")
 
     # sentences.jsonl
     sentences_path = output_dir / "sentences.jsonl"
     with open(sentences_path, "w", encoding="utf-8") as f:
         for row in all_sentence_rows:
-            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+            out_row = redact_row(row, TEXT_FIELDS_SENTS) if args.private_mode else row
+            f.write(json.dumps(out_row, ensure_ascii=False) + "\n")
     print(f"Wrote {sentences_path} ({len(all_sentence_rows)} rows)")
+    if private_dir:
+        priv_path = private_dir / "sentences_full.jsonl"
+        with open(priv_path, "w", encoding="utf-8") as f:
+            for row in all_sentence_rows:
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")
+        print(f"Wrote {priv_path} (private, full text)")
+
+    # windows.jsonl
+    windows_path = output_dir / "windows.jsonl"
+    with open(windows_path, "w", encoding="utf-8") as f:
+        for row in all_window_rows:
+            out_row = redact_row(row, TEXT_FIELDS_WINDOWS) if args.private_mode else row
+            f.write(json.dumps(out_row, ensure_ascii=False) + "\n")
+    print(f"Wrote {windows_path} ({len(all_window_rows)} rows)")
+    if private_dir:
+        priv_path = private_dir / "windows_full.jsonl"
+        with open(priv_path, "w", encoding="utf-8") as f:
+            for row in all_window_rows:
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")
+        print(f"Wrote {priv_path} (private, full text)")
 
     # extraction_summary.json
     summary = {
@@ -634,6 +753,9 @@ def main():
         "n_pages": total_pages,
         "n_blocks": total_blocks,
         "n_sentences": total_sentences,
+        "n_windows": total_windows,
+        "window_size": args.window_size,
+        "private_mode": args.private_mode,
         "created_at": datetime.now(timezone.utc).isoformat(),
         "no_network": True,
         "no_api": True,
@@ -642,7 +764,9 @@ def main():
     with open(summary_path, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
     print(f"Wrote {summary_path}")
-    print(f"\nDone: {n_success}/{n_pdfs} PDFs succeeded, {total_pages} pages, {total_blocks} blocks, {total_sentences} sentences")
+    print(f"\nDone: {n_success}/{n_pdfs} PDFs succeeded, {total_pages} pages, {total_blocks} blocks, {total_sentences} sentences, {total_windows} windows")
+    if args.private_mode:
+        print(f"[private_mode] Public outputs are hash-only. Full text in {private_dir}/")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "file": "stress_pages_redacted.jsonl",
+      "n_rows": 12,
+      "forbidden_fields_found": [],
+      "passed": true
+    },
+    {
+      "file": "stress_blocks_redacted.jsonl",
+      "n_rows": 62,
+      "forbidden_fields_found": [],
+      "passed": true
+    },
+    {
+      "file": "stress_sentences_redacted.jsonl",
+      "n_rows": 123,
+      "forbidden_fields_found": [],
+      "passed": true
+    },
+    {
+      "file": "stress_windows_redacted.jsonl",
+      "n_rows": 102,
+      "forbidden_fields_found": [],
+      "passed": true
+    },
+    {
+      "file": "retrieval_under_extraction_stress.csv",
+      "n_rows": 12,
+      "forbidden_fields_found": [],
+      "passed": true
+    },
+    {
+      "file": "failure_cases_redacted.csv",
+      "n_rows": 0,
+      "forbidden_fields_found": [],
+      "passed": true
+    }
+  ],
+  "checked_at": "2026-07-06T17:27:34.745079+00:00",
+  "policy": "Public/redacted outputs must not contain raw_text, clean_text, raw_page_text, clean_page_text, raw_block_text, clean_block_text, retrieved_text, anchor_text, evidence_text, claim_text, or selected_evidence fields."
+}

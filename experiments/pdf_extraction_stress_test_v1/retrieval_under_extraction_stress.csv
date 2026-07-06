@@ -1,0 +1,13 @@
+stress_doc_id,stress_type,anchor_text_sha256,anchor_n_words,sentence_recall1,sentence_recall5,sentence_recall10,sentence_mrr,window_recall1,window_recall5,window_recall10,window_mrr,n_sentence_candidates,n_window_candidates,n_relevant_sentences,skipped_reason
+stress_normal_single_column_001,normal_single_column,87eac947746549eebb03a6f7a48e38f94839fd8fa7d59cc4c7017272010dc0b0,11,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,13,11,1,
+stress_two_column_like_002,two_column_like,6348e59687abe5c587978a3375f4a89cedb5a930619a8f37aebcf895217717c7,37,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,6,4,1,
+stress_header_footer_noise_003,header_footer_noise,c073a5c13e49282c304e475315a242a0d038de9f0210cb72bcebd7070ec330a7,21,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,13,11,1,
+stress_page_number_noise_004,page_number_noise,d64774aa44d73a387d114f61cff74b529e272f9fbf9b00d5474736d441a15c52,10,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,14,12,1,
+stress_hyphenation_noise_005,hyphenation_noise,673f3f04eb170dcb5d642e23aeace157074832e02b68f93057c3daa5404d61b7,13,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,12,10,1,
+stress_long_paragraph_006,long_paragraph,5b02afae1fd5afd79bf84cfc4443ff6e651d4a96d1466cf25f908750b6184fe9,21,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,8,6,1,
+stress_table_like_text_007,table_like_text,8c5b24a4165578ec04b8d94aa6aa30ec2fb03708efaa034560d41f5ca00a9e00,9,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,8,6,1,
+stress_caption_like_text_008,caption_like_text,139e0023a1afacc67f362ff761470cc11a083f04f35b054dd88134a01030bcf9,8,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,17,15,1,
+stress_reference_heavy_009,reference_heavy,4d29910730719eab0bdfb19adb739d042cecf65ba9511e3c204d9a54a951714e,12,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,24,22,1,
+stress_empty_page_010,empty_page,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,0,0,empty_anchor
+stress_corrupted_text_011,corrupted_text,4e9d8b39e340d9eb8c06a62130598961fd8feff68bd42731aeab1bdbf847179f,12,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,6,4,1,
+stress_scanned_placeholder_012,scanned_placeholder_detect_only,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2,1,0,empty_anchor

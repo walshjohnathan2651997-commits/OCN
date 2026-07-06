@@ -1,0 +1,13 @@
+stress_doc_id,stress_type,parser_name,extraction_status,n_pages,n_pages_empty,empty_page_rate,n_blocks,n_sentences,mean_sentences_per_page,mean_words_per_sentence,short_sentence_rate,long_sentence_rate,hyphenation_artifact_rate,header_footer_residual_rate,reference_section_ratio,caption_marker_count,table_marker_count,scanned_detected,error_message
+stress_normal_single_column_001,normal_single_column,synthetic_text_pipeline_v1,ok,1,0,0.0,6,13,13.0,8.6923,0.1538,0.0,0.0,0.0,0.0,0,0,False,
+stress_two_column_like_002,two_column_like,synthetic_text_pipeline_v1,ok,1,0,0.0,4,6,6.0,17.0,0.1667,0.0,0.0,0.0,0.0,0,0,False,
+stress_header_footer_noise_003,header_footer_noise,synthetic_text_pipeline_v1,ok,1,0,0.0,9,13,13.0,11.3846,0.1538,0.0,0.0,0.0,0.0,0,0,False,
+stress_page_number_noise_004,page_number_noise,synthetic_text_pipeline_v1,ok,1,0,0.0,8,14,14.0,9.5,0.0714,0.0,0.0,0.0,0.0,0,0,False,
+stress_hyphenation_noise_005,hyphenation_noise,synthetic_text_pipeline_v1,ok,1,0,0.0,6,12,12.0,10.0,0.0,0.0,0.0,0.0,0.0,0,0,False,
+stress_long_paragraph_006,long_paragraph,synthetic_text_pipeline_v1,ok,1,0,0.0,2,8,8.0,27.25,0.0,0.0,0.0,0.0,0.0,0,0,False,
+stress_table_like_text_007,table_like_text,synthetic_text_pipeline_v1,ok,1,0,0.0,7,8,8.0,17.875,0.125,0.0,0.0,0.0,0.0,2,0,False,
+stress_caption_like_text_008,caption_like_text,synthetic_text_pipeline_v1,ok,1,0,0.0,9,17,17.0,8.4706,0.5882,0.0,0.0,0.0,0.0,3,0,False,
+stress_reference_heavy_009,reference_heavy,synthetic_text_pipeline_v1,ok,1,0,0.0,6,24,24.0,9.25,0.125,0.0,0.0,0.0,0.0,0,0,False,
+stress_empty_page_010,empty_page,synthetic_text_pipeline_v1,empty,1,1,1.0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,0,False,
+stress_corrupted_text_011,corrupted_text,synthetic_text_pipeline_v1,corrupted_cleaned,1,0,0.0,4,6,6.0,9.0,0.1667,0.0,0.0,0.0,0.0,0,0,False,
+stress_scanned_placeholder_012,scanned_placeholder_detect_only,synthetic_text_pipeline_v1,scanned_detect_only,1,0,0.0,1,2,2.0,13.5,0.0,0.0,0.0,0.0,0.0,0,0,True,

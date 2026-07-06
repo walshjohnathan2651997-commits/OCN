@@ -1,0 +1,126 @@
+{
+  "n_queries": 10,
+  "n_with_hits_sentence": 10,
+  "n_with_hits_window": 2,
+  "sentence_recall1": 1.0,
+  "sentence_recall5": 1.0,
+  "sentence_recall10": 1.0,
+  "sentence_mrr": 1.0,
+  "window_recall1": 0.2,
+  "window_recall5": 0.2,
+  "window_recall10": 0.2,
+  "window_mrr": 0.2,
+  "by_stress_type": {
+    "normal_single_column": {
+      "n": 1,
+      "sentence_recall1": 1.0,
+      "sentence_recall5": 1.0,
+      "sentence_recall10": 1.0,
+      "sentence_mrr": 1.0,
+      "window_recall1": 0.0,
+      "window_recall5": 0.0,
+      "window_recall10": 0.0,
+      "window_mrr": 0.0
+    },
+    "two_column_like": {
+      "n": 1,
+      "sentence_recall1": 1.0,
+      "sentence_recall5": 1.0,
+      "sentence_recall10": 1.0,
+      "sentence_mrr": 1.0,
+      "window_recall1": 1.0,
+      "window_recall5": 1.0,
+      "window_recall10": 1.0,
+      "window_mrr": 1.0
+    },
+    "header_footer_noise": {
+      "n": 1,
+      "sentence_recall1": 1.0,
+      "sentence_recall5": 1.0,
+      "sentence_recall10": 1.0,
+      "sentence_mrr": 1.0,
+      "window_recall1": 1.0,
+      "window_recall5": 1.0,
+      "window_recall10": 1.0,
+      "window_mrr": 1.0
+    },
+    "page_number_noise": {
+      "n": 1,
+      "sentence_recall1": 1.0,
+      "sentence_recall5": 1.0,
+      "sentence_recall10": 1.0,
+      "sentence_mrr": 1.0,
+      "window_recall1": 0.0,
+      "window_recall5": 0.0,
+      "window_recall10": 0.0,
+      "window_mrr": 0.0
+    },
+    "hyphenation_noise": {
+      "n": 1,
+      "sentence_recall1": 1.0,
+      "sentence_recall5": 1.0,
+      "sentence_recall10": 1.0,
+      "sentence_mrr": 1.0,
+      "window_recall1": 0.0,
+      "window_recall5": 0.0,
+      "window_recall10": 0.0,
+      "window_mrr": 0.0
+    },
+    "long_paragraph": {
+      "n": 1,
+      "sentence_recall1": 1.0,
+      "sentence_recall5": 1.0,
+      "sentence_recall10": 1.0,
+      "sentence_mrr": 1.0,
+      "window_recall1": 0.0,
+      "window_recall5": 0.0,
+      "window_recall10": 0.0,
+      "window_mrr": 0.0
+    },
+    "table_like_text": {
+      "n": 1,
+      "sentence_recall1": 1.0,
+      "sentence_recall5": 1.0,
+      "sentence_recall10": 1.0,
+      "sentence_mrr": 1.0,
+      "window_recall1": 0.0,
+      "window_recall5": 0.0,
+      "window_recall10": 0.0,
+      "window_mrr": 0.0
+    },
+    "caption_like_text": {
+      "n": 1,
+      "sentence_recall1": 1.0,
+      "sentence_recall5": 1.0,
+      "sentence_recall10": 1.0,
+      "sentence_mrr": 1.0,
+      "window_recall1": 0.0,
+      "window_recall5": 0.0,
+      "window_recall10": 0.0,
+      "window_mrr": 0.0
+    },
+    "reference_heavy": {
+      "n": 1,
+      "sentence_recall1": 1.0,
+      "sentence_recall5": 1.0,
+      "sentence_recall10": 1.0,
+      "sentence_mrr": 1.0,
+      "window_recall1": 0.0,
+      "window_recall5": 0.0,
+      "window_recall10": 0.0,
+      "window_mrr": 0.0
+    },
+    "corrupted_text": {
+      "n": 1,
+      "sentence_recall1": 1.0,
+      "sentence_recall5": 1.0,
+      "sentence_recall10": 1.0,
+      "sentence_mrr": 1.0,
+      "window_recall1": 0.0,
+      "window_recall5": 0.0,
+      "window_recall10": 0.0,
+      "window_mrr": 0.0
+    }
+  },
+  "note": "Anchor text used for evaluation only, not for ranking. Ranking is pure BM25 over extracted sentences/windows."
+}
