@@ -1,5 +1,12 @@
 # Data Card — `simclaim_eval`
 
+> **Legacy data card.** This card describes the older `simclaim_eval`
+> dataset, which is **not** the V3.17 Confidential Lightweight mainline
+> dataset. The current mainline uses `strict_silver_max_v1` (444
+> candidates, `human_audited=False` for all rows, controlled silver
+> diagnostic — **not** human-audited, **not** gold). This card is
+> retained for historical reference only.
+
 > **Scope**: this card describes the **`simclaim_eval`** dataset, the
 > evaluation benchmark accompanying the CESE-OCN paper. The pilot
 > diagnostic dataset (`data/pilot.jsonl`, 20 records) is a small-scale

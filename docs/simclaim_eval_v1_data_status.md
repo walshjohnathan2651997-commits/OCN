@@ -1,5 +1,13 @@
 # SimClaim-Eval v1 Data Status
 
+> **Legacy data layer hierarchy.** This document describes the older
+> `simclaim_eval` data layer hierarchy. The V3.17 Confidential
+> Lightweight mainline uses `strict_silver_max_v1` (controlled silver
+> diagnostic, `human_audited=False`, **not** gold, **not** human-audited).
+> References to `simclaim_human_pilot` as "the existing paper line"
+> below are **legacy** — V3.17 Confidential Lightweight is now the
+> current mainline. This document is retained for historical reference.
+
 This document records the **current data layer hierarchy** for the CESE-OCN project
 and the restrictions that apply to each layer. It exists to prevent the round1
 seed set from leaking into paper-valid outputs or being mistaken for a gold
@@ -7,10 +15,10 @@ benchmark.
 
 ## Current data layers
 
-### 1. `simclaim_human_pilot` — existing paper line
+### 1. `simclaim_human_pilot` — legacy paper line
 
 - Location: `data/human_pilot/`, `release_simclaim_human_pilot/`
-- Role: controlled pilot diagnostic validation, the existing paper line.
+- Role: controlled pilot diagnostic validation, the legacy paper line.
 - Status: this is the only dataset that may feed `release_simclaim_human_pilot/`
   main tables (subject to its own pilot-vs-paper_full gating rules).
 - paper-valid: governed by the existing pilot/paper_full ruleset, not by this

@@ -1,5 +1,12 @@
 # Paper V2 Reproduction Path
 
+> **Legacy reproduction path.** This file describes the V2 manuscript
+> reproduction path, which is **legacy / superseded**. The current
+> mainline is V3.17 Confidential Lightweight Local Review Queue (see
+> `CURRENT_MAINLINE.md` and `docs/current_mainline_v3_17_confidential.md`).
+> The V2 mainline described below is **not** the current empirical
+> mainline. This file is retained for historical reference only.
+
 This file defines the current authoritative reproduction path for the V2 manuscript:
 
 `paper_versions_ordered/V2_evidence_aware_hierarchical/V2_CESE_OCN_evidence_aware_hierarchical_pilot.docx`
@@ -8,7 +15,7 @@ This file defines the current authoritative reproduction path for the V2 manuscr
 
 The V2 manuscript is a silver-label pilot paper. It is **not** a gold benchmark, **not** a human-audited dataset paper, and **not** a completed full CESE-OCN neural architecture paper.
 
-The current empirical mainline is:
+The V2 legacy empirical mainline was:
 
 ```text
 strict_silver_max_v1

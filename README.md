@@ -4,6 +4,11 @@
 
 The current empirical mainline is **Confidential Lightweight V3.17: Local Evidence Canonicalization and Review Queueing for Simulation Claim Escalation Screening**.
 
+> **Safe one-sentence positioning.** This work is a controlled silver
+> diagnostic study of retrieval-to-screening format shift for
+> confidential local PDF review. It is **not** a gold benchmark, SOTA
+> detector, or automatic peer reviewer.
+
 This repository currently studies a narrow retrieval-to-screening problem: in local confidential PDF review, high-recall retrieval of raw PDF chunks does not guarantee downstream evidence-sufficiency screening quality. Raw chunks are often too long, noisy, multi-sentence, or metadata-contaminated. Simple local evidence canonicalization converts retrieved chunks into screening-compatible evidence spans and supports a conservative second-stage human review queue.
 
 ## Current pipeline

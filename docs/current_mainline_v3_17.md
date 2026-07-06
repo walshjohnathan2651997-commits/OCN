@@ -1,7 +1,13 @@
 # Current Mainline (V3.17) — Detailed Specification
 
+> **Superseded.** This is an earlier V3.17 mainline spec without the
+> "Confidential Lightweight" framing. The current authoritative spec is
+> `docs/current_mainline_v3_17_confidential.md`. This file is retained
+> for historical reference; if anything below conflicts with the
+> confidential-lightweight spec, the confidential-lightweight spec wins.
+
 **Date:** 2026-07-06
-**Authority:** This file is the detailed companion to `CURRENT_MAINLINE.md`. If any other document conflicts with this file on the current mainline, this file wins.
+**Authority:** Superseded by `docs/current_mainline_v3_17_confidential.md`.
 
 ---
 
