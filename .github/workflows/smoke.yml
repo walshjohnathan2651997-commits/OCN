@@ -63,7 +63,8 @@ jobs:
             tests/test_redteam_scan_toy_passes.py \
             tests/test_pipeline_runner.py \
             tests/test_metric_robustness.py \
-            tests/test_error_taxonomy.py
+            tests/test_error_taxonomy.py \
+            tests/test_paper_assets_no_private_text.py
 
       - name: Verify V3.17 confidential lightweight mentioned in docs
         run: |
