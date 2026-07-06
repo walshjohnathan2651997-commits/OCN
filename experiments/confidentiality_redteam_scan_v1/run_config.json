@@ -1,7 +1,7 @@
 {
   "script_name": "run_confidentiality_redteam_scan_v1.py",
-  "timestamp": "2026-07-06T18:11:28.533977+00:00",
-  "config_source": "D:\\ocn\\configs\\v3_17_confidential_default.yaml",
+  "timestamp": "2026-07-06T18:38:22.200372+00:00",
+  "config_source": "D:\\ocn\\configs\\toy_demo.yaml",
   "guards": {
     "no_api": true,
     "no_network": true,
@@ -21,17 +21,17 @@
   ],
   "paths": {
     "project_root": ".",
-    "private_pdf_dir": "pdfs",
-    "candidate_csv": "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv",
-    "pdf_corpus_dir": "data/pdf_corpus_v1",
-    "retrieval_dir": "experiments/simclaim_pdf_corpus_retrieval_v1",
-    "canonicalizer_dir": "experiments/canonicalizer_ablation_v1",
-    "review_queue_dir": "experiments/canonicalized_review_queue_v1",
-    "risk_ranking_dir": "experiments/canonicalized_risk_ranking_v1",
-    "smart_queue_dir": "experiments/lightweight_smart_queue_v1",
-    "leakage_audit_dir": "experiments/leakage_audit_v1",
+    "private_pdf_dir": "data/toy_synthetic",
+    "candidate_csv": "data/toy_synthetic/toy_candidates_v1.csv",
+    "pdf_corpus_dir": "data/pdf_corpus_toy_v1",
+    "retrieval_dir": "experiments/bm25_sentence_retrieval_v1_toy",
+    "canonicalizer_dir": "experiments/canonicalizer_ablation_v1_toy",
+    "review_queue_dir": "experiments/canonicalized_review_queue_v1_toy",
+    "risk_ranking_dir": "experiments/canonicalized_risk_ranking_v1_toy",
+    "smart_queue_dir": "experiments/lightweight_smart_queue_v1_toy",
+    "leakage_audit_dir": "experiments/leakage_audit_v1_toy",
     "toy_data_dir": "data/toy_synthetic"
   },
   "strict": false,
-  "scanned_files": 778
+  "scanned_files": 791
 }

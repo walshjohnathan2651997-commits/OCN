@@ -1,6 +1,6 @@
 {
-  "scan_timestamp": "2026-07-07T02:11:28",
-  "scanned_files": 778,
+  "scan_timestamp": "2026-07-07T02:38:22",
+  "scanned_files": 791,
   "scan_dirs": [
     "README.md",
     "CURRENT_MAINLINE.md",
@@ -10,11 +10,11 @@
     "experiments/",
     "data/toy_synthetic/"
   ],
-  "high_risk_count": 0,
+  "high_risk_count": 3,
   "medium_risk_count": 22,
-  "low_risk_count": 65,
-  "total_findings": 87,
-  "pass_public_release_gate": true,
+  "low_risk_count": 64,
+  "total_findings": 89,
+  "pass_public_release_gate": false,
   "strict_mode": false,
   "gitignore_report": {
     "existing_count": 59,

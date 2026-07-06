@@ -1,6 +1,6 @@
 # Current Project Status — V3.17 Confidential Lightweight
 
-Generated: 2026-07-06T18:19:48.290794+00:00
+Generated: 2026-07-06T18:36:04.849643+00:00
 
 > This is a read-only inventory. No experiments were re-run, no data modified.
 
@@ -74,9 +74,9 @@ Generated: 2026-07-06T18:19:48.290794+00:00
 | Script | Status | Size |
 |---|---|---|
 | run_metric_robustness_v1.py | exists | 34895 |
-| run_confidentiality_redteam_scan_v1.py | exists | 37746 |
+| run_confidentiality_redteam_scan_v1.py | exists | 38414 |
 | validate_experiment_outputs_v1.py | exists | 15323 |
-| run_v3_17_confidential_pipeline.py | exists | 20401 |
+| run_v3_17_confidential_pipeline.py | exists | 26070 |
 | build_public_sanitized_release_v1.py | exists | 30016 |
 
 ## 3. Existing Experiment Outputs Inventory
@@ -219,7 +219,7 @@ Generated: 2026-07-06T18:19:48.290794+00:00
 > Each action labeled: **done / blocked / pending**
 
 - **P0** [BLOCKED]: Clean up old narratives in docs (V2/gold/SOTA references)
-  - Reason: 78 old narrative references found (majority are denials like 'not a gold benchmark')
+  - Reason: 79 old narrative references found (majority are denials like 'not a gold benchmark')
   - Note: BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references are predominantly in denial/qualification context (e.g., 'not a gold benchmark', 'not human-audited', 'not SOTA'). Improving scanner to distinguish denials from claims requires NLP context analysis, out of scope for V3.17 confidential lightweight. Non-blocking for release.
 - **P0** [DONE]: Fix leaked text fields in public/redacted files
   - Reason: No forbidden text columns in public/redacted files

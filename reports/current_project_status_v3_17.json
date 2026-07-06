@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T18:19:48.291308+00:00",
+  "generated_at": "2026-07-06T18:36:04.849752+00:00",
   "mainline_docs": {
     "readme_mentions_v3_17": true,
     "current_mainline_points_to_v3_17": true,
@@ -219,6 +219,11 @@
         "file": "docs\\data_versions.md",
         "pattern": "human-audited",
         "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\final_readiness_gate_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold\n  benchmark"
       },
       {
         "file": "docs\\how_to_upgrade_to_paper_full.md",
@@ -516,7 +521,7 @@
       "run_confidentiality_redteam_scan_v1.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 37746
+        "size_bytes": 38414
       },
       "validate_experiment_outputs_v1.py": {
         "exists": true,
@@ -526,7 +531,7 @@
       "run_v3_17_confidential_pipeline.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 20401
+        "size_bytes": 26070
       },
       "build_public_sanitized_release_v1.py": {
         "exists": true,
@@ -626,7 +631,7 @@
         "schema_validation_report.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T16:39:12.665707+00:00"
+      "last_modified": "2026-07-06T18:27:14.511845+00:00"
     },
     "canonicalizer_ablation_v1": {
       "exists": true,
@@ -756,7 +761,7 @@
         "smart_queue_top50.csv"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T17:53:33.203916+00:00"
+      "last_modified": "2026-07-06T18:27:18.551560+00:00"
     },
     "pdf_extraction_stress_test_v1": {
       "exists": true,
@@ -788,7 +793,7 @@
         "toy_run_summary.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T18:13:14.587649+00:00"
+      "last_modified": "2026-07-06T18:35:48.354134+00:00"
     },
     "metric_robustness_v1": {
       "exists": true,
@@ -819,7 +824,7 @@
         "run_config.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T18:11:28.534986+00:00"
+      "last_modified": "2026-07-06T18:35:49.555503+00:00"
     }
   },
   "dataset": {
@@ -1259,7 +1264,7 @@
     {
       "priority": "P0",
       "action": "Clean up old narratives in docs (V2/gold/SOTA references)",
-      "reason": "78 old narrative references found (majority are denials like 'not a gold benchmark')",
+      "reason": "79 old narrative references found (majority are denials like 'not a gold benchmark')",
       "status": "blocked",
       "blocker": "scanner_limitation",
       "note": "BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references are predominantly in denial/qualification context (e.g., 'not a gold benchmark', 'not human-audited', 'not SOTA'). Improving scanner to distinguish denials from claims requires NLP context analysis, out of scope for V3.17 confidential lightweight. Non-blocking for release."

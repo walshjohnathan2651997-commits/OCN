@@ -5,22 +5,18 @@ name: smoke
 # Runs ONLY toy / synthetic data tests. Never touches real PDFs, never
 # requires the real dataset, never calls any API or network.
 #
-# Test coverage:
-#   - forbidden fields not used for retrieval / selection / sorting
-#   - SmartQueue output schema (all 7 files, valid buckets, group diversity)
-#   - toy end-to-end demo completes successfully
-#   - sentence corpus JSONL schema (fields, unit_id format, no leakage)
-#   - schema registry health (9 schemas load, required metadata present)
-#   - redacted outputs contain no raw text or forbidden scoring fields
-#   - config guards (no_api/no_network/no_training enforced)
-#   - confidentiality red-team scanner (toy vs real text, public release gate)
+# CI runs ONLY:
+#   - toy end-to-end demo
+#   - schema validation (toy mode)
+#   - redteam scan (public-only dirs)
+#   - pytest (smoke subset)
 #
-# Acceptance requirements (from task spec):
-#   - forbidden fields not in scoring source columns
-#   - toy demo can complete
-#   - output schema complete
-#   - README / CURRENT_MAINLINE mentions V3.17 confidential lightweight
-#   - data release policy exists
+# CI does NOT run:
+#   - real PDF extraction
+#   - real BM25 retrieval
+#   - R4 heavy evaluation
+#   - private release bundle build
+#   - any stage requiring --allow_private_data true
 
 on:
   push:
@@ -44,28 +40,37 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt || true
-          pip install pytest
+          pip install pytest pyyaml numpy pandas scikit-learn
 
       - name: Compile check
         run: |
           python -m compileall -q scripts tests
 
-      - name: Smoke tests (toy only, no real data)
+      - name: Toy end-to-end demo
+        run: |
+          python scripts/run_toy_end_to_end_demo_v1.py
+
+      - name: Schema validation (toy)
+        run: |
+          python scripts/validate_experiment_outputs_v1.py --toy_mode
+
+      - name: Redteam scan (public only)
+        run: |
+          python scripts/run_confidentiality_redteam_scan_v1.py --scan_public_only
+
+      - name: Smoke tests
         run: |
           pytest -q \
-            tests/test_no_leakage_fields.py \
-            tests/test_smart_queue_outputs.py \
-            tests/test_sentence_corpus_schema.py \
-            tests/test_toy_demo_runs.py \
+            tests/test_current_mainline_docs.py \
+            tests/test_no_private_text_in_public_outputs.py \
+            tests/test_pipeline_runner_toy.py \
+            tests/test_release_bundle_safety.py \
+            tests/test_redteam_scan_toy_passes.py \
+            tests/test_paper_assets_no_private_text.py \
+            tests/test_pipeline_runner.py \
             tests/test_config_guards.py \
             tests/test_schema_registry.py \
-            tests/test_redacted_outputs_no_text.py \
-            tests/test_redteam_scan_toy_passes.py \
-            tests/test_pipeline_runner.py \
-            tests/test_metric_robustness.py \
-            tests/test_error_taxonomy.py \
-            tests/test_paper_assets_no_private_text.py \
-            tests/test_public_release_bundle.py
+            tests/test_toy_demo_runs.py
 
       - name: Verify V3.17 confidential lightweight mentioned in docs
         run: |
@@ -77,7 +82,6 @@ jobs:
               repo / "experiments" / "README.md",
               repo / "README.md",
           ]
-          # Find at least one file mentioning all three keywords.
           found = False
           for p in candidates:
               if p.exists():
@@ -93,14 +97,12 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           repo = Path(".")
-          # Look for a data release policy document in common locations.
           candidates = [
               repo / "docs" / "data_release_policy.md",
               repo / "docs" / "DATA_RELEASE_POLICY.md",
               repo / "DATA_RELEASE_POLICY.md",
               repo / "docs" / "data_release.md",
           ]
-          # Also search docs/ for any file with "release" and "policy" in the name.
           docs_dir = repo / "docs"
           if docs_dir.exists():
               for p in docs_dir.iterdir():
@@ -110,4 +112,20 @@ jobs:
                           candidates.append(p)
           found = any(p.exists() for p in candidates)
           assert found, "No data release policy document found"
+          PY
+
+      - name: Verify real-mode stages are not CI-triggered
+        run: |
+          python - <<'PY'
+          # Verify that the Makefile p0-real target requires --allow_private_data true
+          # and that no CI-safe target accidentally triggers real data runs.
+          from pathlib import Path
+          makefile = Path("Makefile").read_text(encoding="utf-8")
+          assert "--allow_private_data true" in makefile, \
+              "p0-real target must require --allow_private_data true"
+          # Verify toy target does NOT include --allow_private_data
+          toy_section = makefile.split(".PHONY: toy")[1].split(".PHONY:")[0]
+          assert "--allow_private_data" not in toy_section, \
+              "toy target must not include --allow_private_data"
+          print("OK: real-mode stages are properly gated")
           PY

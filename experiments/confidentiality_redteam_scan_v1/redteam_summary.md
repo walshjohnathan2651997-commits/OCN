@@ -1,21 +1,34 @@
 # Confidentiality Red-Team Scan Summary
 
-Generated: 2026-07-07T02:11:28
-Scanned files: 778
+Generated: 2026-07-07T02:38:22
+Scanned files: 791
 
 ## Gate Status
 
-**Public Release Gate: PASS**
+**Public Release Gate: FAIL**
 
-- High risk findings: **0**
+- High risk findings: **3**
 - Medium risk findings: **22**
-- Low risk findings: **65**
-- Total findings: **87**
+- Low risk findings: **64**
+- Total findings: **89**
 - Strict mode: False
 
-## High Risk (0 findings)
+## High Risk (3 findings)
 
-None.
+### forbidden_sorting_field (3)
+
+- **`experiments\canonicalized_review_queue_v1\canonicalized_r4_review_scores.csv`** — `true_label`
+  - Scoring output contains forbidden sorting field 'true_label'
+  - Location: header
+  - Recommendation: Remove 'true_label' from scoring output. This field must not appear in any sorting/scoring CSV.
+- **`experiments\canonicalized_risk_ranking_v1\risk_ranking_features.csv`** — `true_label`
+  - Scoring output contains forbidden sorting field 'true_label'
+  - Location: header
+  - Recommendation: Remove 'true_label' from scoring output. This field must not appear in any sorting/scoring CSV.
+- **`experiments\canonicalized_risk_ranking_v1\risk_ranking_features.csv`** — `oracle_hit`
+  - Scoring output contains forbidden sorting field 'oracle_hit'
+  - Location: header
+  - Recommendation: Remove 'oracle_hit' from scoring output. This field must not appear in any sorting/scoring CSV.
 
 ## Medium Risk (22 findings)
 
@@ -88,28 +101,13 @@ None.
   - Filename contains sensitive keyword 'gold'
   - Recommendation: Ensure this file is excluded from public release artifacts.
 
-## Low Risk (65 findings)
+## Low Risk (64 findings)
 
 ### filename_risk (1)
 
 - **`experiments\lightweight_smart_queue_v1_toy\smart_queue_top100.csv`** — `top100`
   - Filename contains sensitive keyword 'top100'
   - Recommendation: Verify this file is NOT included in public release. If toy/synthetic, prefix with 'toy_' to clarify.
-
-### forbidden_sorting_field (3)
-
-- **`experiments\canonicalized_review_queue_v1\canonicalized_r4_review_scores.csv`** — `true_label`
-  - [ALLOWLISTED PRIVATE INTERMEDIATE] Scoring output contains forbidden sorting field 'true_label'
-  - Location: header
-  - Recommendation: Private intermediate file exempt from HIGH-risk gate. Justification: Private intermediate scoring output. Contains true_label column for audit/evaluation join only (e.g., metric_robustness_v1, error_taxonomy_v1). NOT used for queue sorting — sorting uses priority_score, strong_action_score, p_contra_mean, p_svm_mean only. Leakage audit (experiments/leakage_audit_v1/no_label_in_queue_sorting_check.json) confirms labels are not in the sorting feature set. File is excluded from public release bundles by build_public_sanitized_release_v1.py whitelist. Must be excluded from public release bundles.
-- **`experiments\canonicalized_risk_ranking_v1\risk_ranking_features.csv`** — `true_label`
-  - [ALLOWLISTED PRIVATE INTERMEDIATE] Scoring output contains forbidden sorting field 'true_label'
-  - Location: header
-  - Recommendation: Private intermediate file exempt from HIGH-risk gate. Justification: Private intermediate feature matrix. Contains true_label and oracle_hit columns for audit/evaluation join only (e.g., metric_robustness_v1, complexity_vs_utility_ablation_v1, paired bootstrap). NOT used for risk ranking — ranking uses p_strong, p_contra, p_svm, bm25_score, selector_score only. Leakage audit confirms neither true_label nor oracle_hit is in the ranking feature set. File is excluded from public release bundles by build_public_sanitized_release_v1.py whitelist. Must be excluded from public release bundles.
-- **`experiments\canonicalized_risk_ranking_v1\risk_ranking_features.csv`** — `oracle_hit`
-  - [ALLOWLISTED PRIVATE INTERMEDIATE] Scoring output contains forbidden sorting field 'oracle_hit'
-  - Location: header
-  - Recommendation: Private intermediate file exempt from HIGH-risk gate. Justification: Private intermediate feature matrix. Contains true_label and oracle_hit columns for audit/evaluation join only (e.g., metric_robustness_v1, complexity_vs_utility_ablation_v1, paired bootstrap). NOT used for risk ranking — ranking uses p_strong, p_contra, p_svm, bm25_score, selector_score only. Leakage audit confirms neither true_label nor oracle_hit is in the ranking feature set. File is excluded from public release bundles by build_public_sanitized_release_v1.py whitelist. Must be excluded from public release bundles.
 
 ### gitignore_missing (10)
 
@@ -144,7 +142,7 @@ None.
   - .gitignore missing required entry '*.joblib'
   - Recommendation: Add '*.joblib' to .gitignore to prevent committing sensitive files.
 
-### toy_validation (51)
+### toy_validation (53)
 
 - **`data\toy_synthetic\pdf_stress_sources.jsonl`** — ``
   - Toy JSONL file has no 'toy_' prefixed keys or 'synthetic=true' marker
@@ -305,6 +303,12 @@ None.
 - **`experiments\toy_end_to_end_demo_v1\toy_run_summary.json`** — ``
   - Toy JSON file has no 'toy_' prefixed keys or 'synthetic=true' marker
   - Recommendation: Add 'synthetic: true' field or prefix keys with 'toy_'.
+- **`experiments\v3_17_confidential_pipeline_runs\smoke_test_toy\run_summary.json`** — ``
+  - Toy JSON file has no 'toy_' prefixed keys or 'synthetic=true' marker
+  - Recommendation: Add 'synthetic: true' field or prefix keys with 'toy_'.
+- **`experiments\v3_17_confidential_pipeline_runs\smoke_test_toy\stage_status.csv`** — ``
+  - Toy data file has no 'toy_' prefixed columns or 'synthetic=true' marker
+  - Recommendation: Add 'toy_' prefix to column names or include a 'synthetic=true' column.
 
 ## .gitignore Check
 
