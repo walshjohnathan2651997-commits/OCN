@@ -1,0 +1,1 @@
+audit_item_id,candidate_id,target_candidate_group_id,source_hash,claim_text_hash,evidence_text_hash,model_pred,silver_label,queue_rank,queue_source,auditor_label,auditor_confidence,audit_notes,disagreement_reason,requires_second_review,human_audited,created_at

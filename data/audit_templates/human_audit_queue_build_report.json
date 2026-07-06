@@ -1,0 +1,25 @@
+{
+  "script_name": "build_human_audit_queue_v1.py",
+  "timestamp": "2026-07-06T17:47:18.572205+00:00",
+  "n_target": 120,
+  "n_selected": 111,
+  "bucket_counts": {
+    "top20": 17,
+    "top50_strong_action": 24,
+    "r4_fp": 20,
+    "r4_fn": 15,
+    "mild_vs_strong_boundary": 20,
+    "contradiction_confusion": 15
+  },
+  "n_unique_groups": 78,
+  "max_per_group": 2,
+  "disclaimer": "Small targeted audit seed. NOT a gold benchmark. Directional reliability check only.",
+  "guards": {
+    "no_api": true,
+    "no_network": true,
+    "no_training": true,
+    "no_original_data_modification": true
+  },
+  "no_raw_text_in_outputs": true,
+  "redacted_columns_present": true
+}

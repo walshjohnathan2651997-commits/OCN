@@ -79,3 +79,6 @@ data/external_gold/
 # Private full-text outputs (PDF extraction stress test, private mode)
 private/
 **/private/
+
+# Private audit tables (may join to raw claim/evidence text for auditor convenience)
+data/private_audit/
