@@ -1,5 +1,39 @@
 {
-  "status": "skip",
-  "reason": "guard report not found",
+  "status": "pass",
+  "labels_used_for_sorting": false,
+  "oracle_used_for_sorting": false,
+  "raw_text_used_for_sorting": false,
+  "true_label_used_for_sorting": false,
+  "oracle_hit_used_for_sorting": false,
+  "evidence_text_used_for_sorting": false,
+  "forbidden_fields_found_in_sorting": [],
+  "allowed_fields_used": [
+    "bm25_score",
+    "entropy",
+    "p_contra",
+    "p_strong",
+    "p_svm",
+    "selected_n_words",
+    "selected_rank",
+    "selector_score",
+    "strong_action_flag"
+  ],
+  "forbidden_fields_checked": [
+    "candidate_label_guess",
+    "claim_text",
+    "clean_text",
+    "evidence_text",
+    "evidence_text_sha256",
+    "final_label",
+    "gold_label",
+    "human_audited",
+    "is_strong_action",
+    "oracle_hit",
+    "raw_text",
+    "selected_evidence",
+    "true_label"
+  ],
+  "sort_formula": "final_score = profile_weighted_sum(p_strong, p_contra, entropy, strong_action_flag, evidence_score); evidence_score = weighted_sum(selector_score_norm, bm25_score_norm, selected_rank_norm, length_penalty); sort by final_score descending",
+  "guard_report_status": "pass",
   "path": "D:\\ocn\\experiments\\lightweight_smart_queue_v1\\leakage_guard_report.json"
 }

@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-06T20:47:05.445250+00:00",
+  "generated_at": "2026-07-07T03:59:21.213754+00:00",
   "final_status": "READY_WITH_LIMITATIONS",
   "summary": {
     "total_checks": 44,
-    "pass": 38,
-    "warning": 4,
+    "pass": 39,
+    "warning": 3,
     "blocked": 2,
     "fail": 0
   },
@@ -242,12 +242,12 @@
     {
       "category": "5. Leakage",
       "check_id": "5.4",
-      "description": "no_label_in_queue_sorting documented skip",
-      "status": "WARNING",
+      "description": "no_label_in_queue_sorting pass",
+      "status": "PASS",
       "priority": "P0",
-      "evidence": "status=skip, reason=guard report not found",
-      "blocked_reason": "Guard report not found",
-      "next_action": "Generate SmartQueue leakage guard report"
+      "evidence": "Labels not used in queue sorting",
+      "blocked_reason": "",
+      "next_action": ""
     },
     {
       "category": "5. Leakage",
@@ -465,12 +465,6 @@
     }
   ],
   "warning_items": [
-    {
-      "check_id": "5.4",
-      "description": "no_label_in_queue_sorting documented skip",
-      "evidence": "status=skip, reason=guard report not found",
-      "next_action": "Generate SmartQueue leakage guard report"
-    },
     {
       "check_id": "6.4",
       "description": "Audit not yet run (documented)",

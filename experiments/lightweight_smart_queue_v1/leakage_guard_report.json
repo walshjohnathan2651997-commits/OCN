@@ -1,6 +1,9 @@
 {
-  "forbidden_sort_fields": [
+  "status": "pass",
+  "forbidden_fields_checked": [
     "candidate_label_guess",
+    "claim_text",
+    "clean_text",
     "evidence_text",
     "evidence_text_sha256",
     "final_label",
@@ -8,9 +11,12 @@
     "human_audited",
     "is_strong_action",
     "oracle_hit",
+    "raw_text",
+    "selected_evidence",
     "true_label"
   ],
-  "allowed_sort_fields": [
+  "forbidden_fields_found_in_sorting": [],
+  "allowed_fields_used": [
     "bm25_score",
     "entropy",
     "p_contra",
@@ -30,13 +36,20 @@
     "selector_score",
     "selected_rank",
     "selected_n_words",
-    "bm25_score"
+    "bm25_score",
+    "evidence_score",
+    "final_score"
   ],
+  "sort_formula": "final_score = profile_weighted_sum(p_strong, p_contra, entropy, strong_action_flag, evidence_score); evidence_score = weighted_sum(selector_score_norm, bm25_score_norm, selected_rank_norm, length_penalty); sort by final_score descending",
+  "labels_used_for_sorting": false,
+  "oracle_used_for_sorting": false,
+  "raw_text_used_for_sorting": false,
   "true_label_used_for_sorting": false,
   "true_label_used_for_metrics_only": true,
   "oracle_hit_used_for_sorting": false,
   "evidence_text_used_for_sorting": false,
   "no_network": true,
   "no_api": true,
-  "no_training": true
+  "no_training": true,
+  "notes": "SmartQueue sorts by final_score, computed from model scores (p_strong, p_contra, entropy, strong_action_flag) and evidence scores (selector_score, bm25_score, selected_rank, length_penalty). No labels, oracle fields, or raw text are used for sorting. true_label is used ONLY for post-hoc metric computation."
 }

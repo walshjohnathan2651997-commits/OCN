@@ -1,6 +1,6 @@
 # Final Perfect-State Readiness Gate — V3.17 Confidential Lightweight
 
-Generated: 2026-07-06T20:47:05+0000
+Generated: 2026-07-07T03:59:21+0000
 
 > Read-only gate. No experiments were re-run. No results were modified.
 
@@ -11,8 +11,8 @@ Generated: 2026-07-06T20:47:05+0000
 | Metric | Count |
 |---|---|
 | Total checks | 44 |
-| PASS | 38 |
-| WARNING | 4 |
+| PASS | 39 |
+| WARNING | 3 |
 | BLOCKED | 2 |
 | FAIL | 0 |
 
@@ -34,7 +34,6 @@ Generated: 2026-07-06T20:47:05+0000
 
 | ID | Check | Evidence | Next Action |
 |---|---|---|---|
-| 5.4 | no_label_in_queue_sorting documented skip | status=skip, reason=guard report not found | Generate SmartQueue leakage guard report |
 | 6.4 | Audit not yet run (documented) | No audit dir; protocol documents audit as not complete | Execute human audit when annotators available |
 | 9.1 | Redteam high risk in internal files (release excluded) | high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion | Address high-risk findings or confirm permanent exclusion from release |
 | 10.2 | Schema validation has documented failures | 34 passed, 4 failed (failures from blocked experiments) | Fix blocked experiments or document as permanent |
@@ -107,10 +106,9 @@ Generated: 2026-07-06T20:47:05+0000
 | 5.1 | Claim-only baseline exists | PASS | P0 | strong_f1=0.2448, ratio=0.5436 |
 | 5.2 | Shuffled/title-only/metadata baselines exist | PASS | P0 | Baselines present: shuffled, title_only, metadata_only |
 | 5.3 | no_oracle_in_selector pass | PASS | P0 | Oracle not used in selector |
-| 5.4 | no_label_in_queue_sorting documented skip | WARNING | P0 | status=skip, reason=guard report not found |
+| 5.4 | no_label_in_queue_sorting pass | PASS | P0 | Labels not used in queue sorting |
 | 5.5 | Public outputs no sensitive text | PASS | P0 | release_safety_manifest gate=PASS, no unsafe public artifacts |
 
-- **5.4 WARNING**: status=skip, reason=guard report not found → next_action=`Generate SmartQueue leakage guard report`
 
 ### 6. Human Audit
 
