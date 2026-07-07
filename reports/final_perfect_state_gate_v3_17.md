@@ -1,6 +1,6 @@
 # Final Perfect-State Readiness Gate — V3.17 Confidential Lightweight
 
-Generated: 2026-07-07T11:20:49+0000
+Generated: 2026-07-07T12:09:17+0000
 
 > Read-only gate. No experiments were re-run. No results were modified.
 

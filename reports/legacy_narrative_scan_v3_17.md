@@ -1,6 +1,6 @@
 # Legacy Narrative Scan — V3.17 Confidential Lightweight
 
-Generated: 2026-07-07T11:20:21.536002+00:00
+Generated: 2026-07-07T12:09:09.128058+00:00
 
 > Read-only scan. No files were modified.
 
@@ -8,12 +8,12 @@ Generated: 2026-07-07T11:20:21.536002+00:00
 
 | Classification | Count |
 |---|---|
-| safe_negation | 325 |
+| safe_negation | 409 |
 | legacy_section | 39 |
 | future_work | 3 |
 | unsafe_current_claim | 0 |
 | ambiguous | 0 |
-| **total** | **367** |
+| **total** | **451** |
 
 ## Gate status
 
@@ -23,7 +23,7 @@ Generated: 2026-07-07T11:20:21.536002+00:00
 
 ## All findings by classification
 
-### safe_negation (325)
+### safe_negation (409)
 
 | Path | Line | Phrase | Context |
 |---|---|---|---|
@@ -228,6 +228,90 @@ Generated: 2026-07-07T11:20:21.536002+00:00
 | paper_assets/v3_17_confidential/paper_claims_checklist.md | 124 | human-audited | > Controlled silver diagnostic, not gold/human-audited. |
 | paper_assets/v3_17_confidential/paper_results_summary.md | 3 | human-audited | > Controlled silver diagnostic, not gold/human-audited. |
 | paper_assets/v3_17_confidential/paper_results_summary.md | 59 | human-audited | - All results are silver-label diagnostic, not gold/human-audited. |
+| paper_assets/v3_17_confidential/reviewer_response_pack/01_dataset_silver_risk_response.md | 15 | gold benchmark | We agree that the dataset is a **controlled silver diagnostic set**, not a gold benchmark. We agree that silver label... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/01_dataset_silver_risk_response.md | 15 | gold benchmark | We agree that the dataset is a **controlled silver diagnostic set**, not a gold benchmark. We agree that silver label... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/01_dataset_silver_risk_response.md | 15 | human-audited | We agree that the dataset is a **controlled silver diagnostic set**, not a gold benchmark. We agree that silver label... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/01_dataset_silver_risk_response.md | 37 | gold benchmark | We answer the reviewer as follows: the dataset is explicitly a controlled silver diagnostic set, not a gold benchmark... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/01_dataset_silver_risk_response.md | 50 | gold benchmark | > "We emphasize that the SimClaim Strict Silver Diagnostic Set v1 is a controlled silver diagnostic set, not a gold b... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/01_dataset_silver_risk_response.md | 56 | gold benchmark | \| "gold benchmark" \| labels are silver (`candidate_label_guess`), `human_audited=False`, `gold_label` empty \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/01_dataset_silver_risk_response.md | 57 | human-audited | \| "human-audited dataset" \| human audit protocol staged, not executed; no `audit_agreement_summary.json` \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/01_dataset_silver_risk_response.md | 58 | human-audited | \| "validated general detector" \| silver diagnostic only; no cross-dataset or human-audited validation \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/01_dataset_silver_risk_response.md | 59 | SOTA | \| "SOTA on simulation-claim screening" \| no gold comparison; silver labels cannot anchor a SOTA claim \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/01_dataset_silver_risk_response.md | 59 | SOTA | \| "SOTA on simulation-claim screening" \| no gold comparison; silver labels cannot anchor a SOTA claim \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/04_human_audit_pending_response.md | 36 | human-audited | We answer the reviewer as follows: the human audit is staged but not executed. The protocol, template, and seed queue... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/04_human_audit_pending_response.md | 38 | human-audited | The safe empirical conclusion is therefore narrow: **the reported metrics are silver-conditional diagnostics on a con... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/04_human_audit_pending_response.md | 50 | human-audited | > "We explicitly state that no human audit has been executed. The human audit protocol (`docs/human_audit_protocol_v1... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/04_human_audit_pending_response.md | 56 | human-audited | \| "human-audited dataset" \| `human_audited=False` for all rows; no `audit_agreement_summary.json` \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/04_human_audit_pending_response.md | 57 | human-audited | \| "human-audited validation" \| audit staged, not executed \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/08_low_prevalence_review_queue_response.md | 15 | standalone detector | We agree that the queue is not a standalone detector (`standalone_viable = false`). We agree that the absolute precis... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/08_low_prevalence_review_queue_response.md | 24 | standalone detector | - **Review queue utility framing.** The manuscript states the queue is a second-stage review tool; the system is a se... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/08_low_prevalence_review_queue_response.md | 36 | standalone detector | We answer the reviewer as follows: the queue is explicitly a second-stage review tool, not a standalone detector. The... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/08_low_prevalence_review_queue_response.md | 38 | standalone detector | The safe empirical conclusion is therefore narrow: **the queue provides meaningful precision lift at the top (precisi... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/08_low_prevalence_review_queue_response.md | 42 | standalone detector | - The queue is not a standalone detector; `standalone_viable = false`. |
+| paper_assets/v3_17_confidential/reviewer_response_pack/08_low_prevalence_review_queue_response.md | 50 | standalone detector | > "We clarify the review queue utility claim. The queue is explicitly a second-stage review tool; the system is a sec... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/08_low_prevalence_review_queue_response.md | 56 | standalone detector | \| "standalone detector" \| `standalone_viable = false`; queue is second-stage only \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 1 | SOTA | # 09 — Not SOTA, Not Benchmark Response (Risk I) |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 4 | gold benchmark | **Reviewer attack:** "You do not compare against SOTA on any gold benchmark, you do not report results on SciFact/Vit... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 4 | SOTA | **Reviewer attack:** "You do not compare against SOTA on any gold benchmark, you do not report results on SciFact/Vit... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 11 | gold benchmark | The reviewer notes that the paper reports no comparison against SOTA on any gold benchmark, no results on standard cl... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 11 | SOTA | The reviewer notes that the paper reports no comparison against SOTA on any gold benchmark, no results on standard cl... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 15 | gold benchmark | We agree that the paper is not a SOTA claim on any gold benchmark. We agree that no comparison is reported against Sc... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 15 | SOTA | We agree that the paper is not a SOTA claim on any gold benchmark. We agree that no comparison is reported against Sc... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 19 | gold benchmark | - **Dataset is silver, not gold.** `docs/dataset_version_lock_v3_17.md` records `human_audited = False` for all 444 r... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 21 | gold benchmark | - **Manuscript framing.** The manuscript states verbatim: "This is a controlled silver diagnostic study, not a gold b... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 21 | gold benchmark | - **Manuscript framing.** The manuscript states verbatim: "This is a controlled silver diagnostic study, not a gold b... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 21 | human-audited | - **Manuscript framing.** The manuscript states verbatim: "This is a controlled silver diagnostic study, not a gold b... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 21 | SOTA | - **Manuscript framing.** The manuscript states verbatim: "This is a controlled silver diagnostic study, not a gold b... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 21 | automatic peer reviewer | - **Manuscript framing.** The manuscript states verbatim: "This is a controlled silver diagnostic study, not a gold b... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 22 | standalone detector | - **Pipeline scope.** The system is a second-stage review queue generator, not a standalone detector (`standalone_via... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 23 | SOTA | - **Leakage audit.** The 12-check leakage audit is structural (overlap, group leakage, claim-only collapse, shuffled-... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 24 | SOTA | - **Final gate status.** The Final Perfect State Gate does not include any SOTA or benchmark-comparison check; the ga... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 36 | gold benchmark | We answer the reviewer as follows: this paper is not a SOTA claim on any gold benchmark and is not positioned as one.... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 36 | gold benchmark | We answer the reviewer as follows: this paper is not a SOTA claim on any gold benchmark and is not positioned as one.... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 36 | gold benchmark | We answer the reviewer as follows: this paper is not a SOTA claim on any gold benchmark and is not positioned as one.... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 36 | SOTA | We answer the reviewer as follows: this paper is not a SOTA claim on any gold benchmark and is not positioned as one.... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 36 | SOTA | We answer the reviewer as follows: this paper is not a SOTA claim on any gold benchmark and is not positioned as one.... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 38 | SOTA | The safe empirical conclusion is therefore narrow: **the paper is a controlled silver diagnostic study of retrieval-t... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 38 | SOTA | The safe empirical conclusion is therefore narrow: **the paper is a controlled silver diagnostic study of retrieval-t... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 43 | SOTA | - No SOTA claim is supportable; the silver-label metrics (strong_F1 = 0.4503) are not comparable to gold-benchmark me... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 50 | gold benchmark | > "We clarify the scope of this paper. This is a controlled silver diagnostic study, not a gold benchmark, not a SOTA... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 50 | SOTA | > "We clarify the scope of this paper. This is a controlled silver diagnostic study, not a gold benchmark, not a SOTA... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 50 | SOTA | > "We clarify the scope of this paper. This is a controlled silver diagnostic study, not a gold benchmark, not a SOTA... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 50 | SOTA | > "We clarify the scope of this paper. This is a controlled silver diagnostic study, not a gold benchmark, not a SOTA... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 56 | SOTA | \| "SOTA on simulation-claim screening" \| no gold comparison; silver labels; no SOTA claim is supportable \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 56 | SOTA | \| "SOTA on simulation-claim screening" \| no gold comparison; silver labels; no SOTA claim is supportable \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 57 | SOTA | \| "state-of-the-art" \| no gold-benchmark comparison; not a SOTA paper \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 57 | state-of-the-art | \| "state-of-the-art" \| no gold-benchmark comparison; not a SOTA paper \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 58 | gold benchmark | \| "gold benchmark" \| silver diagnostic only; `human_audited=False`; `gold_label` empty \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md | 61 | automatic peer reviewer | \| "automatic peer reviewer" \| queue is second-stage; does not replace human adjudication \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 26 | standalone detector | \| H \| Low prevalence queue: precision@20=0.35 is barely better than calibrated prior \| Medium \| Queue utility gat... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 27 | gold benchmark | \| I \| No SOTA comparison, no gold benchmark, not a benchmark paper \| High \| Silver dataset (`human_audited=False`... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 27 | gold benchmark | \| I \| No SOTA comparison, no gold benchmark, not a benchmark paper \| High \| Silver dataset (`human_audited=False`... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 27 | SOTA | \| I \| No SOTA comparison, no gold benchmark, not a benchmark paper \| High \| Silver dataset (`human_audited=False`... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 27 | SOTA | \| I \| No SOTA comparison, no gold benchmark, not a benchmark paper \| High \| Silver dataset (`human_audited=False`... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 27 | SOTA | \| I \| No SOTA comparison, no gold benchmark, not a benchmark paper \| High \| Silver dataset (`human_audited=False`... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 27 | SOTA | \| I \| No SOTA comparison, no gold benchmark, not a benchmark paper \| High \| Silver dataset (`human_audited=False`... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 60 | gold benchmark | \| "gold benchmark" \| silver diagnostic only; `human_audited=False`; `gold_label` empty \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 61 | human-audited | \| "human-audited dataset" / "human-audited validation" \| audit staged, not executed \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 61 | human-audited | \| "human-audited dataset" / "human-audited validation" \| audit staged, not executed \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 62 | SOTA | \| "SOTA" / "state-of-the-art" \| no gold comparison; silver labels cannot anchor SOTA \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 62 | SOTA | \| "SOTA" / "state-of-the-art" \| no gold comparison; silver labels cannot anchor SOTA \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 62 | state-of-the-art | \| "SOTA" / "state-of-the-art" \| no gold comparison; silver labels cannot anchor SOTA \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 63 | automatic peer reviewer | \| "automatic peer reviewer" \| queue is second-stage; does not replace adjudication \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md | 64 | standalone detector | \| "standalone detector" \| `standalone_viable=false`; queue is second-stage only \| |
+| paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md | 13 | gold benchmark | We agree the 444-candidate set is a controlled silver diagnostic, not a gold benchmark. The dataset is locked at SHA2... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md | 13 | gold benchmark | We agree the 444-candidate set is a controlled silver diagnostic, not a gold benchmark. The dataset is locked at SHA2... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md | 13 | SOTA | We agree the 444-candidate set is a controlled silver diagnostic, not a gold benchmark. The dataset is locked at SHA2... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md | 37 | human-audited | We agree no human audit has been executed. The protocol (`docs/human_audit_protocol_v1.md`) defines a small targeted ... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md | 69 | standalone detector | We agree the queue is not a standalone detector. The queue utility gate reports `standalone_viable=false` and `second... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md | 69 | standalone detector | We agree the queue is not a standalone detector. The queue utility gate reports `standalone_viable=false` and `second... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md | 75 | SOTA | ## Snippet I — Not SOTA, not benchmark (Risk I) |
+| paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md | 77 | gold benchmark | We agree this paper is not a SOTA claim on any gold benchmark and is not positioned as one. The dataset is a controll... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md | 77 | gold benchmark | We agree this paper is not a SOTA claim on any gold benchmark and is not positioned as one. The dataset is a controll... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md | 77 | SOTA | We agree this paper is not a SOTA claim on any gold benchmark and is not positioned as one. The dataset is a controll... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md | 77 | SOTA | We agree this paper is not a SOTA claim on any gold benchmark and is not positioned as one. The dataset is a controll... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md | 77 | SOTA | We agree this paper is not a SOTA claim on any gold benchmark and is not positioned as one. The dataset is a controll... |
+| paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md | 95 | SOTA | \| I \| Not SOTA, not benchmark \| 158 \| yes \| |
 | paper_assets/v3_17_confidential/reviewer_risk_table.md | 8 | human-audited | a controlled silver diagnostic, not gold or human-audited. --> |
 | paper_assets/v3_17_confidential/reviewer_risk_table.md | 28 | human-audited | set. The labels are not gold or human-audited, and results should not be |
 | paper_assets/v3_17_confidential/submission_claims_matrix.md | 14 | gold benchmark | \| 444-candidate controlled silver diagnostic set \| Yes \| `docs/dataset_version_lock_v3_17.md` \| "controlled silve... |
@@ -438,6 +522,12 @@ Generated: 2026-07-07T11:20:21.536002+00:00
 - `paper_assets/v3_17_confidential/limitations_draft.md`
 - `paper_assets/v3_17_confidential/paper_claims_checklist.md`
 - `paper_assets/v3_17_confidential/paper_results_summary.md`
+- `paper_assets/v3_17_confidential/reviewer_response_pack/01_dataset_silver_risk_response.md`
+- `paper_assets/v3_17_confidential/reviewer_response_pack/04_human_audit_pending_response.md`
+- `paper_assets/v3_17_confidential/reviewer_response_pack/08_low_prevalence_review_queue_response.md`
+- `paper_assets/v3_17_confidential/reviewer_response_pack/09_not_sota_not_benchmark_response.md`
+- `paper_assets/v3_17_confidential/reviewer_response_pack/10_master_reviewer_response_table.md`
+- `paper_assets/v3_17_confidential/reviewer_response_pack/rebuttal_snippets.md`
 - `paper_assets/v3_17_confidential/reviewer_risk_table.md`
 - `paper_assets/v3_17_confidential/submission_claims_matrix.md`
 - `paper_assets/v3_17_confidential/submission_cover_note.md`
