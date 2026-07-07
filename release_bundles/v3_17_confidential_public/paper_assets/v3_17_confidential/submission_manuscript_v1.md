@@ -2,19 +2,13 @@
 
 ### A Controlled Silver Diagnostic Study of Retrieval-to-Screening Format Shift
 
-**Submission Manuscript Draft v1 — V3.17 Confidential Lightweight**
+**Submission Manuscript Draft v2 (Final Freeze) — V3.17 Confidential Lightweight**
 
 > **Mandatory framing.** This is a controlled silver diagnostic study, not a gold benchmark. The system is a second-stage review queue generator, not a standalone detector. Confidentiality is a deployment constraint, not the empirical contribution. Format-shift R4 evaluation was completed offline using a compatible local scikit-learn environment; results are diagnostic (silver labels), not benchmark-level.
 
 ---
 
-## 1. Title
-
-**Local Evidence Canonicalization for Offline Simulation-Claim Review Queues: A Controlled Silver Diagnostic Study of Retrieval-to-Screening Format Shift**
-
----
-
-## 2. Abstract
+## 1. Abstract
 
 Simulation-claim review requires screening claims about autonomous driving, policy simulation, digital twins, cyber defense, multi-agent reinforcement learning, and robotics against source PDF evidence. In confidential offline deployment settings, API egress, network access, and new model training are prohibited, so all retrieval, screening, and ranking must run locally and remain auditable.
 
@@ -30,11 +24,13 @@ Limitations: silver labels (not gold), no completed human audit (protocol staged
 
 ---
 
-## 3. Introduction
+## 2. Introduction
 
 Simulation-claim review is the task of checking whether a claim about a simulated system (autonomous driving, policy simulation, digital twins, cyber defense, multi-agent reinforcement learning, robotics) is supported by, in mild scope overclaim of, in strong action overclaim of, or in contradiction with its source evidence. In confidential deployment settings, the evidence is held as local PDF corpora that cannot leave the deployment boundary, API egress is prohibited, and retraining is disallowed.
 
 This setting produces a concrete engineering problem: the retrieval stage returns long PDF chunks (≈200 words, ≈91% exceed 60 words), but the downstream screening stage was trained on short screening-format evidence. We call this mismatch the **retrieval-to-screening format shift**. Bridging it without API calls or new training requires a deterministic, auditable transformation.
+
+Simulation-claim review intersects three lines of prior work: (a) scientific claim verification on benchmarks such as SciFact and VitaminC, (b) retrieval-augmented screening for systematic review and triage, and (c) confidential/on-premise NLP pipelines that operate without API egress or external LLMs. Two structural differences apply. First, prior claim-verification benchmarks are gold-labeled and human-audited; our setting is a controlled silver diagnostic set with `human_audited=False` for all rows. **This is a controlled silver diagnostic study, not a gold benchmark.** Second, prior retrieval-augmented screening pipelines typically assume cloud LLM access; our deployment constraint forbids it.
 
 We make the following contributions in this submission:
 
@@ -49,19 +45,7 @@ We explicitly do **not** claim a gold benchmark, a human-audited dataset, SOTA o
 
 ---
 
-## 4. Related Work
-
-Simulation-claim review intersects three lines of prior work: (a) scientific claim verification on benchmarks such as SciFact and VitaminC, (b) retrieval-augmented screening for systematic review and triage, and (c) confidential/on-premise NLP pipelines that operate without API egress or external LLMs.
-
-Two structural differences apply. First, prior claim-verification benchmarks are gold-labeled and human-audited; our setting is a controlled silver diagnostic set with `human_audited=False` for all rows. **This is a controlled silver diagnostic study, not a gold benchmark.** Second, prior retrieval-augmented screening pipelines typically assume cloud LLM access; our deployment constraint forbids it.
-
-We therefore do not position the system as a validated general detector and do not claim SOTA against gold benchmarks. The empirical contribution is the identification and bridging of the retrieval-to-screening format shift under explicit no-API, no-network, no-training boundaries.
-
-[Source: docs/dataset_version_lock_v3_17.md; experiments/complexity_vs_utility_ablation_v1/method_comparison_metrics.csv]
-
----
-
-## 5. Problem Setting
+## 3. Problem Setting
 
 A candidate is a tuple `(claim_text, source_evidence, candidate_label_guess)` where `candidate_label_guess ∈ {supported, mild_scope_overclaim, strong_action_overclaim, contradiction_candidate}`. The deployment pipeline runs in three stages:
 
@@ -77,7 +61,7 @@ The reviewer then adjudicates the top of the queue. **The system is a second-sta
 
 ---
 
-## 6. Dataset and Boundaries
+## 4. Dataset and Boundaries
 
 We use the **SimClaim Strict Silver Diagnostic Set v1**, locked at SHA256 `13d6c66171cf54e1a456d5ef8674f00f91939aa79a60f0c65066f2a3ebe0a812` (448144 bytes, 444 rows, 36 columns, 111 groups).
 
@@ -100,19 +84,53 @@ Domain distribution: autonomous_driving=140, policy_simulation=84, digital_twin=
 
 ---
 
-## 7. Method
-
-### 7.1 Retrieval
+## 5. Local PDF Retrieval
 
 We run BM25 (k1=1.5, b=0.75) over a local PDF corpus of 69 PDFs (4747 chunks, ≈200 words per chunk with 50-word overlap). Query is `claim_text`. The chunk-level retrieval achieves oracle_match_rate = 0.991, recall@10 = 0.980, MRR = 0.826.
 
 We additionally build a sentence/window corpus from the chunk corpus: 34643 sentences and 32250 windows. Sentence-level BM25 retrieval achieves recall@1 = 0.851, recall@5 = 0.932, recall@10 = 0.948, MRR = 0.883, outperforming window-level retrieval (recall@10 = 0.396, MRR = 0.324). Public artifacts are hash-only (no raw text); BM25 reads from a gitignored private corpus.
 
+| Metric | Chunk-level | Sentence-level | Window-level |
+|---|---|---|---|
+| recall@1 | 0.716 | 0.851 | — |
+| recall@5 | 0.973 | 0.932 | — |
+| recall@10 | 0.980 | 0.948 | 0.396 |
+| MRR | 0.826 | 0.883 | 0.324 |
+
 [Source: experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_metrics_bm25.json; experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json; experiments/bm25_sentence_retrieval_v1/leakage_guard_report.json]
 
-### 7.2 Evidence Canonicalization
+### 5.1 PDF Extraction Robustness
 
-Raw BM25 chunks are too long for the screening stage: 91% exceed 60 words. We propose deterministic canonicalizers that select or compose screening-format evidence from BM25 top-5 chunks:
+We ran a synthetic PDF extraction stress suite of 12 documents covering stress types (caption-like text, corrupted text, empty page, header/footer noise, hyphenation, long paragraph, page-number noise, reference-heavy, scanned-placeholder detect-only, table-like, two-column-like). 9 OK, 1 empty page, 1 scanned (detect-only), 1 corrupted (NUL cleaned), 0 failed. This is an engineering robustness test, not a SOTA claim.
+
+[Source: experiments/pdf_extraction_stress_test_v1/stress_test_summary.md; experiments/pdf_extraction_stress_test_v1/stress_suite_manifest.csv]
+
+---
+
+## 6. Retrieval-to-Screening Format Shift
+
+Raw BM25 chunks are too long for the screening stage: 91% exceed 60 words. The screening router was trained on short screening-format evidence (≤60 words). This mismatch — the **retrieval-to-screening format shift** — means that retrieval success (recall@10=0.980) does not imply screening success (raw_top1_chunk oracle_recall=0.043).
+
+The format-shift R4 evaluation was completed offline using a project-local `.venv` with scikit-learn 1.9.0 (exact match for the frozen R4 artifacts), under `HF_HUB_OFFLINE=1`/`TRANSFORMERS_OFFLINE=1` with no network, no API, no retraining, and no model-artifact modification. Schema validation passed 38/38 checks.
+
+We constructed 8 format-shift variants × 444 candidates = 3552 rows and computed 7 NLI features per row (shape [3552, 7]). Variants include `oracle_clean`, `oracle_plus_metadata`, `oracle_lengthened`, `oracle_plus_metadata_lengthened`, `raw_bm25_top1_chunk`, `cleaned_bm25_top1_chunk`, `canonicalized_best_sentence_top5`, `canonicalized_three_sentence_window_top5`.
+
+| Variant | strong_F1 | Δ vs oracle_clean | Δ vs raw_bm25 |
+|---|---|---|---|
+| oracle_clean | 0.4627 | 0.000 | +0.1872 |
+| canonicalized_best_sentence_top5 | 0.4615 | −0.0011 | +0.1860 |
+| raw_bm25_top1_chunk | 0.2755 | −0.1872 | 0.000 |
+| oracle_lengthened | 0.0000 | −0.4627 | −0.2755 |
+
+Key findings: canonicalized evidence (`canonicalized_best_sentence_top5`) achieves strong_F1=0.4615, close to the oracle upper bound (0.4627, Δ=−0.0011) and substantially above raw BM25 chunks (0.2755, Δ=+0.1860). The canonicalization gain of +0.186 strong_F1 confirms that the retrieval-to-screening format shift materially affects R4 performance. Lengthened variants produce strong_F1=0.0, confirming that lengthening evidence beyond the screening format collapses R4 prediction. Results are diagnostic (silver labels, frozen R4), not benchmark-level.
+
+[Source: experiments/format_shift_ablation_v1/format_shift_metrics.csv; experiments/format_shift_ablation_v1/format_shift_summary.json; experiments/format_shift_ablation_v1/r4_eval_blocked.json; reports/sklearn_offline_compatibility_investigation_v3_17.md]
+
+---
+
+## 7. Evidence Canonicalization
+
+We propose deterministic canonicalizers that select or compose screening-format evidence from BM25 top-5 chunks:
 
 - `raw_top1_chunk` (baseline): raw BM25 top-1 chunk.
 - `best_sentence_top1_overlap`: single best sentence by claim overlap.
@@ -121,9 +139,23 @@ Raw BM25 chunks are too long for the screening stage: 91% exceed 60 words. We pr
 
 All canonicalizers are unsupervised, deterministic, and use only `claim_text` and the retrieved text — no labels, no oracle, no API calls.
 
+| Selector | oracle_recall | mean_overlap | pct_long_gt60 |
+|---|---|---|---|
+| raw_top1_chunk | 0.043 | 0.199 | 0.910 |
+| first_sentence_top1 | 0.027 | 0.086 | 0.059 |
+| best_sentence_top1_overlap | 0.221 | 0.319 | 0.052 |
+| **best_sentence_top5_overlap** | **0.387** | **0.524** | **0.000** |
+| three_sentence_window_top5 | 0.203 | 0.376 | 0.304 |
+
+`best_sentence_top5_overlap` achieves 9x oracle_recall improvement over `raw_top1_chunk` (0.043 → 0.387) and produces screening-format-length evidence (0% exceed 60 words).
+
 [Source: experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv; experiments/bm25_sentence_retrieval_v1/leakage_guard_report.json]
 
-### 7.3 Frozen R4 Screening Router
+---
+
+## 8. Review Queue Construction
+
+### 8.1 Frozen R4 Screening Router
 
 We use a frozen R4 cascade (10 seeds, thresholds frozen at lock time). Per candidate, the router computes 7 NLI features + 9 action-gap features, then routes through:
 
@@ -136,32 +168,28 @@ We use a frozen R4 cascade (10 seeds, thresholds frozen at lock time). Per candi
 
 [Source: experiments/r4_minimal_recovery_v1/r4_recovery_gate.json; scripts/evaluate_r4_on_evidence_variants_v1.py]
 
-### 7.4 Risk Ranking and Review Queue
+### 8.2 Risk Ranking and Review Queue
 
 We rank candidates by `priority_score = p_strong_mean − p_contra_mean + 0.5 × strong_action_flag` and evaluate 8 ranking variants. The best variant is `G_conservative_precision` (precision-optimized conservative formula). The queue is a second-stage review tool; **the system is a second-stage review queue generator, not a standalone detector.**
 
-[Source: experiments/canonicalized_risk_ranking_v1/risk_ranking_gate.json; experiments/canonicalized_review_queue_v1/canonicalized_review_queue_gate.json]
+| Variant | precision@20 | precision@50 | recall@100 | average_precision |
+|---|---|---|---|---|
+| A_flag_only (baseline) | 0.35 | 0.36 | 0.330 | 0.356 |
+| D_confidence_guarded | 0.40 | 0.32 | 0.330 | 0.354 |
+| **G_conservative_precision** | **0.45** | 0.36 | 0.330 | 0.353 |
+| H_balanced_review_score | 0.25 | 0.38 | 0.275 | 0.323 |
+
+`G_conservative_precision` improves precision@20 from 0.35 (baseline) to 0.45 (+0.10), with negligible recall cost (recall@100: 0.330 vs 0.330). All variants miss the strict queue-utility targets; the queue is second-stage only.
+
+**Queue utility gate:** `review_queue_usable = false`, `low_prevalence_usable = true`, `standalone_viable = false`, `second_stage_viable = true`.
+
+[Source: experiments/canonicalized_risk_ranking_v1/risk_ranking_results_by_variant.csv; experiments/canonicalized_risk_ranking_v1/risk_ranking_gate.json; experiments/canonicalized_review_queue_v1/canonicalized_review_queue_gate.json]
 
 ---
 
-## 8. Experiments
+## 9. Experiments
 
-### 8.1 Canonicalizer Ablation
-
-| Selector | oracle_recall | mean_overlap | pct_long_gt60 |
-|---|---|---|---|
-| raw_top1_chunk | 0.043 | 0.199 | 0.910 |
-| cleaned_top1_chunk | 0.043 | 0.199 | 0.910 |
-| first_sentence_top1 | 0.027 | 0.086 | 0.059 |
-| best_sentence_top1_overlap | 0.221 | 0.319 | 0.052 |
-| **best_sentence_top5_overlap** | **0.387** | **0.524** | **0.000** |
-| three_sentence_window_top5 | 0.203 | 0.376 | 0.304 |
-
-`best_sentence_top5_overlap` achieves 9x oracle_recall improvement over `raw_top1_chunk` (0.043 → 0.387) and produces screening-format-length evidence (0% exceed 60 words).
-
-[Source: experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv]
-
-### 8.2 Frozen R4 Screening (group-aware bootstrap CI)
+### 9.1 Frozen R4 Screening (group-aware bootstrap CI)
 
 | Metric | Point estimate | 95% CI (group-aware, 100 bootstrap) |
 |---|---|---|
@@ -174,24 +202,7 @@ Computed on n=436 candidates (8 missing due to split). Silver labels used as `tr
 
 [Source: experiments/metric_robustness_v1/classification_metrics_with_ci.csv; experiments/canonicalized_review_queue_v1/canonicalized_review_queue_gate.json]
 
-### 8.3 Risk Ranking Variants
-
-| Variant | precision@20 | precision@50 | recall@100 | average_precision |
-|---|---|---|---|---|
-| A_flag_only (baseline) | 0.35 | 0.36 | 0.330 | 0.356 |
-| B_p_strong_desc | 0.35 | 0.32 | 0.303 | 0.332 |
-| C_guarded_strong_score | 0.35 | 0.34 | 0.321 | 0.339 |
-| D_confidence_guarded | 0.40 | 0.32 | 0.330 | 0.354 |
-| E_selector_confidence | 0.35 | 0.36 | 0.275 | 0.335 |
-| F_short_span_bonus | 0.40 | 0.32 | 0.330 | 0.351 |
-| **G_conservative_precision** | **0.45** | 0.36 | 0.330 | 0.353 |
-| H_balanced_review_score | 0.25 | 0.38 | 0.275 | 0.323 |
-
-`G_conservative_precision` improves precision@20 from 0.35 (baseline) to 0.45 (+0.10), with negligible recall cost (recall@100: 0.330 vs 0.330). All variants miss the strict queue-utility targets; the queue is second-stage only.
-
-[Source: experiments/canonicalized_risk_ranking_v1/risk_ranking_results_by_variant.csv; experiments/canonicalized_risk_ranking_v1/risk_ranking_gate.json]
-
-### 8.4 Review Queue Utility
+### 9.2 Review Queue Utility
 
 | k | precision@k | recall@k | FP/TP | label composition (top-k) |
 |---|---|---|---|---|
@@ -200,42 +211,11 @@ Computed on n=436 candidates (8 missing due to split). Silver labels used as `tr
 | 50 | 0.34 | 0.156 | 1.94 | strong=17, mild=16, supported=10, contradiction=7 |
 | 100 | 0.37 | 0.339 | 1.70 | strong=37, mild=29, supported=22, contradiction=12 |
 
-`review_queue_usable = false`, `low_prevalence_usable = true`, `standalone_viable = false`, `second_stage_viable = true`. The queue is a second-stage review tool that augments human reviewers.
+The queue is a second-stage review tool that augments human reviewers.
 
 [Source: experiments/canonicalized_review_queue_v1/review_queue_metrics.csv; experiments/canonicalized_review_queue_v1/canonicalized_review_queue_gate.json]
 
-### 8.5 Format-Shift Ablation
-
-We constructed 8 format-shift variants × 444 candidates = 3552 rows and computed 7 NLI features per row (shape [3552, 7]). Variants include `oracle_clean`, `oracle_plus_metadata`, `oracle_lengthened`, `oracle_plus_metadata_lengthened`, `raw_bm25_top1_chunk`, `cleaned_bm25_top1_chunk`, `canonicalized_best_sentence_top5`, `canonicalized_three_sentence_window_top5`.
-
-The format-shift R4 evaluation was completed offline using a project-local `.venv` with scikit-learn 1.9.0 (exact match for the frozen R4 artifacts), under `HF_HUB_OFFLINE=1`/`TRANSFORMERS_OFFLINE=1` with no network, no API, no retraining, and no model-artifact modification. Schema validation passed 38/38 checks.
-
-| Variant | strong_F1 | strong_precision | strong_recall | n_eval | Δ vs oracle_clean | Δ vs raw_bm25_top1 |
-|---|---|---|---|---|---|---|
-| oracle_clean | 0.4627 | 0.3899 | 0.5688 | 436 | 0.000 | +0.1872 |
-| canonicalized_best_sentence_top5 | 0.4615 | 0.3246 | 0.7982 | 436 | −0.0011 | +0.1860 |
-| raw_bm25_top1_chunk | 0.2755 | 0.3103 | 0.2477 | 436 | −0.1872 | 0.000 |
-| oracle_lengthened | 0.0000 | 0.0000 | 0.0000 | 436 | −0.4627 | −0.2755 |
-
-Key findings: canonicalized evidence (`canonicalized_best_sentence_top5`) achieves strong_F1=0.4615, close to the oracle upper bound (0.4627, Δ=−0.0011) and substantially above raw BM25 chunks (0.2755, Δ=+0.1860). The canonicalization gain of +0.186 strong_F1 confirms that the retrieval-to-screening format shift materially affects R4 performance. Lengthened variants produce strong_F1=0.0, confirming that lengthening evidence beyond the screening format collapses R4 prediction. Results are diagnostic (silver labels, frozen R4), not benchmark-level.
-
-[Source: experiments/format_shift_ablation_v1/format_shift_metrics.csv; experiments/format_shift_ablation_v1/format_shift_summary.json; experiments/format_shift_ablation_v1/r4_eval_blocked.json; reports/sklearn_offline_compatibility_investigation_v3_17.md]
-
----
-
-## 9. Results
-
-### 9.1 Headline numbers
-
-- BM25 chunk retrieval: oracle_match_rate = 0.991, recall@10 = 0.980, MRR = 0.826 on 69 PDFs / 4747 chunks.
-- BM25 sentence retrieval: recall@1 = 0.851, recall@10 = 0.948, MRR = 0.883.
-- Best canonicalizer (`best_sentence_top5_overlap`): oracle_recall = 0.387 (9x over raw chunk 0.043).
-- Frozen R4 screening: strong_F1 = 0.4503, 95% CI [0.4086, 0.4833].
-- Best ranking variant (`G_conservative_precision`): precision@20 = 0.45, recall@100 = 0.330.
-
-[Source: experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_metrics_bm25.json; experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json; experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv; experiments/metric_robustness_v1/classification_metrics_with_ci.csv; experiments/canonicalized_risk_ranking_v1/risk_ranking_gate.json]
-
-### 9.2 Complexity vs Utility Pareto
+### 9.3 Complexity vs Utility Pareto
 
 Under the confidential / no-API / no-training / silver-diagnostic constraint set, `deterministic_canonicalization`, `conservative_rule_queue`, and `lightweight_smart_queue` are Pareto-optimal. Learned alternatives (`learned_selector_only`, `learned_ranker_only`, `learned_selector_plus_learned_ranker`) are dominated: they match or slightly underperform the deterministic baseline on strong_F1 while losing on auditability, simplicity, and reproducibility. The external LLM baseline is unavailable under the no-API boundary.
 
@@ -243,11 +223,16 @@ This is a deployment-specific tradeoff. It does **not** prove that rules general
 
 [Source: experiments/complexity_vs_utility_ablation_v1/method_pareto_table.csv; experiments/complexity_vs_utility_ablation_v1/method_comparison_metrics.csv]
 
-### 9.3 PDF Extraction Robustness
+### 9.4 Headline Numbers
 
-We ran a synthetic PDF extraction stress suite of 12 documents covering stress types (caption-like text, corrupted text, empty page, header/footer noise, hyphenation, long paragraph, page-number noise, reference-heavy, scanned-placeholder detect-only, table-like, two-column-like). 9 OK, 1 empty page, 1 scanned (detect-only), 1 corrupted (NUL cleaned), 0 failed. This is an engineering robustness test, not a SOTA claim.
+- BM25 chunk retrieval: oracle_match_rate = 0.991, recall@10 = 0.980, MRR = 0.826 on 69 PDFs / 4747 chunks.
+- BM25 sentence retrieval: recall@1 = 0.851, recall@10 = 0.948, MRR = 0.883.
+- Best canonicalizer (`best_sentence_top5_overlap`): oracle_recall = 0.387 (9x over raw chunk 0.043).
+- Frozen R4 screening: strong_F1 = 0.4503, 95% CI [0.4086, 0.4833].
+- Best ranking variant (`G_conservative_precision`): precision@20 = 0.45, recall@100 = 0.330.
+- Format-shift R4 (canonicalized): strong_F1 = 0.4615, canonicalization gain +0.186 over raw BM25.
 
-[Source: experiments/pdf_extraction_stress_test_v1/stress_test_summary.md; experiments/pdf_extraction_stress_test_v1/stress_suite_manifest.csv]
+[Source: experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_metrics_bm25.json; experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json; experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv; experiments/metric_robustness_v1/classification_metrics_with_ci.csv; experiments/canonicalized_risk_ranking_v1/risk_ranking_gate.json; experiments/format_shift_ablation_v1/format_shift_metrics.csv]
 
 ---
 
@@ -278,13 +263,27 @@ Forbidden fields (selector): `candidate_label_guess`, `final_label`, `gold_label
 
 ### 10.1 Confidentiality Redteam Scan
 
-A repo-wide confidentiality redteam scan finds 79 findings: 3 high-risk, 22 medium-risk, 54 low-risk. The 3 high-risk findings are `forbidden_sorting_field` (`true_label`, `oracle_hit`) in **internal scoring files** (`experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv`, `experiments/canonicalized_risk_ranking_v1/risk_ranking_features.csv`). All three are excluded from the public release bundle. The release safety gate (bundle-only) PASS. The reconciliation report documents the scope difference: redteam scan is repo-wide (internal + public), release safety gate operates only on the public bundle.
+A repo-wide confidentiality redteam scan finds 84 findings: 3 high-risk, 22 medium-risk, 59 low-risk. The 3 high-risk findings are `forbidden_sorting_field` (`true_label`, `oracle_hit`) in **internal scoring files** (`experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv`, `experiments/canonicalized_risk_ranking_v1/risk_ranking_features.csv`). All three are excluded from the public release bundle. The release safety gate (bundle-only) PASS. The reconciliation report documents the scope difference: redteam scan is repo-wide (internal + public), release safety gate operates only on the public bundle.
 
 [Source: experiments/confidentiality_redteam_scan_v1/redteam_summary.json; reports/redteam_release_reconciliation_v3_17.md; reports/release_safety_manifest_v3_17.json]
 
 ---
 
-## 11. Error Taxonomy
+## 11. Small Targeted Human Audit
+
+**Status: Staged, not executed.**
+
+A small targeted human audit protocol is prepared to evaluate the directional reliability of the review queue and silver labels. The protocol defines a two-annotator independent review followed by adjudication, with 6 sampling buckets: top-20 queue candidates, top-50 strong-action candidates, R4 false positives, R4 false negatives, mild-vs-strong boundary cases, and contradiction confusion cases. The audit packet contains 111 selected candidates.
+
+**The audit has not been executed.** `human_audited=False` for all 444 candidates; `gold_label` is empty for all 444 candidates; `silver_label_source=candidate_label_guess` for all 444 candidates. Every quantitative result in this paper is therefore a silver-conditional diagnostic, not a gold-level benchmark. The Final Perfect State Gate records this as WARNING 6.4 (human audit staged, not executed).
+
+We do not claim any human-audited validation. The audit is the next planned step; results will be reported separately when the audit is executed.
+
+[Source: docs/human_audit_protocol_v1.md; experiments/human_audit_v1_pending/audit_pending_summary.md; reports/final_perfect_state_gate_v3_17.md]
+
+---
+
+## 12. Error Taxonomy
 
 We tag 9 error types over the R4 predictions (cases can carry multiple tags; percentages are of 188 error cases):
 
@@ -300,29 +299,17 @@ We tag 9 error types over the R4 predictions (cases can carry multiple tags; per
 | uncertainty_high_entropy | 22 | 11.70% | 12 | 10 |
 | retrieval_miss | 5 | 2.66% | 5 | 0 |
 
-The top FP cause is `mild_vs_strong_boundary` (66 FP, 38.83%), reflecting the inherent ambiguity of the mild-vs-strong boundary rather than a systematic shortcut. The top FN cause is `uncertainty_high_entropy` (10 FN) and `contradiction_confusion` (23 FN). Error-type thresholds are heuristic, not learned.
+The top FP cause is `mild_vs_strong_boundary` (66 FP, 38.83%), reflecting the inherent ambiguity of the mild-vs-strong boundary rather than a systematic shortcut. The top FN cause is `contradiction_confusion` (23 FN) and `uncertainty_high_entropy` (10 FN). Error-type thresholds are heuristic, not learned.
 
 [Source: experiments/error_taxonomy_v1/error_taxonomy_summary.csv]
-
----
-
-## 12. Review Queue Utility
-
-The review queue is a **second-stage review tool**. The pipeline gate confirms: `review_queue_usable = false`, `low_prevalence_usable = true`, `standalone_viable = false`, `second_stage_viable = true`. The recommended mode is `second-stage`.
-
-At the top of the queue, precision@10 = 0.50 and precision@20 = 0.45 (with `G_conservative_precision`), meaning roughly half of the top-10 and top-20 candidates are true strong-action overclaims under silver labels. FP/TP ratios are 1.00 at top-10 and 1.86 at top-20 — usable for prioritizing reviewer attention, not for automated decisions.
-
-A small targeted human audit protocol (2-annotator independent review followed by adjudication) is staged with 6 sampling buckets: top-20 queue, top-50 strong-action, R4 false positives, R4 false negatives, mild-vs-strong boundary cases, contradiction confusion cases. The protocol, template, and redacted seed queue are prepared. **The audit has not been executed.** We do not report human-audited benchmark results.
-
-[Source: experiments/canonicalized_review_queue_v1/canonicalized_review_queue_gate.json; experiments/canonicalized_risk_ranking_v1/risk_ranking_gate.json; docs/human_audit_protocol_v1.md; data/audit_templates/human_audit_queue_seed_v1_redacted.csv; reports/final_perfect_state_gate_v3_17.md]
 
 ---
 
 ## 13. Limitations
 
 1. **Silver labels, not gold.** All 444 candidates have `human_audited=False` and `gold_label` empty. Silver labels (`candidate_label_guess`) are used as `true_label` for metrics only. **This is a controlled silver diagnostic study, not a gold benchmark.**
-2. **Human audit staged, not executed.** A small targeted human audit protocol and seed queue are prepared; the audit has not been executed. We do not report human-audited benchmark results. Paper wording: "small targeted human audit protocol and seed queue prepared; audit not yet executed."
-3. **Format-shift R4 evaluation completed with environment note.** The format-shift R4 evaluation was completed offline using a project-local `.venv` with scikit-learn 1.9.0 (exact match for the frozen R4 artifacts). Reproducibility requires scikit-learn ≥ 1.5.0 (the `multi_class` attribute was removed in 1.5). Results are diagnostic (silver labels, frozen R4), not benchmark-level. Paper wording: "format-shift R4 evaluation completed offline; canonicalization gain +0.186 strong_F1 confirms format shift matters at the retrieval-to-screening interface."
+2. **Human audit staged, not executed.** A small targeted human audit protocol and seed queue are prepared (111 candidates, 6 sampling buckets, two-annotator protocol); the audit has not been executed. We do not report human-audited benchmark results.
+3. **Format-shift R4 evaluation completed with environment note.** The format-shift R4 evaluation was completed offline using a project-local `.venv` with scikit-learn 1.9.0 (exact match for the frozen R4 artifacts). Reproducibility requires scikit-learn ≥ 1.5.0 (the `multi_class` attribute was removed in 1.5). Results are diagnostic (silver labels, frozen R4), not benchmark-level.
 4. **Six domains only.** Coverage: autonomous_driving (140), policy_simulation (84), digital_twin (68), cyber_defense (64), marl (52), robotics (36). Not a general scientific claim benchmark.
 5. **Deployment-specific Pareto result.** The complexity-vs-utility Pareto result shows deterministic canonicalization is optimal under the confidential / no-API / no-training / silver-diagnostic constraint set. It does **not** prove rules generally beat learned models.
 6. **No SOTA claim.** We do not claim SOTA on simulation-claim screening. We do not claim a validated general detector. We do not claim an automatic peer reviewer. We do not claim full CESE-OCN neural architecture validation.
@@ -341,7 +328,7 @@ The deployment setting prohibits API egress, network access, and new model train
 
 ### 14.2 Public release policy
 
-The public sanitized release bundle (221 files) excludes: raw claim/evidence/PDF text, private scoring files, real review queues, PDFs, label-bearing intermediates, and unredacted selected_evidence. Public PDF corpus artifacts (`data/pdf_corpus_v1/sentences.jsonl`, `windows.jsonl`) are hash-only; full text resides in a gitignored private directory.
+The public sanitized release bundle (254 files) excludes: raw claim/evidence/PDF text, private scoring files, real review queues, PDFs, label-bearing intermediates, and unredacted selected_evidence. Public PDF corpus artifacts (`data/pdf_corpus_v1/sentences.jsonl`, `windows.jsonl`) are hash-only; full text resides in a gitignored private directory.
 
 Forbidden columns for public release: `claim_text`, `evidence_text`, `selected_evidence`, `raw_text`, `clean_text`, `body_text`, `pdf_text`, `pdf_path`. Forbidden sorting fields: `true_label`, `oracle_hit`, `candidate_label_guess`, `gold_label`, `human_audited`, `final_label`, `is_strong_action`.
 
@@ -357,9 +344,9 @@ The controlled silver diagnostic set is locked at version v3_17. Any change to t
 
 We identified the retrieval-to-screening format shift in offline simulation-claim review: raw BM25 PDF chunks are too long and noisy to match screening-format evidence (oracle_recall = 0.043, 91% exceed 60 words). We proposed deterministic evidence canonicalization (`best_sentence_top5_overlap`) as a no-API, no-training bridge, raising oracle_recall to 0.387 (9x improvement) while producing screening-format-length evidence.
 
-On a 444-candidate controlled silver diagnostic set, a frozen R4 screening router achieves strong_F1 = 0.4503 (95% CI [0.4086, 0.4833]) and a conservative precision-optimized review queue achieves precision@20 = 0.45. A 12-check leakage audit finds no significant shortcuts or label contingencies. Under the confidential / no-API / no-training / silver-diagnostic constraint set, the deterministic pipeline is Pareto-optimal against learned alternatives.
+On a 444-candidate controlled silver diagnostic set, a frozen R4 screening router achieves strong_F1 = 0.4503 (95% CI [0.4086, 0.4833]) and a conservative precision-optimized review queue achieves precision@20 = 0.45. A 12-check leakage audit finds no significant shortcuts or label contingencies. Under the confidential / no-API / no-training / silver-diagnostic constraint set, the deterministic pipeline is Pareto-optimal against learned alternatives. The format-shift R4 evaluation was completed offline (canonicalized strong_F1=0.4615, +0.186 over raw BM25 chunks), confirming that the retrieval-to-screening format shift materially affects R4 performance.
 
-**This is a controlled silver diagnostic study, not a gold benchmark.** The system is a second-stage review queue generator, not a standalone detector. Confidentiality is a deployment constraint, not the empirical contribution. Format-shift R4 evaluation was completed offline (canonicalized strong_F1=0.4615, +0.186 over raw BM25 chunks); results are diagnostic, not benchmark-level. The human audit is staged, not executed.
+**This is a controlled silver diagnostic study, not a gold benchmark.** The system is a second-stage review queue generator, not a standalone detector. Confidentiality is a deployment constraint, not the empirical contribution. The human audit is staged, not executed.
 
 We do not claim SOTA, a validated general detector, an automatic peer reviewer, or full CESE-OCN neural architecture validation.
 
@@ -404,7 +391,7 @@ The following safe wording is used in this manuscript:
 - "The system is a second-stage review queue generator, not a standalone detector."
 - "Confidentiality is a deployment constraint, not the empirical contribution."
 - "Format-shift R4 evaluation was completed offline using a compatible local scikit-learn environment; results are diagnostic (silver labels), not benchmark-level."
-- "small targeted human audit protocol and seed queue prepared; audit not yet executed"
+- "The audit has not been executed."
 - "We do not claim SOTA, a validated general detector, an automatic peer reviewer, or full CESE-OCN neural architecture validation."
 
 The following forbidden wording is **not** used in this manuscript:
@@ -417,10 +404,9 @@ The following forbidden wording is **not** used in this manuscript:
 | "SOTA" (as a positive claim) | We do not claim SOTA on simulation-claim screening. |
 | "automatic peer reviewer" | The system augments human reviewers; it is not an automatic peer reviewer. |
 | "full CESE-OCN validation completed" | CESE-OCN is a future architecture, not a current validated system. |
-| "full format-shift R4 evaluation completed" | The format-shift R4 evaluation was completed, but results are diagnostic (silver labels), not benchmark-level; do not claim benchmark-level validation. |
-| "Canonicalized format-shift metrics are validated" | Format-shift R4 metrics are diagnostic (silver labels, frozen R4), not validated benchmark-level results. |
-| "R4 format-shift result is final" | Format-shift R4 metrics are diagnostic and conditional on the silver diagnostic set; do not claim finality. |
+| "format-shift metrics are validated" | Format-shift R4 metrics are diagnostic (silver labels, frozen R4), not validated benchmark-level results. |
+| "R4 is shortcut-free" | Claim-only strong_F1=0.2448 is non-zero. |
 
 ---
 
-*End of submission manuscript draft v1.*
+*End of submission manuscript draft v2 (final freeze).*

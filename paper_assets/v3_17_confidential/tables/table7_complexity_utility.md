@@ -1,25 +1,20 @@
-| Method | Family | Available | strong_F1 | P@20 | R@100 | deterministic | auditable |
-|---|---|---|---|---|---|---|---|
-| raw_retrieval_baseline | raw_retrieval | True | 0.1806 |  |  | True | True |
-| deterministic_canonicalization | deterministic_canonicalization | True | 0.4503 | 0.4500 | 0.3303 | True | True |
-| conservative_rule_queue | rule_queue | True | 0.4503 | 0.4500 | 0.3303 | True | True |
-| lightweight_smart_queue | smart_queue | True | 0.4503 | 0.3500 | 0.3486 | True | True |
-| learned_selector_only | higher_complexity | True | 0.4444 |  |  | False | False |
-| learned_ranker_only | higher_complexity | True | 0.4503 | 0.3500 | 0.3303 | False | False |
-| learned_selector_plus_learned_ranker | higher_complexity | True | 0.4444 | 0.3500 | 0.3303 | False | False |
-| external_llm_baseline | external_llm | False |  |  |  | False | False |
+# Table 7 — Complexity vs Utility Pareto Analysis
 
-*Controlled silver diagnostic, not gold/human-audited.*
+Under the confidential / no-API / no-training / silver-diagnostic constraint set.
 
-**Pareto scores** (utility = diagnostic aggregation, not a benchmark metric):
+| Method | Family | Performance | Privacy | Auditability | Simplicity | Reproducibility | Utility | Pareto |
+|---|---|---|---|---|---|---|---|---|
+| raw_retrieval_baseline | raw_retrieval | 0.401 | 1.0 | 1.0 | 1.0 | 1.0 | 0.850 | dominated |
+| **deterministic_canonicalization** | deterministic | **1.000** | 1.0 | 1.0 | 1.0 | 1.0 | **1.000** | **pareto_optimal** |
+| **conservative_rule_queue** | rule_queue | **1.000** | 1.0 | 1.0 | 1.0 | 1.0 | **1.000** | **pareto_optimal** |
+| **lightweight_smart_queue** | smart_queue | **1.000** | 1.0 | 1.0 | 1.0 | 1.0 | **1.000** | **pareto_optimal** |
+| learned_selector_only | higher_complexity | 0.987 | 1.0 | 0.5 | 0.6 | 0.5 | 0.762 | dominated |
+| learned_ranker_only | higher_complexity | 1.000 | 1.0 | 0.5 | 0.6 | 0.5 | 0.765 | dominated |
+| learned_selector_plus_learned_ranker | higher_complexity | 0.987 | 1.0 | 0.5 | 0.6 | 0.5 | 0.762 | dominated |
+| external_llm_baseline | external_llm | 0.000 | 0.0 | 0.5 | 0.6 | 0.5 | 0.265 | unavailable |
 
-| Method | perf | priv | audit | simple | repro | utility | pareto |
-|---|---|---|---|---|---|---|
-| raw_retrieval_baseline | 0.4011 | 1.0 | 1.0 | 1.0 | 1.0 | 0.8503 | dominated |
-| deterministic_canonicalization | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | pareto_optimal |
-| conservative_rule_queue | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | pareto_optimal |
-| lightweight_smart_queue | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | pareto_optimal |
-| learned_selector_only | 0.987 | 1.0 | 0.5 | 0.6 | 0.5 | 0.7617 | dominated |
-| learned_ranker_only | 1.0 | 1.0 | 0.5 | 0.6 | 0.5 | 0.765 | dominated |
-| learned_selector_plus_learned_ranker | 0.987 | 1.0 | 0.5 | 0.6 | 0.5 | 0.7617 | dominated |
-| external_llm_baseline | 0.0 | 0.0 | 0.5 | 0.6 | 0.5 | 0.265 | unavailable |
+Three methods are Pareto-optimal under the constraint set: `deterministic_canonicalization`, `conservative_rule_queue`, and `lightweight_smart_queue`. Learned alternatives are dominated (match or slightly underperform on performance while losing on auditability, simplicity, and reproducibility). The external LLM baseline is unavailable under the no-API boundary.
+
+This is a deployment-specific tradeoff. It does **not** prove that rules generally beat learned models; it shows that under this constraint set, the deterministic pipeline is Pareto-optimal.
+
+[Source: experiments/complexity_vs_utility_ablation_v1/method_pareto_table.csv; experiments/complexity_vs_utility_ablation_v1/method_comparison_metrics.csv]

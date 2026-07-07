@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T16:44:05.366611+00:00",
+  "generated_at": "2026-07-07T17:23:54.257355+00:00",
   "excluded_patterns": [
     "pdfs/",
     "private_pdfs/",
@@ -15,15 +15,15 @@
     "_MAINLINE_CURRENT/",
     "_MAIN_PAPER_CURRENT/",
     "_PROJECT_INDEX/",
-    ".pdf",
-    ".docx",
-    ".joblib",
-    ".xlsx",
-    ".pkl",
-    ".pyo",
-    ".egg-info",
     ".npz",
+    ".pkl",
+    ".egg-info",
+    ".pdf",
+    ".joblib",
+    ".docx",
     ".pyc",
+    ".pyo",
+    ".xlsx",
     "error_cases_private",
     "private_",
     "_private",
@@ -56,7 +56,7 @@
   "included_files_count": 254,
   "redteam_pass": true,
   "redteam_summary": {
-    "scan_timestamp": "2026-07-08T00:44:04",
+    "scan_timestamp": "2026-07-08T01:23:53",
     "scanned_files": 253,
     "scan_dirs": [
       "D:\\ocn\\release_bundles\\v3_17_confidential_public"

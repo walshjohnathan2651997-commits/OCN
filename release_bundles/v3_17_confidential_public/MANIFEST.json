@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T16:44:05.237619+00:00",
+  "generated_at": "2026-07-07T17:23:54.124777+00:00",
   "bundle_name": "v3_17_confidential_public",
   "total_files": 257,
   "files": [
@@ -11,19 +11,19 @@
     },
     {
       "path": "_redteam_scan/redteam_summary.json",
-      "sha256": "c203600bd163737fe709d136306352a8cb881466cd5449a927bb90c5c6a657ba",
+      "sha256": "8921a3188c716231e9bf53354c1bcbd20609e526ce2229cfea176203bdf1830a",
       "size_bytes": 421,
       "release_category": "other"
     },
     {
       "path": "_redteam_scan/redteam_summary.md",
-      "sha256": "c99e6287e468e7321dcdcf5e042682b7960ed087061b0bb95d81077d369b74b9",
+      "sha256": "472cc5bb119665dad2efa2cae2c616e365eea3a0514f589327200f026207baa5",
       "size_bytes": 12159,
       "release_category": "other"
     },
     {
       "path": "_redteam_scan/run_config.json",
-      "sha256": "d1259999228e05a5240fc39acc5ab020b60eca6e99cb3fad9358153904a97b61",
+      "sha256": "b73b468bad7d419cc88db6d5de1435d9b07196296b4709c42b8d4f03d2f0bed2",
       "size_bytes": 1296,
       "release_category": "other"
     },
@@ -653,20 +653,20 @@
     },
     {
       "path": "paper_assets/v3_17_confidential/submission_manuscript_v1.md",
-      "sha256": "cca108cd9ba2a45d715483aeab7389f003e4c40bc6b68923511d7a270d7ef395",
-      "size_bytes": 33951,
+      "sha256": "cc5e510a45855e50f12dda2e83806f09664f5d245c740c3b858b206791fffaf2",
+      "size_bytes": 32821,
       "release_category": "paper_asset"
     },
     {
       "path": "paper_assets/v3_17_confidential/submission_result_source_map.csv",
-      "sha256": "60c4da712fc5617506536f7a17af764e36f01fde099b15929992d17097fe4f27",
-      "size_bytes": 10333,
+      "sha256": "e02aecd8bc7dc816354ad2e45cdbbd5131c5ba11e589d092e40a3f48696484ed",
+      "size_bytes": 12048,
       "release_category": "paper_asset"
     },
     {
       "path": "paper_assets/v3_17_confidential/tables/table1_dataset_summary.md",
-      "sha256": "4a9d8fc6c754bae81f8d3be293e0572afdf81d450b7bc0893ae709a4d9e96fd9",
-      "size_bytes": 128,
+      "sha256": "016e4d71e14f31b3398b6c7473480c72ab439c7dbee187d67cdc60a963b033bf",
+      "size_bytes": 980,
       "release_category": "paper_asset"
     },
     {
@@ -677,8 +677,8 @@
     },
     {
       "path": "paper_assets/v3_17_confidential/tables/table2_retrieval_recall.md",
-      "sha256": "25e05fcf86fe31a343b78167690e3a3d58dcb9e04fe27edf877873b93ace50b2",
-      "size_bytes": 212,
+      "sha256": "b5bb6e65f8dfdd287823e13d416103fed9ec74bf15a25555fb697298074261d7",
+      "size_bytes": 1022,
       "release_category": "paper_asset"
     },
     {
@@ -689,8 +689,8 @@
     },
     {
       "path": "paper_assets/v3_17_confidential/tables/table3_format_shift_ablation.md",
-      "sha256": "bd7f3139fd15f569d7823a64687db6ba77c8c7719fe5587df18c65505f0a4732",
-      "size_bytes": 649,
+      "sha256": "7fc81f86f1e92aeb84ad805bc18b036a76cad14a4e8dab556c733495cf5129a7",
+      "size_bytes": 1991,
       "release_category": "paper_asset"
     },
     {
@@ -701,8 +701,8 @@
     },
     {
       "path": "paper_assets/v3_17_confidential/tables/table4_canonicalizer_ablation.md",
-      "sha256": "05478a909152418337e630123f18aa3434549ba55c8990ef3032a7049e7139df",
-      "size_bytes": 773,
+      "sha256": "44252f17e159676042622af9ec1b289a3eb23f98c784c4c0ba2ad13ba9c7dd30",
+      "size_bytes": 1110,
       "release_category": "paper_asset"
     },
     {
@@ -713,8 +713,8 @@
     },
     {
       "path": "paper_assets/v3_17_confidential/tables/table5_review_queue.md",
-      "sha256": "f29c4d4a6a3e155395f2694bdc35e8d968ea2989abfd1f17d411222b4a2fc0ec",
-      "size_bytes": 311,
+      "sha256": "5c50900f4dcc24c93f0f103524f041179969be6d7746c4828ae6e27d5d3a4e40",
+      "size_bytes": 1407,
       "release_category": "paper_asset"
     },
     {
@@ -725,8 +725,8 @@
     },
     {
       "path": "paper_assets/v3_17_confidential/tables/table6_leakage_audit.md",
-      "sha256": "bc19cffb712d040eee8617013e43e84b325e05d9978cf4ebf26a66a2960a31b3",
-      "size_bytes": 427,
+      "sha256": "908e8df725ec5d5afab3298306ec9c7c1433f351c8373f9517d008349ba5045e",
+      "size_bytes": 1440,
       "release_category": "paper_asset"
     },
     {
@@ -737,8 +737,8 @@
     },
     {
       "path": "paper_assets/v3_17_confidential/tables/table7_complexity_utility.md",
-      "sha256": "ce5f8f94c628382179df7976bb9a7f74553279bfcaccc72e9fd17ba0ba48c701",
-      "size_bytes": 1773,
+      "sha256": "5c4ee6fea5109666956b89f982755c73945b31c48f4401b3f10a80572331fbd6",
+      "size_bytes": 1849,
       "release_category": "paper_asset"
     },
     {
@@ -749,8 +749,8 @@
     },
     {
       "path": "paper_assets/v3_17_confidential/tables/table8_human_audit_if_available.md",
-      "sha256": "500d09cb5e7ea4920c2cec8de3ec90eca58effa3c4d4db9cac931c5b1652a769",
-      "size_bytes": 183,
+      "sha256": "d61c708e411b9ec62ea103880f7608d7ae2f75f565b4966ae2df18c0cc2ca62f",
+      "size_bytes": 1097,
       "release_category": "paper_asset"
     },
     {
