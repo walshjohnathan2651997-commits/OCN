@@ -324,15 +324,114 @@ def write_summary_md(path: Path, metrics: dict,
         f.write("\n".join(lines) + "\n")
 
 
+def write_pending_summary(out_dir: Path, config) -> None:
+    """Write a pending summary when no filled audit CSV is available.
+
+    This is the default mode when the audit has not been executed.
+    It explicitly states that the audit packet is prepared but not executed,
+    and that no human-audited validation is claimed.
+    """
+    out_dir.mkdir(parents=True, exist_ok=True)
+    now = datetime.now(timezone.utc).isoformat()
+    lines: list[str] = []
+    lines.append("# Human Audit — Pending Summary (v1)")
+    lines.append("")
+    lines.append(f"Generated: {now}")
+    lines.append("")
+    lines.append("## Status")
+    lines.append("")
+    lines.append("- **Audit packet prepared:** YES")
+    lines.append("- **Audit executed:** NO")
+    lines.append("- **Human-audited validation claimed:** NO")
+    lines.append("")
+    lines.append("## What exists")
+    lines.append("")
+    lines.append("- Audit protocol: `docs/human_audit_protocol_v1.md`")
+    lines.append("- Audit template: `data/audit_templates/human_audit_template.csv`")
+    lines.append("- Audit seed queue (redacted): "
+                 "`data/audit_templates/human_audit_queue_seed_v1_redacted.csv`")
+    lines.append("- Execution manifest (redacted): "
+                 "`data/audit_templates/human_audit_execution_manifest_v1_redacted.csv`")
+    lines.append("- Private audit packet (gitignored): "
+                 "`data/private_audit/v3_17_audit_packet/audit_packet_private.csv`")
+    lines.append("- Annotator instructions: "
+                 "`data/private_audit/v3_17_audit_packet/audit_instructions_for_annotators.md`")
+    lines.append("- Label decision tree: "
+                 "`data/private_audit/v3_17_audit_packet/audit_label_decision_tree.md`")
+    lines.append("- Synthetic examples: "
+                 "`data/private_audit/v3_17_audit_packet/audit_examples_synthetic_only.md`")
+    lines.append("- Completion checklist: "
+                 "`data/private_audit/v3_17_audit_packet/audit_completion_checklist.md`")
+    lines.append("")
+    lines.append("## What does NOT exist")
+    lines.append("")
+    lines.append("- No `audit_agreement_summary.json` (audit not executed)")
+    lines.append("- No `audit_confusion_matrix.csv` (audit not executed)")
+    lines.append("- No `audit_disagreement_cases_redacted.csv` (audit not executed)")
+    lines.append("- No `audit_summary.md` with agreement metrics (audit not executed)")
+    lines.append("- No human-audited validation (audit not executed)")
+    lines.append("")
+    lines.append("## Safe wording")
+    lines.append("")
+    lines.append("- \"Audit packet prepared; audit not yet executed.\"")
+    lines.append("- \"No human-audited validation claimed.\"")
+    lines.append("- \"This is a targeted audit protocol, not a gold benchmark.\"")
+    lines.append("- \"Until completed, the paper can only claim audit readiness, "
+                 "not human-audited validation.\"")
+    lines.append("")
+    lines.append("## Forbidden wording")
+    lines.append("")
+    lines.append("| Unsafe wording (forbidden) | Why forbidden |")
+    lines.append("|---|---|")
+    lines.append("| \"human-audited dataset\" | audit not executed |")
+    lines.append("| \"human-audited validation\" | audit not executed |")
+    lines.append("| \"gold benchmark\" | silver diagnostic; audit not executed |")
+    lines.append("| \"the silver labels are correct\" | no audit has verified them |")
+    lines.append("| \"SOTA\" | no gold comparison; silver diagnostic only |")
+    lines.append("")
+    lines.append("## Guards")
+    lines.append("")
+    lines.append(f"- no_api: {config.get('no_api')}")
+    lines.append(f"- no_network: {config.get('no_network')}")
+    lines.append(f"- no_training: {config.get('no_training')}")
+    lines.append(f"- no_original_data_modification: "
+                 f"{config.get('no_original_data_modification', True)}")
+    lines.append("")
+    lines.append("## Next step")
+    lines.append("")
+    lines.append("An auditor fills `auditor_label`, `auditor_confidence`, "
+                 "`audit_notes`, `disagreement_reason`, and `requires_second_review` "
+                 "in the private audit packet, then sets `human_audited=True` for "
+                 "each row. When complete, run "
+                 "`scripts/summarize_human_audit_v1.py --audit-csv "
+                 "data/private_audit/v3_17_audit_packet/audit_packet_private.csv` "
+                 "to produce agreement metrics.")
+    lines.append("")
+    pending_path = out_dir / "audit_pending_summary.md"
+    with open(pending_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    print(f"wrote {pending_path}", flush=True)
+
+
 def run(args) -> int:
     config = load_and_validate(args.config, toy_mode=args.toy_mode)
     print_guards(config)
+
+    # Pending mode: no filled audit CSV available.
+    if args.pending or not args.audit_csv:
+        out_dir = Path(args.out_dir)
+        if not out_dir.is_absolute():
+            out_dir = Path(__file__).resolve().parent.parent / out_dir
+        write_pending_summary(out_dir, config)
+        print("pending mode: audit not executed. Wrote pending summary.", flush=True)
+        return 0
 
     audit_csv = Path(args.audit_csv)
     if not audit_csv.is_absolute():
         audit_csv = (Path(__file__).resolve().parent.parent / audit_csv)
     if not audit_csv.exists():
         print(f"ERROR: audit csv not found: {audit_csv}", file=sys.stderr)
+        print("Hint: pass --pending to write a pending summary instead.", file=sys.stderr)
         return 2
 
     rows = read_csv_rows(audit_csv)
@@ -340,6 +439,18 @@ def run(args) -> int:
 
     filled_rows = [r for r in rows if is_filled(r)]
     print(f"filled rows: {len(filled_rows)}", flush=True)
+
+    # Auto-detect pending: if no rows are filled, the audit has not been executed.
+    if not filled_rows:
+        out_dir = Path(args.out_dir)
+        # If using the normal-mode default, switch to the pending directory.
+        if out_dir == Path("experiments/human_audit_v1"):
+            out_dir = Path("experiments/human_audit_v1_pending")
+        if not out_dir.is_absolute():
+            out_dir = Path(__file__).resolve().parent.parent / out_dir
+        write_pending_summary(out_dir, config)
+        print("auto-detected pending: 0 filled rows. Wrote pending summary.", flush=True)
+        return 0
 
     # Validate auditor labels.
     bad = [r for r in filled_rows
@@ -416,15 +527,29 @@ def run(args) -> int:
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--audit-csv", required=True,
-                        help="Path to filled audit CSV")
+    parser.add_argument("--audit-csv", default=None,
+                        help="Path to filled audit CSV. If omitted or empty, "
+                             "writes a pending summary.")
     parser.add_argument("--config", default=None,
                         help="Path to YAML config")
-    parser.add_argument("--out-dir", default="experiments/human_audit_v1",
-                        help="Output directory")
+    parser.add_argument("--out-dir", default=None,
+                        help="Output directory (default: experiments/human_audit_v1 "
+                             "for filled audits, experiments/human_audit_v1_pending "
+                             "for pending mode)")
+    parser.add_argument("--pending", action="store_true",
+                        help="Force pending mode: write audit_pending_summary.md "
+                             "without requiring a filled audit CSV.")
     parser.add_argument("--toy_mode", action="store_true",
                         help="Use toy demo config")
     args = parser.parse_args(argv)
+
+    # Resolve default out-dir based on mode.
+    if args.out_dir is None:
+        if args.pending or not args.audit_csv:
+            args.out_dir = "experiments/human_audit_v1_pending"
+        else:
+            args.out_dir = "experiments/human_audit_v1"
+
     return run(args)
 
 

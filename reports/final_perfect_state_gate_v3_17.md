@@ -1,6 +1,6 @@
 # Final Perfect-State Readiness Gate — V3.17 Confidential Lightweight
 
-Generated: 2026-07-07T12:09:17+0000
+Generated: 2026-07-07T12:52:19+0000
 
 > Read-only gate. No experiments were re-run. No results were modified.
 
@@ -33,7 +33,7 @@ Generated: 2026-07-07T12:09:17+0000
 
 | ID | Check | Evidence | Next Action |
 |---|---|---|---|
-| 6.4 | Audit not yet run (documented) | No audit dir; protocol documents audit as not complete | Execute human audit when annotators available |
+| 6.4 | Audit summary missing | Audit dir exists but no summary | Complete audit and generate summary |
 | 9.1 | Redteam high risk in internal files (release excluded) | high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion; reconciliation report present | Address high-risk findings or confirm permanent exclusion from release |
 | 10.2 | Schema validation has documented failures | 36 passed, 2 failed (failures from blocked experiments) | Fix blocked experiments or document as permanent |
 
@@ -115,10 +115,10 @@ Generated: 2026-07-07T12:09:17+0000
 | 6.1 | Protocol exists | PASS | P1 | docs/human_audit_protocol_v1.md present |
 | 6.2 | Template exists | PASS | P1 | human_audit_template.csv present |
 | 6.3 | Queue seed exists | PASS | P1 | Redacted queue seed present |
-| 6.4 | Audit not yet run (documented) | WARNING | P1 | No audit dir; protocol documents audit as not complete |
+| 6.4 | Audit summary missing | WARNING | P1 | Audit dir exists but no summary |
 | 6.5 | Never claims gold benchmark | PASS | P0 | Legacy scan confirms no unsafe current claims (unsafe=0) |
 
-- **6.4 WARNING**: No audit dir; protocol documents audit as not complete → next_action=`Execute human audit when annotators available`
+- **6.4 WARNING**: Audit dir exists but no summary → next_action=`Complete audit and generate summary`
 
 ### 7. Complexity
 

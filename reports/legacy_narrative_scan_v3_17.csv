@@ -50,9 +50,12 @@ docs/dataset_version_lock_v3_17.md,171,human-audited,2. **Not human-audited.** `
 docs/how_to_upgrade_to_paper_full.md,34,human-audited,1. Expanding the human-audited sample to at least 300 adjudicated items,future_work,Keep as future work.
 docs/human_audit_protocol_v1.md,6,gold benchmark,diagnostic candidate pool. The audit is **not** a gold benchmark and must not be,safe_negation,Keep as-is (safe negation).
 docs/human_audit_protocol_v1.md,26,gold benchmark,- Not a gold benchmark.,safe_negation,Keep as-is (safe negation).
-docs/human_audit_protocol_v1.md,132,gold benchmark,"- ""small targeted audit, not a gold benchmark""",safe_negation,Keep as-is (safe negation).
-docs/human_audit_protocol_v1.md,139,gold benchmark,"- ""gold benchmark""",safe_negation,Keep as-is (safe negation).
-docs/human_audit_protocol_v1.md,142,SOTA,"- ""SOTA""",safe_negation,Keep as-is (safe negation).
+docs/human_audit_protocol_v1.md,154,human-audited,"states ""audit packet prepared; audit not yet executed"" and ""no human-audited",safe_negation,Keep as-is (safe negation).
+docs/human_audit_protocol_v1.md,163,gold benchmark,"**This is a targeted audit protocol, not a gold benchmark.** Until the audit is",safe_negation,Keep as-is (safe negation).
+docs/human_audit_protocol_v1.md,164,human-audited,"completed, the paper can only claim audit readiness, not human-audited",safe_negation,Keep as-is (safe negation).
+docs/human_audit_protocol_v1.md,173,gold benchmark,"- ""small targeted audit, not a gold benchmark""",safe_negation,Keep as-is (safe negation).
+docs/human_audit_protocol_v1.md,180,gold benchmark,"- ""gold benchmark""",safe_negation,Keep as-is (safe negation).
+docs/human_audit_protocol_v1.md,183,SOTA,"- ""SOTA""",safe_negation,Keep as-is (safe negation).
 docs/next_phase_benchmark_plan.md,31,Human-audited,| Human-audited | 0 | 100% of test + 30% of train (stratified) | Adjudicated gold for every reported number |,future_work,Keep as future work.
 docs/paper_outline_v3_17_confidential.md,35,gold benchmark,gold benchmark.,safe_negation,Keep as-is (safe negation).
 docs/paper_outline_v3_17_confidential.md,48,gold benchmark,"The abstract must **not** contain: gold benchmark, SOTA, automatic",safe_negation,Keep as-is (safe negation).
@@ -182,12 +185,14 @@ paper_assets/v3_17_confidential/contribution_bullets.md,65,automatic peer review
 paper_assets/v3_17_confidential/contribution_bullets.md,77,human-audited,"> labels are not gold or human-audited, and results should not be",safe_negation,Keep as-is (safe negation).
 paper_assets/v3_17_confidential/figures/pipeline_ascii.md,25,human-audited,"<!-- Controlled silver diagnostic, not gold/human-audited. -->",safe_negation,Keep as-is (safe negation).
 paper_assets/v3_17_confidential/limitations_draft.md,22,human-audited,"diagnostic set. The labels are not gold or human-audited, and",safe_negation,Keep as-is (safe negation).
-paper_assets/v3_17_confidential/limitations_draft.md,88,standalone detector,"## L6 — Second-stage queue, not standalone detector",safe_negation,Keep as-is (safe negation).
-paper_assets/v3_17_confidential/limitations_draft.md,92,standalone detector,"FP/TP = 66.82, which is unusable as a standalone detector.",safe_negation,Keep as-is (safe negation).
-paper_assets/v3_17_confidential/limitations_draft.md,98,standalone detector,queue that augments human review; it is not a standalone detector,safe_negation,Keep as-is (safe negation).
-paper_assets/v3_17_confidential/limitations_draft.md,134,full shared-threshold CESE-OCN,claim. There is no full shared-threshold CESE-OCN validation in,safe_negation,Keep as-is (safe negation).
-paper_assets/v3_17_confidential/limitations_draft.md,150,human-audited,"> labels are not gold or human-audited, and results should not be",safe_negation,Keep as-is (safe negation).
-paper_assets/v3_17_confidential/limitations_draft.md,152,SOTA,"> a validated general detector, not SOTA, and not an automatic peer",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,49,gold benchmark,"This is a targeted audit protocol, not a gold benchmark.",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,52,human-audited,"readiness, not human-audited validation.""",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,101,standalone detector,"## L6 — Second-stage queue, not standalone detector",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,105,standalone detector,"FP/TP = 66.82, which is unusable as a standalone detector.",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,111,standalone detector,queue that augments human review; it is not a standalone detector,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,147,full shared-threshold CESE-OCN,claim. There is no full shared-threshold CESE-OCN validation in,safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,163,human-audited,"> labels are not gold or human-audited, and results should not be",safe_negation,Keep as-is (safe negation).
+paper_assets/v3_17_confidential/limitations_draft.md,165,SOTA,"> a validated general detector, not SOTA, and not an automatic peer",safe_negation,Keep as-is (safe negation).
 paper_assets/v3_17_confidential/paper_claims_checklist.md,3,human-audited,"> Controlled silver diagnostic, not gold/human-audited.",safe_negation,Keep as-is (safe negation).
 paper_assets/v3_17_confidential/paper_claims_checklist.md,10,human-audited,"| C2 | not human-audited benchmark | YES (see U7, S8) |",safe_negation,Keep as-is (safe negation).
 paper_assets/v3_17_confidential/paper_claims_checklist.md,11,SOTA,| C3 | not SOTA | YES (see U8) |,safe_negation,Keep as-is (safe negation).

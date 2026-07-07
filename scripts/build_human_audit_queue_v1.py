@@ -98,6 +98,79 @@ REDACTED_COLUMNS = [
     "queue_source",
 ]
 
+# Private packet columns — includes raw claim_text/evidence_text/selected_evidence
+# for auditor convenience. This file lives under data/private_audit/ (gitignored)
+# and is NEVER committed. auditor_label and related fields are left EMPTY.
+PRIVATE_PACKET_COLUMNS = [
+    "audit_item_id",
+    "candidate_id",
+    "target_candidate_group_id",
+    "domain",
+    "claim_text",
+    "evidence_text",
+    "selected_evidence",
+    "model_pred",
+    "silver_label",
+    "queue_rank",
+    "queue_source",
+    "selection_reason",
+    "auditor_label",
+    "auditor_confidence",
+    "audit_notes",
+    "disagreement_reason",
+    "requires_second_review",
+    "human_audited",
+    "created_at",
+]
+
+# Execution manifest columns — full version (internal coordination).
+# No raw text; uses hashes only. Includes candidate_id and private_packet_path
+# so internal teams can cross-reference the private packet.
+MANIFEST_COLUMNS = [
+    "audit_item_id",
+    "candidate_id",
+    "target_candidate_group_id",
+    "domain",
+    "claim_text_hash",
+    "evidence_text_hash",
+    "model_pred",
+    "silver_label",
+    "queue_rank",
+    "queue_source",
+    "selection_reason",
+    "private_packet_path",
+    "audit_status",
+]
+
+# Execution manifest columns — redacted version (public release).
+# Removes candidate_id, target_candidate_group_id, private_packet_path
+# so the public manifest cannot be linked back to the private packet.
+MANIFEST_REDACTED_COLUMNS = [
+    "audit_item_id",
+    "domain",
+    "claim_text_hash",
+    "evidence_text_hash",
+    "model_pred",
+    "silver_label",
+    "queue_rank",
+    "queue_source",
+    "selection_reason",
+    "audit_status",
+]
+
+# Human-readable selection reasons for each sampling bucket.
+SELECTION_REASONS = {
+    "top20": "Top-20 review queue head (rank 1-20)",
+    "top50_strong_action": "Top-50 queue with strong_action_overclaim prediction",
+    "r4_fp": "R4 false positive (silver not strong, R4 predicts strong)",
+    "r4_fn": "R4 false negative (silver strong, R4 does not predict strong)",
+    "mild_vs_strong_boundary": "Mild vs strong boundary case (error taxonomy tag)",
+    "contradiction_confusion": "Contradiction confusion case (error taxonomy tag)",
+}
+
+# Relative path to the private packet CSV (for the manifest's private_packet_path field).
+PRIVATE_PACKET_REL_PATH = "data/private_audit/v3_17_audit_packet/audit_packet_private.csv"
+
 VALID_AUDITOR_LABELS = {
     "supported",
     "mild_scope_overclaim",
@@ -153,6 +226,19 @@ def load_review_scores(review_queue_dir: Path) -> dict[str, dict]:
         return {}
     rows = read_csv_rows(p)
     return {r["candidate_id"]: r for r in rows if r.get("candidate_id")}
+
+
+def build_selected_evidence_lookup(queue_rows: list[dict]) -> dict[str, str]:
+    """Map candidate_id -> selected_evidence (canonicalized evidence text)
+    from the review queue top-100 rows. This is the evidence the model
+    actually saw during screening."""
+    out: dict[str, str] = {}
+    for q in queue_rows:
+        cid = q.get("candidate_id", "")
+        sel = q.get("selected_evidence", "")
+        if cid and sel:
+            out[cid] = sel
+    return out
 
 
 def load_error_cases(error_taxonomy_dir: Path) -> list[dict]:
@@ -338,6 +424,93 @@ def build_audit_rows(
     return rows
 
 
+def build_private_packet_rows(
+    selected: list[tuple[str, str]],
+    candidates: dict[str, dict],
+    queue_rows: list[dict],
+    selected_evidence_lookup: dict[str, str],
+    review_scores: dict[str, dict],
+    error_cases: list[dict],
+) -> list[dict]:
+    """Build private packet rows with raw claim_text/evidence_text/selected_evidence.
+
+    This file is gitignored (data/private_audit/) and is NEVER committed.
+    auditor_label, auditor_confidence, audit_notes, disagreement_reason,
+    and requires_second_review are left EMPTY — the auditor fills them in.
+    """
+    rows: list[dict] = []
+    now = datetime.now(timezone.utc).isoformat()
+    for idx, (cid, bucket_name) in enumerate(selected, start=1):
+        cand = candidates[cid]
+        pred_label = parse_pred_label(cid, queue_rows, review_scores, error_cases)
+        queue_rank = parse_queue_rank(cid, queue_rows)
+        sel_evidence = selected_evidence_lookup.get(cid, "")
+        audit_item_id = f"AUDIT-V1-{idx:04d}"
+        rows.append({
+            "audit_item_id": audit_item_id,
+            "candidate_id": cid,
+            "target_candidate_group_id": cand.get("target_candidate_group_id", ""),
+            "domain": cand.get("domain", ""),
+            "claim_text": cand.get("claim_text", ""),
+            "evidence_text": cand.get("evidence_text", ""),
+            "selected_evidence": sel_evidence,
+            "model_pred": pred_label,
+            "silver_label": cand.get("candidate_label_guess", ""),
+            "queue_rank": queue_rank,
+            "queue_source": bucket_name,
+            "selection_reason": SELECTION_REASONS.get(bucket_name, bucket_name),
+            "auditor_label": "",
+            "auditor_confidence": "",
+            "audit_notes": "",
+            "disagreement_reason": "",
+            "requires_second_review": "",
+            "human_audited": "False",
+            "created_at": now,
+        })
+    return rows
+
+
+def build_manifest_rows(
+    selected: list[tuple[str, str]],
+    candidates: dict[str, dict],
+    queue_rows: list[dict],
+    review_scores: dict[str, dict],
+    error_cases: list[dict],
+) -> list[dict]:
+    """Build execution manifest rows (hash-only, no raw text).
+
+    The full manifest includes candidate_id, target_candidate_group_id, and
+    private_packet_path for internal coordination. The redacted manifest
+    removes those fields for public release.
+    """
+    rows: list[dict] = []
+    for idx, (cid, bucket_name) in enumerate(selected, start=1):
+        cand = candidates[cid]
+        source_id = cand.get("source_id", "")
+        source_hash = sha256_hex(source_id) if source_id else ""
+        claim_text_hash = cand.get("claim_text_sha256", "")
+        evidence_text_hash = cand.get("evidence_text_sha256", "")
+        pred_label = parse_pred_label(cid, queue_rows, review_scores, error_cases)
+        queue_rank = parse_queue_rank(cid, queue_rows)
+        audit_item_id = f"AUDIT-V1-{idx:04d}"
+        rows.append({
+            "audit_item_id": audit_item_id,
+            "candidate_id": cid,
+            "target_candidate_group_id": cand.get("target_candidate_group_id", ""),
+            "domain": cand.get("domain", ""),
+            "claim_text_hash": claim_text_hash,
+            "evidence_text_hash": evidence_text_hash,
+            "model_pred": pred_label,
+            "silver_label": cand.get("candidate_label_guess", ""),
+            "queue_rank": queue_rank,
+            "queue_source": bucket_name,
+            "selection_reason": SELECTION_REASONS.get(bucket_name, bucket_name),
+            "private_packet_path": PRIVATE_PACKET_REL_PATH,
+            "audit_status": "pending",
+        })
+    return rows
+
+
 def write_csv(path: Path, rows: list[dict], columns: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8", newline="") as f:
@@ -442,6 +615,25 @@ def run(args) -> int:
         error_cases=error_cases,
     )
 
+    selected_evidence_lookup = build_selected_evidence_lookup(queue_rows)
+
+    private_packet_rows = build_private_packet_rows(
+        selected=selected,
+        candidates=candidates,
+        queue_rows=queue_rows,
+        selected_evidence_lookup=selected_evidence_lookup,
+        review_scores=review_scores,
+        error_cases=error_cases,
+    )
+
+    manifest_rows = build_manifest_rows(
+        selected=selected,
+        candidates=candidates,
+        queue_rows=queue_rows,
+        review_scores=review_scores,
+        error_cases=error_cases,
+    )
+
     out_dir = Path("data/audit_templates")
     if not out_dir.is_absolute():
         out_dir = Path(__file__).resolve().parent.parent / out_dir
@@ -450,24 +642,48 @@ def run(args) -> int:
     seed_path = out_dir / "human_audit_queue_seed_v1.csv"
     redacted_path = out_dir / "human_audit_queue_seed_v1_redacted.csv"
     report_path = out_dir / "human_audit_queue_build_report.json"
+    manifest_path = out_dir / "human_audit_execution_manifest_v1.csv"
+    manifest_redacted_path = out_dir / "human_audit_execution_manifest_v1_redacted.csv"
+
+    # Private packet path — gitignored, never committed.
+    private_packet_path = Path(PRIVATE_PACKET_REL_PATH)
+    if not private_packet_path.is_absolute():
+        private_packet_path = (Path(__file__).resolve().parent.parent /
+                               private_packet_path)
 
     write_csv(seed_path, rows, TEMPLATE_COLUMNS)
     write_csv(redacted_path, rows, REDACTED_COLUMNS)
     write_build_report(report_path, rows, selected, args.n, config)
+    write_csv(manifest_path, manifest_rows, MANIFEST_COLUMNS)
+    write_csv(manifest_redacted_path, manifest_rows, MANIFEST_REDACTED_COLUMNS)
+    write_csv(private_packet_path, private_packet_rows, PRIVATE_PACKET_COLUMNS)
 
     print(f"wrote {seed_path}", flush=True)
     print(f"wrote {redacted_path}", flush=True)
     print(f"wrote {report_path}", flush=True)
+    print(f"wrote {manifest_path}", flush=True)
+    print(f"wrote {manifest_redacted_path}", flush=True)
+    print(f"wrote {private_packet_path} (PRIVATE, gitignored)", flush=True)
 
-    # Sanity: verify no raw text leaked.
+    # Sanity: verify no raw text leaked into PUBLIC outputs.
+    # The private packet is exempt — it lives under data/private_audit/ (gitignored).
     forbidden = {"claim_text", "evidence_text", "selected_evidence"}
-    for p in [seed_path, redacted_path]:
+    public_outputs = [seed_path, redacted_path, manifest_path, manifest_redacted_path]
+    for p in public_outputs:
         with open(p, "r", encoding="utf-8-sig", newline="") as f:
             reader = csv.DictReader(f)
             header_set = set(reader.fieldnames or [])
             leak = header_set & forbidden
             assert not leak, f"forbidden raw-text columns in {p}: {leak}"
-    print("redaction check: PASS (no raw-text columns in outputs)", flush=True)
+    print("redaction check: PASS (no raw-text columns in public outputs)", flush=True)
+
+    # Verify the private packet IS gitignored before writing auditor-empty fields.
+    gitignore_check = private_packet_path.relative_to(
+        Path(__file__).resolve().parent.parent
+    )
+    print(f"private packet relative path: {gitignore_check}", flush=True)
+    print("ensure data/private_audit/ is in .gitignore (verified at repo root)",
+          flush=True)
 
     return 0
 

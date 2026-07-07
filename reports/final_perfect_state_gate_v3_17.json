@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T12:09:17.916887+00:00",
+  "generated_at": "2026-07-07T12:52:19.077969+00:00",
   "final_status": "READY_WITH_LIMITATIONS",
   "summary": {
     "total_checks": 44,
@@ -292,12 +292,12 @@
     {
       "category": "6. Human Audit",
       "check_id": "6.4",
-      "description": "Audit not yet run (documented)",
+      "description": "Audit summary missing",
       "status": "WARNING",
       "priority": "P1",
-      "evidence": "No audit dir; protocol documents audit as not complete",
-      "blocked_reason": "Human audit not executed",
-      "next_action": "Execute human audit when annotators available"
+      "evidence": "Audit dir exists but no summary",
+      "blocked_reason": "Audit incomplete",
+      "next_action": "Complete audit and generate summary"
     },
     {
       "category": "6. Human Audit",
@@ -461,9 +461,9 @@
   "warning_items": [
     {
       "check_id": "6.4",
-      "description": "Audit not yet run (documented)",
-      "evidence": "No audit dir; protocol documents audit as not complete",
-      "next_action": "Execute human audit when annotators available"
+      "description": "Audit summary missing",
+      "evidence": "Audit dir exists but no summary",
+      "next_action": "Complete audit and generate summary"
     },
     {
       "check_id": "9.1",

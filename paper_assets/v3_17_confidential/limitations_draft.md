@@ -28,15 +28,28 @@ paired with the safe wording that must accompany it in the paper.
 - **Statement:** A small targeted human audit protocol exists
   (`docs/human_audit_protocol_v1.md`), an audit template is built
   (`data/audit_templates/human_audit_template.csv`), and 111 audit
-  seeds are queued. No adjudication has been completed and no
-  agreement metrics are available.
+  seeds are queued. As of V3.17, the audit packet is execution-ready:
+  a private packet with raw `claim_text`/`evidence_text` and empty
+  `auditor_label` fields is prepared at
+  `data/private_audit/v3_17_audit_packet/audit_packet_private.csv`
+  (gitignored), a public hash-only execution manifest is prepared at
+  `data/audit_templates/human_audit_execution_manifest_v1_redacted.csv`,
+  and a pending summary is prepared at
+  `experiments/human_audit_v1_pending/audit_pending_summary.md`.
+  No adjudication has been completed and no agreement metrics are
+  available. `human_audited` remains `False` for all 444 rows;
+  `gold_label` remains empty.
 - **Source:** `docs/human_audit_protocol_v1.md`,
-  `data/audit_templates/human_audit_template.csv`
+  `data/audit_templates/human_audit_template.csv`,
+  `data/audit_templates/human_audit_execution_manifest_v1_redacted.csv`,
+  `experiments/human_audit_v1_pending/audit_pending_summary.md`
 - **Implication:** Silver labels cannot be upgraded to gold. Any
   future human audit must use the established protocol and report
   inter-annotator agreement before any gold-level claim is made.
-- **Safe wording:** "A small targeted human audit protocol exists
-  but has not been completed; the dataset remains silver-label."
+  This is a targeted audit protocol, not a gold benchmark.
+- **Safe wording:** "This is a targeted audit protocol, not a gold
+  benchmark. Until completed, the paper can only claim audit
+  readiness, not human-audited validation."
 
 ## L3 — Six domains only
 

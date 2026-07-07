@@ -126,6 +126,47 @@ Each audit record (row in the filled audit CSV) must contain:
    `experiments/human_audit_v1/` with agreement summary, confusion matrix,
    redacted disagreement cases, and `audit_summary.md`.
 
+## Execution-Ready Audit Packet (v3.17)
+
+As of V3.17, the audit packet is **execution-ready** but **not executed**. The
+following artifacts are prepared:
+
+**Private packet (gitignored, never committed):**
+- `data/private_audit/v3_17_audit_packet/audit_packet_private.csv` — 111 rows
+  with raw `claim_text`, `evidence_text`, `selected_evidence` for auditor
+  convenience. `auditor_label`, `auditor_confidence`, `audit_notes`,
+  `disagreement_reason`, and `requires_second_review` are left EMPTY.
+- `data/private_audit/v3_17_audit_packet/audit_instructions_for_annotators.md`
+- `data/private_audit/v3_17_audit_packet/audit_label_decision_tree.md`
+- `data/private_audit/v3_17_audit_packet/audit_examples_synthetic_only.md`
+- `data/private_audit/v3_17_audit_packet/audit_completion_checklist.md`
+
+**Public manifest (hash-only, no raw text):**
+- `data/audit_templates/human_audit_execution_manifest_v1.csv` — full manifest
+  with 13 fields including `candidate_id`, `target_candidate_group_id`, and
+  `private_packet_path` for internal coordination.
+- `data/audit_templates/human_audit_execution_manifest_v1_redacted.csv` —
+  redacted manifest with 10 fields (removes `candidate_id`,
+  `target_candidate_group_id`, `private_packet_path`) for public release.
+
+**Pending summary (public):**
+- `experiments/human_audit_v1_pending/audit_pending_summary.md` — explicitly
+  states "audit packet prepared; audit not yet executed" and "no human-audited
+  validation claimed."
+
+**Sampling summary (111 candidates):**
+- top20: 17, top50_strong_action: 24, r4_fp: 20, r4_fn: 15,
+  mild_vs_strong_boundary: 20, contradiction_confusion: 15.
+- 78 unique groups, max 2 per `target_candidate_group_id`.
+- Covers all 6 domains.
+
+**This is a targeted audit protocol, not a gold benchmark.** Until the audit is
+completed, the paper can only claim audit readiness, not human-audited
+validation. The `human_audited` field remains `False` for all 444 candidates in
+the locked dataset; `gold_label` remains empty. No `audit_agreement_summary.json`
+exists. The Final Perfect State Gate records this as WARNING 6.4 (human audit
+staged, not executed) and does not upgrade it to PASS.
+
 ## What the Summary May and May Not Claim
 
 **Allowed** (safe wording):

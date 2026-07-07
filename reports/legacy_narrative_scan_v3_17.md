@@ -1,6 +1,6 @@
 # Legacy Narrative Scan — V3.17 Confidential Lightweight
 
-Generated: 2026-07-07T12:09:09.128058+00:00
+Generated: 2026-07-07T12:52:18.485646+00:00
 
 > Read-only scan. No files were modified.
 
@@ -8,12 +8,12 @@ Generated: 2026-07-07T12:09:09.128058+00:00
 
 | Classification | Count |
 |---|---|
-| safe_negation | 409 |
+| safe_negation | 414 |
 | legacy_section | 39 |
 | future_work | 3 |
 | unsafe_current_claim | 0 |
 | ambiguous | 0 |
-| **total** | **451** |
+| **total** | **456** |
 
 ## Gate status
 
@@ -23,7 +23,7 @@ Generated: 2026-07-07T12:09:09.128058+00:00
 
 ## All findings by classification
 
-### safe_negation (409)
+### safe_negation (414)
 
 | Path | Line | Phrase | Context |
 |---|---|---|---|
@@ -74,9 +74,12 @@ Generated: 2026-07-07T12:09:09.128058+00:00
 | docs/dataset_version_lock_v3_17.md | 171 | human-audited | 2. **Not human-audited.** `human_audited=False` for all 444 rows. The |
 | docs/human_audit_protocol_v1.md | 6 | gold benchmark | diagnostic candidate pool. The audit is **not** a gold benchmark and must not be |
 | docs/human_audit_protocol_v1.md | 26 | gold benchmark | - Not a gold benchmark. |
-| docs/human_audit_protocol_v1.md | 132 | gold benchmark | - "small targeted audit, not a gold benchmark" |
-| docs/human_audit_protocol_v1.md | 139 | gold benchmark | - "gold benchmark" |
-| docs/human_audit_protocol_v1.md | 142 | SOTA | - "SOTA" |
+| docs/human_audit_protocol_v1.md | 154 | human-audited | states "audit packet prepared; audit not yet executed" and "no human-audited |
+| docs/human_audit_protocol_v1.md | 163 | gold benchmark | **This is a targeted audit protocol, not a gold benchmark.** Until the audit is |
+| docs/human_audit_protocol_v1.md | 164 | human-audited | completed, the paper can only claim audit readiness, not human-audited |
+| docs/human_audit_protocol_v1.md | 173 | gold benchmark | - "small targeted audit, not a gold benchmark" |
+| docs/human_audit_protocol_v1.md | 180 | gold benchmark | - "gold benchmark" |
+| docs/human_audit_protocol_v1.md | 183 | SOTA | - "SOTA" |
 | docs/paper_outline_v3_17_confidential.md | 35 | gold benchmark | gold benchmark. |
 | docs/paper_outline_v3_17_confidential.md | 48 | gold benchmark | The abstract must **not** contain: gold benchmark, SOTA, automatic |
 | docs/paper_outline_v3_17_confidential.md | 48 | SOTA | The abstract must **not** contain: gold benchmark, SOTA, automatic |
@@ -202,12 +205,14 @@ Generated: 2026-07-07T12:09:09.128058+00:00
 | paper_assets/v3_17_confidential/contribution_bullets.md | 77 | human-audited | > labels are not gold or human-audited, and results should not be |
 | paper_assets/v3_17_confidential/figures/pipeline_ascii.md | 25 | human-audited | <!-- Controlled silver diagnostic, not gold/human-audited. --> |
 | paper_assets/v3_17_confidential/limitations_draft.md | 22 | human-audited | diagnostic set. The labels are not gold or human-audited, and |
-| paper_assets/v3_17_confidential/limitations_draft.md | 88 | standalone detector | ## L6 — Second-stage queue, not standalone detector |
-| paper_assets/v3_17_confidential/limitations_draft.md | 92 | standalone detector | FP/TP = 66.82, which is unusable as a standalone detector. |
-| paper_assets/v3_17_confidential/limitations_draft.md | 98 | standalone detector | queue that augments human review; it is not a standalone detector |
-| paper_assets/v3_17_confidential/limitations_draft.md | 134 | full shared-threshold CESE-OCN | claim. There is no full shared-threshold CESE-OCN validation in |
-| paper_assets/v3_17_confidential/limitations_draft.md | 150 | human-audited | > labels are not gold or human-audited, and results should not be |
-| paper_assets/v3_17_confidential/limitations_draft.md | 152 | SOTA | > a validated general detector, not SOTA, and not an automatic peer |
+| paper_assets/v3_17_confidential/limitations_draft.md | 49 | gold benchmark | This is a targeted audit protocol, not a gold benchmark. |
+| paper_assets/v3_17_confidential/limitations_draft.md | 52 | human-audited | readiness, not human-audited validation." |
+| paper_assets/v3_17_confidential/limitations_draft.md | 101 | standalone detector | ## L6 — Second-stage queue, not standalone detector |
+| paper_assets/v3_17_confidential/limitations_draft.md | 105 | standalone detector | FP/TP = 66.82, which is unusable as a standalone detector. |
+| paper_assets/v3_17_confidential/limitations_draft.md | 111 | standalone detector | queue that augments human review; it is not a standalone detector |
+| paper_assets/v3_17_confidential/limitations_draft.md | 147 | full shared-threshold CESE-OCN | claim. There is no full shared-threshold CESE-OCN validation in |
+| paper_assets/v3_17_confidential/limitations_draft.md | 163 | human-audited | > labels are not gold or human-audited, and results should not be |
+| paper_assets/v3_17_confidential/limitations_draft.md | 165 | SOTA | > a validated general detector, not SOTA, and not an automatic peer |
 | paper_assets/v3_17_confidential/paper_claims_checklist.md | 3 | human-audited | > Controlled silver diagnostic, not gold/human-audited. |
 | paper_assets/v3_17_confidential/paper_claims_checklist.md | 10 | human-audited | \| C2 \| not human-audited benchmark \| YES (see U7, S8) \| |
 | paper_assets/v3_17_confidential/paper_claims_checklist.md | 11 | SOTA | \| C3 \| not SOTA \| YES (see U8) \| |
