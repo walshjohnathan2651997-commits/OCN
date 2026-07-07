@@ -1,0 +1,314 @@
+{
+  "manifest_version": "1.0",
+  "generated_at": "2026-07-08",
+  "mainline": "V3.17 Confidential Lightweight",
+  "remote_head": "adcf485eeb9621fbd828ec7741ab508f66c8f9eb",
+  "description": "Final delivery manifest listing every artifact relevant to the V3.17 submission, with public/private classification and delivery inclusion flag. Private-sensitive items are never included in any public delivery bundle.",
+  "fields": ["path", "public_safe", "private_sensitive", "source_of_truth", "include_in_delivery", "notes"],
+  "items": [
+    {
+      "path": "paper_assets/v3_17_confidential/submission_manuscript_v1.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "paper_assets/v3_17_confidential",
+      "include_in_delivery": true,
+      "notes": "Submission manuscript v2 Final Freeze; 15-section structure; all numbers have source notes"
+    },
+    {
+      "path": "paper_assets/v3_17_confidential/submission_result_source_map.csv",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "paper_assets/v3_17_confidential",
+      "include_in_delivery": true,
+      "notes": "80 result rows (R-01..R-80) mapping every claim to source file with source_status"
+    },
+    {
+      "path": "paper_assets/v3_17_confidential/tables/table1_dataset_summary.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "docs/dataset_version_lock_v3_17.md",
+      "include_in_delivery": true,
+      "notes": "Dataset summary; 444 rows, 111 groups, 4 labels, 6 domains"
+    },
+    {
+      "path": "paper_assets/v3_17_confidential/tables/table2_retrieval_recall.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_metrics_bm25.json",
+      "include_in_delivery": true,
+      "notes": "BM25 chunk/sentence/window retrieval recall"
+    },
+    {
+      "path": "paper_assets/v3_17_confidential/tables/table3_format_shift_ablation.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "experiments/format_shift_ablation_v1/format_shift_metrics.csv",
+      "include_in_delivery": true,
+      "notes": "8 format-shift variants from real metrics; no blocked wording; resolved offline sklearn 1.9.0"
+    },
+    {
+      "path": "paper_assets/v3_17_confidential/tables/table4_canonicalizer_ablation.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv",
+      "include_in_delivery": true,
+      "notes": "Canonicalizer ablation; best_sentence_top5_overlap oracle_recall=0.387"
+    },
+    {
+      "path": "paper_assets/v3_17_confidential/tables/table5_review_queue.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "experiments/canonicalized_risk_ranking_v1/risk_ranking_results_by_variant.csv",
+      "include_in_delivery": true,
+      "notes": "8 ranking variants; best G_conservative_precision precision@20=0.45; second-stage only"
+    },
+    {
+      "path": "paper_assets/v3_17_confidential/tables/table6_leakage_audit.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "experiments/leakage_audit_v1/audit_summary.md",
+      "include_in_delivery": true,
+      "notes": "12-check leakage audit; overall PASS"
+    },
+    {
+      "path": "paper_assets/v3_17_confidential/tables/table7_complexity_utility.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "experiments/complexity_vs_utility_ablation_v1/method_pareto_table.csv",
+      "include_in_delivery": true,
+      "notes": "Pareto analysis; 3 pareto_optimal deterministic methods"
+    },
+    {
+      "path": "paper_assets/v3_17_confidential/tables/table8_human_audit_if_available.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "docs/human_audit_protocol_v1.md",
+      "include_in_delivery": true,
+      "notes": "Human audit status: STAGED not executed; no human-audited benchmark results reported"
+    },
+    {
+      "path": "docs/reviewer_response_playbook_v3_17.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "docs",
+      "include_in_delivery": true,
+      "notes": "Reviewer response playbook"
+    },
+    {
+      "path": "docs/reviewer_risk_register_v3_17.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "docs",
+      "include_in_delivery": true,
+      "notes": "Reviewer risk register"
+    },
+    {
+      "path": "reports/final_perfect_state_gate_v3_17.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "reports/final_perfect_state_gate_v3_17.json",
+      "include_in_delivery": true,
+      "notes": "Final gate: PASS=42 WARNING=2 BLOCKED=0 FAIL=0"
+    },
+    {
+      "path": "reports/final_perfect_state_gate_v3_17.json",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "scripts/run_final_perfect_state_gate_v1.py",
+      "include_in_delivery": true,
+      "notes": "Machine-readable final gate"
+    },
+    {
+      "path": "release_bundles/v3_17_confidential_public/MANIFEST.json",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "release_bundles/v3_17_confidential_public",
+      "include_in_delivery": true,
+      "notes": "Public release bundle manifest; 254 files; SHA-256 per file"
+    },
+    {
+      "path": "release_bundles/v3_17_confidential_public/REDACTION_REPORT.json",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "scripts/build_public_sanitized_release_v1.py",
+      "include_in_delivery": true,
+      "notes": "Redaction report; redteam_pass=true; no PDF/raw text"
+    },
+    {
+      "path": "reports/artifact_ledger_v3_17.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "reports/artifact_ledger_v3_17.csv",
+      "include_in_delivery": true,
+      "notes": "Artifact ledger; 54 artifacts"
+    },
+    {
+      "path": "reports/artifact_ledger_v3_17.csv",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "scripts/build_artifact_ledger_v1.py",
+      "include_in_delivery": true,
+      "notes": "Machine-readable artifact ledger"
+    },
+    {
+      "path": "experiments/human_audit_v1/audit_agreement_summary.json",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "experiments/human_audit_v1",
+      "include_in_delivery": false,
+      "notes": "NOT AVAILABLE — human audit staged, not executed; file does not exist"
+    },
+    {
+      "path": "experiments/format_shift_ablation_v1/format_shift_metrics.csv",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "experiments/format_shift_ablation_v1",
+      "include_in_delivery": true,
+      "notes": "Real format-shift metrics; 8 variants; canonicalized strong_F1=0.4615; diagnostic not benchmark"
+    },
+    {
+      "path": "reports/redteam_release_reconciliation_v3_17.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "reports/redteam_release_reconciliation_v3_17.json",
+      "include_in_delivery": true,
+      "notes": "Redteam reconciliation; 84 findings repo-wide, 0 in release bundle"
+    },
+    {
+      "path": "docs/dataset_version_lock_v3_17.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "docs",
+      "include_in_delivery": true,
+      "notes": "Dataset version lock; SHA256, 444 rows, 36 cols; controlled silver diagnostic"
+    },
+    {
+      "path": "reports/v3_17_one_page_status_card.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "reports",
+      "include_in_delivery": true,
+      "notes": "One-page status card; project status, key results, limitations, claims boundaries"
+    },
+    {
+      "path": "reports/release_safety_manifest_v3_17.json",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "scripts/build_artifact_ledger_v1.py",
+      "include_in_delivery": true,
+      "notes": "Release safety manifest; 54 artifacts; 46 safe-to-release; gate PASS"
+    },
+    {
+      "path": "reports/current_project_status_v3_17.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "scripts/generate_project_status_report_v1.py",
+      "include_in_delivery": true,
+      "notes": "Current project status; format-shift resolved"
+    },
+    {
+      "path": "docs/safe_claims_dictionary_v3_17.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "docs",
+      "include_in_delivery": true,
+      "notes": "Safe claims dictionary; approved wording"
+    },
+    {
+      "path": "docs/reproducibility_guide_v3_17.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "docs",
+      "include_in_delivery": true,
+      "notes": "Reproducibility guide"
+    },
+    {
+      "path": "docs/result_narrative_freeze_v3_17.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "docs",
+      "include_in_delivery": true,
+      "notes": "Result narrative freeze; frozen numbers"
+    },
+    {
+      "path": "artifacts_manifest_v3_17.yaml",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "artifacts_manifest_v3_17.yaml",
+      "include_in_delivery": true,
+      "notes": "Artifact manifest definitions; 54 artifact groups"
+    },
+    {
+      "path": "experiments/leakage_audit_v1/audit_summary.md",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "experiments/leakage_audit_v1",
+      "include_in_delivery": true,
+      "notes": "Leakage audit summary; 12 checks; PASS"
+    },
+    {
+      "path": "experiments/metric_robustness_v1/classification_metrics_with_ci.csv",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "experiments/metric_robustness_v1",
+      "include_in_delivery": true,
+      "notes": "R4 classification metrics with bootstrap CIs; strong_F1=0.4503"
+    },
+    {
+      "path": "experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "experiments/canonicalizer_ablation_v1",
+      "include_in_delivery": true,
+      "notes": "Canonicalizer selector metrics; no raw text columns"
+    },
+    {
+      "path": "experiments/canonicalized_risk_ranking_v1/risk_ranking_results_by_variant.csv",
+      "public_safe": true,
+      "private_sensitive": false,
+      "source_of_truth": "experiments/canonicalized_risk_ranking_v1",
+      "include_in_delivery": true,
+      "notes": "Risk ranking results by variant; aggregate metrics only"
+    },
+    {
+      "path": "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv",
+      "public_safe": false,
+      "private_sensitive": true,
+      "source_of_truth": "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1",
+      "include_in_delivery": false,
+      "notes": "PRIVATE — controlled silver dataset CSV with raw claim_text/evidence_text; never in delivery bundle"
+    },
+    {
+      "path": "data/private_audit/v3_17_audit_packet/audit_packet_private.csv",
+      "public_safe": false,
+      "private_sensitive": true,
+      "source_of_truth": "data/private_audit/v3_17_audit_packet",
+      "include_in_delivery": false,
+      "notes": "PRIVATE — human audit packet with raw claim/evidence text; gitignored; never in delivery bundle"
+    },
+    {
+      "path": "experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv",
+      "public_safe": false,
+      "private_sensitive": true,
+      "source_of_truth": "experiments/canonicalized_review_queue_v1",
+      "include_in_delivery": false,
+      "notes": "PRIVATE — review queue scores with selected_evidence column; never in delivery bundle"
+    },
+    {
+      "path": "experiments/canonicalized_review_queue_v1/review_queue_top100.csv",
+      "public_safe": false,
+      "private_sensitive": true,
+      "source_of_truth": "experiments/canonicalized_review_queue_v1",
+      "include_in_delivery": false,
+      "notes": "PRIVATE — review queue top-100 with claim_text/selected_evidence; never in delivery bundle"
+    }
+  ],
+  "summary": {
+    "total_items": 36,
+    "public_safe_count": 32,
+    "private_sensitive_count": 4,
+    "included_in_delivery_count": 31,
+    "excluded_from_delivery_count": 5,
+    "human_audit_executed": false
+  }
+}

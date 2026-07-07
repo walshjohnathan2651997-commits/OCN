@@ -1,0 +1,246 @@
+{
+  "guideline_name": "SimClaim-Eval v1 Annotation Guidelines",
+  "version": "v1.0",
+  "status": "guideline_refinement_draft",
+  "calibrated_against": {
+    "dataset": "SimClaim-Eval v1 round1_seed",
+    "n_samples": 42,
+    "label_source": "user_confirmed_gpt_adjudicated_round1",
+    "human_audited": false,
+    "paper_valid": false
+  },
+  "task_definition": {
+    "name": "simulation_claim_evidence_auditing",
+    "description": "Decide whether a claim's strength exceeds the support capacity of its cited evidence by auditing four tier dimensions on both the claim side and the support side. The task judges support capacity, not truth.",
+    "task_type": "tier_exceedance_ordinal",
+    "not_task_type": "3-way_NLI_entailment",
+    "no_neutral_class": true
+  },
+  "tier_dimensions": [
+    {
+      "dimension": "scope",
+      "question": "How broad / general / deployment-level is the statement? Does the evidence cover that breadth?",
+      "claim_field": "claim_scope_tier",
+      "support_field": "support_scope_tier"
+    },
+    {
+      "dimension": "causal",
+      "question": "Does the claim assert a causal or mechanistic relationship? Does the evidence justify that causal strength?",
+      "claim_field": "claim_causal_tier",
+      "support_field": "support_causal_tier"
+    },
+    {
+      "dimension": "action",
+      "question": "Does the claim imply an actionable prescription / deployment / policy recommendation? Does the evidence support that level of actionability?",
+      "claim_field": "claim_action_tier",
+      "support_field": "support_action_tier"
+    },
+    {
+      "dimension": "certainty",
+      "question": "How confident / definite is the claim's phrasing? Does the evidence provide that level of certainty?",
+      "claim_field": "claim_certainty_tier",
+      "support_field": "support_certainty_tier"
+    }
+  ],
+  "tier_values": [
+    {"tier": 0, "label": "none / not present", "meaning": "The dimension is not articulated in the text."},
+    {"tier": 1, "label": "weak / narrow / suggestive", "meaning": "The dimension is present only weakly, narrowly, or by suggestion."},
+    {"tier": 2, "label": "moderate / bounded but meaningful", "meaning": "The dimension is present in a bounded but clearly meaningful way (most round1_seed samples live here)."},
+    {"tier": 3, "label": "strong / broad / deployment-level / high-certainty", "meaning": "The dimension is asserted broadly, deployment-grade, or with high epistemic certainty."}
+  ],
+  "escalation_label_rule": {
+    "field": "escalation_label",
+    "derivation": "escalation_label = 1 if any(claim_tier[d] > support_tier[d]) for d in {scope, causal, action, certainty}, else 0",
+    "is_derived": true,
+    "independent_annotation_forbidden": true,
+    "validation_enforced_by": "scripts/validate_round1_seed_import.py"
+  },
+  "escalation_type_rule": {
+    "field": "escalation_type",
+    "allowed_values": ["none", "scope", "causal", "action", "certainty", "multi"],
+    "rules": {
+      "none": "No dimension overclaims (escalation_label=0).",
+      "scope": "Only the scope dimension overclaims.",
+      "causal": "Only the causal dimension overclaims.",
+      "action": "Only the action dimension overclaims.",
+      "certainty": "Only the certainty dimension overclaims.",
+      "multi": "Two or more dimensions overclaim simultaneously."
+    },
+    "round1_distribution": {
+      "none": 11,
+      "scope": 2,
+      "causal": 2,
+      "action": 1,
+      "certainty": 2,
+      "multi": 24
+    }
+  },
+  "contradiction_label_rule": {
+    "field": "contradiction_label",
+    "value_1_when": "The cited evidence explicitly rebuts or refutes the claim.",
+    "value_0_when": [
+      "Evidence provides no mechanism / data for the claim's strength, but does not refute it.",
+      "Evidence is too vague, short, or noisy to either support or refute.",
+      "Evidence supports a strictly weaker version of the claim but not the strong version asserted (this is an overclaim, recorded by escalation_label=1, not a contradiction)."
+    ],
+    "key_principle": "Insufficient evidence is NOT contradiction. An overclaim where evidence is silent is escalation_label=1, contradiction_label=0.",
+    "round1_count_value_1": 0
+  },
+  "per_dimension_examples": {
+    "scope": {
+      "supported": {
+        "sample_id": "CAND0001",
+        "hard_case_type": "scenario_specific_supported_control",
+        "domain": "wargaming",
+        "claim_tier": 2,
+        "support_tier": 2,
+        "rationale": "The claim is bounded to a specific 24-run wargame; the evidence describes exactly that 24-run wargame with its scenario-specific outcomes. The breadth of the claim matches the breadth of the evidence."
+      },
+      "overclaim": {
+        "sample_id": "CAND0002",
+        "hard_case_type": "scenario_scope_overclaim",
+        "domain": "wargaming",
+        "claim_tier": 2,
+        "support_tier": 1,
+        "rationale": "The claim asserts a broad historical-scope consequence ('greatest naval battles since WWII'); the cited evidence describes the scenario setup of military drills, not the conclusion that those would be the greatest naval battles since WWII."
+      },
+      "borderline": {
+        "sample_id": "CAND0035",
+        "hard_case_type": "strong_language_supported",
+        "domain": "cyber_emulation",
+        "claim_tier": 2,
+        "support_tier": 2,
+        "rationale": "Marketing language in the claim is matched by platform documentation at the same register. The strong language is supported; this is NOT an overclaim despite the marketing register. Canonical strong_language_supported case."
+      }
+    },
+    "causal": {
+      "supported": {
+        "sample_id": "NEWCAND021",
+        "hard_case_type": "strong_language_supported",
+        "domain": "traffic_simulation",
+        "claim_tier": 2,
+        "support_tier": 2,
+        "rationale": "The claim posits a causal/mechanistic link between simulation and scaling; the cited paper describes the simulation setup, metrics, and shows the approach generates more realistic scenarios than baselines."
+      },
+      "overclaim": {
+        "sample_id": "CAND0035",
+        "hard_case_type": "strong_language_supported",
+        "domain": "cyber_emulation",
+        "claim_tier": 2,
+        "support_tier": 1,
+        "rationale": "Marketing claim implies Caldera 'empowers practitioners to save time, money, and energy' — a causal efficiency claim. Platform documentation describes capabilities but provides no measured efficiency outcome."
+      },
+      "borderline": {
+        "sample_id": "NEWCAND023",
+        "hard_case_type": "insufficient_not_contradiction",
+        "domain": "traffic_simulation",
+        "claim_tier": 2,
+        "support_tier": 2,
+        "rationale": "Claim posits downstream planner improvement; evidence addresses scenario realism but not planner improvement directly. Causal support is bounded but present (matched at tier 2). Canonical insufficient-but-not-contradiction boundary."
+      }
+    },
+    "action": {
+      "supported": {
+        "sample_id": "CAND0082",
+        "hard_case_type": "cyber_actionability_supported_or_boundary",
+        "domain": "cyber_training",
+        "claim_tier": 2,
+        "support_tier": 2,
+        "rationale": "Claim prescribes concrete defensive-testing actions; cited cyber-range documentation describes exactly that interactive, hands-on testing capability. Actionability matched."
+      },
+      "overclaim": {
+        "sample_id": "CAND0081",
+        "hard_case_type": "cyber_actionability_overclaim",
+        "domain": "cyber_training",
+        "claim_tier": 2,
+        "support_tier": 1,
+        "rationale": "Identical Caldera-style marketing claim, but cited evidence is a high-level discussion of the gap between technical cyber exercises and strategic tabletop exercises — acknowledges existence of such tools without supporting the prescription."
+      },
+      "borderline": {
+        "sample_id": "CAND0006",
+        "hard_case_type": "digital_twin_actionability_boundary",
+        "domain": "digital_twin",
+        "claim_tier": 2,
+        "support_tier": 2,
+        "rationale": "Hedged actionability claim matched by evidence that emphasizes uncertainty quantification as a precondition. Action prescription is bounded on both sides (tier 2); borderline because 'support decision-making' may not be fully actionable without the uncertainty caveat."
+      }
+    },
+    "certainty": {
+      "supported": {
+        "sample_id": "CAND0001",
+        "hard_case_type": "scenario_specific_supported_control",
+        "domain": "wargaming",
+        "claim_tier": 2,
+        "support_tier": 2,
+        "rationale": "Claim is phrased in scenario-specific, hedged terms; evidence describes the same hedged scenario outcomes. Certainty of the claim matches certainty of the evidence."
+      },
+      "overclaim": {
+        "sample_id": "CAND0002",
+        "hard_case_type": "scenario_scope_overclaim",
+        "domain": "wargaming",
+        "claim_tier": 2,
+        "support_tier": 1,
+        "rationale": "Claim phrasing asserts a high-magnitude historical consequence with confidence; cited evidence is descriptive of drills and exercises without quantifying the magnitude of any naval engagement."
+      },
+      "borderline": {
+        "sample_id": "CAND0035",
+        "hard_case_type": "strong_language_supported",
+        "domain": "cyber_emulation",
+        "claim_tier": 2,
+        "support_tier": 2,
+        "rationale": "Strong register in claim matched by platform documentation at the same register. Marketing register alone does NOT create a certainty overclaim when the evidence is also a platform-description at the same register."
+      }
+    }
+  },
+  "boundary_clarifications": [
+    {
+      "boundary": "scope_vs_certainty",
+      "rule": "Audit scope (how broadly the claim generalizes) and certainty (how confident the claim's phrasing is) separately. A claim can use high-certainty language without being broad in scope, and vice versa.",
+      "canonical_example": "CAND0002 (both overclaim independently: high-certainty register AND broad-scope framing)"
+    },
+    {
+      "boundary": "actionability_vs_scope",
+      "rule": "Audit action (whether the claim prescribes a concrete step / deployment / policy) and scope (how broadly the claim generalizes) separately. A claim can be broad without being actionable, and vice versa.",
+      "canonical_example_supported": "CAND0082 (concrete actionable prescription, matched by evidence)",
+      "canonical_example_overclaim": "CAND0058 (policy_actionability_overclaim: prescribes policy changes based on wargame series whose evidence is descriptive of operational challenges but does not directly validate the proposed policy actions)"
+    },
+    {
+      "boundary": "causal_overclaim_vs_insufficient_evidence",
+      "rule": "Causal overclaim is claim_causal_tier > support_causal_tier (evidence provides some causal signal but not at the strength claimed). Insufficient evidence means the evidence provides NO usable causal signal at all. These are distinct states.",
+      "canonical_example_borderline": "NEWCAND023 (insufficient-not-contradiction: evidence addresses scenario realism but not planner improvement)"
+    },
+    {
+      "boundary": "contradiction_vs_unsupported_insufficient",
+      "rule": "contradiction_label=1 requires positive textual evidence against the claim, not merely absence of support. The three states (supported, overclaim/unsupported, contradiction) map to distinct (escalation_label, contradiction_label) pairs.",
+      "state_table": [
+        {"state": "supported", "escalation_label": 0, "contradiction_label": 0, "diagnostic": "Evidence carries the claim's weight."},
+        {"state": "overclaim_unsupported_insufficient", "escalation_label": 1, "contradiction_label": 0, "diagnostic": "Evidence does not carry the claim's weight, but does not refute it."},
+        {"state": "direct_contradiction", "escalation_label": "0 or 1", "contradiction_label": 1, "diagnostic": "Evidence explicitly rebuts the claim."}
+      ],
+      "round1_gap": "round1_seed has 0 contradiction_label=1 samples; round2 must add at least 15 contradiction-positive candidates."
+    },
+    {
+      "boundary": "strong_language_supported_is_NOT_overclaim",
+      "rule": "When a claim uses marketing/promotional register AND the cited evidence is at the same register (platform documentation, vendor whitepaper, paper abstract making the same claim), the strong language is supported at that register. This becomes an overclaim only when the strong register implies a causal or deployment claim that the documentation does not make, or when the strong register is broader in scope than the documented capability.",
+      "canonical_example_supported_at_register": "CAND0035 (certainty matched at 2 but causal overclaim at 2 vs 1)",
+      "annotator_heuristic_to_avoid": "marketing language = overclaim"
+    }
+  ],
+  "round1_limitations": [
+    "contradiction_label=1 count is 0; round1 contains no direct-contradiction samples.",
+    "n=42 is not sufficient to train a formal model; any model trained on round1_seed would overfit the overclaim class and have no signal for contradiction.",
+    "Round1 is not sufficient for paper main results; every record has paper_valid=false and main_text_allowed=false.",
+    "Round1 is for annotation guideline refinement, seed-set inspection, and pipeline smoke tests only.",
+    "user_confirmed=true does not imply human_audited=true; round1 labels are GPT-annotated + GPT-adjudicated + user-final-confirmed, not dual-human-audited gold.",
+    "Coverage gaps: noisy_evidence (n=1), insufficient_not_contradiction (n=4), cue_free_overclaim (n=0), contradiction_positive (n=0) are all under-represented; these are the explicit targets of the round2 expansion plan."
+  ],
+  "cross_references": {
+    "round1_seed_dir": "data/simclaim_eval_v1/round1_seed/",
+    "round1_manifest": "data/simclaim_eval_v1/round1_seed/manifests/round1_seed_manifest.json",
+    "round1_validation_report": "data/simclaim_eval_v1/round1_seed/reports/round1_seed_validation_report.md",
+    "round1_coverage_gap_report": "data/simclaim_eval_v1/round1_seed/reports/round1_coverage_gap_report.md",
+    "round2_candidates_dir": "data/simclaim_eval_v1/round2_candidates/",
+    "data_status_overview": "docs/simclaim_eval_v1_data_status.md",
+    "markdown_version": "docs/annotation_guidelines_simclaim_eval_v1.md"
+  }
+}

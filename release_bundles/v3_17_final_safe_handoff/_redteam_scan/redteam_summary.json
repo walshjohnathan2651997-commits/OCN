@@ -1,0 +1,18 @@
+{
+  "scan_timestamp": "2026-07-08T01:36:19",
+  "scanned_files": 156,
+  "scan_dirs": [
+    "D:\\ocn\\release_bundles\\v3_17_final_safe_handoff"
+  ],
+  "high_risk_count": 0,
+  "medium_risk_count": 0,
+  "low_risk_count": 0,
+  "total_findings": 0,
+  "pass_public_release_gate": true,
+  "strict_mode": false,
+  "gitignore_report": {
+    "existing_count": 70,
+    "missing": [],
+    "missing_count": 0
+  }
+}

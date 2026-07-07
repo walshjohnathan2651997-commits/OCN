@@ -1,0 +1,136 @@
+{
+  "task": "Canonicalized R4 Risk Ranking Calibration v1",
+  "audit_date": "2026-07-05T19:27:36",
+  "n_eval": 436,
+  "n_true_strong": 109,
+  "baseline_priority_score_formula": "priority_score = p_strong_mean - p_contra_mean + 0.5 * strong_action_flag",
+  "baseline_precision_at20": 0.35,
+  "baseline_recall_at100": 0.3394495412844037,
+  "best_variant": "G_conservative_precision",
+  "best_precision_at20": 0.45,
+  "best_precision_at50": 0.36,
+  "best_recall_at100": 0.330275,
+  "best_average_precision": 0.353208,
+  "best_tp_at_20": 9,
+  "best_tp_at_100": 36,
+  "precision_at20_improvement": 0.10000000000000003,
+  "recall_at100_improvement": -0.009174541284403703,
+  "ranking_improved": true,
+  "queue_usable": false,
+  "targets_partial": true,
+  "low_prevalence_second_stage_usable": true,
+  "standalone_usable": false,
+  "fp_tp_at_1pct": 58.726444444444446,
+  "fp_tp_at_5pct": 11.23925,
+  "fp_tp_at_10pct": 5.348555555555555,
+  "model_flag_recall": 0.7064220183486238,
+  "queue_recall_at_5pct": 0.330275229357798,
+  "recommended_mode": "second-stage",
+  "recommended_next_step": "Queue viable only as second-stage. Needs upstream filter to reduce FP load. Consider learned ranker or local LLM for better precision.",
+  "error_category_counts": {
+    "false_positive_mild": 0,
+    "false_positive_supported": 21,
+    "false_positive_contradiction": 13,
+    "false_negative_low_pstrong": 16,
+    "false_negative_high_entropy": 18,
+    "selector_failure": 7,
+    "r4_screening_failure": 32,
+    "ambiguous_mild_strong": 66
+  },
+  "all_variant_summary": [
+    {
+      "variant_id": "A_flag_only",
+      "precision_at_20": 0.35,
+      "precision_at_50": 0.36,
+      "recall_at_100": 0.330275,
+      "average_precision": 0.356203,
+      "composite_p20_r100": 0.680275,
+      "meets_all_targets": false
+    },
+    {
+      "variant_id": "B_p_strong_desc",
+      "precision_at_20": 0.35,
+      "precision_at_50": 0.32,
+      "recall_at_100": 0.302752,
+      "average_precision": 0.331812,
+      "composite_p20_r100": 0.652752,
+      "meets_all_targets": false
+    },
+    {
+      "variant_id": "C_guarded_strong_score",
+      "precision_at_20": 0.35,
+      "precision_at_50": 0.34,
+      "recall_at_100": 0.321101,
+      "average_precision": 0.339498,
+      "composite_p20_r100": 0.671101,
+      "meets_all_targets": false
+    },
+    {
+      "variant_id": "D_confidence_guarded",
+      "precision_at_20": 0.4,
+      "precision_at_50": 0.32,
+      "recall_at_100": 0.330275,
+      "average_precision": 0.353871,
+      "composite_p20_r100": 0.730275,
+      "meets_all_targets": false
+    },
+    {
+      "variant_id": "E_selector_confidence",
+      "precision_at_20": 0.35,
+      "precision_at_50": 0.36,
+      "recall_at_100": 0.275229,
+      "average_precision": 0.334862,
+      "composite_p20_r100": 0.625229,
+      "meets_all_targets": false
+    },
+    {
+      "variant_id": "F_short_span_bonus",
+      "precision_at_20": 0.4,
+      "precision_at_50": 0.32,
+      "recall_at_100": 0.330275,
+      "average_precision": 0.350895,
+      "composite_p20_r100": 0.730275,
+      "meets_all_targets": false
+    },
+    {
+      "variant_id": "G_conservative_precision",
+      "precision_at_20": 0.45,
+      "precision_at_50": 0.36,
+      "recall_at_100": 0.330275,
+      "average_precision": 0.353208,
+      "composite_p20_r100": 0.780275,
+      "meets_all_targets": false
+    },
+    {
+      "variant_id": "H_balanced_review_score",
+      "precision_at_20": 0.25,
+      "precision_at_50": 0.38,
+      "recall_at_100": 0.275229,
+      "average_precision": 0.32307,
+      "composite_p20_r100": 0.525229,
+      "meets_all_targets": false
+    }
+  ],
+  "prohibitions_enforced": [
+    "no_model_training",
+    "no_api_calls",
+    "no_network",
+    "no_threshold_change",
+    "no_original_data_modification",
+    "no_paper_modification",
+    "no_true_label_in_ranking",
+    "no_oracle_hit_in_ranking",
+    "no_silver_as_gold",
+    "no_natural_distribution_claim"
+  ],
+  "output_files": [
+    "risk_ranking_features.csv",
+    "risk_ranking_formula_variants.csv",
+    "risk_ranking_results_by_variant.csv",
+    "review_queue_top100_best.csv",
+    "low_prevalence_ranking_results.csv",
+    "risk_ranking_error_analysis.csv",
+    "risk_ranking_gate.json",
+    "risk_ranking_report.md"
+  ]
+}

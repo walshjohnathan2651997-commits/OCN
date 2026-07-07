@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-07-06T07:18:42.601290+00:00",
+  "data_disclaimer": "Controlled silver diagnostic data, NOT natural prevalence. Balanced 4-class pool (109 per class, 436 total). Error rates reflect this controlled setting.",
+  "n_candidates": 436,
+  "n_groups": 109,
+  "n_tp": 77,
+  "n_fp": 156,
+  "n_fn": 32,
+  "n_tn": 171,
+  "error_type_counts": {
+    "retrieval_miss": 5,
+    "evidence_format_noise": 22,
+    "weak_selector_overlap": 65,
+    "contradiction_confusion": 36,
+    "action_lexicon_shortcut": 31,
+    "mild_vs_strong_boundary": 73,
+    "supported_overflag": 62,
+    "uncertainty_high_entropy": 22,
+    "group_variant_artifact": 53
+  },
+  "thresholds": {
+    "selector_score_low": 0.3,
+    "entropy_high": 0.5,
+    "p_contra_high": 0.3,
+    "contra_nli_high": 0.3,
+    "evidence_words_short": 5,
+    "evidence_words_long": 50,
+    "evidence_sentences_multi": 3,
+    "selected_rank_high": 5
+  },
+  "guards": {
+    "no_api": true,
+    "no_network": true,
+    "no_training": true,
+    "no_original_data_modification": true
+  },
+  "label_usage_policy": "true_label is used ONLY for error analysis (FP/FN definition and error type tagging). It is NEVER used for scoring, ranking, or feature engineering."
+}

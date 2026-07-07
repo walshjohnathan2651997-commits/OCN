@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-07-07T17:36:20.197178+00:00",
+  "bundle_name": "v3_17_final_safe_handoff",
+  "bundle_type": "final_delivery_handoff",
+  "excluded_dir_names": [
+    "_GPT_HANDOFF_CONTEXT_20260706",
+    ".pytest_cache",
+    ".git",
+    "__pycache__",
+    "node_modules",
+    ".venv",
+    "private_pdfs",
+    "private",
+    "pdfs",
+    "venv",
+    "env"
+  ],
+  "excluded_dir_patterns": [
+    "pdfs/",
+    "private_pdfs/",
+    "data/private/",
+    "experiments/private/",
+    "experiments/error_taxonomy_v1/private/",
+    "gold_pilot_preparation_v1/",
+    "gold_pilot_protocol_freeze_v1/",
+    "gold_pilot_relation_realism_protocol_v2/",
+    "external_repos/",
+    "paper_versions_ordered/",
+    "project_synthesis/",
+    "_MAINLINE_CURRENT/",
+    "_MAIN_PAPER_CURRENT/",
+    "_PROJECT_INDEX/"
+  ],
+  "excluded_file_suffixes": [
+    ".pdf",
+    ".npz",
+    ".xlsx",
+    ".pyc",
+    ".docx",
+    ".pyo",
+    ".egg-info",
+    ".pkl",
+    ".joblib"
+  ],
+  "excluded_file_patterns": [
+    "error_cases_private",
+    "private_",
+    "_private",
+    "real_review_queue",
+    "gold_label",
+    "human_audited",
+    "GPT_HANDOFF",
+    "handoff_context"
+  ],
+  "forbidden_text_columns": [
+    "claim_text",
+    "evidence_text",
+    "selected_evidence",
+    "raw_text",
+    "clean_text",
+    "retrieved_text",
+    "raw_page_text",
+    "clean_page_text",
+    "source_excerpt"
+  ],
+  "forbidden_sorting_columns": [
+    "true_label",
+    "oracle_hit",
+    "candidate_label_guess",
+    "final_label",
+    "gold_label",
+    "human_audited"
+  ],
+  "excluded_files_count": 3,
+  "included_files_count": 157,
+  "redteam_pass": true,
+  "redteam_summary": {
+    "scan_timestamp": "2026-07-08T01:36:19",
+    "scanned_files": 156,
+    "scan_dirs": [
+      "D:\\ocn\\release_bundles\\v3_17_final_safe_handoff"
+    ],
+    "high_risk_count": 0,
+    "medium_risk_count": 0,
+    "low_risk_count": 0,
+    "total_findings": 0,
+    "pass_public_release_gate": true,
+    "strict_mode": false,
+    "gitignore_report": {
+      "existing_count": 70,
+      "missing": [],
+      "missing_count": 0
+    }
+  },
+  "contains_real_pdf": false,
+  "contains_raw_evidence_text": false,
+  "contains_real_claim_text": false,
+  "excluded_files_sample": [
+    "reports/_eval_r4_format_shift_run.log (report_filter)",
+    "experiments/error_taxonomy_v1/error_cases_redacted.csv (forbidden_sorting_columns)",
+    "data/audit_templates/human_audit_template.csv (forbidden_sorting_columns)"
+  ],
+  "guards": {
+    "no_api": true,
+    "no_network": true,
+    "no_training": true,
+    "no_original_data_modification": true
+  }
+}

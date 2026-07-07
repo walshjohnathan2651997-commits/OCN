@@ -13,7 +13,9 @@ Under the confidential / no-API / no-training / silver-diagnostic constraint set
 | learned_selector_plus_learned_ranker | higher_complexity | 0.987 | 1.0 | 0.5 | 0.6 | 0.5 | 0.762 | dominated |
 | external_llm_baseline | external_llm | 0.000 | 0.0 | 0.5 | 0.6 | 0.5 | 0.265 | unavailable |
 
-Three methods are Pareto-optimal under the constraint set: `deterministic_canonicalization`, `conservative_rule_queue`, and `lightweight_smart_queue`. Learned alternatives are dominated (match or slightly underperform on performance while losing on auditability, simplicity, and reproducibility). The external LLM baseline is unavailable under the no-API boundary.
+Three methods are Pareto-optimal under the constraint set: `deterministic_canonicalization`, `conservative_rule_queue`, and `lightweight_smart_queue`.
+Learned alternatives are dominated (match or slightly underperform on performance while losing on auditability, simplicity, and reproducibility).
+The external LLM baseline is unavailable under the no-API boundary.
 
 This is a deployment-specific tradeoff. It does **not** prove that rules generally beat learned models; it shows that under this constraint set, the deterministic pipeline is Pareto-optimal.
 

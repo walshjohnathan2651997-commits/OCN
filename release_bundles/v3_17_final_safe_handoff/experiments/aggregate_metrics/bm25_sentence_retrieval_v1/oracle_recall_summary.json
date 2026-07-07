@@ -1,0 +1,16 @@
+{
+  "sentence": {
+    "recall@1": 0.851351,
+    "recall@5": 0.932432,
+    "recall@10": 0.948198,
+    "mrr": 0.883473
+  },
+  "window": {
+    "recall@1": 0.274775,
+    "recall@5": 0.385135,
+    "recall@10": 0.396396,
+    "mrr": 0.323861
+  },
+  "n_candidates": 444,
+  "oracle_definition": "oracle_hit = oracle_hash_exact OR (oracle_page_match AND oracle_overlap_score >= 0.65)"
+}

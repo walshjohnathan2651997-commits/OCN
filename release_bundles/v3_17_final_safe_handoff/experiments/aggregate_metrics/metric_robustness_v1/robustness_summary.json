@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-07-06T06:13:08.485865+00:00",
+  "best_queue_variant": "priority_score",
+  "whether_ci_overlaps_baseline": false,
+  "n_groups": 109,
+  "n_candidates": 436,
+  "bootstrap_unit": "group",
+  "warning": null,
+  "data_disclaimer": "Controlled silver diagnostic data, NOT natural prevalence. Metrics reflect a balanced 4-class silver pool (109 per class) and do NOT represent real-world claim prevalence. CIs reflect sampling variability within this diagnostic pool only.",
+  "n_classification_metrics": 4,
+  "n_queue_metric_rows": 12,
+  "n_paired_comparisons": 0,
+  "guards": {
+    "no_api": true,
+    "no_network": true,
+    "no_training": true,
+    "no_original_data_modification": true,
+    "true_label_used_only_for_metrics": true
+  }
+}

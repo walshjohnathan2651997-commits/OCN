@@ -1,0 +1,40 @@
+{
+  "status": "pass",
+  "forbidden_fields_checked": [
+    "candidate_label_guess",
+    "contradiction_binary_label_guess",
+    "escalation_binary_label_guess",
+    "final_label",
+    "gold_label",
+    "human_audited",
+    "issue_binary_label_guess",
+    "oracle_hit",
+    "true_label"
+  ],
+  "forbidden_fields_used_for_retrieval": [],
+  "query_field": "claim_text",
+  "retrieval_fields_used": [
+    "claim_text"
+  ],
+  "corpus_text_field": "clean_text (from sentences.jsonl)",
+  "oracle_fields_used_only_after_ranking": true,
+  "oracle_fields": [
+    "evidence_text",
+    "evidence_text_sha256",
+    "page_number"
+  ],
+  "ranking_formula": "BM25Okapi(k1=1.5, b=0.75) over tokenized claim_text vs sentence/window clean_text",
+  "labels_used_for_retrieval": false,
+  "oracle_used_for_retrieval": false,
+  "gold_label_used_for_retrieval": false,
+  "human_audited_used_for_retrieval": false,
+  "raw_text_used_for_retrieval": false,
+  "evidence_text_used_for_retrieval": false,
+  "n_candidates": 444,
+  "n_sentences_in_corpus": 34252,
+  "n_windows_in_corpus": 34252,
+  "no_network": true,
+  "no_api": true,
+  "no_training": true,
+  "notes": "Retrieval ranks corpus items by BM25 score between claim_text (query) and sentence/window clean_text (corpus). Oracle metrics (oracle_hit, oracle_overlap_score, oracle_hash_exact, oracle_page_match) are computed AFTER ranking using evidence_text/evidence_text_sha256/page_number, and never influence retrieval selection."
+}

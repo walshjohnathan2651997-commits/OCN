@@ -1,0 +1,671 @@
+# Artifacts Manifest — V3.17 Confidential Lightweight
+#
+# Authority: This manifest defines every artifact group in the V3.17
+# mainline. The build_artifact_ledger_v1.py script reads this manifest,
+# scans each artifact for sensitive columns, and generates the artifact
+# ledger (CSV/MD) and release safety manifest (JSON).
+#
+# Hard boundaries:
+#   - No PDFs are released.
+#   - No claim/evidence raw text is released.
+#   - No private artifacts enter the public release bundle.
+#   - Heavy experiments are not re-run; the ledger is built from existing
+#     outputs only.
+
+manifest_version: "1.0"
+manifest_date: "2026-07-07"
+mainline: "V3.17 Confidential Lightweight"
+
+# Sensitive column names — if any of these appear in a CSV's header,
+# the artifact is flagged contains_raw_text=true.
+sensitive_text_columns:
+  - claim_text
+  - evidence_text
+  - selected_evidence
+  - raw_text
+  - clean_text
+  - body_text
+  - pdf_text
+  - generation_notes
+  - title
+  - url
+
+# Model/evaluation column names — if any of these appear, the artifact
+# is flagged contains_labels=true or contains_oracle_eval=true.
+label_columns:
+  - true_label
+  - candidate_label_guess
+  - final_label
+  - gold_label
+  - human_audited
+  - silver_label_source
+
+oracle_columns:
+  - oracle_hit
+  - oracle_match
+  - oracle_recall
+  - oracle_evidence
+  - oracle_hash
+
+# Artifact groups — each group has a list of artifacts to scan.
+artifact_groups:
+
+  # ---------- Dataset ----------
+
+  - group_id: G01_dataset
+    description: "SimClaim Strict Silver Diagnostic Set v1 (444 candidates)"
+    artifacts:
+      - artifact_id: A001_strict_silver_csv
+        path: "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_candidates_v1.csv"
+        artifact_type: dataset_csv
+        generated_by_script: "scripts/build_strict_silver_max_v1.py"
+        input_artifacts: "data/simclaim_all92_candidate_pool_v1/all92_claim_candidates_merged.csv"
+        run_mode: real
+        public_safe: false
+        private_sensitive: true
+        notes: "Controlled silver diagnostic; contains claim_text, evidence_text, labels. Never released publicly."
+
+      - artifact_id: A002_strict_silver_groups
+        path: "data/simclaim_all92_candidate_pool_v1/strict_silver_max_v1/strict_silver_max_groups_v1.csv"
+        artifact_type: dataset_metadata
+        generated_by_script: "scripts/build_strict_silver_max_v1.py"
+        input_artifacts: "A001_strict_silver_csv"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Group-level metadata only; no raw text or labels."
+
+      - artifact_id: A003_dataset_version_lock
+        path: "docs/dataset_version_lock_v3_17.md"
+        artifact_type: documentation
+        generated_by_script: "manual"
+        input_artifacts: "A001_strict_silver_csv"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Version lock document with SHA256, row counts, field constraints."
+
+  # ---------- PDF Corpus ----------
+
+  - group_id: G02_pdf_corpus
+    description: "PDF sentence corpus and chunk outputs"
+    artifacts:
+      - artifact_id: A010_pdf_corpus_chunks
+        path: "data/simclaim_pdf_corpus_retrieval_v1/local_pdf_corpus_chunks.csv"
+        artifact_type: pdf_corpus
+        generated_by_script: "scripts/build_pdf_sentence_corpus_v1.py"
+        input_artifacts: "data/pdf_corpus_v1/*.pdf"
+        run_mode: real
+        public_safe: false
+        private_sensitive: true
+        notes: "Contains chunk text extracted from PDFs. Never released."
+
+      - artifact_id: A011_pdf_corpus_toy
+        path: "data/pdf_corpus_toy_v1/pdf_manifest.csv"
+        artifact_type: pdf_corpus_toy
+        generated_by_script: "scripts/build_pdf_sentence_corpus_v1.py"
+        input_artifacts: "data/toy_synthetic/pdf_stress_sources.jsonl"
+        run_mode: toy
+        public_safe: true
+        private_sensitive: false
+        notes: "Toy PDF manifest; no real PDF text."
+
+  # ---------- BM25 Retrieval ----------
+
+  - group_id: G03_bm25_retrieval
+    description: "BM25 retrieval outputs"
+    artifacts:
+      - artifact_id: A020_retrieval_metrics
+        path: "experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_metrics_bm25.json"
+        artifact_type: metrics_json
+        generated_by_script: "scripts/run_simclaim_pdf_retrieval_v1.py"
+        input_artifacts: "A001_strict_silver_csv, A010_pdf_corpus_chunks"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Aggregate metrics only; recall@k, MRR. No raw text."
+
+      - artifact_id: A021_retrieval_results
+        path: "experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_results_bm25.csv"
+        artifact_type: retrieval_results_csv
+        generated_by_script: "scripts/run_simclaim_pdf_retrieval_v1.py"
+        input_artifacts: "A001_strict_silver_csv, A010_pdf_corpus_chunks"
+        run_mode: real
+        public_safe: false
+        private_sensitive: true
+        notes: "Per-candidate retrieval results; may contain chunk text snippets."
+
+      - artifact_id: A022_bm25_sentence_blocked
+        path: "experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json"
+        artifact_type: blocked_metrics_json
+        generated_by_script: "scripts/run_bm25_sentence_retrieval_v1.py"
+        input_artifacts: "A001_strict_silver_csv (blocked: missing_pdf_corpus)"
+        run_mode: blocked
+        public_safe: true
+        private_sensitive: false
+        notes: "Blocked: missing PDF sentence corpus. Contains status only."
+
+  # ---------- Canonicalizer ----------
+
+  - group_id: G04_canonicalizer
+    description: "Evidence canonicalizer ablation outputs"
+    artifacts:
+      - artifact_id: A030_canonicalizer_metrics
+        path: "experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv"
+        artifact_type: metrics_csv
+        generated_by_script: "scripts/run_canonicalizer_ablation_v1.py"
+        input_artifacts: "A001_strict_silver_csv, A021_retrieval_results"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Selector-level metrics; oracle_recall, mean_overlap. No raw text."
+
+      - artifact_id: A031_canonicalizer_variant_evidence
+        path: "experiments/canonicalizer_ablation_v1/selector_variant_evidence.csv"
+        artifact_type: evidence_csv
+        generated_by_script: "scripts/run_canonicalizer_ablation_v1.py"
+        input_artifacts: "A001_strict_silver_csv, A021_retrieval_results"
+        run_mode: real
+        public_safe: false
+        private_sensitive: true
+        notes: "Contains selected_evidence (raw text). Never released."
+
+      - artifact_id: A032_canonicalizer_redacted
+        path: "experiments/canonicalizer_ablation_v1/selector_examples_redacted.csv"
+        artifact_type: redacted_csv
+        generated_by_script: "scripts/run_canonicalizer_ablation_v1.py"
+        input_artifacts: "A031_canonicalizer_variant_evidence"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Redacted examples; hash-only, no raw text."
+
+  # ---------- Format Shift ----------
+
+  - group_id: G05_format_shift
+    description: "Format-shift ablation outputs"
+    artifacts:
+      - artifact_id: A040_format_shift_inputs
+        path: "experiments/format_shift_ablation_v1/format_shift_inputs.csv"
+        artifact_type: inputs_csv
+        generated_by_script: "scripts/run_format_shift_ablation_v1.py"
+        input_artifacts: "A001_strict_silver_csv, A031_canonicalizer_variant_evidence"
+        run_mode: real
+        public_safe: false
+        private_sensitive: true
+        notes: "Contains evidence text variants. Never released."
+
+      - artifact_id: A041_format_shift_redacted
+        path: "experiments/format_shift_ablation_v1/format_shift_inputs_redacted.csv"
+        artifact_type: redacted_csv
+        generated_by_script: "scripts/run_format_shift_ablation_v1.py"
+        input_artifacts: "A040_format_shift_inputs"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Redacted format-shift inputs; hash-only."
+
+      - artifact_id: A042_format_shift_blocked
+        path: "experiments/format_shift_ablation_v1/r4_eval_blocked.json"
+        artifact_type: resolved_metrics_json
+        generated_by_script: "scripts/evaluate_r4_on_evidence_variants_v1.py"
+        input_artifacts: "A040_format_shift_inputs"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Format-shift R4 eval resolved offline using local .venv sklearn 1.9.0; no network, no API, no retraining, no repickling. Contains status=resolved and real metrics."
+
+  # ---------- Review Queue & Risk Ranking ----------
+
+  - group_id: G06_review_queue
+    description: "Canonicalized review queue and risk ranking outputs"
+    artifacts:
+      - artifact_id: A050_review_queue_scores
+        path: "experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv"
+        artifact_type: scores_csv
+        generated_by_script: "scripts/run_canonicalized_review_queue_v1.py"
+        input_artifacts: "A001_strict_silver_csv, A030_canonicalizer_metrics"
+        run_mode: real
+        public_safe: false
+        private_sensitive: true
+        notes: "Per-candidate scores; may link to labels. Not released."
+
+      - artifact_id: A051_review_queue_top100
+        path: "experiments/canonicalized_review_queue_v1/review_queue_top100.csv"
+        artifact_type: queue_csv
+        generated_by_script: "scripts/run_canonicalized_review_queue_v1.py"
+        input_artifacts: "A050_review_queue_scores"
+        run_mode: real
+        public_safe: false
+        private_sensitive: true
+        notes: "Top-100 queue; contains candidate IDs and scores. Not released."
+
+      - artifact_id: A052_risk_ranking_results
+        path: "experiments/canonicalized_risk_ranking_v1/risk_ranking_results_by_variant.csv"
+        artifact_type: metrics_csv
+        generated_by_script: "scripts/run_canonicalized_risk_ranking_v1.py"
+        input_artifacts: "A050_review_queue_scores"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Variant-level ranking metrics; precision@k, recall@k. No raw text."
+
+      - artifact_id: A053_risk_ranking_report
+        path: "experiments/canonicalized_risk_ranking_v1/risk_ranking_report.md"
+        artifact_type: report_md
+        generated_by_script: "scripts/run_canonicalized_risk_ranking_v1.py"
+        input_artifacts: "A052_risk_ranking_results"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Summary report; aggregate metrics only."
+
+  # ---------- Leakage Audit ----------
+
+  - group_id: G07_leakage_audit
+    description: "Leakage and shortcut audit outputs"
+    artifacts:
+      - artifact_id: A060_leakage_audit_summary
+        path: "experiments/leakage_audit_v1/audit_summary.md"
+        artifact_type: report_md
+        generated_by_script: "scripts/run_leakage_audit_v1.py"
+        input_artifacts: "A001_strict_silver_csv"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "12-check audit summary; PASS. No raw text."
+
+      - artifact_id: A061_claim_only_baseline
+        path: "experiments/leakage_audit_v1/claim_only_baseline.json"
+        artifact_type: metrics_json
+        generated_by_script: "scripts/run_leakage_audit_v1.py"
+        input_artifacts: "A001_strict_silver_csv"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Claim-only baseline F1; aggregate metric."
+
+      - artifact_id: A062_shuffled_evidence_baseline
+        path: "experiments/leakage_audit_v1/shuffled_evidence_baseline.json"
+        artifact_type: metrics_json
+        generated_by_script: "scripts/run_leakage_audit_v1.py"
+        input_artifacts: "A001_strict_silver_csv"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Shuffled evidence baseline; aggregate metric."
+
+  # ---------- Error Taxonomy ----------
+
+  - group_id: G08_error_taxonomy
+    description: "Error taxonomy outputs"
+    artifacts:
+      - artifact_id: A070_error_taxonomy_summary
+        path: "experiments/error_taxonomy_v1/error_taxonomy_summary.csv"
+        artifact_type: metrics_csv
+        generated_by_script: "scripts/run_error_taxonomy_v1.py"
+        input_artifacts: "A001_strict_silver_csv, A050_review_queue_scores"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Error type counts and rates; aggregate. No raw text."
+
+      - artifact_id: A071_error_cases_redacted
+        path: "experiments/error_taxonomy_v1/error_cases_redacted.csv"
+        artifact_type: redacted_csv
+        generated_by_script: "scripts/run_error_taxonomy_v1.py"
+        input_artifacts: "A001_strict_silver_csv, A050_review_queue_scores"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Redacted error cases; hash-only, no raw text."
+
+  # ---------- Metric Robustness ----------
+
+  - group_id: G09_metric_robustness
+    description: "Metric robustness with confidence intervals"
+    artifacts:
+      - artifact_id: A080_classification_metrics_ci
+        path: "experiments/metric_robustness_v1/classification_metrics_with_ci.csv"
+        artifact_type: metrics_csv
+        generated_by_script: "scripts/run_metric_robustness_v1.py"
+        input_artifacts: "A050_review_queue_scores"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "F1/precision/recall with bootstrap CIs. No raw text."
+
+      - artifact_id: A081_robustness_summary
+        path: "experiments/metric_robustness_v1/robustness_summary.md"
+        artifact_type: report_md
+        generated_by_script: "scripts/run_metric_robustness_v1.py"
+        input_artifacts: "A080_classification_metrics_ci"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Summary report; aggregate metrics only."
+
+  # ---------- Complexity vs Utility ----------
+
+  - group_id: G10_complexity_utility
+    description: "Complexity-vs-utility ablation outputs"
+    artifacts:
+      - artifact_id: A090_pareto_table
+        path: "experiments/complexity_vs_utility_ablation_v1/method_pareto_table.csv"
+        artifact_type: metrics_csv
+        generated_by_script: "scripts/run_complexity_vs_utility_ablation_v1.py"
+        input_artifacts: "A030_canonicalizer_metrics, A052_risk_ranking_results"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Pareto table; 8 methods x 6 scores. No raw text."
+
+      - artifact_id: A091_complexity_summary
+        path: "experiments/complexity_vs_utility_ablation_v1/complexity_vs_utility_summary.md"
+        artifact_type: report_md
+        generated_by_script: "scripts/run_complexity_vs_utility_ablation_v1.py"
+        input_artifacts: "A090_pareto_table"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Summary report; aggregate metrics only."
+
+  # ---------- PDF Stress Test ----------
+
+  - group_id: G11_pdf_stress
+    description: "PDF extraction stress test outputs"
+    artifacts:
+      - artifact_id: A100_stress_summary
+        path: "experiments/pdf_extraction_stress_test_v1/stress_test_summary.md"
+        artifact_type: report_md
+        generated_by_script: "scripts/run_pdf_extraction_stress_test_v1.py"
+        input_artifacts: "data/toy_synthetic/pdf_stress_sources.jsonl"
+        run_mode: toy
+        public_safe: true
+        private_sensitive: false
+        notes: "Extraction robustness summary; synthetic data only."
+
+      - artifact_id: A101_stress_blocks_redacted
+        path: "experiments/pdf_extraction_stress_test_v1/stress_blocks_redacted.jsonl"
+        artifact_type: redacted_jsonl
+        generated_by_script: "scripts/run_pdf_extraction_stress_test_v1.py"
+        input_artifacts: "data/toy_synthetic/pdf_stress_sources.jsonl"
+        run_mode: toy
+        public_safe: true
+        private_sensitive: false
+        notes: "Redacted stress blocks; hash-only."
+
+  # ---------- Human Audit ----------
+
+  - group_id: G12_human_audit
+    description: "Human audit templates and queue seeds"
+    artifacts:
+      - artifact_id: A110_audit_template
+        path: "data/audit_templates/human_audit_template.csv"
+        artifact_type: template_csv
+        generated_by_script: "scripts/build_human_audit_queue_v1.py"
+        input_artifacts: "A001_strict_silver_csv"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Audit template; 17 fields, no claim/evidence text."
+
+      - artifact_id: A111_audit_queue_redacted
+        path: "data/audit_templates/human_audit_queue_seed_v1_redacted.csv"
+        artifact_type: redacted_csv
+        generated_by_script: "scripts/build_human_audit_queue_v1.py"
+        input_artifacts: "A001_strict_silver_csv"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Redacted audit queue seeds; hash-only."
+
+      - artifact_id: A112_audit_protocol
+        path: "docs/human_audit_protocol_v1.md"
+        artifact_type: documentation
+        generated_by_script: "manual"
+        input_artifacts: "A001_strict_silver_csv"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Audit protocol; no raw text."
+
+  # ---------- SmartQueue ----------
+
+  - group_id: G13_smart_queue
+    description: "Lightweight SmartQueue outputs"
+    artifacts:
+      - artifact_id: A120_smart_queue_summary
+        path: "experiments/lightweight_smart_queue_v1/smart_queue_metric_summary.json"
+        artifact_type: metrics_json
+        generated_by_script: "scripts/run_lightweight_smart_queue_v1.py"
+        input_artifacts: "A050_review_queue_scores"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "SmartQueue summary; aggregate metrics."
+
+      - artifact_id: A121_smart_queue_top100
+        path: "experiments/lightweight_smart_queue_v1/smart_queue_top100.csv"
+        artifact_type: queue_csv
+        generated_by_script: "scripts/run_lightweight_smart_queue_v1.py"
+        input_artifacts: "A050_review_queue_scores"
+        run_mode: real
+        public_safe: false
+        private_sensitive: true
+        notes: "Top-100 queue; contains candidate IDs. Not released."
+
+  # ---------- Paper Assets ----------
+
+  - group_id: G14_paper_assets
+    description: "Paper tables, figures, and draft text"
+    artifacts:
+      - artifact_id: A130_paper_results_summary
+        path: "paper_assets/v3_17_confidential/paper_results_summary.md"
+        artifact_type: paper_summary_md
+        generated_by_script: "scripts/build_paper_assets_v1.py"
+        input_artifacts: "A020_retrieval_metrics, A030_canonicalizer_metrics, A052_risk_ranking_results, A060_leakage_audit_summary, A080_classification_metrics_ci, A090_pareto_table"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Paper results summary; aggregate metrics only."
+
+      - artifact_id: A131_paper_claims_checklist
+        path: "paper_assets/v3_17_confidential/paper_claims_checklist.md"
+        artifact_type: paper_checklist_md
+        generated_by_script: "scripts/build_paper_assets_v1.py"
+        input_artifacts: "manual"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Claims checklist; safe/unsafe wording."
+
+      - artifact_id: A132_abstract_draft
+        path: "paper_assets/v3_17_confidential/abstract_draft.md"
+        artifact_type: paper_draft_md
+        generated_by_script: "manual"
+        input_artifacts: "A020_retrieval_metrics, A030_canonicalizer_metrics, A052_risk_ranking_results"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Frozen abstract draft; sourced metrics only."
+
+      - artifact_id: A133_contribution_bullets
+        path: "paper_assets/v3_17_confidential/contribution_bullets.md"
+        artifact_type: paper_draft_md
+        generated_by_script: "manual"
+        input_artifacts: "A030_canonicalizer_metrics, A052_risk_ranking_results, A060_leakage_audit_summary"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "4 contribution bullets with source traceability."
+
+      - artifact_id: A134_limitations_draft
+        path: "paper_assets/v3_17_confidential/limitations_draft.md"
+        artifact_type: paper_draft_md
+        generated_by_script: "manual"
+        input_artifacts: "A001_strict_silver_csv, A042_format_shift_blocked, A022_bm25_sentence_blocked"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "9 limitations (L1-L9) with source files."
+
+      - artifact_id: A135_table1_dataset
+        path: "paper_assets/v3_17_confidential/tables/table1_dataset_summary.md"
+        artifact_type: paper_table_md
+        generated_by_script: "scripts/build_paper_assets_v1.py"
+        input_artifacts: "A001_strict_silver_csv"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Table 1; aggregate dataset stats."
+
+      - artifact_id: A136_table2_retrieval
+        path: "paper_assets/v3_17_confidential/tables/table2_retrieval_recall.md"
+        artifact_type: paper_table_md
+        generated_by_script: "scripts/build_paper_assets_v1.py"
+        input_artifacts: "A020_retrieval_metrics"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Table 2; BM25 recall@k."
+
+      - artifact_id: A137_table4_canonicalizer
+        path: "paper_assets/v3_17_confidential/tables/table4_canonicalizer_ablation.md"
+        artifact_type: paper_table_md
+        generated_by_script: "scripts/build_paper_assets_v1.py"
+        input_artifacts: "A030_canonicalizer_metrics"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Table 4; canonicalizer ablation."
+
+      - artifact_id: A138_table5_review_queue
+        path: "paper_assets/v3_17_confidential/tables/table5_review_queue.md"
+        artifact_type: paper_table_md
+        generated_by_script: "scripts/build_paper_assets_v1.py"
+        input_artifacts: "A052_risk_ranking_results"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Table 5; review queue precision@k."
+
+      - artifact_id: A139_table6_leakage
+        path: "paper_assets/v3_17_confidential/tables/table6_leakage_audit.md"
+        artifact_type: paper_table_md
+        generated_by_script: "scripts/build_paper_assets_v1.py"
+        input_artifacts: "A060_leakage_audit_summary"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Table 6; leakage audit checks."
+
+      - artifact_id: A140_table7_complexity
+        path: "paper_assets/v3_17_confidential/tables/table7_complexity_utility.md"
+        artifact_type: paper_table_md
+        generated_by_script: "scripts/build_paper_assets_v1.py"
+        input_artifacts: "A090_pareto_table"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Table 7; complexity-utility Pareto."
+
+      - artifact_id: A141_table3_format_shift
+        path: "paper_assets/v3_17_confidential/tables/table3_format_shift_ablation.md"
+        artifact_type: paper_table_md
+        generated_by_script: "scripts/generate_paper_assets_v3_17.py"
+        input_artifacts: "A042_format_shift_blocked"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Table 3; format-shift ablation. Format-shift R4 eval resolved offline; table source metrics available in format_shift_metrics.csv."
+
+      - artifact_id: A142_table8_human_audit
+        path: "paper_assets/v3_17_confidential/tables/table8_human_audit_if_available.md"
+        artifact_type: paper_table_md
+        generated_by_script: "scripts/build_paper_assets_v1.py"
+        input_artifacts: "A112_audit_protocol, A110_audit_template"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Table 8; human audit status. Partial/blocked; no adjudication completed."
+
+  # ---------- Release Bundle ----------
+
+  - group_id: G15_release_bundle
+    description: "Public sanitized release bundle"
+    artifacts:
+      - artifact_id: A150_release_manifest
+        path: "release_bundles/v3_17_confidential_public/MANIFEST.json"
+        artifact_type: release_manifest
+        generated_by_script: "scripts/build_public_sanitized_release_v1.py"
+        input_artifacts: "all public_safe=true artifacts"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Release manifest; lists all included files."
+
+      - artifact_id: A151_release_redaction_report
+        path: "release_bundles/v3_17_confidential_public/REDACTION_REPORT.json"
+        artifact_type: redaction_report
+        generated_by_script: "scripts/build_public_sanitized_release_v1.py"
+        input_artifacts: "A150_release_manifest"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Redaction report; verifies no raw text in release."
+
+  # ---------- Documentation ----------
+
+  - group_id: G16_documentation
+    description: "Key documentation files"
+    artifacts:
+      - artifact_id: A160_paper_outline
+        path: "docs/paper_outline_v3_17_confidential.md"
+        artifact_type: documentation
+        generated_by_script: "manual"
+        input_artifacts: "all experiment outputs"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Frozen paper outline; RQ1-7, section structure."
+
+      - artifact_id: A161_result_narrative_freeze
+        path: "docs/result_narrative_freeze_v3_17.md"
+        artifact_type: documentation
+        generated_by_script: "manual"
+        input_artifacts: "all experiment outputs"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Frozen result narrative; 13 results with safe/unsafe interpretations."
+
+      - artifact_id: A162_reviewer_risk_register
+        path: "docs/reviewer_risk_register_v3_17.md"
+        artifact_type: documentation
+        generated_by_script: "scripts/generate_reviewer_risk_register_v1.py"
+        input_artifacts: "reports/current_project_status_v3_17.json"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "10 reviewer risks with safe responses."
+
+      - artifact_id: A163_safe_claims_dictionary
+        path: "docs/safe_claims_dictionary_v3_17.md"
+        artifact_type: documentation
+        generated_by_script: "manual"
+        input_artifacts: "manual"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Safe/unsafe wording dictionary."
+
+      - artifact_id: A164_reproducibility_guide
+        path: "docs/reproducibility_guide_v3_17.md"
+        artifact_type: documentation
+        generated_by_script: "manual"
+        input_artifacts: "this manifest"
+        run_mode: real
+        public_safe: true
+        private_sensitive: false
+        notes: "Reproducibility guide; environment, toy run, real run."

@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "method": "Jaccard token overlap; shuffled = evidence from different group (seed=42)",
+  "n_samples": 444,
+  "mean_correct_evidence_overlap": 0.361437,
+  "mean_cross_group_shuffled_overlap": 0.007867,
+  "mean_same_domain_shuffled_overlap": 0.01219,
+  "mean_title_only_overlap": 0.073697,
+  "ratio_correct_to_shuffled": 45.9418,
+  "threshold_warning_ratio": 1.5,
+  "expected_ordering": "correct > same_domain_shuffled > cross_group_shuffled > title_only",
+  "ordering_holds": true
+}

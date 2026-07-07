@@ -1,0 +1,30 @@
+{
+  "script_name": "generate_paper_assets_v3_17.py",
+  "timestamp": "2026-07-07T05:34:45.905309+00:00",
+  "config_source": "defaults",
+  "guards": {
+    "no_api": true,
+    "no_network": true,
+    "no_training": true,
+    "no_original_data_modification": true
+  },
+  "no_original_data_modification": true,
+  "forbidden_scoring_fields": [
+    "true_label",
+    "is_strong_action",
+    "oracle_hit",
+    "candidate_label_guess",
+    "final_label",
+    "gold_label",
+    "human_audited",
+    "evidence_text",
+    "evidence_text_sha256"
+  ],
+  "paths": {},
+  "experiments_dir": "D:\\ocn\\experiments",
+  "candidate_csv": "D:\\ocn\\data\\toy_synthetic\\toy_candidates_v1.csv",
+  "output_dir": "D:\\ocn\\paper_assets\\v3_17_confidential",
+  "toy_mode": true,
+  "missing_files": [],
+  "caveat": "Controlled silver diagnostic, not gold/human-audited."
+}

@@ -13,6 +13,7 @@
 
 `sentence_bm25_top1` and `window_bm25_top1` are blocked (missing real PDF corpus file); they are not included in the main analysis.
 
-`best_sentence_top5_overlap` achieves 9x oracle_recall improvement over `raw_top1_chunk` (0.043 → 0.387) and produces screening-format-length evidence (0% exceed 60 words). All canonicalizers are unsupervised, deterministic, and use only `claim_text` and retrieved text — no labels, no oracle, no API calls.
+`best_sentence_top5_overlap` achieves 9x oracle_recall improvement over `raw_top1_chunk` (0.043 → 0.387) and produces screening-format-length evidence (0% exceed 60 words).
+All canonicalizers are unsupervised, deterministic, and use only `claim_text` and retrieved text — no labels, no oracle, no API calls.
 
 [Source: experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv]
