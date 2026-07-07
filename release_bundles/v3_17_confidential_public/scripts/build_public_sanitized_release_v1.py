@@ -91,6 +91,16 @@ FORBIDDEN_TEXT_COLUMNS = [
     "raw_page_text", "clean_page_text", "source_excerpt",
 ]
 
+# Forbidden sorting/oracle columns in CSVs (defense-in-depth: these must never
+# appear in the public release, even if a file is added to an inclusion list).
+# Redteam scan flags these as high-risk; internal scoring CSVs use them only
+# for post-hoc metric computation, never for sorting.
+FORBIDDEN_SORTING_COLUMNS = [
+    "true_label", "oracle_hit",
+    "candidate_label_guess", "final_label", "gold_label",
+    "human_audited",
+]
+
 # ---------------------------------------------------------------------------
 # Safe scripts (V3.17 confidential pipeline)
 # ---------------------------------------------------------------------------
@@ -228,6 +238,25 @@ def has_forbidden_text_columns(file_path: Path) -> bool:
     return False
 
 
+def has_forbidden_sorting_columns(file_path: Path) -> bool:
+    """Check if a CSV file has forbidden sorting/oracle columns.
+
+    Defense-in-depth: redteam scan flags true_label/oracle_hit as high-risk.
+    Internal scoring CSVs use these only for post-hoc metrics, never for
+    sorting, but they must never appear in the public release bundle.
+    """
+    if file_path.suffix.lower() != ".csv":
+        return False
+    try:
+        df = pd.read_csv(file_path, keep_default_na=False, nrows=1)
+        for col in df.columns:
+            if col.lower() in FORBIDDEN_SORTING_COLUMNS:
+                return True
+    except Exception:
+        return False
+    return False
+
+
 # ---------------------------------------------------------------------------
 # File copying
 # ---------------------------------------------------------------------------
@@ -245,6 +274,11 @@ def copy_file_safe(src: Path, dst: Path, excluded_files: List[str]) -> bool:
     # Check for forbidden text columns in CSVs
     if has_forbidden_text_columns(src):
         excluded_files.append(f"{rel_src} (forbidden_text_columns)")
+        return False
+
+    # Check for forbidden sorting/oracle columns in CSVs (defense-in-depth)
+    if has_forbidden_sorting_columns(src):
+        excluded_files.append(f"{rel_src} (forbidden_sorting_columns)")
         return False
 
     # Copy the file
@@ -779,6 +813,8 @@ def main():
     redaction_report = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "excluded_patterns": list(EXCLUDED_DIR_PATTERNS) + list(EXCLUDED_FILE_SUFFIXES) + list(EXCLUDED_FILE_PATTERNS),
+        "forbidden_text_columns": list(FORBIDDEN_TEXT_COLUMNS),
+        "forbidden_sorting_columns": list(FORBIDDEN_SORTING_COLUMNS),
         "excluded_files_count": len(excluded_files),
         "included_files_count": included_count,
         "redteam_pass": redteam_pass,

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T18:13:56.791805+00:00",
+  "generated_at": "2026-07-07T05:18:16.467610+00:00",
   "excluded_patterns": [
     "pdfs/",
     "private_pdfs/",
@@ -15,15 +15,15 @@
     "_MAINLINE_CURRENT/",
     "_MAIN_PAPER_CURRENT/",
     "_PROJECT_INDEX/",
+    ".npz",
+    ".pyc",
     ".xlsx",
     ".pdf",
     ".pyo",
-    ".joblib",
-    ".pkl",
-    ".npz",
-    ".docx",
     ".egg-info",
-    ".pyc",
+    ".docx",
+    ".pkl",
+    ".joblib",
     "error_cases_private",
     "private_",
     "_private",
@@ -33,36 +33,44 @@
     "GPT_HANDOFF",
     "handoff_context"
   ],
-  "excluded_files_count": 12,
-  "included_files_count": 221,
+  "forbidden_text_columns": [
+    "claim_text",
+    "evidence_text",
+    "selected_evidence",
+    "raw_text",
+    "clean_text",
+    "retrieved_text",
+    "raw_page_text",
+    "clean_page_text",
+    "source_excerpt"
+  ],
+  "forbidden_sorting_columns": [
+    "true_label",
+    "oracle_hit",
+    "candidate_label_guess",
+    "final_label",
+    "gold_label",
+    "human_audited"
+  ],
+  "excluded_files_count": 15,
+  "included_files_count": 234,
   "redteam_pass": true,
   "redteam_summary": {
-    "scan_timestamp": "2026-07-07T02:13:56",
-    "scanned_files": 220,
+    "scan_timestamp": "2026-07-07T13:18:16",
+    "scanned_files": 233,
     "scan_dirs": [
       "D:\\ocn\\release_bundles\\v3_17_confidential_public"
     ],
     "high_risk_count": 0,
     "medium_risk_count": 0,
-    "low_risk_count": 45,
-    "total_findings": 45,
+    "low_risk_count": 34,
+    "total_findings": 34,
     "pass_public_release_gate": true,
     "strict_mode": false,
     "gitignore_report": {
-      "existing_count": 59,
-      "missing": [
-        "pdfs/",
-        "private_pdfs/",
-        "data/private/",
-        "experiments/private/",
-        "*.pdf",
-        "*.docx",
-        "*.xlsx",
-        "*.npz",
-        "*.pkl",
-        "*.joblib"
-      ],
-      "missing_count": 10
+      "existing_count": 70,
+      "missing": [],
+      "missing_count": 0
     }
   },
   "contains_real_pdf": false,
@@ -70,6 +78,7 @@
   "contains_real_claim_text": false,
   "excluded_files_sample": [
     "data/toy_synthetic/toy_candidates_v1.csv (forbidden_text_columns)",
+    "experiments/error_taxonomy_v1/error_cases_redacted.csv (forbidden_sorting_columns)",
     "bm25_sentence_retrieval_v1_toy/retrieval_results_sentence_bm25.csv (forbidden_text_columns)",
     "bm25_sentence_retrieval_v1_toy/retrieval_results_window_bm25.csv (forbidden_text_columns)",
     "canonicalizer_ablation_v1_toy/selector_variant_evidence.csv (forbidden_text_columns)",
@@ -78,8 +87,10 @@
     "lightweight_smart_queue_v1_toy/smart_queue_top100.csv (text_columns:['evidence_score'])",
     "lightweight_smart_queue_v1_toy/smart_queue_top20.csv (text_columns:['evidence_score'])",
     "lightweight_smart_queue_v1_toy/smart_queue_top50.csv (text_columns:['evidence_score'])",
+    "experiments/r4_eval_v1_toy/format_shift_failure_examples_redacted.csv (forbidden_sorting_columns)",
     "toy_end_to_end_demo_v1/toy_review_queue.csv (text_columns:['evidence_score'])",
     "configs/local_private_template.yaml (file_pattern:private_)",
+    "tests/test_no_private_text_in_public_outputs.py (file_pattern:private_)",
     "tests/test_paper_assets_no_private_text.py (file_pattern:private_)"
   ],
   "guards": {

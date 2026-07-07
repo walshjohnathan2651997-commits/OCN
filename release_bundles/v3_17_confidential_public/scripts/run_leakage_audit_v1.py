@@ -889,7 +889,11 @@ def check_no_oracle_in_selector(canonicalizer_guard_path):
 # ---------------------------------------------------------------------------
 
 def check_no_label_in_queue_sorting(queue_guard_path):
-    """Verify SmartQueue doesn't sort by forbidden fields."""
+    """Verify SmartQueue doesn't sort by forbidden fields.
+
+    Reads the guard report and checks that no labels, oracle fields, or
+    raw text columns were used for sorting/routing.
+    """
     log("  [Check 12] No label in queue sorting ...")
     if not queue_guard_path or not Path(queue_guard_path).exists():
         return {"status": "skip", "reason": "guard report not found", "path": str(queue_guard_path)}
@@ -897,19 +901,40 @@ def check_no_label_in_queue_sorting(queue_guard_path):
     with open(queue_guard_path, "r", encoding="utf-8") as f:
         guard = json.load(f)
 
-    true_label_sort = guard.get("true_label_used_for_sorting", True)
-    oracle_sort = guard.get("oracle_hit_used_for_sorting", True)
-    evidence_sort = guard.get("evidence_text_used_for_sorting", True)
+    # Read both old and new field names for backward compatibility
+    labels_sort = guard.get("labels_used_for_sorting", guard.get("true_label_used_for_sorting", True))
+    oracle_sort = guard.get("oracle_used_for_sorting", guard.get("oracle_hit_used_for_sorting", True))
+    raw_text_sort = guard.get("raw_text_used_for_sorting", guard.get("evidence_text_used_for_sorting", True))
 
-    status = "pass" if (not true_label_sort and not oracle_sort and not evidence_sort) else "fail"
+    # Also check forbidden_fields_found_in_sorting list
+    forbidden_found = guard.get("forbidden_fields_found_in_sorting", [])
+
+    # Guard report's own status (if present)
+    guard_status = guard.get("status", "")
+
+    # Determine check status
+    if forbidden_found:
+        status = "fail"
+    elif labels_sort or oracle_sort or raw_text_sort:
+        status = "fail"
+    elif guard_status == "fail":
+        status = "fail"
+    else:
+        status = "pass"
 
     return {
         "status": status,
-        "true_label_used_for_sorting": true_label_sort,
+        "labels_used_for_sorting": labels_sort,
+        "oracle_used_for_sorting": oracle_sort,
+        "raw_text_used_for_sorting": raw_text_sort,
+        "true_label_used_for_sorting": labels_sort,
         "oracle_hit_used_for_sorting": oracle_sort,
-        "evidence_text_used_for_sorting": evidence_sort,
-        "allowed_sort_fields": guard.get("allowed_sort_fields", []),
-        "forbidden_sort_fields": guard.get("forbidden_sort_fields", []),
+        "evidence_text_used_for_sorting": raw_text_sort,
+        "forbidden_fields_found_in_sorting": forbidden_found,
+        "allowed_fields_used": guard.get("allowed_fields_used", guard.get("allowed_sort_fields", [])),
+        "forbidden_fields_checked": guard.get("forbidden_fields_checked", guard.get("forbidden_sort_fields", [])),
+        "sort_formula": guard.get("sort_formula", ""),
+        "guard_report_status": guard_status,
         "path": str(queue_guard_path),
     }
 

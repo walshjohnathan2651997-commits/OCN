@@ -1,0 +1,108 @@
+{
+  "report_version": "1.0",
+  "generated_at": "2026-07-07T13:00:00",
+  "mainline": "V3.17 Confidential Lightweight",
+  "purpose": "Reconcile the apparent conflict between redteam_summary.json (high_risk_count=3, pass_public_release_gate=false) and release_safety_manifest_v3_17.json (release_safety_gate.status=PASS).",
+  "inputs": [
+    "experiments/confidentiality_redteam_scan_v1/redteam_summary.json",
+    "experiments/confidentiality_redteam_scan_v1/redteam_findings.csv",
+    "reports/release_safety_manifest_v3_17.json",
+    "release_bundles/v3_17_confidential_public/MANIFEST.json"
+  ],
+  "conflict_explanation": {
+    "redteam_signal": {
+      "source": "experiments/confidentiality_redteam_scan_v1/redteam_summary.json",
+      "field": "pass_public_release_gate",
+      "value": false,
+      "logic": "pass_public_release_gate = (high_risk_count == 0). The scanner is a repo-wide read-only scan; it flags any file under the scanned directories that contains forbidden sorting fields (true_label, oracle_hit) in CSV headers, regardless of whether that file is included in the public release bundle.",
+      "scope": "repo-wide (internal + public)"
+    },
+    "release_safety_signal": {
+      "source": "reports/release_safety_manifest_v3_17.json",
+      "field": "release_safety_gate.status",
+      "value": "PASS",
+      "logic": "The artifact ledger classifies each of the 54 tracked artifacts by release safety. release_safety_gate is PASS when (a) no artifact marked safe_to_release=true contains raw text or private sensitive columns, and (b) no private_sensitive artifact appears in the public release bundle.",
+      "scope": "public release bundle only"
+    },
+    "reconciliation": "The two signals measure different scopes and are NOT contradictory. The redteam scanner operates repo-wide (including internal-only files) and fails its gate because internal scoring CSVs contain true_label/oracle_hit columns. The release safety manifest operates only on the public release bundle and confirms none of those internal files are included. The conflict is resolved by classifying each high-risk finding and verifying release-bundle exclusion."
+  },
+  "high_risk_findings": [
+    {
+      "finding_id": "HR-001",
+      "path": "experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv",
+      "risk_type": "forbidden_sorting_field",
+      "matched_pattern": "true_label",
+      "matched_location": "CSV header",
+      "context_redacted": "CSV header contains column 'true_label'. No claim/evidence/raw text is disclosed in this report.",
+      "public_or_internal": "internal",
+      "included_in_release_bundle": false,
+      "release_bundle_verification": "Grep of release_bundles/v3_17_confidential_public/MANIFEST.json for 'canonicalized_r4_review_scores' returned no matches. The file is also listed in release_safety_manifest_v3_17.json under private_sensitive (artifact_id A050_review_queue_scores) and contains_raw_text (detected_columns: selected_evidence).",
+      "classification": "internal_only_excluded_from_release",
+      "why_internal_acceptable": "This is an internal scoring artifact used by the canonicalized review queue pipeline. The true_label column is used ONLY for post-hoc metric computation (precision@k, recall@k), never for sorting or routing. The SmartQueue leakage guard (experiments/lightweight_smart_queue_v1/leakage_guard_report.json) confirms labels_used_for_sorting=false and true_label_used_for_metrics_only=true. Keeping true_label in the internal scoring CSV is required for metric reproducibility.",
+      "why_release_bundle_remains_safe": "The build_public_sanitized_release_v1.py script only copies files from explicit inclusion lists (SAFE_SCRIPTS, AGGREGATE_METRIC_FILES, REDACTED_AUDIT_FILES, TOY_EXPERIMENT_DIRS, paper_assets, SAFE_DOCS, configs, tests). canonicalized_review_queue_v1/ is not in any inclusion list. Additionally, has_forbidden_text_columns() would exclude this file because it contains the 'selected_evidence' column. Defense-in-depth: FORBIDDEN_SORTING_COLUMNS check added to build script excludes any CSV with true_label/oracle_hit columns.",
+      "recommended_action": "keep_internal; no change to finding; ensure build script defense-in-depth excludes forbidden sorting columns"
+    },
+    {
+      "finding_id": "HR-002",
+      "path": "experiments/canonicalized_risk_ranking_v1/risk_ranking_features.csv",
+      "risk_type": "forbidden_sorting_field",
+      "matched_pattern": "true_label",
+      "matched_location": "CSV header",
+      "context_redacted": "CSV header contains column 'true_label'. No claim/evidence/raw text is disclosed in this report.",
+      "public_or_internal": "internal",
+      "included_in_release_bundle": false,
+      "release_bundle_verification": "Grep of release_bundles/v3_17_confidential_public/MANIFEST.json for 'risk_ranking_features' returned no matches. The file is not listed in any section of release_safety_manifest_v3_17.json (not in safe_to_release, private_sensitive, contains_raw_text, blocked_artifacts, or missing_artifacts). It is an internal analysis artifact not tracked by the artifact ledger.",
+      "classification": "internal_only_excluded_from_release",
+      "why_internal_acceptable": "This is an internal risk-ranking feature matrix used for diagnostic analysis. The true_label column is used ONLY for post-hoc evaluation of ranking quality, never for ranking itself. The risk ranking pipeline sorts by risk_score (a derived feature), not by true_label.",
+      "why_release_bundle_remains_safe": "The build_public_sanitized_release_v1.py script only copies files from explicit inclusion lists. canonicalized_risk_ranking_v1/ is not in any inclusion list. Only risk_ranking_results_by_variant.csv and risk_ranking_report.md (artifact A052, A053) are tracked as safe_to_release. Defense-in-depth: FORBIDDEN_SORTING_COLUMNS check added to build script excludes any CSV with true_label/oracle_hit columns.",
+      "recommended_action": "keep_internal; no change to finding; ensure build script defense-in-depth excludes forbidden sorting columns"
+    },
+    {
+      "finding_id": "HR-003",
+      "path": "experiments/canonicalized_risk_ranking_v1/risk_ranking_features.csv",
+      "risk_type": "forbidden_sorting_field",
+      "matched_pattern": "oracle_hit",
+      "matched_location": "CSV header",
+      "context_redacted": "CSV header contains column 'oracle_hit'. No claim/evidence/raw text is disclosed in this report.",
+      "public_or_internal": "internal",
+      "included_in_release_bundle": false,
+      "release_bundle_verification": "Same file as HR-002. Grep of release_bundles/v3_17_confidential_public/MANIFEST.json for 'risk_ranking_features' returned no matches.",
+      "classification": "internal_only_excluded_from_release",
+      "why_internal_acceptable": "This is the same internal risk-ranking feature matrix as HR-002. The oracle_hit column is a diagnostic flag indicating whether the ranking oracle would have selected the same candidate. It is used ONLY for post-hoc evaluation, never for ranking or routing.",
+      "why_release_bundle_remains_safe": "Same as HR-002. The file is not in any inclusion list of build_public_sanitized_release_v1.py. Defense-in-depth: FORBIDDEN_SORTING_COLUMNS check added to build script excludes any CSV with true_label/oracle_hit columns.",
+      "recommended_action": "keep_internal; no change to finding; ensure build script defense-in-depth excludes forbidden sorting columns"
+    }
+  ],
+  "classification_summary": {
+    "public_release_leak": 0,
+    "internal_only_excluded_from_release": 3,
+    "false_positive_documented": 0,
+    "needs_manual_review": 0,
+    "total_high_risk": 3
+  },
+  "release_bundle_safety_confirmation": {
+    "release_bundle_manifest": "release_bundles/v3_17_confidential_public/MANIFEST.json",
+    "total_files_in_bundle": 224,
+    "high_risk_files_in_bundle": 0,
+    "verification_method": "Grep of MANIFEST.json paths for 'canonicalized_r4_review_scores' and 'risk_ranking_features' returned no matches.",
+    "release_safety_manifest_status": "PASS",
+    "release_safety_manifest_unsafe_public_artifacts": 0,
+    "release_safety_manifest_private_in_release": 0
+  },
+  "final_gate_impact": {
+    "previous_status": "WARNING (check 9.1: redteam high_risk_count=3 but release_safety_gate=PASS)",
+    "reconciled_status": "WARNING documented — internal-only high-risk findings are classified and excluded from public release. Final Gate should remain WARNING (documented limitation) but NOT FAIL.",
+    "rationale": "The hard constraint is that public release must not contain high-risk files. This is satisfied (0 high-risk files in bundle). The internal high-risk findings are legitimate diagnostic artifacts that use true_label/oracle_hit only for post-hoc metric computation, never for sorting. Removing them would break metric reproducibility. The SmartQueue leakage guard confirms labels_used_for_sorting=false."
+  },
+  "defense_in_depth_actions": [
+    {
+      "action": "Added FORBIDDEN_SORTING_COLUMNS check to build_public_sanitized_release_v1.py",
+      "columns_blocked": ["true_label", "oracle_hit", "candidate_label_guess", "final_label", "gold_label", "human_audited"],
+      "effect": "Any CSV containing these columns is excluded from the public release bundle, even if added to an inclusion list in the future."
+    },
+    {
+      "action": "Added missing .gitignore entries",
+      "entries_added": ["pdfs/", "private_pdfs/", "data/private/", "experiments/private/", "*.pdf", "*.docx", "*.xlsx", "*.npz", "*.pkl", "*.joblib", "*.zip"]
+    }
+  ]
+}

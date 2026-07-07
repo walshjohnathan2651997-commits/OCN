@@ -1,6 +1,6 @@
 {
-  "scan_timestamp": "2026-07-07T02:38:22",
-  "scanned_files": 791,
+  "scan_timestamp": "2026-07-07T13:35:03",
+  "scanned_files": 805,
   "scan_dirs": [
     "README.md",
     "CURRENT_MAINLINE.md",
@@ -12,24 +12,13 @@
   ],
   "high_risk_count": 3,
   "medium_risk_count": 22,
-  "low_risk_count": 64,
-  "total_findings": 89,
+  "low_risk_count": 54,
+  "total_findings": 79,
   "pass_public_release_gate": false,
   "strict_mode": false,
   "gitignore_report": {
-    "existing_count": 59,
-    "missing": [
-      "pdfs/",
-      "private_pdfs/",
-      "data/private/",
-      "experiments/private/",
-      "*.pdf",
-      "*.docx",
-      "*.xlsx",
-      "*.npz",
-      "*.pkl",
-      "*.joblib"
-    ],
-    "missing_count": 10
+    "existing_count": 70,
+    "missing": [],
+    "missing_count": 0
   }
 }

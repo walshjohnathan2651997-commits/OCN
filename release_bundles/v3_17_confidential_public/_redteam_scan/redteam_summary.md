@@ -1,7 +1,7 @@
 # Confidentiality Red-Team Scan Summary
 
-Generated: 2026-07-07T02:13:56
-Scanned files: 220
+Generated: 2026-07-07T13:18:16
+Scanned files: 233
 
 ## Gate Status
 
@@ -9,8 +9,8 @@ Scanned files: 220
 
 - High risk findings: **0**
 - Medium risk findings: **0**
-- Low risk findings: **45**
-- Total findings: **45**
+- Low risk findings: **34**
+- Total findings: **34**
 - Strict mode: False
 
 ## High Risk (0 findings)
@@ -21,42 +21,9 @@ None.
 
 None.
 
-## Low Risk (45 findings)
+## Low Risk (34 findings)
 
-### gitignore_missing (10)
-
-- **`.gitignore`** — `pdfs/`
-  - .gitignore missing required entry 'pdfs/'
-  - Recommendation: Add 'pdfs/' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `private_pdfs/`
-  - .gitignore missing required entry 'private_pdfs/'
-  - Recommendation: Add 'private_pdfs/' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `data/private/`
-  - .gitignore missing required entry 'data/private/'
-  - Recommendation: Add 'data/private/' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `experiments/private/`
-  - .gitignore missing required entry 'experiments/private/'
-  - Recommendation: Add 'experiments/private/' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `*.pdf`
-  - .gitignore missing required entry '*.pdf'
-  - Recommendation: Add '*.pdf' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `*.docx`
-  - .gitignore missing required entry '*.docx'
-  - Recommendation: Add '*.docx' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `*.xlsx`
-  - .gitignore missing required entry '*.xlsx'
-  - Recommendation: Add '*.xlsx' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `*.npz`
-  - .gitignore missing required entry '*.npz'
-  - Recommendation: Add '*.npz' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `*.pkl`
-  - .gitignore missing required entry '*.pkl'
-  - Recommendation: Add '*.pkl' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `*.joblib`
-  - .gitignore missing required entry '*.joblib'
-  - Recommendation: Add '*.joblib' to .gitignore to prevent committing sensitive files.
-
-### toy_validation (35)
+### toy_validation (34)
 
 - **`release_bundles\v3_17_confidential_public\data\toy_synthetic\pdf_stress_sources.jsonl`** — ``
   - Toy JSONL file has no 'toy_' prefixed keys or 'synthetic=true' marker
@@ -142,9 +109,6 @@ None.
 - **`release_bundles\v3_17_confidential_public\experiments\aggregate_metrics\toy_outputs\lightweight_smart_queue_v1_toy\smart_queue_metric_summary.json`** — ``
   - Toy JSON file has no 'toy_' prefixed keys or 'synthetic=true' marker
   - Recommendation: Add 'synthetic: true' field or prefix keys with 'toy_'.
-- **`release_bundles\v3_17_confidential_public\experiments\aggregate_metrics\toy_outputs\r4_eval_v1_toy\format_shift_failure_examples_redacted.csv`** — ``
-  - Toy data file has no 'toy_' prefixed columns or 'synthetic=true' marker
-  - Recommendation: Add 'toy_' prefix to column names or include a 'synthetic=true' column.
 - **`release_bundles\v3_17_confidential_public\experiments\aggregate_metrics\toy_outputs\r4_eval_v1_toy\format_shift_metrics.csv`** — ``
   - Toy data file has no 'toy_' prefixed columns or 'synthetic=true' marker
   - Recommendation: Add 'toy_' prefix to column names or include a 'synthetic=true' column.
@@ -169,17 +133,5 @@ None.
 
 ## .gitignore Check
 
-- Existing entries: 59
-- Missing entries: 10
-
-Missing entries:
-- `pdfs/`
-- `private_pdfs/`
-- `data/private/`
-- `experiments/private/`
-- `*.pdf`
-- `*.docx`
-- `*.xlsx`
-- `*.npz`
-- `*.pkl`
-- `*.joblib`
+- Existing entries: 70
+- Missing entries: 0

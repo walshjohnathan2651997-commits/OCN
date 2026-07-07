@@ -2,29 +2,46 @@
 """run_v3_17_confidential_pipeline.py — Unified V3.17 confidential pipeline runner.
 
 Orchestrates the full V3.17 confidential lightweight pipeline as a sequence
-of subprocess stage calls. Supports toy and full modes.
+of subprocess stage calls. Supports toy, real, and status_only modes.
 
-Stages:
-  corpus            — build PDF sentence corpus (toy or real)
-  retrieval         — BM25 sentence/window retrieval
-  canonicalizer     — evidence canonicalizer ablation
-  format_shift      — format-shift ablation
-  r4_eval           — frozen R4 evaluation on evidence variants
+Stages (spec V3.17 Task Pack G):
+  status            — generate project status report
+  pdf_corpus        — build PDF sentence corpus (toy or real)
+  bm25_real         — BM25 sentence/window retrieval (real only)
+  canonicalizer_real — evidence canonicalizer ablation (real only)
+  format_shift_real — format-shift ablation (real only)
+  leakage_real      — leakage audit (real only)
+  error_taxonomy    — error taxonomy on real data
+  human_audit_seed  — build human audit seed queue
+  complexity_utility — complexity-vs-utility ablation
   smart_queue       — lightweight SmartQueue + review queue
-  leakage_audit     — 7-check leakage audit
+  metric_robustness — bootstrap CI metrics
+  paper_assets      — generate paper-ready tables/figures
+  redteam           — confidentiality red-team scanner
   schema_validation — validate experiment outputs against schema registry
-  redteam_scan      — confidentiality red-team scanner
-  paper_assets      — collect paper-ready artifacts
+  toy_demo          — toy end-to-end demo (safe for CI)
+  release_bundle    — build public sanitized release bundle
+
+Legacy stage aliases (backward compat):
+  corpus → pdf_corpus, retrieval → bm25_real, canonicalizer → canonicalizer_real,
+  format_shift → format_shift_real, leakage_audit → leakage_real,
+  redteam_scan → redteam, r4_eval → r4_eval (kept)
+
+Modes:
+  toy         — toy/synthetic data only (safe for CI)
+  real        — real/private data (requires --allow_private_data true)
+  status_only — only run the status stage
+  full        — alias for real (deprecated)
 
 Hard boundaries (enforced):
   - no network, no API, no training, no original data modification
-  - full mode requires explicit --allow_private_data true
+  - real mode requires explicit --allow_private_data true
   - failure stops the pipeline (no swallow)
 
 Outputs (under experiments/v3_17_confidential_pipeline_runs/{timestamp}/):
   run_summary.json   — overall status + per-stage results
   run_log.txt        — combined stdout/stderr from all stages
-  stage_status.csv   — per-stage start/end/status/runtime
+  stage_status.csv   — per-stage start/end/status/runtime/metadata
   config_snapshot.yaml — copy of the effective config
 """
 
@@ -53,28 +70,55 @@ from config_utils import load_and_validate, print_guards  # noqa: E402
 # Stage definitions
 # ---------------------------------------------------------------------------
 
-DEFAULT_TOY_STAGES = [
-    "corpus",
-    "retrieval",
-    "canonicalizer",
+# Spec stages (Task Pack G)
+SPEC_STAGES = [
+    "status",
+    "pdf_corpus",
+    "bm25_real",
+    "canonicalizer_real",
+    "format_shift_real",
+    "leakage_real",
+    "error_taxonomy",
+    "human_audit_seed",
+    "complexity_utility",
     "smart_queue",
-    "leakage_audit",
+    "metric_robustness",
+    "paper_assets",
+    "redteam",
     "schema_validation",
-    "redteam_scan",
+    "toy_demo",
+    "release_bundle",
 ]
 
-ALL_STAGES = [
-    "corpus",
-    "retrieval",
-    "canonicalizer",
-    "format_shift",
-    "r4_eval",
-    "smart_queue",
-    "leakage_audit",
-    "schema_validation",
-    "redteam_scan",
-    "paper_assets",
-]
+# Legacy stage aliases → canonical stage name
+STAGE_ALIASES = {
+    "corpus": "pdf_corpus",
+    "retrieval": "bm25_real",
+    "canonicalizer": "canonicalizer_real",
+    "format_shift": "format_shift_real",
+    "leakage_audit": "leakage_real",
+    "redteam_scan": "redteam",
+    "r4_eval": "r4_eval",  # kept as-is
+}
+
+# All valid stage names (canonical + aliases)
+ALL_STAGES = SPEC_STAGES + list(STAGE_ALIASES.keys())
+
+# Default stages per mode
+DEFAULT_TOY_STAGES = ["toy_demo", "schema_validation", "redteam"]
+DEFAULT_REAL_STAGES = SPEC_STAGES  # all spec stages
+DEFAULT_STATUS_ONLY_STAGES = ["status"]
+
+# Stages that are always safe for CI (no private data)
+CI_SAFE_STAGES = {"toy_demo", "schema_validation", "redteam", "status"}
+
+# Stages that require real/private data
+REAL_ONLY_STAGES = {"bm25_real", "canonicalizer_real", "format_shift_real", "leakage_real", "error_taxonomy", "metric_robustness"}
+
+
+def _resolve_stage(stage: str) -> str:
+    """Resolve a stage name to its canonical name (apply aliases)."""
+    return STAGE_ALIASES.get(stage, stage)
 
 
 def _stage_args(stage: str, mode: str, config_path: Optional[str]) -> List[str]:
@@ -84,8 +128,9 @@ def _stage_args(stage: str, mode: str, config_path: Optional[str]) -> List[str]:
     """
     scripts_dir = REPO_ROOT / "scripts"
     toy = mode == "toy"
+    canonical = _resolve_stage(stage)
 
-    if stage == "corpus":
+    if canonical == "pdf_corpus":
         script = scripts_dir / "build_pdf_sentence_corpus_v1.py"
         args = ["--output_dir"]
         if toy:
@@ -95,7 +140,7 @@ def _stage_args(stage: str, mode: str, config_path: Optional[str]) -> List[str]:
             args.append("data/pdf_corpus_v1")
         return [str(script)] + args
 
-    if stage == "retrieval":
+    if canonical == "bm25_real":
         script = scripts_dir / "run_bm25_sentence_retrieval_v1.py"
         args = ["--output_dir"]
         if toy:
@@ -107,7 +152,7 @@ def _stage_args(stage: str, mode: str, config_path: Optional[str]) -> List[str]:
                 args.extend(["--config", config_path])
         return [str(script)] + args
 
-    if stage == "canonicalizer":
+    if canonical == "canonicalizer_real":
         script = scripts_dir / "run_canonicalizer_ablation_v1.py"
         args = ["--output_dir"]
         if toy:
@@ -119,7 +164,7 @@ def _stage_args(stage: str, mode: str, config_path: Optional[str]) -> List[str]:
                 args.extend(["--config", config_path])
         return [str(script)] + args
 
-    if stage == "format_shift":
+    if canonical == "format_shift_real":
         script = scripts_dir / "run_format_shift_ablation_v1.py"
         args = ["--output_dir"]
         if toy:
@@ -131,7 +176,7 @@ def _stage_args(stage: str, mode: str, config_path: Optional[str]) -> List[str]:
                 args.extend(["--config", config_path])
         return [str(script)] + args
 
-    if stage == "r4_eval":
+    if canonical == "r4_eval":
         script = scripts_dir / "evaluate_r4_on_evidence_variants_v1.py"
         args = ["--output_dir"]
         if toy:
@@ -143,7 +188,7 @@ def _stage_args(stage: str, mode: str, config_path: Optional[str]) -> List[str]:
                 args.extend(["--config", config_path])
         return [str(script)] + args
 
-    if stage == "smart_queue":
+    if canonical == "smart_queue":
         script = scripts_dir / "run_lightweight_smart_queue_v1.py"
         output_dir = "experiments/lightweight_smart_queue_v1_toy" if toy else "experiments/lightweight_smart_queue_v1"
         args = ["--output_dir", output_dir, "--profile", "balanced"]
@@ -153,7 +198,7 @@ def _stage_args(stage: str, mode: str, config_path: Optional[str]) -> List[str]:
             args.extend(["--config", config_path])
         return [str(script)] + args
 
-    if stage == "leakage_audit":
+    if canonical == "leakage_real":
         script = scripts_dir / "run_leakage_audit_v1.py"
         args = ["--output_dir"]
         if toy:
@@ -165,7 +210,7 @@ def _stage_args(stage: str, mode: str, config_path: Optional[str]) -> List[str]:
                 args.extend(["--config", config_path])
         return [str(script)] + args
 
-    if stage == "schema_validation":
+    if canonical == "schema_validation":
         script = scripts_dir / "validate_experiment_outputs_v1.py"
         args = []
         if toy:
@@ -174,21 +219,61 @@ def _stage_args(stage: str, mode: str, config_path: Optional[str]) -> List[str]:
             args.extend(["--config", config_path])
         return [str(script)] + args
 
-    if stage == "redteam_scan":
+    if canonical == "redteam":
         script = scripts_dir / "run_confidentiality_redteam_scan_v1.py"
-        args = ["--output_dir"]
+        args = []
         if toy:
-            args.append("experiments/confidentiality_redteam_scan_v1_toy")
             args.append("--toy_mode")
-        else:
-            args.append("experiments/confidentiality_redteam_scan_v1")
-            if config_path:
-                args.extend(["--config", config_path])
+        # real mode: scan the full repo (default dirs)
         return [str(script)] + args
 
-    if stage == "paper_assets":
-        # paper_assets is handled inline (no separate script); use a marker
-        return ["__paper_assets__"]
+    if canonical == "paper_assets":
+        script = scripts_dir / "generate_paper_assets_v3_17.py"
+        args = []
+        if toy:
+            args.append("--toy_mode")
+        return [str(script)] + args
+
+    if canonical == "status":
+        script = scripts_dir / "generate_project_status_report_v1.py"
+        return [str(script)]
+
+    if canonical == "error_taxonomy":
+        script = scripts_dir / "run_error_taxonomy_v1.py"
+        args = []
+        if toy:
+            args.append("--toy_mode")
+        elif config_path:
+            args.extend(["--config", config_path])
+        return [str(script)] + args
+
+    if canonical == "human_audit_seed":
+        script = scripts_dir / "build_human_audit_queue_v1.py"
+        return [str(script)]
+
+    if canonical == "complexity_utility":
+        script = scripts_dir / "run_complexity_vs_utility_ablation_v1.py"
+        args = []
+        if config_path:
+            args.extend(["--config", config_path])
+        return [str(script)] + args
+
+    if canonical == "metric_robustness":
+        script = scripts_dir / "run_metric_robustness_v1.py"
+        args = []
+        if toy:
+            args.append("--toy_mode")
+        elif config_path:
+            args.extend(["--config", config_path])
+        return [str(script)] + args
+
+    if canonical == "toy_demo":
+        script = scripts_dir / "run_toy_end_to_end_demo_v1.py"
+        return [str(script)]
+
+    if canonical == "release_bundle":
+        script = scripts_dir / "build_public_sanitized_release_v1.py"
+        return [str(script)]
 
     raise ValueError(f"Unknown stage: {stage}")
 
@@ -256,30 +341,19 @@ def run_stage(
     run_log_file: Path,
     run_dir: Path,
 ) -> Dict:
-    """Run a single stage as a subprocess. Returns a status dict."""
+    """Run a single stage as a subprocess. Returns a status dict.
+
+    Stage result fields (per Task Pack G spec):
+      stage_name, status, start_time, end_time, runtime_seconds,
+      output_dir, error_message, privacy_mode, real_or_toy
+    """
+    canonical = _resolve_stage(stage)
     print(f"\n{'=' * 60}", file=sys.stderr, flush=True)
-    print(f"[STAGE] {stage} (mode={mode})", file=sys.stderr, flush=True)
+    print(f"[STAGE] {stage} → {canonical} (mode={mode})", file=sys.stderr, flush=True)
     print(f"{'=' * 60}", file=sys.stderr, flush=True)
 
     start_time = time.time()
     start_iso = datetime.now(timezone.utc).isoformat()
-
-    # Handle paper_assets inline
-    if stage == "paper_assets":
-        success, message = collect_paper_assets(run_dir, mode)
-        end_time = time.time()
-        end_iso = datetime.now(timezone.utc).isoformat()
-        runtime = round(end_time - start_time, 2)
-        with open(run_log_file, "a", encoding="utf-8") as f:
-            f.write(f"\n[STAGE: {stage}]\n{message}\n")
-        return {
-            "stage": stage,
-            "status": "ok" if success else "failed",
-            "start": start_iso,
-            "end": end_iso,
-            "runtime_seconds": runtime,
-            "message": message,
-        }
 
     # Build command
     cmd_parts = _stage_args(stage, mode, config_path)
@@ -289,11 +363,20 @@ def run_stage(
     if not Path(script_path).exists():
         end_time = time.time()
         return {
-            "stage": stage,
+            "stage_name": stage,
+            "canonical_name": canonical,
             "status": "failed",
+            "start_time": start_iso,
+            "end_time": datetime.now(timezone.utc).isoformat(),
+            "runtime_seconds": round(end_time - start_time, 2),
+            "output_dir": "",
+            "error_message": f"Script not found: {script_path}",
+            "privacy_mode": mode,
+            "real_or_toy": "toy" if mode == "toy" else "real",
+            # backward-compat fields
+            "stage": stage,
             "start": start_iso,
             "end": datetime.now(timezone.utc).isoformat(),
-            "runtime_seconds": round(end_time - start_time, 2),
             "message": f"Script not found: {script_path}",
         }
 
@@ -303,7 +386,7 @@ def run_stage(
     # Log the command to run_log
     with open(run_log_file, "a", encoding="utf-8") as f:
         f.write(f"\n{'=' * 60}\n")
-        f.write(f"[STAGE: {stage}]\n")
+        f.write(f"[STAGE: {stage} → {canonical}]\n")
         f.write(f"[CMD] {' '.join(cmd)}\n")
         f.write(f"{'=' * 60}\n")
 
@@ -327,17 +410,31 @@ def run_stage(
         runtime = round(end_time - start_time, 2)
 
         status = "ok" if result.returncode == 0 else "failed"
+        error_message = ""
         # Redteam scan and schema validation may exit 1 when they find issues —
         # the scripts themselves ran successfully, so don't stop the pipeline.
-        if stage in ("redteam_scan", "schema_validation") and result.returncode == 1:
+        if canonical in ("redteam", "schema_validation") and result.returncode == 1:
             status = "ok_with_findings"
+        if result.returncode != 0 and status == "failed":
+            # Extract last few lines as error message
+            error_lines = result.stdout.strip().split("\n")[-5:]
+            error_message = "; ".join(error_lines)[:500]
 
         return {
-            "stage": stage,
+            "stage_name": stage,
+            "canonical_name": canonical,
             "status": status,
+            "start_time": start_iso,
+            "end_time": end_iso,
+            "runtime_seconds": runtime,
+            "output_dir": str(run_dir),
+            "error_message": error_message,
+            "privacy_mode": mode,
+            "real_or_toy": "toy" if mode == "toy" else "real",
+            # backward-compat fields
+            "stage": stage,
             "start": start_iso,
             "end": end_iso,
-            "runtime_seconds": runtime,
             "exit_code": result.returncode,
             "message": f"Completed (exit={result.returncode}, runtime={runtime}s)",
         }
@@ -347,11 +444,19 @@ def run_stage(
         with open(run_log_file, "a", encoding="utf-8") as f:
             f.write(f"\n[TIMEOUT after 600s]\n")
         return {
-            "stage": stage,
+            "stage_name": stage,
+            "canonical_name": canonical,
             "status": "failed",
+            "start_time": start_iso,
+            "end_time": datetime.now(timezone.utc).isoformat(),
+            "runtime_seconds": round(end_time - start_time, 2),
+            "output_dir": str(run_dir),
+            "error_message": "Timeout after 600s",
+            "privacy_mode": mode,
+            "real_or_toy": "toy" if mode == "toy" else "real",
+            "stage": stage,
             "start": start_iso,
             "end": datetime.now(timezone.utc).isoformat(),
-            "runtime_seconds": round(end_time - start_time, 2),
             "message": "Timeout after 600s",
         }
     except Exception as e:
@@ -359,11 +464,19 @@ def run_stage(
         with open(run_log_file, "a", encoding="utf-8") as f:
             f.write(f"\n[EXCEPTION] {e}\n")
         return {
-            "stage": stage,
+            "stage_name": stage,
+            "canonical_name": canonical,
             "status": "failed",
+            "start_time": start_iso,
+            "end_time": datetime.now(timezone.utc).isoformat(),
+            "runtime_seconds": round(end_time - start_time, 2),
+            "output_dir": str(run_dir),
+            "error_message": f"Exception: {e}",
+            "privacy_mode": mode,
+            "real_or_toy": "toy" if mode == "toy" else "real",
+            "stage": stage,
             "start": start_iso,
             "end": datetime.now(timezone.utc).isoformat(),
-            "runtime_seconds": round(end_time - start_time, 2),
             "message": f"Exception: {e}",
         }
 
@@ -375,7 +488,13 @@ def run_stage(
 def write_stage_status_csv(run_dir: Path, stage_results: List[Dict]) -> None:
     """Write stage_status.csv with per-stage execution metadata."""
     csv_path = run_dir / "stage_status.csv"
-    fieldnames = ["stage", "status", "start", "end", "runtime_seconds", "exit_code", "message"]
+    fieldnames = [
+        "stage_name", "canonical_name", "status",
+        "start_time", "end_time", "runtime_seconds",
+        "output_dir", "error_message", "privacy_mode", "real_or_toy",
+        # backward-compat columns
+        "stage", "start", "end", "exit_code", "message",
+    ]
     with open(csv_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
         writer.writeheader()
@@ -452,19 +571,19 @@ def main() -> int:
     )
     parser.add_argument(
         "--mode",
-        choices=["toy", "full"],
+        choices=["toy", "real", "status_only", "full"],
         default="toy",
-        help="Pipeline mode: toy (default) or full (requires --allow_private_data true)",
+        help="Pipeline mode: toy (default), real (requires --allow_private_data true), status_only, full (deprecated alias for real)",
     )
     parser.add_argument(
         "--stages",
         default=None,
-        help=f"Comma-separated list of stages. Default (toy): {','.join(DEFAULT_TOY_STAGES)}",
+        help=f"Comma-separated list of stages. Default depends on mode.",
     )
     parser.add_argument(
         "--allow_private_data",
         default="false",
-        help="Must be 'true' to run in full mode. Default: false.",
+        help="Must be 'true' to run in real/full mode. Default: false.",
     )
     parser.add_argument(
         "--output_dir",
@@ -473,24 +592,31 @@ def main() -> int:
     )
     args = parser.parse_args()
 
+    # --- Normalize mode (full → real) ---
+    effective_mode = "real" if args.mode == "full" else args.mode
+
     # --- Validate mode and private data authorization ---
-    if args.mode == "full" and args.allow_private_data != "true":
+    if effective_mode == "real" and args.allow_private_data != "true":
         print(
-            "ERROR: full mode requires --allow_private_data true\n"
+            "ERROR: real mode requires --allow_private_data true\n"
             "       This flag confirms you have authorization to access private PDF data.",
             file=sys.stderr,
         )
         return 2
 
     # --- Load config (for guard enforcement) ---
-    config = load_and_validate(args.config, toy_mode=(args.mode == "toy"))
+    config = load_and_validate(args.config, toy_mode=(effective_mode == "toy"))
     print_guards(config)
 
     # --- Determine stages ---
     if args.stages:
         stages = [s.strip() for s in args.stages.split(",") if s.strip()]
-    else:
-        stages = DEFAULT_TOY_STAGES if args.mode == "toy" else ALL_STAGES
+    elif effective_mode == "toy":
+        stages = DEFAULT_TOY_STAGES
+    elif effective_mode == "status_only":
+        stages = DEFAULT_STATUS_ONLY_STAGES
+    else:  # real
+        stages = DEFAULT_REAL_STAGES
 
     # Validate stage names
     invalid = [s for s in stages if s not in ALL_STAGES]
@@ -498,6 +624,16 @@ def main() -> int:
         print(f"ERROR: Unknown stages: {invalid}", file=sys.stderr)
         print(f"       Valid stages: {ALL_STAGES}", file=sys.stderr)
         return 2
+
+    # --- Safety: real-only stages in toy mode ---
+    if effective_mode == "toy":
+        real_only_requested = [s for s in stages if _resolve_stage(s) in REAL_ONLY_STAGES]
+        if real_only_requested:
+            print(
+                f"WARNING: Stages {real_only_requested} require real data but mode is toy. "
+                f"These stages will use toy fallbacks.",
+                file=sys.stderr,
+            )
 
     # --- Create output directory ---
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -511,27 +647,28 @@ def main() -> int:
     # Truncate log at start
     run_log_file.write_text(
         f"V3.17 Confidential Pipeline Run\n"
-        f"Mode: {args.mode}\n"
+        f"Mode: {args.mode} (effective: {effective_mode})\n"
         f"Stages: {stages}\n"
         f"Timestamp: {timestamp}\n"
         f"Config: {args.config or 'default'}\n"
+        f"Allow private data: {args.allow_private_data}\n"
         f"{'=' * 60}\n",
         encoding="utf-8",
     )
 
-    print(f"[pipeline] mode={args.mode}", file=sys.stderr, flush=True)
+    print(f"[pipeline] mode={args.mode} (effective: {effective_mode})", file=sys.stderr, flush=True)
     print(f"[pipeline] stages={stages}", file=sys.stderr, flush=True)
     print(f"[pipeline] run_dir={run_dir}", file=sys.stderr, flush=True)
 
     # --- Write config snapshot ---
-    write_config_snapshot(run_dir, args.config, args.mode)
+    write_config_snapshot(run_dir, args.config, effective_mode)
 
     # --- Run stages ---
     stage_results: List[Dict] = []
     overall_status = "running"
 
     for stage in stages:
-        result = run_stage(stage, args.mode, args.config, run_log_file, run_dir)
+        result = run_stage(stage, effective_mode, args.config, run_log_file, run_dir)
         stage_results.append(result)
         print(f"[STAGE] {stage}: {result['status']} ({result['runtime_seconds']}s)", file=sys.stderr, flush=True)
 
@@ -549,7 +686,7 @@ def main() -> int:
 
     # --- Write outputs ---
     write_stage_status_csv(run_dir, stage_results)
-    write_run_summary(run_dir, args.mode, stages, stage_results, overall_status, args.config)
+    write_run_summary(run_dir, effective_mode, stages, stage_results, overall_status, args.config)
 
     print(f"\n[pipeline] overall_status={overall_status}", file=sys.stderr, flush=True)
     print(f"[pipeline] run_summary: {run_dir / 'run_summary.json'}", file=sys.stderr, flush=True)

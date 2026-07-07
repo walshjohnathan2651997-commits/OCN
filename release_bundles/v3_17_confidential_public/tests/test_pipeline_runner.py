@@ -270,25 +270,20 @@ class TestStageValidation:
 # ---------------- TestPaperAssetsStage ----------------
 
 class TestPaperAssetsStage:
-    """Verify the paper_assets stage collects artifacts."""
+    """Verify the paper_assets stage runs the paper assets generator."""
 
-    def test_paper_assets_creates_manifest(self, tmp_path):
+    def test_paper_assets_stage_succeeds(self, tmp_path):
         out_dir = tmp_path / "run_out"
-        _run_runner([
+        rc, stdout = _run_runner([
             "--mode", "toy",
             "--stages", "paper_assets",
             "--output_dir", str(out_dir),
         ])
-        assets_dir = out_dir / "paper_assets"
-        assert assets_dir.exists()
-        manifest_path = assets_dir / "paper_assets_manifest.json"
-        assert manifest_path.exists()
-        with open(manifest_path, "r", encoding="utf-8") as f:
-            manifest = json.load(f)
-        assert "mode" in manifest
-        assert manifest["mode"] == "toy"
-        assert "collected_files" in manifest
-        assert "warning" in manifest
+        assert rc == 0, f"paper_assets stage failed: {stdout}"
+        with open(out_dir / "run_summary.json", "r", encoding="utf-8") as f:
+            summary = json.load(f)
+        assert summary["n_stages_completed"] == 1
+        assert summary["stages_failed"] == []
 
 
 # ---------------- TestPipelineFailureHandling ----------------

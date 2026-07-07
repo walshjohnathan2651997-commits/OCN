@@ -1,6 +1,6 @@
 {
   "script_name": "validate_experiment_outputs_v1.py",
-  "timestamp": "2026-07-07T02:12:21",
+  "timestamp": "2026-07-07T13:10:28",
   "experiments_dir": "D:\\ocn\\experiments",
   "data_dir": "D:\\ocn\\data",
   "strict": false,
@@ -723,7 +723,17 @@
       "ok": true,
       "keys": [
         "status",
-        "reason",
+        "labels_used_for_sorting",
+        "oracle_used_for_sorting",
+        "raw_text_used_for_sorting",
+        "true_label_used_for_sorting",
+        "oracle_hit_used_for_sorting",
+        "evidence_text_used_for_sorting",
+        "forbidden_fields_found_in_sorting",
+        "allowed_fields_used",
+        "forbidden_fields_checked",
+        "sort_formula",
+        "guard_report_status",
         "path"
       ],
       "required_missing": [],

@@ -1,6 +1,6 @@
 # Final Perfect-State Readiness Gate — V3.17 Confidential Lightweight
 
-Generated: 2026-07-07T03:59:21+0000
+Generated: 2026-07-07T05:33:33+0000
 
 > Read-only gate. No experiments were re-run. No results were modified.
 
@@ -35,7 +35,7 @@ Generated: 2026-07-07T03:59:21+0000
 | ID | Check | Evidence | Next Action |
 |---|---|---|---|
 | 6.4 | Audit not yet run (documented) | No audit dir; protocol documents audit as not complete | Execute human audit when annotators available |
-| 9.1 | Redteam high risk in internal files (release excluded) | high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion | Address high-risk findings or confirm permanent exclusion from release |
+| 9.1 | Redteam high risk in internal files (release excluded) | high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion; reconciliation report present | Address high-risk findings or confirm permanent exclusion from release |
 | 10.2 | Schema validation has documented failures | 34 passed, 4 failed (failures from blocked experiments) | Fix blocked experiments or document as permanent |
 
 ---
@@ -145,11 +145,11 @@ Generated: 2026-07-07T03:59:21+0000
 
 | ID | Check | Status | Priority | Evidence |
 |---|---|---|---|---|
-| 9.1 | Redteam high risk in internal files (release excluded) | WARNING | P0 | high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion |
+| 9.1 | Redteam high risk in internal files (release excluded) | WARNING | P0 | high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion; reconciliation report present |
 | 9.2 | Release excludes private text/PDF | PASS | P0 | No PDFs in bundle; no private artifacts in release |
 | 9.3 | Artifact ledger exists | PASS | P0 | artifact_ledger_v3_17.csv present |
 
-- **9.1 WARNING**: high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion → next_action=`Address high-risk findings or confirm permanent exclusion from release`
+- **9.1 WARNING**: high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion; reconciliation report present → next_action=`Address high-risk findings or confirm permanent exclusion from release`
 
 ---
 

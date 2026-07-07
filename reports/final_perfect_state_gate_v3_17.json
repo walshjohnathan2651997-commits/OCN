@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T03:59:21.213754+00:00",
+  "generated_at": "2026-07-07T05:33:33.727706+00:00",
   "final_status": "READY_WITH_LIMITATIONS",
   "summary": {
     "total_checks": 44,
@@ -385,7 +385,7 @@
       "description": "Redteam high risk in internal files (release excluded)",
       "status": "WARNING",
       "priority": "P0",
-      "evidence": "high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion",
+      "evidence": "high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion; reconciliation report present",
       "blocked_reason": "High-risk findings in internal scoring files",
       "next_action": "Address high-risk findings or confirm permanent exclusion from release"
     },
@@ -474,7 +474,7 @@
     {
       "check_id": "9.1",
       "description": "Redteam high risk in internal files (release excluded)",
-      "evidence": "high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion",
+      "evidence": "high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion; reconciliation report present",
       "next_action": "Address high-risk findings or confirm permanent exclusion from release"
     },
     {

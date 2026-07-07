@@ -1,7 +1,7 @@
 # Confidentiality Red-Team Scan Summary
 
-Generated: 2026-07-07T02:38:22
-Scanned files: 791
+Generated: 2026-07-07T13:35:03
+Scanned files: 805
 
 ## Gate Status
 
@@ -9,8 +9,8 @@ Scanned files: 791
 
 - High risk findings: **3**
 - Medium risk findings: **22**
-- Low risk findings: **64**
-- Total findings: **89**
+- Low risk findings: **54**
+- Total findings: **79**
 - Strict mode: False
 
 ## High Risk (3 findings)
@@ -101,46 +101,13 @@ Scanned files: 791
   - Filename contains sensitive keyword 'gold'
   - Recommendation: Ensure this file is excluded from public release artifacts.
 
-## Low Risk (64 findings)
+## Low Risk (54 findings)
 
 ### filename_risk (1)
 
 - **`experiments\lightweight_smart_queue_v1_toy\smart_queue_top100.csv`** — `top100`
   - Filename contains sensitive keyword 'top100'
   - Recommendation: Verify this file is NOT included in public release. If toy/synthetic, prefix with 'toy_' to clarify.
-
-### gitignore_missing (10)
-
-- **`.gitignore`** — `pdfs/`
-  - .gitignore missing required entry 'pdfs/'
-  - Recommendation: Add 'pdfs/' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `private_pdfs/`
-  - .gitignore missing required entry 'private_pdfs/'
-  - Recommendation: Add 'private_pdfs/' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `data/private/`
-  - .gitignore missing required entry 'data/private/'
-  - Recommendation: Add 'data/private/' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `experiments/private/`
-  - .gitignore missing required entry 'experiments/private/'
-  - Recommendation: Add 'experiments/private/' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `*.pdf`
-  - .gitignore missing required entry '*.pdf'
-  - Recommendation: Add '*.pdf' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `*.docx`
-  - .gitignore missing required entry '*.docx'
-  - Recommendation: Add '*.docx' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `*.xlsx`
-  - .gitignore missing required entry '*.xlsx'
-  - Recommendation: Add '*.xlsx' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `*.npz`
-  - .gitignore missing required entry '*.npz'
-  - Recommendation: Add '*.npz' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `*.pkl`
-  - .gitignore missing required entry '*.pkl'
-  - Recommendation: Add '*.pkl' to .gitignore to prevent committing sensitive files.
-- **`.gitignore`** — `*.joblib`
-  - .gitignore missing required entry '*.joblib'
-  - Recommendation: Add '*.joblib' to .gitignore to prevent committing sensitive files.
 
 ### toy_validation (53)
 
@@ -312,17 +279,5 @@ Scanned files: 791
 
 ## .gitignore Check
 
-- Existing entries: 59
-- Missing entries: 10
-
-Missing entries:
-- `pdfs/`
-- `private_pdfs/`
-- `data/private/`
-- `experiments/private/`
-- `*.pdf`
-- `*.docx`
-- `*.xlsx`
-- `*.npz`
-- `*.pkl`
-- `*.joblib`
+- Existing entries: 70
+- Missing entries: 0

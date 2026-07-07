@@ -990,7 +990,23 @@ def main() -> int:
         action="store_true",
         help="Use toy config (configs/toy_demo.yaml).",
     )
+    parser.add_argument(
+        "--scan_public_only",
+        action="store_true",
+        help="Scan only public-safe directories (README, docs, scripts, schemas, "
+             "data/toy_synthetic, paper_assets, release_bundles). Excludes the full "
+             "experiments/ directory. Use in CI to avoid scanning private intermediates.",
+    )
     args = parser.parse_args()
+
+    # If --scan_public_only, restrict scan dirs to public-safe locations
+    if args.scan_public_only:
+        args.scan_dirs = [
+            "README.md", "CURRENT_MAINLINE.md",
+            "docs/", "scripts/", "schemas/",
+            "data/toy_synthetic/",
+            "paper_assets/", "release_bundles/",
+        ]
 
     config = load_and_validate(args.config, toy_mode=args.toy_mode)
     print_guards(config)

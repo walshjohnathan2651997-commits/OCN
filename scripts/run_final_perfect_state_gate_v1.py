@@ -754,9 +754,12 @@ def check_release() -> List[CheckResult]:
         elif high > 0:
             # Check if high-risk files are excluded from release bundle
             safety = _read_json(REPO_ROOT / "reports" / "release_safety_manifest_v3_17.json")
+            recon_path = REPO_ROOT / "reports" / "redteam_release_reconciliation_v3_17.json"
+            recon = _read_json(recon_path) if recon_path.exists() else None
             if safety and safety.get("release_safety_gate", {}).get("status") == "PASS":
+                recon_note = "; reconciliation report present" if recon else ""
                 results.append(CheckResult(cat, "9.1", "Redteam high risk in internal files (release excluded)", WARNING, P0,
-                                           f"high_risk_count={high} in internal files; release_safety_gate=PASS confirms exclusion",
+                                           f"high_risk_count={high} in internal files; release_safety_gate=PASS confirms exclusion{recon_note}",
                                            "High-risk findings in internal scoring files",
                                            "Address high-risk findings or confirm permanent exclusion from release"))
             else:

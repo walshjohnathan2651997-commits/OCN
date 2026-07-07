@@ -78,13 +78,3 @@ experiments\toy_end_to_end_demo_v1\toy_review_queue.csv,low,toy_validation,,,Toy
 experiments\toy_end_to_end_demo_v1\toy_run_summary.json,low,toy_validation,,,Toy JSON file has no 'toy_' prefixed keys or 'synthetic=true' marker,Add 'synthetic: true' field or prefix keys with 'toy_'.
 experiments\v3_17_confidential_pipeline_runs\smoke_test_toy\run_summary.json,low,toy_validation,,,Toy JSON file has no 'toy_' prefixed keys or 'synthetic=true' marker,Add 'synthetic: true' field or prefix keys with 'toy_'.
 experiments\v3_17_confidential_pipeline_runs\smoke_test_toy\stage_status.csv,low,toy_validation,,,Toy data file has no 'toy_' prefixed columns or 'synthetic=true' marker,Add 'toy_' prefix to column names or include a 'synthetic=true' column.
-.gitignore,low,gitignore_missing,pdfs/,,.gitignore missing required entry 'pdfs/',Add 'pdfs/' to .gitignore to prevent committing sensitive files.
-.gitignore,low,gitignore_missing,private_pdfs/,,.gitignore missing required entry 'private_pdfs/',Add 'private_pdfs/' to .gitignore to prevent committing sensitive files.
-.gitignore,low,gitignore_missing,data/private/,,.gitignore missing required entry 'data/private/',Add 'data/private/' to .gitignore to prevent committing sensitive files.
-.gitignore,low,gitignore_missing,experiments/private/,,.gitignore missing required entry 'experiments/private/',Add 'experiments/private/' to .gitignore to prevent committing sensitive files.
-.gitignore,low,gitignore_missing,*.pdf,,.gitignore missing required entry '*.pdf',Add '*.pdf' to .gitignore to prevent committing sensitive files.
-.gitignore,low,gitignore_missing,*.docx,,.gitignore missing required entry '*.docx',Add '*.docx' to .gitignore to prevent committing sensitive files.
-.gitignore,low,gitignore_missing,*.xlsx,,.gitignore missing required entry '*.xlsx',Add '*.xlsx' to .gitignore to prevent committing sensitive files.
-.gitignore,low,gitignore_missing,*.npz,,.gitignore missing required entry '*.npz',Add '*.npz' to .gitignore to prevent committing sensitive files.
-.gitignore,low,gitignore_missing,*.pkl,,.gitignore missing required entry '*.pkl',Add '*.pkl' to .gitignore to prevent committing sensitive files.
-.gitignore,low,gitignore_missing,*.joblib,,.gitignore missing required entry '*.joblib',Add '*.joblib' to .gitignore to prevent committing sensitive files.

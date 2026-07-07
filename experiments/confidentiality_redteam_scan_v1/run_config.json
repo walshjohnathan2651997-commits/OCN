@@ -1,6 +1,6 @@
 {
   "script_name": "run_confidentiality_redteam_scan_v1.py",
-  "timestamp": "2026-07-06T18:38:22.200372+00:00",
+  "timestamp": "2026-07-07T05:35:03.738767+00:00",
   "config_source": "D:\\ocn\\configs\\toy_demo.yaml",
   "guards": {
     "no_api": true,
@@ -33,5 +33,5 @@
     "toy_data_dir": "data/toy_synthetic"
   },
   "strict": false,
-  "scanned_files": 791
+  "scanned_files": 805
 }

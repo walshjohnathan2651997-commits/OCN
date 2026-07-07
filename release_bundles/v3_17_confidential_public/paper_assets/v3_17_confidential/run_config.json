@@ -1,7 +1,7 @@
 {
   "script_name": "generate_paper_assets_v3_17.py",
-  "timestamp": "2026-07-06T18:06:37.205112+00:00",
-  "config_source": "unknown",
+  "timestamp": "2026-07-07T05:10:07.554271+00:00",
+  "config_source": "defaults",
   "guards": {
     "no_api": true,
     "no_network": true,
@@ -22,9 +22,9 @@
   ],
   "paths": {},
   "experiments_dir": "D:\\ocn\\experiments",
-  "candidate_csv": "D:\\ocn\\data\\simclaim_all92_candidate_pool_v1\\strict_silver_max_v1\\strict_silver_max_candidates_v1.csv",
+  "candidate_csv": "D:\\ocn\\data\\toy_synthetic\\toy_candidates_v1.csv",
   "output_dir": "D:\\ocn\\paper_assets\\v3_17_confidential",
-  "toy_mode": false,
+  "toy_mode": true,
   "missing_files": [],
   "caveat": "Controlled silver diagnostic, not gold/human-audited."
 }

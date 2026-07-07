@@ -68,6 +68,26 @@ handoff_to_chatgpt/
 handoff_from_chatgpt_all92/
 data/source_bank_v2/pdfs/
 
+# PDFs and private PDFs (never commit raw PDF sources)
+pdfs/
+private_pdfs/
+*.pdf
+
+# Private data directories (never commit raw claim/evidence/private data)
+data/private/
+data/private_audit/
+experiments/private/
+
+# Office documents and binary archives (may contain embedded raw text)
+*.docx
+*.xlsx
+*.zip
+
+# Binary numerical artifacts (regeneratable, never commit)
+*.npz
+*.pkl
+*.joblib
+
 # External gold datasets (public, regeneratable — see download_instructions.md)
 data/external_gold/
 **/vitaminc_external_pairs.csv

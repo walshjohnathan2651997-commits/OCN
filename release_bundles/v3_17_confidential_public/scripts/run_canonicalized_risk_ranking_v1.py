@@ -18,13 +18,14 @@ from sklearn.metrics import average_precision_score
 
 # Shared config utilities
 sys.path.insert(0, str(Path(__file__).resolve().parent / "lib"))
-from config_utils import load_and_validate, resolve_path, write_run_config, print_guards  # noqa: E402
+from config_utils import load_and_validate, resolve_path, write_run_config, print_guards, get_repo_root  # noqa: E402
 
-# ===== Paths (defaults — can be overridden by --config) =====
-REVIEW_QUEUE_DIR = Path(r"D:\ocn\experiments\canonicalized_review_queue_v1")
-SELECTOR_DIR = Path(r"D:\ocn\experiments\canonical_selector_robustness_v1")
-RETRIEVAL_DIR = Path(r"D:\ocn\experiments\simclaim_pdf_corpus_retrieval_v1")
-OUTPUT_DIR = Path(r"D:\ocn\experiments\canonicalized_risk_ranking_v1")
+# ===== Paths (defaults — repo-root relative; can be overridden by --config) =====
+_REPO_ROOT = get_repo_root()
+REVIEW_QUEUE_DIR = _REPO_ROOT / "experiments" / "canonicalized_review_queue_v1"
+SELECTOR_DIR = _REPO_ROOT / "experiments" / "canonical_selector_robustness_v1"
+RETRIEVAL_DIR = _REPO_ROOT / "experiments" / "simclaim_pdf_corpus_retrieval_v1"
+OUTPUT_DIR = _REPO_ROOT / "experiments" / "canonicalized_risk_ranking_v1"
 
 # ===== Constants =====
 T_CONTRA_LOW = 0.36  # frozen mean threshold
@@ -845,7 +846,15 @@ def main():
 
     parser = argparse.ArgumentParser(description="Canonicalized R4 risk ranking calibration.")
     parser.add_argument("--config", default=None, help="Path to YAML config (optional, overrides defaults)")
+    parser.add_argument("--repo_root", default=None, help="Repository root directory (defaults to auto-detected location)")
+    parser.add_argument("--output_dir", default=None, help="Output directory (overrides default experiments/ path)")
     args = parser.parse_args()
+
+    # --- Apply repo_root override if provided ---
+    if args.repo_root:
+        repo = Path(args.repo_root).resolve()
+    else:
+        repo = _REPO_ROOT
 
     # --- Load config if provided ---
     if args.config:
@@ -861,6 +870,18 @@ def main():
             RETRIEVAL_DIR = resolve_path(config, "retrieval_dir")
     else:
         config = None
+
+    # --- Apply output_dir override ---
+    if args.output_dir:
+        OUTPUT_DIR = Path(args.output_dir).resolve()
+
+    # --- Re-derive repo-relative defaults if repo_root was overridden ---
+    if args.repo_root and not args.config:
+        REVIEW_QUEUE_DIR = repo / "experiments" / "canonicalized_review_queue_v1"
+        SELECTOR_DIR = repo / "experiments" / "canonical_selector_robustness_v1"
+        RETRIEVAL_DIR = repo / "experiments" / "simclaim_pdf_corpus_retrieval_v1"
+        if not args.output_dir:
+            OUTPUT_DIR = repo / "experiments" / "canonicalized_risk_ranking_v1"
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
