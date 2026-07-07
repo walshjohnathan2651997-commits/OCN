@@ -590,15 +590,34 @@ def build_priority_actions(scripts: dict, experiments: dict, leakage: dict, main
             "status": "pending",
         })
 
-    r4_blocked = (exp / "format_shift_ablation_v1" / "r4_eval_blocked.json").exists()
+    r4_blocked_path = exp / "format_shift_ablation_v1" / "r4_eval_blocked.json"
+    r4_blocked = False
+    r4_resolved = False
+    if r4_blocked_path.exists():
+        try:
+            with open(r4_blocked_path, "r", encoding="utf-8") as f:
+                r4_blocked_data = json.load(f)
+            r4_blocked = r4_blocked_data.get("status") == "blocked"
+            r4_resolved = r4_blocked_data.get("status") == "resolved"
+        except Exception:
+            r4_blocked = True
     if experiments.get("format_shift_ablation_v1", {}).get("exists", False):
-        actions.append({
-            "priority": "P0",
-            "action": "Run format shift ablation on real data",
-            "reason": "Format-shift inputs generated" + ("; R4 eval blocked (sklearn version)" if r4_blocked else ""),
-            "status": "done" if not r4_blocked else "blocked",
-            "blocker": "sklearn_version_mismatch" if r4_blocked else None,
-        })
+        if r4_resolved:
+            actions.append({
+                "priority": "P0",
+                "action": "Run format shift ablation on real data",
+                "reason": "Format-shift R4 eval resolved offline using local .venv sklearn 1.9.0; no network, no API, no retraining, no repickling",
+                "status": "done",
+                "blocker": None,
+            })
+        else:
+            actions.append({
+                "priority": "P0",
+                "action": "Run format shift ablation on real data",
+                "reason": "Format-shift inputs generated" + ("; R4 eval blocked (sklearn version)" if r4_blocked else ""),
+                "status": "done" if not r4_blocked else "blocked",
+                "blocker": "sklearn_version_mismatch" if r4_blocked else None,
+            })
     else:
         actions.append({
             "priority": "P0",

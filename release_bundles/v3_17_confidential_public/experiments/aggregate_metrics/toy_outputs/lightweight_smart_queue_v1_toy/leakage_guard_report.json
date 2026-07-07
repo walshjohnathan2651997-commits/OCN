@@ -15,8 +15,34 @@
     "selected_evidence",
     "true_label"
   ],
+  "forbidden_sort_fields": [
+    "candidate_label_guess",
+    "claim_text",
+    "clean_text",
+    "evidence_text",
+    "evidence_text_sha256",
+    "final_label",
+    "gold_label",
+    "human_audited",
+    "is_strong_action",
+    "oracle_hit",
+    "raw_text",
+    "selected_evidence",
+    "true_label"
+  ],
   "forbidden_fields_found_in_sorting": [],
   "allowed_fields_used": [
+    "bm25_score",
+    "entropy",
+    "p_contra",
+    "p_strong",
+    "p_svm",
+    "selected_n_words",
+    "selected_rank",
+    "selector_score",
+    "strong_action_flag"
+  ],
+  "allowed_sort_fields": [
     "bm25_score",
     "entropy",
     "p_contra",

@@ -1,6 +1,6 @@
 # Leakage Quick Scan — V3.17 Confidential
 
-Generated: 2026-07-07T10:05:53.729584+00:00
+Generated: 2026-07-07T16:48:11.789993+00:00
 
 **Overall Status**: `WARNING`
 
@@ -8,16 +8,11 @@ Generated: 2026-07-07T10:05:53.729584+00:00
 
 **PASS** — No public/redacted files contain forbidden text columns.
 
-## 1a. Task Pack 2/3/4 Leakage Reconciliation (2026-07-07)
-
-- **Task Pack 2 (Redteam reconciliation)**: Repo-wide redteam scan finds 3 high-risk `forbidden_sorting_field` findings (`true_label` in `experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv`, `true_label` and `oracle_hit` in `experiments/canonicalized_risk_ranking_v1/risk_ranking_features.csv`). All three are internal scoring files excluded from the public release bundle. `release_safety_manifest_v3_17.json` confirms `release_safety_gate.status=PASS`. Reconciliation report: `reports/redteam_release_reconciliation_v3_17.md`.
-- **Task Pack 3 (PDF corpus recovery)**: Public `data/pdf_corpus_v1/sentences.jsonl` and `windows.jsonl` are hash-only (no `raw_text`/`clean_text`). Full text resides in gitignored `data/private/pdf_corpus_v1_internal/`. BM25 reads from private corpus for ranking. Leakage guard report: `experiments/bm25_sentence_retrieval_v1/leakage_guard_report.json` (status=pass; oracle fields used only after ranking).
-- **Task Pack 4 (Format-shift block doc)**: No new leakage introduced. `experiments/format_shift_ablation_v1/format_shift_inputs_redacted.csv` is the public artifact (oracle variant rows stripped). `format_shift_metrics.csv` not generated (sklearn block).
-
 ## 2. Scripts with Hardcoded D:\ocn Paths
 
 | Script | Occurrences | Severity |
 |---|---|---|
+| `scripts\audit_path_hardcoding_v1.py` | 8 | WARNING |
 | `scripts\build_gold_pilot_preparation_v1.py` | 5 | WARNING |
 | `scripts\build_paper_ready_mixed_framework_v2.py` | 7 | WARNING |
 | `scripts\build_rigourate_style_scalar_baselines.py` | 4 | WARNING |
@@ -53,8 +48,6 @@ Generated: 2026-07-07T10:05:53.729584+00:00
 | `scripts\compare_rigourate_style_vs_r4.py` | 9 | WARNING |
 | `scripts\eval_scalar_baselines.py` | 1 | WARNING |
 | `scripts\generate_project_status_report_v1.py` | 4 | WARNING |
-| `scripts\run_canonicalized_review_queue_v1.py` | 6 | WARNING |
-| `scripts\run_canonicalized_risk_ranking_v1.py` | 4 | WARNING |
 | `scripts\run_canonical_selector_robustness_v1.py` | 7 | WARNING |
 | `scripts\run_external_gold_scifact_vitaminc_v1.py` | 2 | WARNING |
 | `scripts\run_gpt_structured_judge_probe_v1.py` | 6 | WARNING |
@@ -67,11 +60,10 @@ Generated: 2026-07-07T10:05:53.729584+00:00
 | `scripts\run_overnight_non_api_pipeline_v1.py` | 7 | WARNING |
 | `scripts\run_project_state_consolidation_v1.py` | 49 | WARNING |
 | `scripts\run_r4_backup_asset_search_v1.py` | 4 | WARNING |
-| `scripts\run_r4_evidence_canonicalization_v1.py` | 7 | WARNING |
 | `scripts\run_r4_minimal_recovery_v1.py` | 6 | WARNING |
-| `scripts\run_r4_on_retrieved_evidence_v1.py` | 12 | WARNING |
+| `scripts\run_r4_on_retrieved_evidence_v1.py` | 0 | WARNING |
 | `scripts\run_r4_retrieved_replay_v1.py` | 4 | WARNING |
-| `scripts\run_simclaim_pdf_retrieval_v1.py` | 7 | WARNING |
+| `scripts\run_simclaim_pdf_retrieval_v1.py` | 0 | WARNING |
 | `scripts\run_v3_15_claim_realism_audit.py` | 2 | WARNING |
 | `scripts\run_v3_15_low_prevalence_screening_simulation.py` | 2 | WARNING |
 | `scripts\run_v3_15_scalar_vs_relation_deep_test.py` | 6 | WARNING |

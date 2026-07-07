@@ -1,0 +1,9 @@
+variant,strong_F1,strong_precision,strong_recall,macro_F1,n_eval,delta_vs_oracle_clean,delta_vs_raw_bm25_top1
+oracle_clean,0.0,0.0,0.0,0.083333,6,0.0,0.0
+oracle_plus_metadata,0.0,0.0,0.0,0.083333,6,0.0,0.0
+oracle_lengthened,0.0,0.0,0.0,0.0,6,0.0,0.0
+oracle_plus_metadata_lengthened,0.0,0.0,0.0,0.071429,6,0.0,0.0
+raw_bm25_top1_chunk,0.0,0.0,0.0,0.1,6,0.0,0.0
+cleaned_bm25_top1_chunk,0.0,0.0,0.0,0.1,6,0.0,0.0
+canonicalized_best_sentence_top5,0.0,0.0,0.0,0.125,6,0.0,0.0
+canonicalized_three_sentence_window_top5,0.0,0.0,0.0,0.142857,6,0.0,0.0

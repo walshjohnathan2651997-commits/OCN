@@ -1,6 +1,6 @@
 # Current Project Status — V3.17 Confidential Lightweight
 
-Generated: 2026-07-07T10:05:53.729584+00:00
+Generated: 2026-07-07T16:48:11.786858+00:00
 
 > This is a read-only inventory. No experiments were re-run, no data modified.
 
@@ -23,11 +23,14 @@ Generated: 2026-07-07T10:05:53.729584+00:00
 - `README.md`: full shared-threshold CESE-OCN as current — "full shared-threshold CESE-OCN neural architecture** (future architecture, not c"
 - `README.md`: full shared-threshold CESE-OCN as current — "full shared-threshold CESE-OCN** = future architecture, not current"
 - `README.md`: gold benchmark — "gold benchmark"
+- `README.md`: gold benchmark — "gold benchmark"
 - `README.md`: human-audited — "human-audited"
 - `README.md`: human-audited — "human-audited"
 - `README.md`: human-audited — "human-audited"
 - `README.md`: SOTA — "SOTA"
 - `README.md`: SOTA — "SOTA"
+- `README.md`: SOTA — "SOTA"
+- `README.md`: automatic peer review — "automatic peer review"
 - `README.md`: automatic peer review — "automatic peer review"
 - `CURRENT_MAINLINE.md`: full shared-threshold CESE-OCN as current — "full shared-threshold CESE-OCN neural architecture** = future architecture, not "
 - `CURRENT_MAINLINE.md`: gold benchmark — "gold benchmark"
@@ -37,32 +40,29 @@ Generated: 2026-07-07T10:05:53.729584+00:00
 - `docs\annotation_guidelines_simclaim_eval_v1.md`: human-audited — "human-audited"
 - `docs\annotation_guidelines_simclaim_eval_v1.md`: human-audited — "human-audited"
 - `docs\current_mainline_v3_17.md`: full shared-threshold CESE-OCN as current — "Full shared-threshold CESE-OCN neural architecture validation." — The older CESE"
-- `docs\current_mainline_v3_17.md`: full shared-threshold CESE-OCN as current — "full shared-threshold CESE-OCN neural architecture is development history / futu"
-- `docs\current_mainline_v3_17.md`: human-audited — "human-audited"
-- `docs\current_mainline_v3_17.md`: human-audited — "human-audited"
 
 ## 2. Existing Scripts Inventory
 
 ### A. Frozen V3.17 Scripts
 | Script | Status | Size |
 |---|---|---|
-| run_simclaim_pdf_retrieval_v1.py | exists | 48078 |
-| run_r4_evidence_canonicalization_v1.py | exists | 56648 |
-| run_canonicalized_review_queue_v1.py | exists | 46759 |
-| run_canonicalized_risk_ranking_v1.py | exists | 40548 |
+| run_simclaim_pdf_retrieval_v1.py | exists | 49010 |
+| run_r4_evidence_canonicalization_v1.py | exists | 57805 |
+| run_canonicalized_review_queue_v1.py | exists | 48063 |
+| run_canonicalized_risk_ranking_v1.py | exists | 41616 |
 
 ### B. Proposed Strengthening Scripts
 | Script | Status | Size |
 |---|---|---|
-| build_pdf_sentence_corpus_v1.py | exists | 30728 |
-| run_bm25_sentence_retrieval_v1.py | exists | 22261 |
+| build_pdf_sentence_corpus_v1.py | exists | 39330 |
+| run_bm25_sentence_retrieval_v1.py | exists | 24394 |
 | run_canonicalizer_ablation_v1.py | exists | 32598 |
 | run_format_shift_ablation_v1.py | exists | 17872 |
 | evaluate_r4_on_evidence_variants_v1.py | exists | 33482 |
-| run_leakage_audit_v1.py | exists | 51299 |
+| run_leakage_audit_v1.py | exists | 52356 |
 | run_error_taxonomy_v1.py | exists | 38243 |
 | run_complexity_vs_utility_ablation_v1.py | exists | 52866 |
-| run_lightweight_smart_queue_v1.py | exists | 23729 |
+| run_lightweight_smart_queue_v1.py | exists | 26323 |
 | run_toy_end_to_end_demo_v1.py | exists | 7167 |
 | generate_paper_assets_v3_17.py | exists | 58158 |
 | build_pdf_stress_suite_v1.py | exists | 7268 |
@@ -77,7 +77,7 @@ Generated: 2026-07-07T10:05:53.729584+00:00
 | run_confidentiality_redteam_scan_v1.py | exists | 38414 |
 | validate_experiment_outputs_v1.py | exists | 15323 |
 | run_v3_17_confidential_pipeline.py | exists | 26070 |
-| build_public_sanitized_release_v1.py | exists | 30016 |
+| build_public_sanitized_release_v1.py | exists | 31469 |
 
 ## 3. Existing Experiment Outputs Inventory
 
@@ -87,17 +87,17 @@ Generated: 2026-07-07T10:05:53.729584+00:00
 | r4_evidence_canonicalization_v1 | Yes | No | canonicalization_error_analysis.csv, canonicalized_evidence_spans.csv, evidence_canonicalization_gate.json (+6 more) | 2026-07-05 |
 | canonicalized_review_queue_v1 | Yes | No | canonicalized_r4_review_scores.csv, canonicalized_review_queue_gate.json, canonicalized_review_queue_report.md (+6 more) | 2026-07-06 |
 | canonicalized_risk_ranking_v1 | Yes | No | low_prevalence_ranking_results.csv, review_queue_top100_best.csv, risk_ranking_error_analysis.csv (+5 more) | 2026-07-05 |
-| bm25_sentence_retrieval_v1 | Yes | Yes | blocked_by_missing_pdf_corpus.json, leakage_guard_report.json, oracle_recall_summary.json (+11 more) | 2026-07-06 |
+| bm25_sentence_retrieval_v1 | Yes | Yes | leakage_guard_report.json, oracle_recall_summary.json, retrieval_config.json (+12 more) | 2026-07-07 |
 | canonicalizer_ablation_v1 | Yes | Yes | canonicalizer_config.json, leakage_guard_report.json, run_config.json (+11 more) | 2026-07-06 |
-| format_shift_ablation_v1 | Yes | Yes | format_shift_config.json, format_shift_inputs.csv, format_shift_inputs_redacted.csv (+10 more) | 2026-07-06 |
-| leakage_audit_v1 | Yes | Yes | audit_summary.md, claim_only_baseline.json, cue_words_by_label.csv (+21 more) | 2026-07-06 |
+| format_shift_ablation_v1 | Yes | Yes | format_shift_config.json, format_shift_failure_examples_redacted.csv, format_shift_inputs.csv (+19 more) | 2026-07-07 |
+| leakage_audit_v1 | Yes | Yes | audit_summary.md, claim_only_baseline.json, cue_words_by_label.csv (+21 more) | 2026-07-07 |
 | error_taxonomy_v1 | Yes | No | error_cases_redacted.csv, error_taxonomy_summary.csv, error_taxonomy_summary.json (+2 more) | 2026-07-06 |
 | complexity_vs_utility_ablation_v1 | Yes | No | complexity_cost_audit.csv, complexity_vs_utility_claims_checklist.md, complexity_vs_utility_summary.md (+5 more) | 2026-07-06 |
-| lightweight_smart_queue_v1 | Yes | Yes | leakage_guard_report.json, run_config.json, schema_validation_report.json (+15 more) | 2026-07-06 |
+| lightweight_smart_queue_v1 | Yes | Yes | leakage_guard_report.json, run_config.json, schema_validation_report.json (+15 more) | 2026-07-07 |
 | pdf_extraction_stress_test_v1 | Yes | No | extraction_quality_metrics.csv, failure_cases_redacted.csv, leakage_guard_report.json (+9 more) | 2026-07-06 |
-| toy_end_to_end_demo_v1 | Yes | No | run_config.json, schema_validation_report.json, toy_review_queue.csv (+1 more) | 2026-07-06 |
+| toy_end_to_end_demo_v1 | Yes | No | run_config.json, schema_validation_report.json, toy_review_queue.csv (+1 more) | 2026-07-07 |
 | metric_robustness_v1 | Yes | No | classification_metrics_with_ci.csv, paired_comparison.csv, queue_metrics_with_ci.csv (+3 more) | 2026-07-06 |
-| confidentiality_redteam_scan_v1 | Yes | Yes | private_intermediate_allowlist.json, redteam_findings.csv, redteam_summary.json (+6 more) | 2026-07-06 |
+| confidentiality_redteam_scan_v1 | Yes | Yes | private_intermediate_allowlist.json, redteam_findings.csv, redteam_summary.json (+6 more) | 2026-07-07 |
 
 ## 4. Dataset Status
 
@@ -120,6 +120,7 @@ Generated: 2026-07-07T10:05:53.729584+00:00
 ### PASS: No forbidden text columns in public/redacted files
 
 ### WARNING: Scripts with hardcoded D:\ocn paths
+- `scripts\audit_path_hardcoding_v1.py`: 8 occurrences
 - `scripts\build_gold_pilot_preparation_v1.py`: 5 occurrences
 - `scripts\build_paper_ready_mixed_framework_v2.py`: 7 occurrences
 - `scripts\build_rigourate_style_scalar_baselines.py`: 4 occurrences
@@ -155,8 +156,6 @@ Generated: 2026-07-07T10:05:53.729584+00:00
 - `scripts\compare_rigourate_style_vs_r4.py`: 9 occurrences
 - `scripts\eval_scalar_baselines.py`: 1 occurrences
 - `scripts\generate_project_status_report_v1.py`: 4 occurrences
-- `scripts\run_canonicalized_review_queue_v1.py`: 6 occurrences
-- `scripts\run_canonicalized_risk_ranking_v1.py`: 4 occurrences
 - `scripts\run_canonical_selector_robustness_v1.py`: 7 occurrences
 - `scripts\run_external_gold_scifact_vitaminc_v1.py`: 2 occurrences
 - `scripts\run_gpt_structured_judge_probe_v1.py`: 6 occurrences
@@ -169,11 +168,10 @@ Generated: 2026-07-07T10:05:53.729584+00:00
 - `scripts\run_overnight_non_api_pipeline_v1.py`: 7 occurrences
 - `scripts\run_project_state_consolidation_v1.py`: 49 occurrences
 - `scripts\run_r4_backup_asset_search_v1.py`: 4 occurrences
-- `scripts\run_r4_evidence_canonicalization_v1.py`: 7 occurrences
 - `scripts\run_r4_minimal_recovery_v1.py`: 6 occurrences
-- `scripts\run_r4_on_retrieved_evidence_v1.py`: 12 occurrences
+- `scripts\run_r4_on_retrieved_evidence_v1.py`: 0 occurrences
 - `scripts\run_r4_retrieved_replay_v1.py`: 4 occurrences
-- `scripts\run_simclaim_pdf_retrieval_v1.py`: 7 occurrences
+- `scripts\run_simclaim_pdf_retrieval_v1.py`: 0 occurrences
 - `scripts\run_v3_15_claim_realism_audit.py`: 2 occurrences
 - `scripts\run_v3_15_low_prevalence_screening_simulation.py`: 2 occurrences
 - `scripts\run_v3_15_scalar_vs_relation_deep_test.py`: 6 occurrences
@@ -201,8 +199,8 @@ Generated: 2026-07-07T10:05:53.729584+00:00
 | Claim | Evidence File | Status | Data Provenance | Safe Wording | Risk |
 |---|---|---|---|---|---|
 | Raw PDF chunk / BM25 retrieval has results | `experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_results_bm25.csv` | exists | **private-only** | BM25 retrieval on local PDF corpus achieves measurable oracle recall | Oracle recall is on silver labels only; retrieval output is private-only (contains source text) |
-| Sentence-level BM25 retrieval has results | `experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json` | exists | **real** | Sentence/window BM25 retrieval on recovered PDF corpus achieves sentence recall@1=0.851, recall@5=0.932, recall@10=0.948, MRR=0.883 on 444 real candidates (outperforms window-level) | Oracle recall on silver labels only; sentence corpus recovered from pre-chunked CSV (real PDFs no longer in workspace); public artifacts are hash-only (no raw text); BM25 reads from gitignored private corpus. |
-| Canonicalization improves over raw chunks | `experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv` | exists | **real** | best_sentence_top5_overlap oracle_recall=0.387 vs raw_top1_chunk=0.043 on 444 real candidates (9x improvement) | Silver labels only; canonicalizer ablation covers all 8 selectors (sentence_bm25 and window_bm25 now unblocked after Task Pack 3 corpus recovery) |
+| Sentence-level BM25 retrieval has results | `experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json` | exists | **real** | Sentence-level BM25 outperforms window-level on oracle recall (toy) | Only toy data; real data run not yet executed |
+| Canonicalization improves over raw chunks | `experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv` | exists | **real** | best_sentence_top5_overlap oracle_recall=0.387 vs raw_top1_chunk=0.043 on 444 real candidates (9x improvement) | Silver labels only; 2/8 selectors (sentence_bm25, window_bm25) blocked by missing PDF corpus |
 | Frozen R4 review queue has results | `experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv` | exists | **real** | Frozen R4 screening achieves strong_F1=0.4503 on 436 candidates | Silver labels only; not human-audited; review queue output is private-only (contains labels for audit join) |
 | Risk ranking has results | `experiments/canonicalized_risk_ranking_v1/risk_ranking_features.csv` | exists | **real** | G_conservative_precision ranking provides top-100 review queue | Threshold not fitted on test; silver labels only; feature matrix is private-only (contains labels for audit join) |
 | Leakage audit has results | `experiments/leakage_audit_v1/claim_only_baseline.json` | exists | **real** | All 12 leakage checks pass on 444 real candidates; claim-only ratio=0.74 (below WARNING threshold) | Silver labels (candidate_label_guess) used as true_label for audit; queue guard from toy SmartQueue |
@@ -210,7 +208,7 @@ Generated: 2026-07-07T10:05:53.729584+00:00
 | Error taxonomy has results | `experiments/error_taxonomy_v1/error_taxonomy_summary.csv` | exists | **real** | 9 error types tagged; top FP cause is mild_vs_strong_boundary | Silver labels only; error type thresholds are heuristic |
 | PDF-start extraction stress test has results | `experiments/pdf_extraction_stress_test_v1/` | exists | **toy** | 12 synthetic PDF stress documents processed; 0 failures; 123 sentences extracted. Extraction robustness test, not SOTA. | Synthetic stress fixtures only; not real PDFs; not an empirical claim about real-world extraction |
 | Complexity-vs-utility tradeoff analysis has results | `experiments/complexity_vs_utility_ablation_v1/method_comparison_metrics.csv` | exists | **real** | Deterministic canonicalization is Pareto-optimal under confidential/no-API/no-training/silver-diagnostic constraints | Does not prove rules generally beat learned models; deployment-specific tradeoff |
-| Human audit has results | `experiments/human_audit_v1/audit_agreement_summary.json` | partial | **blocked** | Small targeted human audit protocol and seed queue are in place; audit not yet executed. Not a gold benchmark. | No human audit has been completed; all silver labels remain un-audited. Protocol and 111-candidate seed queue built; empirical audit deferred (not a release blocker). |
+| Human audit has results | `experiments/human_audit_v1/audit_agreement_summary.json` | partial | **blocked** | Small targeted human audit protocol and seed queue are in place; auditor labels pending. Not a gold benchmark. | No human audit has been completed; all silver labels remain un-audited. Audit seed built (111 candidates); empirical results deferred. |
 | Paper assets generated | `paper_assets/v3_17_confidential/tables/` | exists | **real** | 8 tables (md+tex), 4 figure data CSVs, paper_results_summary.md (RQ1-8), paper_claims_checklist.md generated | All tables include caveat: controlled silver diagnostic, not gold/human-audited |
 | Public sanitized release bundle built | `release_bundles/v3_17_confidential_public/` | exists | **real** | 221 files; redteam scan PASS (high_risk=0); no raw claim/evidence/PDF text | Bundle excludes private scoring files, real review queues, PDFs, and label-bearing intermediates |
 
@@ -219,81 +217,36 @@ Generated: 2026-07-07T10:05:53.729584+00:00
 > Each action labeled: **done / blocked / pending**
 
 - **P0** [BLOCKED]: Clean up old narratives in docs (V2/gold/SOTA references)
-  - Reason: 79 old narrative references found (majority are denials like 'not a gold benchmark')
+  - Reason: 160 old narrative references found (majority are denials like 'not a gold benchmark')
   - Note: BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references are predominantly in denial/qualification context (e.g., 'not a gold benchmark', 'not human-audited', 'not SOTA'). Improving scanner to distinguish denials from claims requires NLP context analysis, out of scope for V3.17 confidential lightweight. Non-blocking for release.
 - **P0** [DONE]: Fix leaked text fields in public/redacted files
   - Reason: No forbidden text columns in public/redacted files
 - **P0** [DONE]: Run BM25 sentence retrieval on real data
-  - Reason: Real BM25 sentence/window retrieval completed on recovered PDF corpus (sentence recall@10=0.948, MRR=0.883 on 444 candidates)
+  - Reason: Real data retrieval completed
 - **P0** [DONE]: Run canonicalizer ablation on real data
   - Reason: Real data ablation completed (6/8 selectors)
-- **P0** [BLOCKED]: Run format shift ablation on real data
-  - Reason: Format-shift variant construction succeeded (3552 rows, 8 variants) and NLI features computed; R4 prediction blocked by sklearn version mismatch (frozen artifacts need >=1.5.0, env has 1.4.1.post1). Documented as permanent limitation in reports/format_shift_r4_eval_blocked_v3_17.md.
-  - Note: Fix requires network/pip install which violates hard boundary. Blocked report v3_17 generated with safe/unsafe paper wording.
-- **P0** [DONE]: Reconcile redteam findings with public release safety
-  - Reason: Redteam scan (repo-wide) shows 3 high-risk findings in internal scoring files; release_safety_gate (bundle-only) PASS. Reconciliation report (reports/redteam_release_reconciliation_v3_17.md) documents scope difference.
-- **P0** [DONE]: Document format-shift sklearn block as permanent limitation
-  - Reason: reports/format_shift_r4_eval_blocked_v3_17.md/.json generated with diagnosis, safe/unsafe paper wording, and Final Gate impact statement.
+- **P0** [DONE]: Run format shift ablation on real data
+  - Reason: Format-shift R4 eval resolved offline using local .venv sklearn 1.9.0; no network, no API, no retraining, no repickling
 - **P0** [DONE]: Run leakage audit on real data
   - Reason: Real data audit completed (12 checks, PASS)
 - **P1** [DONE]: Run SmartQueue on real data
   - Reason: Real data SmartQueue completed (436 candidates, 4 buckets)
 - **P1** [PENDING]: Remove hardcoded D:\ocn paths from scripts
-  - Reason: 65 scripts with hardcoded paths (all in deprecated/legacy scripts, not V3.17 pipeline)
+  - Reason: 63 scripts with hardcoded paths (all in deprecated/legacy scripts, not V3.17 pipeline)
   - Note: Non-blocking; all hardcoded paths are in pre-V3.17 deprecated scripts
 - **P1** [DONE]: Implement and run complexity-vs-utility ablation
   - Reason: Script exists and has been run on real data
 - **P1** [DONE]: Implement and run PDF extraction stress test
   - Reason: Script exists and has been run on synthetic stress fixtures
 - **P1** [DONE]: Define small human audit protocol (2-annotator, adjudication)
-  - Reason: Protocol (docs/human_audit_protocol_v1.md), template (data/audit_templates/human_audit_template.csv), and redacted seed queue (data/audit_templates/human_audit_queue_seed_v1_redacted.csv) prepared.
-  - Note: Audit remains staged, NOT executed. No fake audit_agreement_summary.json. Final Gate 6.4 = WARNING (documented). Paper wording: 'small targeted human audit protocol and seed queue prepared; audit not yet executed.'
+  - Reason: Protocol and seed queue built; auditor labels pending
+  - Note: Protocol exists; empirical audit deferred (not a release blocker)
 - **P2** [DONE]: Publish sanitized public release bundle
   - Reason: Bundle built: 221 files, redteam PASS
 - **P2** [DONE]: Generate paper assets (8 tables, RQ1-8, claims checklist)
   - Reason: Paper assets generated
 - **P2** [PENDING]: Compile final paper PDF from paper_assets
   - Reason: Tables/figures in LaTeX+MD; requires LaTeX compilation (out of scope for V3.17 confidential lightweight)
-
-## 8. Final Gate Rerun Summary (Task Pack 4 — 2026-07-07)
-
-**Final status**: `READY_WITH_LIMITATIONS`
-
-| Metric | Count |
-|---|---|
-| PASS | 40 |
-| WARNING | 3 |
-| BLOCKED | 1 |
-| FAIL | 0 |
-| Total checks | 44 |
-
-### Non-PASS items (all documented)
-
-| Check | Status | Priority | Description | Documented |
-|---|---|---|---|---|
-| 3.4 | BLOCKED | P0 | Format shift blocked documented (sklearn_version_mismatch) | Yes |
-| 6.4 | WARNING | P1 | Audit not yet run (documented) | Yes |
-| 9.1 | WARNING | P0 | Redteam high risk in internal files (release excluded) | Yes |
-| 10.2 | WARNING | P1 | Schema validation has documented failures (blocked experiments) | Yes |
-
-### Changed since previous gate
-
-- Task Pack 2: redteam/release safety reconciliation report added
-- Task Pack 3: BM25 sentence/window corpus recovered from pre-chunked CSV; check 3.2 PASS
-- Task Pack 4: format-shift sklearn block documented; check 3.4 BLOCKED (documented)
-
-### Remaining documented limitations
-
-1. Format-shift R4 eval blocked by `sklearn_version_mismatch` (no-network boundary)
-2. Human audit staged, not executed (no fake `audit_agreement_summary.json`)
-3. Redteam high-risk findings in internal scoring files (excluded from public release)
-4. Schema validation: 2 failures from blocked format-shift experiments
-
-### Next actions
-
-1. Execute human audit when annotators available
-2. Address internal-only redteam high-risk findings or confirm permanent exclusion
-3. Consider sklearn upgrade for format-shift R4 eval (requires network)
 
 ---
 

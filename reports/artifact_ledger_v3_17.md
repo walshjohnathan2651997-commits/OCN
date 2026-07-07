@@ -1,6 +1,6 @@
 # Artifact Ledger — V3.17 Confidential Lightweight
 
-Generated: 2026-07-07T05:01:58+0000
+Generated: 2026-07-07T16:52:21+0000
 
 > Read-only scan. No artifacts were modified.
 
@@ -13,7 +13,7 @@ Generated: 2026-07-07T05:01:58+0000
 | Safe to release | 46 |
 | Private/sensitive | 8 |
 | Contains raw text | 4 |
-| Blocked run mode | 3 |
+| Blocked run mode | 1 |
 
 ## Release Safety Gate
 
@@ -42,7 +42,7 @@ Generated: 2026-07-07T05:01:58+0000
 | A032_canonicalizer_redacted | `experiments/canonicalizer_ablation_v1/selector_examples_redacted.csv` | redacted_csv | real | no | no | no | yes | Redacted examples; hash-only, no raw text. |
 | A040_format_shift_inputs | `experiments/format_shift_ablation_v1/format_shift_inputs.csv` | inputs_csv | real | no | no | no | no | Contains evidence text variants. Never released. |
 | A041_format_shift_redacted | `experiments/format_shift_ablation_v1/format_shift_inputs_redacted.csv` | redacted_csv | real | no | no | no | yes | Redacted format-shift inputs; hash-only. |
-| A042_format_shift_blocked | `experiments/format_shift_ablation_v1/r4_eval_blocked.json` | blocked_metrics_json | blocked | no | no | no | yes | Blocked: sklearn version mismatch. Contains status only. |
+| A042_format_shift_blocked | `experiments/format_shift_ablation_v1/r4_eval_blocked.json` | resolved_metrics_json | real | no | no | no | yes | Format-shift R4 eval resolved offline using local .venv skle... |
 | A050_review_queue_scores | `experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv` | scores_csv | real | yes | yes | no | no | Per-candidate scores; may link to labels. Not released. |
 | A051_review_queue_top100 | `experiments/canonicalized_review_queue_v1/review_queue_top100.csv` | queue_csv | real | yes | yes | no | no | Top-100 queue; contains candidate IDs and scores. Not releas... |
 | A052_risk_ranking_results | `experiments/canonicalized_risk_ranking_v1/risk_ranking_results_by_variant.csv` | metrics_csv | real | no | no | no | yes | Variant-level ranking metrics; precision@k, recall@k. No raw... |
@@ -74,7 +74,7 @@ Generated: 2026-07-07T05:01:58+0000
 | A138_table5_review_queue | `paper_assets/v3_17_confidential/tables/table5_review_queue.md` | paper_table_md | real | no | no | no | yes | Table 5; review queue precision@k. |
 | A139_table6_leakage | `paper_assets/v3_17_confidential/tables/table6_leakage_audit.md` | paper_table_md | real | no | no | no | yes | Table 6; leakage audit checks. |
 | A140_table7_complexity | `paper_assets/v3_17_confidential/tables/table7_complexity_utility.md` | paper_table_md | real | no | no | no | yes | Table 7; complexity-utility Pareto. |
-| A141_table3_format_shift | `paper_assets/v3_17_confidential/tables/table3_format_shift_ablation.md` | paper_table_md | blocked | no | no | no | yes | Table 3; format-shift ablation. Blocked by sklearn version m... |
+| A141_table3_format_shift | `paper_assets/v3_17_confidential/tables/table3_format_shift_ablation.md` | paper_table_md | real | no | no | no | yes | Table 3; format-shift ablation. Format-shift R4 eval resolve... |
 | A142_table8_human_audit | `paper_assets/v3_17_confidential/tables/table8_human_audit_if_available.md` | paper_table_md | real | no | no | no | yes | Table 8; human audit status. Partial/blocked; no adjudicatio... |
 | A150_release_manifest | `release_bundles/v3_17_confidential_public/MANIFEST.json` | release_manifest | real | no | no | no | yes | Release manifest; lists all included files. |
 | A151_release_redaction_report | `release_bundles/v3_17_confidential_public/REDACTION_REPORT.json` | redaction_report | real | no | no | no | yes | Redaction report; verifies no raw text in release. |

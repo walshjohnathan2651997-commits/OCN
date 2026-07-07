@@ -1,7 +1,7 @@
 # Confidentiality Red-Team Scan Summary
 
-Generated: 2026-07-07T13:10:28
-Scanned files: 805
+Generated: 2026-07-08T00:43:20
+Scanned files: 816
 
 ## Gate Status
 
@@ -9,8 +9,8 @@ Scanned files: 805
 
 - High risk findings: **3**
 - Medium risk findings: **22**
-- Low risk findings: **54**
-- Total findings: **79**
+- Low risk findings: **59**
+- Total findings: **84**
 - Strict mode: False
 
 ## High Risk (3 findings)
@@ -101,7 +101,7 @@ Scanned files: 805
   - Filename contains sensitive keyword 'gold'
   - Recommendation: Ensure this file is excluded from public release artifacts.
 
-## Low Risk (54 findings)
+## Low Risk (59 findings)
 
 ### filename_risk (1)
 
@@ -109,7 +109,7 @@ Scanned files: 805
   - Filename contains sensitive keyword 'top100'
   - Recommendation: Verify this file is NOT included in public release. If toy/synthetic, prefix with 'toy_' to clarify.
 
-### toy_validation (53)
+### toy_validation (58)
 
 - **`data\toy_synthetic\pdf_stress_sources.jsonl`** — ``
   - Toy JSONL file has no 'toy_' prefixed keys or 'synthetic=true' marker
@@ -186,12 +186,27 @@ Scanned files: 805
 - **`experiments\format_shift_ablation_v1_toy\format_shift_config.json`** — ``
   - Toy JSON file has no 'toy_' prefixed keys or 'synthetic=true' marker
   - Recommendation: Add 'synthetic: true' field or prefix keys with 'toy_'.
+- **`experiments\format_shift_ablation_v1_toy\format_shift_failure_examples_redacted.csv`** — ``
+  - Toy data file has no 'toy_' prefixed columns or 'synthetic=true' marker
+  - Recommendation: Add 'toy_' prefix to column names or include a 'synthetic=true' column.
 - **`experiments\format_shift_ablation_v1_toy\format_shift_inputs.csv`** — ``
   - Toy data file has no 'toy_' prefixed columns or 'synthetic=true' marker
   - Recommendation: Add 'toy_' prefix to column names or include a 'synthetic=true' column.
 - **`experiments\format_shift_ablation_v1_toy\format_shift_inputs_redacted.csv`** — ``
   - Toy data file has no 'toy_' prefixed columns or 'synthetic=true' marker
   - Recommendation: Add 'toy_' prefix to column names or include a 'synthetic=true' column.
+- **`experiments\format_shift_ablation_v1_toy\format_shift_metrics.csv`** — ``
+  - Toy data file has no 'toy_' prefixed columns or 'synthetic=true' marker
+  - Recommendation: Add 'toy_' prefix to column names or include a 'synthetic=true' column.
+- **`experiments\format_shift_ablation_v1_toy\format_shift_predictions.csv`** — ``
+  - Toy data file has no 'toy_' prefixed columns or 'synthetic=true' marker
+  - Recommendation: Add 'toy_' prefix to column names or include a 'synthetic=true' column.
+- **`experiments\format_shift_ablation_v1_toy\format_shift_summary.json`** — ``
+  - Toy JSON file has no 'toy_' prefixed keys or 'synthetic=true' marker
+  - Recommendation: Add 'synthetic: true' field or prefix keys with 'toy_'.
+- **`experiments\format_shift_ablation_v1_toy\r4_leakage_guard_report.json`** — ``
+  - Toy JSON file has no 'toy_' prefixed keys or 'synthetic=true' marker
+  - Recommendation: Add 'synthetic: true' field or prefix keys with 'toy_'.
 - **`experiments\format_shift_ablation_v1_toy\schema_validation_report.json`** — ``
   - Toy JSON file has no 'toy_' prefixed keys or 'synthetic=true' marker
   - Recommendation: Add 'synthetic: true' field or prefix keys with 'toy_'.

@@ -1,6 +1,6 @@
 # Legacy Narrative Scan — V3.17 Confidential Lightweight
 
-Generated: 2026-07-07T14:23:06.010805+00:00
+Generated: 2026-07-07T16:54:12.604576+00:00
 
 > Read-only scan. No files were modified.
 
@@ -425,18 +425,18 @@ Generated: 2026-07-07T14:23:06.010805+00:00
 | reports/current_project_status_v3_17.md | 24 | full shared-threshold CESE-OCN | - `README.md`: full shared-threshold CESE-OCN as current — "full shared-threshold CESE-OCN** = future architecture, n... |
 | reports/current_project_status_v3_17.md | 25 | gold benchmark | - `README.md`: gold benchmark — "gold benchmark" |
 | reports/current_project_status_v3_17.md | 25 | gold benchmark | - `README.md`: gold benchmark — "gold benchmark" |
-| reports/current_project_status_v3_17.md | 33 | gold benchmark | - `CURRENT_MAINLINE.md`: gold benchmark — "gold benchmark" |
-| reports/current_project_status_v3_17.md | 33 | gold benchmark | - `CURRENT_MAINLINE.md`: gold benchmark — "gold benchmark" |
-| reports/current_project_status_v3_17.md | 206 | human-audited | \| Frozen R4 review queue has results \| `experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.cs... |
-| reports/current_project_status_v3_17.md | 211 | SOTA | \| PDF-start extraction stress test has results \| `experiments/pdf_extraction_stress_test_v1/` \| exists \| **toy** ... |
-| reports/current_project_status_v3_17.md | 213 | gold benchmark | \| Human audit has results \| `experiments/human_audit_v1/audit_agreement_summary.json` \| partial \| **blocked** \| ... |
-| reports/current_project_status_v3_17.md | 214 | human-audited | \| Paper assets generated \| `paper_assets/v3_17_confidential/tables/` \| exists \| **real** \| 8 tables (md+tex), 4 ... |
-| reports/current_project_status_v3_17.md | 221 | SOTA | - **P0** [BLOCKED]: Clean up old narratives in docs (V2/gold/SOTA references) |
-| reports/current_project_status_v3_17.md | 222 | gold benchmark | - Reason: 79 old narrative references found (majority are denials like 'not a gold benchmark') |
-| reports/current_project_status_v3_17.md | 223 | gold benchmark | - Note: BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references... |
-| reports/current_project_status_v3_17.md | 223 | human-audited | - Note: BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references... |
-| reports/current_project_status_v3_17.md | 223 | SOTA | - Note: BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references... |
-| reports/current_project_status_v3_17.md | 300 | human-audited | > All results are controlled silver diagnostic, not gold/human-audited. |
+| reports/current_project_status_v3_17.md | 36 | gold benchmark | - `CURRENT_MAINLINE.md`: gold benchmark — "gold benchmark" |
+| reports/current_project_status_v3_17.md | 36 | gold benchmark | - `CURRENT_MAINLINE.md`: gold benchmark — "gold benchmark" |
+| reports/current_project_status_v3_17.md | 204 | human-audited | \| Frozen R4 review queue has results \| `experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.cs... |
+| reports/current_project_status_v3_17.md | 209 | SOTA | \| PDF-start extraction stress test has results \| `experiments/pdf_extraction_stress_test_v1/` \| exists \| **toy** ... |
+| reports/current_project_status_v3_17.md | 211 | gold benchmark | \| Human audit has results \| `experiments/human_audit_v1/audit_agreement_summary.json` \| partial \| **blocked** \| ... |
+| reports/current_project_status_v3_17.md | 212 | human-audited | \| Paper assets generated \| `paper_assets/v3_17_confidential/tables/` \| exists \| **real** \| 8 tables (md+tex), 4 ... |
+| reports/current_project_status_v3_17.md | 219 | SOTA | - **P0** [BLOCKED]: Clean up old narratives in docs (V2/gold/SOTA references) |
+| reports/current_project_status_v3_17.md | 220 | gold benchmark | - Reason: 160 old narrative references found (majority are denials like 'not a gold benchmark') |
+| reports/current_project_status_v3_17.md | 221 | gold benchmark | - Note: BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references... |
+| reports/current_project_status_v3_17.md | 221 | human-audited | - Note: BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references... |
+| reports/current_project_status_v3_17.md | 221 | SOTA | - Note: BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references... |
+| reports/current_project_status_v3_17.md | 253 | human-audited | > All results are controlled silver diagnostic, not gold/human-audited. |
 | reports/dataset_provenance_ledger_v3_17.md | 13 | gold benchmark | - not gold benchmark |
 | reports/dataset_provenance_ledger_v3_17.md | 14 | human-audited | - not human-audited benchmark |
 | reports/dataset_provenance_ledger_v3_17.md | 20 | human-audited | > We use a source-traceable controlled silver diagnostic set. The labels are not gold or human-audited, and results s... |
@@ -453,38 +453,38 @@ Generated: 2026-07-07T14:23:06.010805+00:00
 | docs/simclaim_eval_v1_data_status.md | 56 | human-audited | - Role: to be constructed from human-audited source-paired samples. |
 | reports/current_project_status_v3_17.md | 23 | full shared-threshold CESE-OCN | - `README.md`: full shared-threshold CESE-OCN as current — "full shared-threshold CESE-OCN neural architecture** (fut... |
 | reports/current_project_status_v3_17.md | 23 | full shared-threshold CESE-OCN | - `README.md`: full shared-threshold CESE-OCN as current — "full shared-threshold CESE-OCN neural architecture** (fut... |
-| reports/current_project_status_v3_17.md | 26 | human-audited | - `README.md`: human-audited — "human-audited" |
-| reports/current_project_status_v3_17.md | 26 | human-audited | - `README.md`: human-audited — "human-audited" |
+| reports/current_project_status_v3_17.md | 26 | gold benchmark | - `README.md`: gold benchmark — "gold benchmark" |
+| reports/current_project_status_v3_17.md | 26 | gold benchmark | - `README.md`: gold benchmark — "gold benchmark" |
 | reports/current_project_status_v3_17.md | 27 | human-audited | - `README.md`: human-audited — "human-audited" |
 | reports/current_project_status_v3_17.md | 27 | human-audited | - `README.md`: human-audited — "human-audited" |
 | reports/current_project_status_v3_17.md | 28 | human-audited | - `README.md`: human-audited — "human-audited" |
 | reports/current_project_status_v3_17.md | 28 | human-audited | - `README.md`: human-audited — "human-audited" |
-| reports/current_project_status_v3_17.md | 29 | SOTA | - `README.md`: SOTA — "SOTA" |
-| reports/current_project_status_v3_17.md | 29 | SOTA | - `README.md`: SOTA — "SOTA" |
+| reports/current_project_status_v3_17.md | 29 | human-audited | - `README.md`: human-audited — "human-audited" |
+| reports/current_project_status_v3_17.md | 29 | human-audited | - `README.md`: human-audited — "human-audited" |
 | reports/current_project_status_v3_17.md | 30 | SOTA | - `README.md`: SOTA — "SOTA" |
 | reports/current_project_status_v3_17.md | 30 | SOTA | - `README.md`: SOTA — "SOTA" |
-| reports/current_project_status_v3_17.md | 31 | automatic peer review | - `README.md`: automatic peer review — "automatic peer review" |
-| reports/current_project_status_v3_17.md | 31 | automatic peer review | - `README.md`: automatic peer review — "automatic peer review" |
-| reports/current_project_status_v3_17.md | 32 | full shared-threshold CESE-OCN | - `CURRENT_MAINLINE.md`: full shared-threshold CESE-OCN as current — "full shared-threshold CESE-OCN neural architect... |
-| reports/current_project_status_v3_17.md | 32 | full shared-threshold CESE-OCN | - `CURRENT_MAINLINE.md`: full shared-threshold CESE-OCN as current — "full shared-threshold CESE-OCN neural architect... |
-| reports/current_project_status_v3_17.md | 34 | human-audited | - `CURRENT_MAINLINE.md`: human-audited — "human-audited" |
-| reports/current_project_status_v3_17.md | 34 | human-audited | - `CURRENT_MAINLINE.md`: human-audited — "human-audited" |
-| reports/current_project_status_v3_17.md | 35 | SOTA | - `CURRENT_MAINLINE.md`: SOTA — "SOTA" |
-| reports/current_project_status_v3_17.md | 35 | SOTA | - `CURRENT_MAINLINE.md`: SOTA — "SOTA" |
-| reports/current_project_status_v3_17.md | 36 | automatic peer review | - `CURRENT_MAINLINE.md`: automatic peer review — "automatic peer review" |
-| reports/current_project_status_v3_17.md | 36 | automatic peer review | - `CURRENT_MAINLINE.md`: automatic peer review — "automatic peer review" |
-| reports/current_project_status_v3_17.md | 37 | human-audited | - `docs\annotation_guidelines_simclaim_eval_v1.md`: human-audited — "human-audited" |
-| reports/current_project_status_v3_17.md | 37 | human-audited | - `docs\annotation_guidelines_simclaim_eval_v1.md`: human-audited — "human-audited" |
-| reports/current_project_status_v3_17.md | 38 | human-audited | - `docs\annotation_guidelines_simclaim_eval_v1.md`: human-audited — "human-audited" |
-| reports/current_project_status_v3_17.md | 38 | human-audited | - `docs\annotation_guidelines_simclaim_eval_v1.md`: human-audited — "human-audited" |
-| reports/current_project_status_v3_17.md | 39 | full shared-threshold CESE-OCN | - `docs\current_mainline_v3_17.md`: full shared-threshold CESE-OCN as current — "Full shared-threshold CESE-OCN neura... |
-| reports/current_project_status_v3_17.md | 39 | Full shared-threshold CESE-OCN | - `docs\current_mainline_v3_17.md`: full shared-threshold CESE-OCN as current — "Full shared-threshold CESE-OCN neura... |
-| reports/current_project_status_v3_17.md | 40 | full shared-threshold CESE-OCN | - `docs\current_mainline_v3_17.md`: full shared-threshold CESE-OCN as current — "full shared-threshold CESE-OCN neura... |
-| reports/current_project_status_v3_17.md | 40 | full shared-threshold CESE-OCN | - `docs\current_mainline_v3_17.md`: full shared-threshold CESE-OCN as current — "full shared-threshold CESE-OCN neura... |
-| reports/current_project_status_v3_17.md | 41 | human-audited | - `docs\current_mainline_v3_17.md`: human-audited — "human-audited" |
-| reports/current_project_status_v3_17.md | 41 | human-audited | - `docs\current_mainline_v3_17.md`: human-audited — "human-audited" |
-| reports/current_project_status_v3_17.md | 42 | human-audited | - `docs\current_mainline_v3_17.md`: human-audited — "human-audited" |
-| reports/current_project_status_v3_17.md | 42 | human-audited | - `docs\current_mainline_v3_17.md`: human-audited — "human-audited" |
+| reports/current_project_status_v3_17.md | 31 | SOTA | - `README.md`: SOTA — "SOTA" |
+| reports/current_project_status_v3_17.md | 31 | SOTA | - `README.md`: SOTA — "SOTA" |
+| reports/current_project_status_v3_17.md | 32 | SOTA | - `README.md`: SOTA — "SOTA" |
+| reports/current_project_status_v3_17.md | 32 | SOTA | - `README.md`: SOTA — "SOTA" |
+| reports/current_project_status_v3_17.md | 33 | automatic peer review | - `README.md`: automatic peer review — "automatic peer review" |
+| reports/current_project_status_v3_17.md | 33 | automatic peer review | - `README.md`: automatic peer review — "automatic peer review" |
+| reports/current_project_status_v3_17.md | 34 | automatic peer review | - `README.md`: automatic peer review — "automatic peer review" |
+| reports/current_project_status_v3_17.md | 34 | automatic peer review | - `README.md`: automatic peer review — "automatic peer review" |
+| reports/current_project_status_v3_17.md | 35 | full shared-threshold CESE-OCN | - `CURRENT_MAINLINE.md`: full shared-threshold CESE-OCN as current — "full shared-threshold CESE-OCN neural architect... |
+| reports/current_project_status_v3_17.md | 35 | full shared-threshold CESE-OCN | - `CURRENT_MAINLINE.md`: full shared-threshold CESE-OCN as current — "full shared-threshold CESE-OCN neural architect... |
+| reports/current_project_status_v3_17.md | 37 | human-audited | - `CURRENT_MAINLINE.md`: human-audited — "human-audited" |
+| reports/current_project_status_v3_17.md | 37 | human-audited | - `CURRENT_MAINLINE.md`: human-audited — "human-audited" |
+| reports/current_project_status_v3_17.md | 38 | SOTA | - `CURRENT_MAINLINE.md`: SOTA — "SOTA" |
+| reports/current_project_status_v3_17.md | 38 | SOTA | - `CURRENT_MAINLINE.md`: SOTA — "SOTA" |
+| reports/current_project_status_v3_17.md | 39 | automatic peer review | - `CURRENT_MAINLINE.md`: automatic peer review — "automatic peer review" |
+| reports/current_project_status_v3_17.md | 39 | automatic peer review | - `CURRENT_MAINLINE.md`: automatic peer review — "automatic peer review" |
+| reports/current_project_status_v3_17.md | 40 | human-audited | - `docs\annotation_guidelines_simclaim_eval_v1.md`: human-audited — "human-audited" |
+| reports/current_project_status_v3_17.md | 40 | human-audited | - `docs\annotation_guidelines_simclaim_eval_v1.md`: human-audited — "human-audited" |
+| reports/current_project_status_v3_17.md | 41 | human-audited | - `docs\annotation_guidelines_simclaim_eval_v1.md`: human-audited — "human-audited" |
+| reports/current_project_status_v3_17.md | 41 | human-audited | - `docs\annotation_guidelines_simclaim_eval_v1.md`: human-audited — "human-audited" |
+| reports/current_project_status_v3_17.md | 42 | full shared-threshold CESE-OCN | - `docs\current_mainline_v3_17.md`: full shared-threshold CESE-OCN as current — "Full shared-threshold CESE-OCN neura... |
+| reports/current_project_status_v3_17.md | 42 | Full shared-threshold CESE-OCN | - `docs\current_mainline_v3_17.md`: full shared-threshold CESE-OCN as current — "Full shared-threshold CESE-OCN neura... |
 
 ### future_work (3)
 

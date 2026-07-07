@@ -1,6 +1,6 @@
 {
-  "scan_timestamp": "2026-07-07T17:58:18",
-  "scanned_files": 806,
+  "scan_timestamp": "2026-07-08T00:43:20",
+  "scanned_files": 816,
   "scan_dirs": [
     "README.md",
     "CURRENT_MAINLINE.md",
@@ -12,8 +12,8 @@
   ],
   "high_risk_count": 3,
   "medium_risk_count": 22,
-  "low_risk_count": 54,
-  "total_findings": 79,
+  "low_risk_count": 59,
+  "total_findings": 84,
   "pass_public_release_gate": false,
   "strict_mode": false,
   "gitignore_report": {

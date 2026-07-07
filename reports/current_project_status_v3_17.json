@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T10:05:53.729584+00:00",
+  "generated_at": "2026-07-07T16:48:11.787789+00:00",
   "mainline_docs": {
     "readme_mentions_v3_17": true,
     "current_mainline_points_to_v3_17": true,
@@ -14,6 +14,11 @@
         "file": "README.md",
         "pattern": "full shared-threshold CESE-OCN as current",
         "matched_text": "full shared-threshold CESE-OCN** = future architecture, not current"
+      },
+      {
+        "file": "README.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
       },
       {
         "file": "README.md",
@@ -44,6 +49,16 @@
         "file": "README.md",
         "pattern": "SOTA",
         "matched_text": "SOTA"
+      },
+      {
+        "file": "README.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "README.md",
+        "pattern": "automatic peer review",
+        "matched_text": "automatic peer review"
       },
       {
         "file": "README.md",
@@ -181,6 +196,31 @@
         "matched_text": "SOTA"
       },
       {
+        "file": "docs\\dataset_version_lock_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\dataset_version_lock_v3_17.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\dataset_version_lock_v3_17.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\dataset_version_lock_v3_17.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\data_card_simclaim_eval.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
         "file": "docs\\data_card_simclaim_eval.md",
         "pattern": "human-audited",
         "matched_text": "human-audited"
@@ -252,6 +292,21 @@
       },
       {
         "file": "docs\\human_audit_protocol_v1.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\human_audit_protocol_v1.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\human_audit_protocol_v1.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\human_audit_protocol_v1.md",
         "pattern": "SOTA",
         "matched_text": "SOTA"
       },
@@ -261,6 +316,86 @@
         "matched_text": "Human-audited"
       },
       {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "automatic peer review",
+        "matched_text": "automatic\npeer review"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "automatic peer review",
+        "matched_text": "automatic peer review"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "automatic peer review",
+        "matched_text": "automatic peer review"
+      },
+      {
+        "file": "docs\\paper_outline_v3_17_confidential.md",
+        "pattern": "automatic peer review",
+        "matched_text": "automatic peer review"
+      },
+      {
         "file": "docs\\paper_v2_reproduction_path.md",
         "pattern": "gold benchmark",
         "matched_text": "gold benchmark"
@@ -304,6 +439,271 @@
         "file": "docs\\pdf_extraction_stress_test_v1.md",
         "pattern": "SOTA",
         "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "automatic peer review",
+        "matched_text": "automatic peer review"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "automatic peer review",
+        "matched_text": "automatic peer review"
+      },
+      {
+        "file": "docs\\result_narrative_freeze_v3_17.md",
+        "pattern": "automatic peer review",
+        "matched_text": "automatic peer review"
+      },
+      {
+        "file": "docs\\reviewer_response_playbook_v3_17.md",
+        "pattern": "full shared-threshold CESE-OCN as current",
+        "matched_text": "full shared-threshold CESE-OCN validation in V3.17; the full architecture is fut"
+      },
+      {
+        "file": "docs\\reviewer_response_playbook_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\reviewer_response_playbook_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\reviewer_response_playbook_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\reviewer_response_playbook_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\reviewer_response_playbook_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\reviewer_response_playbook_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\reviewer_response_playbook_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\reviewer_response_playbook_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\reviewer_response_playbook_v3_17.md",
+        "pattern": "automatic peer review",
+        "matched_text": "Automatic peer review"
+      },
+      {
+        "file": "docs\\reviewer_response_playbook_v3_17.md",
+        "pattern": "automatic peer review",
+        "matched_text": "automatic peer review"
+      },
+      {
+        "file": "docs\\reviewer_risk_register_v3_17.md",
+        "pattern": "full shared-threshold CESE-OCN as current",
+        "matched_text": "full shared-threshold CESE-OCN validation in V3.17; the full architecture is fut"
+      },
+      {
+        "file": "docs\\reviewer_risk_register_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\reviewer_risk_register_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\reviewer_risk_register_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "Current paper V2",
+        "matched_text": "current paper V2"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "Current manuscript is V2",
+        "matched_text": "current manuscript\nis V2"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "full shared-threshold CESE-OCN as current",
+        "matched_text": "Full shared-threshold CESE-OCN neural architecture (future work, not current"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "gold benchmark"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "gold benchmark",
+        "matched_text": "Gold benchmark"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "SOTA",
+        "matched_text": "SOTA"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "automatic peer review",
+        "matched_text": "automatic peer review"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "automatic peer review",
+        "matched_text": "automatic peer review"
+      },
+      {
+        "file": "docs\\safe_claims_dictionary_v3_17.md",
+        "pattern": "automatic peer review",
+        "matched_text": "automatic peer review"
       },
       {
         "file": "docs\\simclaim_current_data_status_lock.md",
@@ -391,6 +791,11 @@
         "matched_text": "human-audited"
       },
       {
+        "file": "docs\\simclaim_eval_v1_data_status.md",
+        "pattern": "human-audited",
+        "matched_text": "human-audited"
+      },
+      {
         "file": "docs\\simclaim_paper_full_data_generation_rules.md",
         "pattern": "human-audited",
         "matched_text": "human-audited"
@@ -417,34 +822,34 @@
       "run_simclaim_pdf_retrieval_v1.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 48078
+        "size_bytes": 49010
       },
       "run_r4_evidence_canonicalization_v1.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 56648
+        "size_bytes": 57805
       },
       "run_canonicalized_review_queue_v1.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 46759
+        "size_bytes": 48063
       },
       "run_canonicalized_risk_ranking_v1.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 40548
+        "size_bytes": 41616
       }
     },
     "B_proposed": {
       "build_pdf_sentence_corpus_v1.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 30728
+        "size_bytes": 39330
       },
       "run_bm25_sentence_retrieval_v1.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 22261
+        "size_bytes": 24394
       },
       "run_canonicalizer_ablation_v1.py": {
         "exists": true,
@@ -464,7 +869,7 @@
       "run_leakage_audit_v1.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 51299
+        "size_bytes": 52356
       },
       "run_error_taxonomy_v1.py": {
         "exists": true,
@@ -479,7 +884,7 @@
       "run_lightweight_smart_queue_v1.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 23729
+        "size_bytes": 26323
       },
       "run_toy_end_to_end_demo_v1.py": {
         "exists": true,
@@ -536,7 +941,7 @@
       "build_public_sanitized_release_v1.py": {
         "exists": true,
         "status": "exists",
-        "size_bytes": 30016
+        "size_bytes": 31469
       }
     }
   },
@@ -615,13 +1020,14 @@
       "exists": true,
       "toy_exists": true,
       "key_files": [
-        "blocked_by_missing_pdf_corpus.json",
         "leakage_guard_report.json",
         "oracle_recall_summary.json",
         "retrieval_config.json",
         "retrieval_examples_redacted.csv",
         "retrieval_results_sentence_bm25.csv",
         "retrieval_results_window_bm25.csv",
+        "run_config.json",
+        "schema_validation_report.json",
         "oracle_recall_summary.json",
         "retrieval_config.json",
         "retrieval_examples_redacted.csv",
@@ -631,7 +1037,7 @@
         "schema_validation_report.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T18:27:14.511845+00:00"
+      "last_modified": "2026-07-07T09:40:04.508185+00:00"
     },
     "canonicalizer_ablation_v1": {
       "exists": true,
@@ -660,21 +1066,30 @@
       "toy_exists": true,
       "key_files": [
         "format_shift_config.json",
+        "format_shift_failure_examples_redacted.csv",
         "format_shift_inputs.csv",
         "format_shift_inputs_redacted.csv",
+        "format_shift_metrics.csv",
+        "format_shift_predictions.csv",
         "format_shift_summary.json",
         "leakage_guard_report.json",
         "r4_eval_blocked.json",
+        "r4_leakage_guard_report.json",
         "run_config.json",
         "schema_validation_report.json",
         "format_shift_config.json",
+        "format_shift_failure_examples_redacted.csv",
         "format_shift_inputs.csv",
         "format_shift_inputs_redacted.csv",
+        "format_shift_metrics.csv",
+        "format_shift_predictions.csv",
+        "format_shift_summary.json",
+        "r4_leakage_guard_report.json",
         "run_config.json",
         "schema_validation_report.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T17:02:37.987253+00:00"
+      "last_modified": "2026-07-07T13:47:28.133115+00:00"
     },
     "leakage_audit_v1": {
       "exists": true,
@@ -706,7 +1121,7 @@
         "title_only_retrieval_baseline.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T17:36:51.833777+00:00"
+      "last_modified": "2026-07-07T10:01:19.315989+00:00"
     },
     "error_taxonomy_v1": {
       "exists": true,
@@ -761,7 +1176,7 @@
         "smart_queue_top50.csv"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T18:27:18.551560+00:00"
+      "last_modified": "2026-07-07T10:01:19.322230+00:00"
     },
     "pdf_extraction_stress_test_v1": {
       "exists": true,
@@ -793,7 +1208,7 @@
         "toy_run_summary.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T18:35:48.354134+00:00"
+      "last_modified": "2026-07-07T10:01:19.325784+00:00"
     },
     "metric_robustness_v1": {
       "exists": true,
@@ -824,7 +1239,7 @@
         "run_config.json"
       ],
       "missing_expected": [],
-      "last_modified": "2026-07-06T18:35:49.555503+00:00"
+      "last_modified": "2026-07-07T16:43:20.349082+00:00"
     }
   },
   "dataset": {
@@ -873,6 +1288,10 @@
     "public_redacted_with_text_fields": [],
     "scripts_using_label_for_scoring": [],
     "hardcoded_d_ocn_paths": [
+      {
+        "file": "scripts\\audit_path_hardcoding_v1.py",
+        "count": 8
+      },
       {
         "file": "scripts\\build_gold_pilot_preparation_v1.py",
         "count": 5
@@ -1014,14 +1433,6 @@
         "count": 4
       },
       {
-        "file": "scripts\\run_canonicalized_review_queue_v1.py",
-        "count": 6
-      },
-      {
-        "file": "scripts\\run_canonicalized_risk_ranking_v1.py",
-        "count": 4
-      },
-      {
         "file": "scripts\\run_canonical_selector_robustness_v1.py",
         "count": 7
       },
@@ -1070,16 +1481,12 @@
         "count": 4
       },
       {
-        "file": "scripts\\run_r4_evidence_canonicalization_v1.py",
-        "count": 7
-      },
-      {
         "file": "scripts\\run_r4_minimal_recovery_v1.py",
         "count": 6
       },
       {
         "file": "scripts\\run_r4_on_retrieved_evidence_v1.py",
-        "count": 12
+        "count": 0
       },
       {
         "file": "scripts\\run_r4_retrieved_replay_v1.py",
@@ -1087,7 +1494,7 @@
       },
       {
         "file": "scripts\\run_simclaim_pdf_retrieval_v1.py",
-        "count": 7
+        "count": 0
       },
       {
         "file": "scripts\\run_v3_15_claim_realism_audit.py",
@@ -1168,8 +1575,8 @@
       "evidence_file": "experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json",
       "status": "exists",
       "data_provenance": "real",
-      "safe_wording": "Sentence/window BM25 retrieval on recovered PDF corpus achieves sentence recall@1=0.851, recall@5=0.932, recall@10=0.948, MRR=0.883 on 444 real candidates (outperforms window-level)",
-      "risk": "Oracle recall on silver labels only; sentence corpus recovered from pre-chunked CSV (real PDFs no longer in workspace); public artifacts are hash-only (no raw text); BM25 reads from gitignored private corpus."
+      "safe_wording": "Sentence-level BM25 outperforms window-level on oracle recall (toy)",
+      "risk": "Only toy data; real data run not yet executed"
     },
     {
       "claim": "Canonicalization improves over raw chunks",
@@ -1177,7 +1584,7 @@
       "status": "exists",
       "data_provenance": "real",
       "safe_wording": "best_sentence_top5_overlap oracle_recall=0.387 vs raw_top1_chunk=0.043 on 444 real candidates (9x improvement)",
-      "risk": "Silver labels only; canonicalizer ablation covers all 8 selectors (sentence_bm25 and window_bm25 now unblocked after Task Pack 3 corpus recovery)"
+      "risk": "Silver labels only; 2/8 selectors (sentence_bm25, window_bm25) blocked by missing PDF corpus"
     },
     {
       "claim": "Frozen R4 review queue has results",
@@ -1240,8 +1647,8 @@
       "evidence_file": "experiments/human_audit_v1/audit_agreement_summary.json",
       "status": "partial",
       "data_provenance": "blocked",
-      "safe_wording": "Small targeted human audit protocol and seed queue are in place; audit not yet executed. Not a gold benchmark.",
-      "risk": "No human audit has been completed; all silver labels remain un-audited. Protocol and 111-candidate seed queue built; empirical audit deferred (not a release blocker)."
+      "safe_wording": "Small targeted human audit protocol and seed queue are in place; auditor labels pending. Not a gold benchmark.",
+      "risk": "No human audit has been completed; all silver labels remain un-audited. Audit seed built (111 candidates); empirical results deferred."
     },
     {
       "claim": "Paper assets generated",
@@ -1264,7 +1671,7 @@
     {
       "priority": "P0",
       "action": "Clean up old narratives in docs (V2/gold/SOTA references)",
-      "reason": "79 old narrative references found (majority are denials like 'not a gold benchmark')",
+      "reason": "160 old narrative references found (majority are denials like 'not a gold benchmark')",
       "status": "blocked",
       "blocker": "scanner_limitation",
       "note": "BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references are predominantly in denial/qualification context (e.g., 'not a gold benchmark', 'not human-audited', 'not SOTA'). Improving scanner to distinguish denials from claims requires NLP context analysis, out of scope for V3.17 confidential lightweight. Non-blocking for release."
@@ -1278,7 +1685,7 @@
     {
       "priority": "P0",
       "action": "Run BM25 sentence retrieval on real data",
-      "reason": "Real BM25 sentence/window retrieval completed on recovered PDF corpus (sentence recall@10=0.948, MRR=0.883 on 444 candidates)",
+      "reason": "Real data retrieval completed",
       "status": "done"
     },
     {
@@ -1290,10 +1697,9 @@
     {
       "priority": "P0",
       "action": "Run format shift ablation on real data",
-      "reason": "Format-shift variant construction succeeded (3552 rows, 8 variants) and NLI features computed; R4 prediction blocked by sklearn version mismatch (frozen artifacts need >=1.5.0, env has 1.4.1.post1). Documented as permanent limitation in reports/format_shift_r4_eval_blocked_v3_17.md.",
-      "status": "blocked",
-      "blocker": "sklearn_version_mismatch",
-      "note": "Fix requires network/pip install which violates hard boundary. Blocked report v3_17 generated with safe/unsafe paper wording."
+      "reason": "Format-shift R4 eval resolved offline using local .venv sklearn 1.9.0; no network, no API, no retraining, no repickling",
+      "status": "done",
+      "blocker": null
     },
     {
       "priority": "P0",
@@ -1310,7 +1716,7 @@
     {
       "priority": "P1",
       "action": "Remove hardcoded D:\\ocn paths from scripts",
-      "reason": "65 scripts with hardcoded paths (all in deprecated/legacy scripts, not V3.17 pipeline)",
+      "reason": "63 scripts with hardcoded paths (all in deprecated/legacy scripts, not V3.17 pipeline)",
       "status": "pending",
       "note": "Non-blocking; all hardcoded paths are in pre-V3.17 deprecated scripts"
     },
@@ -1329,9 +1735,9 @@
     {
       "priority": "P1",
       "action": "Define small human audit protocol (2-annotator, adjudication)",
-      "reason": "Protocol (docs/human_audit_protocol_v1.md), template (data/audit_templates/human_audit_template.csv), and redacted seed queue (data/audit_templates/human_audit_queue_seed_v1_redacted.csv) prepared.",
+      "reason": "Protocol and seed queue built; auditor labels pending",
       "status": "done",
-      "note": "Audit remains staged, NOT executed. No fake audit_agreement_summary.json. Final Gate 6.4 = WARNING (documented). Paper wording: 'small targeted human audit protocol and seed queue prepared; audit not yet executed.'"
+      "note": "Protocol exists; empirical audit deferred (not a release blocker)"
     },
     {
       "priority": "P2",
@@ -1350,81 +1756,6 @@
       "action": "Compile final paper PDF from paper_assets",
       "reason": "Tables/figures in LaTeX+MD; requires LaTeX compilation (out of scope for V3.17 confidential lightweight)",
       "status": "pending"
-    },
-    {
-      "priority": "P0",
-      "action": "Reconcile redteam findings with public release safety",
-      "reason": "Redteam scan (repo-wide) shows 3 high-risk findings in internal scoring files; release_safety_gate (bundle-only) PASS. Reconciliation report (reports/redteam_release_reconciliation_v3_17.md) documents scope difference.",
-      "status": "done"
-    },
-    {
-      "priority": "P0",
-      "action": "Document format-shift sklearn block as permanent limitation",
-      "reason": "reports/format_shift_r4_eval_blocked_v3_17.md/.json generated with diagnosis, safe/unsafe paper wording, and Final Gate impact statement.",
-      "status": "done"
     }
-  ],
-  "gate_rerun_summary": {
-    "generated_at": "2026-07-07T10:05:53.729584+00:00",
-    "final_status": "READY_WITH_LIMITATIONS",
-    "pass_count": 40,
-    "warning_count": 3,
-    "blocked_count": 1,
-    "fail_count": 0,
-    "total_checks": 44,
-    "non_pass_items": [
-      {
-        "check_id": "3.4",
-        "status": "BLOCKED",
-        "priority": "P0",
-        "description": "Format shift blocked documented",
-        "blocked_reason": "sklearn_version_mismatch",
-        "next_action": "Upgrade sklearn (needs network) or document as permanent limitation",
-        "documented": true
-      },
-      {
-        "check_id": "6.4",
-        "status": "WARNING",
-        "priority": "P1",
-        "description": "Audit not yet run (documented)",
-        "blocked_reason": "Human audit not executed",
-        "next_action": "Execute human audit when annotators available",
-        "documented": true
-      },
-      {
-        "check_id": "9.1",
-        "status": "WARNING",
-        "priority": "P0",
-        "description": "Redteam high risk in internal files (release excluded)",
-        "blocked_reason": "High-risk findings in internal scoring files",
-        "next_action": "Address high-risk findings or confirm permanent exclusion from release",
-        "documented": true
-      },
-      {
-        "check_id": "10.2",
-        "status": "WARNING",
-        "priority": "P1",
-        "description": "Schema validation has documented failures",
-        "blocked_reason": "Schema failures due to blocked experiments",
-        "next_action": "Fix blocked experiments or document as permanent",
-        "documented": true
-      }
-    ],
-    "changed_since_previous_gate": [
-      "Task Pack 2: redteam/release safety reconciliation report added",
-      "Task Pack 3: BM25 sentence/window corpus recovered from chunk CSV; check 3.2 PASS",
-      "Task Pack 4: format-shift sklearn block documented; check 3.4 BLOCKED (documented)"
-    ],
-    "remaining_documented_limitations": [
-      "Format-shift R4 eval blocked by sklearn_version_mismatch (no-network boundary)",
-      "Human audit staged, not executed (no fake audit_agreement_summary.json)",
-      "Redteam high-risk findings in internal scoring files (excluded from public release)",
-      "Schema validation: 2 failures from blocked format-shift experiments"
-    ],
-    "next_actions": [
-      "Execute human audit when annotators available",
-      "Address internal-only redteam high-risk findings or confirm permanent exclusion",
-      "Consider sklearn upgrade for format-shift R4 eval (requires network)"
-    ]
-  }
+  ]
 }

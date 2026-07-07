@@ -1,6 +1,6 @@
 {
   "manifest_version": "1.0",
-  "generated_at": "2026-07-07T05:01:58.168269+00:00",
+  "generated_at": "2026-07-07T16:52:21.729596+00:00",
   "mainline": "V3.17 Confidential Lightweight",
   "summary": {
     "total_artifacts": 54,
@@ -8,7 +8,7 @@
     "safe_to_release_count": 46,
     "private_sensitive_count": 8,
     "contains_raw_text_count": 4,
-    "blocked_count": 3,
+    "blocked_count": 1,
     "missing_count": 0
   },
   "release_safety_gate": {
@@ -60,7 +60,7 @@
     {
       "artifact_id": "A042_format_shift_blocked",
       "path": "experiments/format_shift_ablation_v1/r4_eval_blocked.json",
-      "type": "blocked_metrics_json"
+      "type": "resolved_metrics_json"
     },
     {
       "artifact_id": "A052_risk_ranking_results",
@@ -316,14 +316,6 @@
     {
       "artifact_id": "A022_bm25_sentence_blocked",
       "path": "experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json"
-    },
-    {
-      "artifact_id": "A042_format_shift_blocked",
-      "path": "experiments/format_shift_ablation_v1/r4_eval_blocked.json"
-    },
-    {
-      "artifact_id": "A141_table3_format_shift",
-      "path": "paper_assets/v3_17_confidential/tables/table3_format_shift_ablation.md"
     }
   ],
   "missing_artifacts": []

@@ -207,13 +207,13 @@ artifact_groups:
 
       - artifact_id: A042_format_shift_blocked
         path: "experiments/format_shift_ablation_v1/r4_eval_blocked.json"
-        artifact_type: blocked_metrics_json
+        artifact_type: resolved_metrics_json
         generated_by_script: "scripts/evaluate_r4_on_evidence_variants_v1.py"
-        input_artifacts: "A040_format_shift_inputs (blocked: sklearn_version_mismatch)"
-        run_mode: blocked
+        input_artifacts: "A040_format_shift_inputs"
+        run_mode: real
         public_safe: true
         private_sensitive: false
-        notes: "Blocked: sklearn version mismatch. Contains status only."
+        notes: "Format-shift R4 eval resolved offline using local .venv sklearn 1.9.0; no network, no API, no retraining, no repickling. Contains status=resolved and real metrics."
 
   # ---------- Review Queue & Risk Ranking ----------
 
@@ -573,12 +573,12 @@ artifact_groups:
       - artifact_id: A141_table3_format_shift
         path: "paper_assets/v3_17_confidential/tables/table3_format_shift_ablation.md"
         artifact_type: paper_table_md
-        generated_by_script: "scripts/build_paper_assets_v1.py"
+        generated_by_script: "scripts/generate_paper_assets_v3_17.py"
         input_artifacts: "A042_format_shift_blocked"
-        run_mode: blocked
+        run_mode: real
         public_safe: true
         private_sensitive: false
-        notes: "Table 3; format-shift ablation. Blocked by sklearn version mismatch; table reports BLOCKED status."
+        notes: "Table 3; format-shift ablation. Format-shift R4 eval resolved offline; table source metrics available in format_shift_metrics.csv."
 
       - artifact_id: A142_table8_human_audit
         path: "paper_assets/v3_17_confidential/tables/table8_human_audit_if_available.md"

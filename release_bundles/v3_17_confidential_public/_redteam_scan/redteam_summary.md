@@ -1,7 +1,7 @@
 # Confidentiality Red-Team Scan Summary
 
-Generated: 2026-07-07T13:18:16
-Scanned files: 233
+Generated: 2026-07-08T00:44:04
+Scanned files: 253
 
 ## Gate Status
 
@@ -9,8 +9,8 @@ Scanned files: 233
 
 - High risk findings: **0**
 - Medium risk findings: **0**
-- Low risk findings: **34**
-- Total findings: **34**
+- Low risk findings: **38**
+- Total findings: **38**
 - Strict mode: False
 
 ## High Risk (0 findings)
@@ -21,9 +21,9 @@ None.
 
 None.
 
-## Low Risk (34 findings)
+## Low Risk (38 findings)
 
-### toy_validation (34)
+### toy_validation (38)
 
 - **`release_bundles\v3_17_confidential_public\data\toy_synthetic\pdf_stress_sources.jsonl`** — ``
   - Toy JSONL file has no 'toy_' prefixed keys or 'synthetic=true' marker
@@ -70,6 +70,18 @@ None.
 - **`release_bundles\v3_17_confidential_public\experiments\aggregate_metrics\toy_outputs\format_shift_ablation_v1_toy\format_shift_inputs_redacted.csv`** — ``
   - Toy data file has no 'toy_' prefixed columns or 'synthetic=true' marker
   - Recommendation: Add 'toy_' prefix to column names or include a 'synthetic=true' column.
+- **`release_bundles\v3_17_confidential_public\experiments\aggregate_metrics\toy_outputs\format_shift_ablation_v1_toy\format_shift_metrics.csv`** — ``
+  - Toy data file has no 'toy_' prefixed columns or 'synthetic=true' marker
+  - Recommendation: Add 'toy_' prefix to column names or include a 'synthetic=true' column.
+- **`release_bundles\v3_17_confidential_public\experiments\aggregate_metrics\toy_outputs\format_shift_ablation_v1_toy\format_shift_predictions.csv`** — ``
+  - Toy data file has no 'toy_' prefixed columns or 'synthetic=true' marker
+  - Recommendation: Add 'toy_' prefix to column names or include a 'synthetic=true' column.
+- **`release_bundles\v3_17_confidential_public\experiments\aggregate_metrics\toy_outputs\format_shift_ablation_v1_toy\format_shift_summary.json`** — ``
+  - Toy JSON file has no 'toy_' prefixed keys or 'synthetic=true' marker
+  - Recommendation: Add 'synthetic: true' field or prefix keys with 'toy_'.
+- **`release_bundles\v3_17_confidential_public\experiments\aggregate_metrics\toy_outputs\format_shift_ablation_v1_toy\r4_leakage_guard_report.json`** — ``
+  - Toy JSON file has no 'toy_' prefixed keys or 'synthetic=true' marker
+  - Recommendation: Add 'synthetic: true' field or prefix keys with 'toy_'.
 - **`release_bundles\v3_17_confidential_public\experiments\aggregate_metrics\toy_outputs\format_shift_ablation_v1_toy\schema_validation_report.json`** — ``
   - Toy JSON file has no 'toy_' prefixed keys or 'synthetic=true' marker
   - Recommendation: Add 'synthetic: true' field or prefix keys with 'toy_'.

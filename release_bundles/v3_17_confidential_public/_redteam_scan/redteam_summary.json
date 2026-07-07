@@ -1,13 +1,13 @@
 {
-  "scan_timestamp": "2026-07-07T13:18:16",
-  "scanned_files": 233,
+  "scan_timestamp": "2026-07-08T00:44:04",
+  "scanned_files": 253,
   "scan_dirs": [
     "D:\\ocn\\release_bundles\\v3_17_confidential_public"
   ],
   "high_risk_count": 0,
   "medium_risk_count": 0,
-  "low_risk_count": 34,
-  "total_findings": 34,
+  "low_risk_count": 38,
+  "total_findings": 38,
   "pass_public_release_gate": true,
   "strict_mode": false,
   "gitignore_report": {

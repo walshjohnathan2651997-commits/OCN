@@ -1,0 +1,85 @@
+result_id,section,claim,point_estimate,ci_or_detail,source_file,notes
+R-01,6,444 candidates,444,,docs/dataset_version_lock_v3_17.md,locked CSV 36 cols 444 rows
+R-02,6,111 groups,111,,docs/dataset_version_lock_v3_17.md,4 labels per group
+R-03,6,4 balanced labels,"supported=111 mild_scope_overclaim=111 strong_action_overclaim=111 contradiction_candidate=111",,docs/dataset_version_lock_v3_17.md,balanced
+R-04,6,human_audited=False (all 444),444,,docs/dataset_version_lock_v3_17.md,silver diagnostic not gold
+R-05,6,gold_label nonempty,0,,docs/dataset_version_lock_v3_17.md,never populated
+R-06,6,silver_label_source=candidate_label_guess,444,,docs/dataset_version_lock_v3_17.md,silver labels
+R-07,6,domain autonomous_driving,140,,docs/dataset_version_lock_v3_17.md,domain distribution
+R-08,6,domain policy_simulation,84,,docs/dataset_version_lock_v3_17.md,domain distribution
+R-09,6,domain digital_twin,68,,docs/dataset_version_lock_v3_17.md,domain distribution
+R-10,6,domain cyber_defense,64,,docs/dataset_version_lock_v3_17.md,domain distribution
+R-11,6,domain marl,52,,docs/dataset_version_lock_v3_17.md,domain distribution
+R-12,6,domain robotics,36,,docs/dataset_version_lock_v3_17.md,domain distribution
+R-13,7.1,n_pdfs_total,69,,experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_metrics_bm25.json,BM25 chunk retrieval
+R-14,7.1,n_chunks,4747,,experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_metrics_bm25.json,200 words per chunk 50 overlap
+R-15,7.1,oracle_match_rate,0.991,,experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_metrics_bm25.json,BM25 chunk retrieval
+R-16,7.1,recall_at_10 (chunk),0.980,,experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_metrics_bm25.json,BM25 chunk retrieval
+R-17,7.1,MRR (chunk),0.826,,experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_metrics_bm25.json,BM25 chunk retrieval
+R-18,7.1,n_sentences,34643,,experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json,recovered from chunk CSV (Task Pack 3)
+R-19,7.1,sentence recall@1,0.851,,experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json,BM25 sentence retrieval
+R-20,7.1,sentence recall@5,0.932,,experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json,BM25 sentence retrieval
+R-21,7.1,sentence recall@10,0.948,,experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json,BM25 sentence retrieval
+R-22,7.1,sentence MRR,0.883,,experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json,BM25 sentence retrieval
+R-23,7.1,window recall@10,0.396,,experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json,BM25 window retrieval (outperformed by sentence)
+R-24,7.1,window MRR,0.324,,experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json,BM25 window retrieval
+R-25,7.1,leakage_guard status,pass,,experiments/bm25_sentence_retrieval_v1/leakage_guard_report.json,oracle used only after ranking
+R-26,8.1,raw_top1_chunk oracle_recall,0.043,,experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv,format shift baseline
+R-27,8.1,raw_top1_chunk pct_long_gt60,0.910,,experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv,91% chunks too long
+R-28,8.1,best_sentence_top5_overlap oracle_recall,0.387,,experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv,9x improvement
+R-29,8.1,best_sentence_top5_overlap pct_long_gt60,0.000,,experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv,0% exceed 60 words
+R-30,8.1,best_sentence_top1_overlap oracle_recall,0.221,,experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv,canonicalizer ablation
+R-31,8.1,three_sentence_window_top5 oracle_recall,0.203,,experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv,canonicalizer ablation
+R-32,8.1,first_sentence_top1 oracle_recall,0.027,,experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv,canonicalizer ablation
+R-33,8.2,strong_precision,0.330,[0.301 0.358],experiments/metric_robustness_v1/classification_metrics_with_ci.csv,group-aware bootstrap 100 iter
+R-34,8.2,strong_recall,0.706,[0.619 0.780],experiments/metric_robustness_v1/classification_metrics_with_ci.csv,group-aware bootstrap 100 iter
+R-35,8.2,strong_F1,0.4503,[0.4086 0.4833],experiments/metric_robustness_v1/classification_metrics_with_ci.csv,group-aware bootstrap 100 iter
+R-36,8.2,macro_F1,0.385,[0.348 0.424],experiments/metric_robustness_v1/classification_metrics_with_ci.csv,group-aware bootstrap 100 iter
+R-37,8.2,n_eval R4,436,,experiments/canonicalized_review_queue_v1/canonicalized_review_queue_gate.json,8 missing due to split
+R-38,8.3,A_flag_only precision@20,0.35,,experiments/canonicalized_risk_ranking_v1/risk_ranking_results_by_variant.csv,baseline
+R-39,8.3,G_conservative_precision precision@20,0.45,,experiments/canonicalized_risk_ranking_v1/risk_ranking_results_by_variant.csv,best variant
+R-40,8.3,G_conservative_precision precision@50,0.36,,experiments/canonicalized_risk_ranking_v1/risk_ranking_results_by_variant.csv,best variant
+R-41,8.3,G_conservative_precision recall@100,0.330,,experiments/canonicalized_risk_ranking_v1/risk_ranking_results_by_variant.csv,best variant
+R-42,8.3,G_conservative_precision average_precision,0.353,,experiments/canonicalized_risk_ranking_v1/risk_ranking_results_by_variant.csv,best variant
+R-43,8.3,precision@20 improvement,0.10,,experiments/canonicalized_risk_ranking_v1/risk_ranking_gate.json,G_conservative vs A_flag_only
+R-44,8.4,precision@10,0.50,,experiments/canonicalized_review_queue_v1/review_queue_metrics.csv,review queue
+R-45,8.4,precision@20,0.35,,experiments/canonicalized_review_queue_v1/review_queue_metrics.csv,review queue
+R-46,8.4,precision@50,0.34,,experiments/canonicalized_review_queue_v1/review_queue_metrics.csv,review queue
+R-47,8.4,recall@100,0.339,,experiments/canonicalized_review_queue_v1/review_queue_metrics.csv,review queue
+R-48,8.4,review_queue_usable,false,,experiments/canonicalized_review_queue_v1/canonicalized_review_queue_gate.json,second-stage only
+R-49,8.4,standalone_viable,false,,experiments/canonicalized_review_queue_v1/canonicalized_review_queue_gate.json,second-stage only
+R-50,8.4,second_stage_viable,true,,experiments/canonicalized_review_queue_v1/canonicalized_review_queue_gate.json,second-stage only
+R-51,8.5,n_variants,8,,experiments/format_shift_ablation_v1/format_shift_summary.json,format-shift variants
+R-52,8.5,n_variant_rows,3552,,experiments/format_shift_ablation_v1/format_shift_summary.json,8 variants x 444 candidates
+R-53,8.5,NLI features shape,"[3552 7]",,experiments/format_shift_ablation_v1/r4_eval_blocked.json,NLI feature extraction success
+R-54,8.5,format_shift R4 status,resolved,,experiments/format_shift_ablation_v1/r4_eval_blocked.json,offline sklearn 1.9.0 via project-local .venv
+R-55,8.5,required sklearn,>=1.5.0,,reports/sklearn_offline_compatibility_investigation_v3_17.md,frozen R4 artifacts (pickled with 1.9.0)
+R-56,8.5,environment sklearn,1.9.0,,reports/sklearn_offline_compatibility_investigation_v3_17.md,project-local .venv (exact match)
+R-56a,8.5,canonicalized strong_F1,0.4615,,experiments/format_shift_ablation_v1/format_shift_metrics.csv,canonicalized_best_sentence_top5
+R-56b,8.5,oracle strong_F1,0.4627,,experiments/format_shift_ablation_v1/format_shift_metrics.csv,oracle_clean
+R-56c,8.5,raw_bm25 strong_F1,0.2755,,experiments/format_shift_ablation_v1/format_shift_metrics.csv,raw_bm25_top1_chunk
+R-56d,8.5,canonicalization gain,+0.1860,,experiments/format_shift_ablation_v1/format_shift_summary.json,canonicalized vs raw_bm25
+R-57,10,leakage audit status,pass,,experiments/leakage_audit_v1/audit_summary.md,12 checks
+R-58,10,claim-only strong_F1,0.2448,,experiments/leakage_audit_v1/claim_only_baseline.json,TF-IDF+LR GroupKFold
+R-59,10,claim-only to R4 ratio,0.5436,,experiments/leakage_audit_v1/claim_only_baseline.json,below 0.8 warning
+R-60,10,shuffled evidence collapse,46x,,experiments/leakage_audit_v1/audit_summary.md,correct=0.361 shuffled=0.008
+R-61,10,redteam total findings,79,,experiments/confidentiality_redteam_scan_v1/redteam_summary.json,repo-wide scan
+R-62,10,redteam high-risk count,3,,experiments/confidentiality_redteam_scan_v1/redteam_summary.json,all internal-only
+R-63,10,redteam high-risk type,forbidden_sorting_field,,experiments/confidentiality_redteam_scan_v1/redteam_findings.csv,true_label and oracle_hit in internal scoring files
+R-64,10,release_safety_gate status,pass,,reports/release_safety_manifest_v3_17.json,bundle-only scope
+R-65,11,mild_vs_strong_boundary pct,38.83%,,experiments/error_taxonomy_v1/error_taxonomy_summary.csv,top FP cause
+R-66,11,weak_selector_overlap pct,34.57%,,experiments/error_taxonomy_v1/error_taxonomy_summary.csv,error type
+R-67,11,supported_overflag pct,32.98%,,experiments/error_taxonomy_v1/error_taxonomy_summary.csv,error type
+R-68,11,contradiction_confusion pct,19.15%,,experiments/error_taxonomy_v1/error_taxonomy_summary.csv,error type
+R-69,11,error types total,9,,experiments/error_taxonomy_v1/error_taxonomy_summary.csv,taxonomy
+R-70,9.2,deterministic_canonicalization pareto,pareto_optimal,,experiments/complexity_vs_utility_ablation_v1/method_pareto_table.csv,deployment-specific
+R-71,9.2,conservative_rule_queue pareto,pareto_optimal,,experiments/complexity_vs_utility_ablation_v1/method_pareto_table.csv,deployment-specific
+R-72,9.2,lightweight_smart_queue pareto,pareto_optimal,,experiments/complexity_vs_utility_ablation_v1/method_pareto_table.csv,deployment-specific
+R-73,9.2,learned_selector_only pareto,dominated,,experiments/complexity_vs_utility_ablation_v1/method_pareto_table.csv,deployment-specific
+R-74,9.2,external_llm_baseline pareto,unavailable,,experiments/complexity_vs_utility_ablation_v1/method_pareto_table.csv,no-API boundary
+R-75,9.3,stress docs total,12,,experiments/pdf_extraction_stress_test_v1/stress_test_summary.md,synthetic stress suite
+R-76,9.3,stress failures,0,,experiments/pdf_extraction_stress_test_v1/stress_test_summary.md,engineering robustness not SOTA
+R-77,12,human audit protocol,staged,,docs/human_audit_protocol_v1.md,NOT executed
+R-78,12,human audit seed queue,staged,,data/audit_templates/human_audit_queue_seed_v1_redacted.csv,NOT executed
+R-79,12,audit_agreement_summary.json,missing,,reports/final_perfect_state_gate_v3_17.md,check 6.4 WARNING
+R-80,15,final gate status,READY_WITH_LIMITATIONS,,reports/final_perfect_state_gate_v3_17.md,PASS=40 WARN=3 BLOCKED=1 FAIL=0

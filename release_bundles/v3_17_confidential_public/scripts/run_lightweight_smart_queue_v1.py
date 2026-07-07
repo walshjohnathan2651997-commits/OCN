@@ -428,8 +428,10 @@ def write_leakage_guard(filepath):
     report = {
         "status": status,
         "forbidden_fields_checked": sorted(FORBIDDEN_SORT_FIELDS),
+        "forbidden_sort_fields": sorted(FORBIDDEN_SORT_FIELDS),
         "forbidden_fields_found_in_sorting": forbidden_found,
         "allowed_fields_used": sorted(ALLOWED_SORT_FIELDS),
+        "allowed_sort_fields": sorted(ALLOWED_SORT_FIELDS),
         "fields_actually_used_for_sorting": fields_used,
         "sort_formula": sort_formula,
         "labels_used_for_sorting": labels_used,

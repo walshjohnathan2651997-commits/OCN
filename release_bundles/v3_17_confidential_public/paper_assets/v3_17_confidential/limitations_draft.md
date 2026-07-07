@@ -28,15 +28,28 @@ paired with the safe wording that must accompany it in the paper.
 - **Statement:** A small targeted human audit protocol exists
   (`docs/human_audit_protocol_v1.md`), an audit template is built
   (`data/audit_templates/human_audit_template.csv`), and 111 audit
-  seeds are queued. No adjudication has been completed and no
-  agreement metrics are available.
+  seeds are queued. As of V3.17, the audit packet is execution-ready:
+  a private packet with raw `claim_text`/`evidence_text` and empty
+  `auditor_label` fields is prepared at
+  `data/private_audit/v3_17_audit_packet/audit_packet_private.csv`
+  (gitignored), a public hash-only execution manifest is prepared at
+  `data/audit_templates/human_audit_execution_manifest_v1_redacted.csv`,
+  and a pending summary is prepared at
+  `experiments/human_audit_v1_pending/audit_pending_summary.md`.
+  No adjudication has been completed and no agreement metrics are
+  available. `human_audited` remains `False` for all 444 rows;
+  `gold_label` remains empty.
 - **Source:** `docs/human_audit_protocol_v1.md`,
-  `data/audit_templates/human_audit_template.csv`
+  `data/audit_templates/human_audit_template.csv`,
+  `data/audit_templates/human_audit_execution_manifest_v1_redacted.csv`,
+  `experiments/human_audit_v1_pending/audit_pending_summary.md`
 - **Implication:** Silver labels cannot be upgraded to gold. Any
   future human audit must use the established protocol and report
   inter-annotator agreement before any gold-level claim is made.
-- **Safe wording:** "A small targeted human audit protocol exists
-  but has not been completed; the dataset remains silver-label."
+  This is a targeted audit protocol, not a gold benchmark.
+- **Safe wording:** "This is a targeted audit protocol, not a gold
+  benchmark. Until completed, the paper can only claim audit
+  readiness, not human-audited validation."
 
 ## L3 — Six domains only
 
@@ -51,24 +64,33 @@ paired with the safe wording that must accompany it in the paper.
   domains; generalization to other domains is not supported by the
   current data."
 
-## L4 — Blocked experiments
+## L4 — Format-shift R4 evaluation (previously blocked, now resolved)
 
-- **Statement:** Two P0 experiments are blocked:
-  - Sentence/window BM25 on the real PDF corpus — blocked by
-    `missing_pdf_corpus` (`data/pdf_corpus_v1/sentences.jsonl` not
-    generated in this run).
-  - Format-shift R4 evaluation — blocked by
-    `sklearn_version_mismatch` (R4 frozen artifacts pickled with
-    scikit-learn 1.9.0; current environment has 1.4.1.post1).
-- **Source:** `experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json`,
-  `experiments/format_shift_ablation_v1/r4_eval_blocked.json`
-- **Implication:** The format-shift finding is supported by
-  canonicalizer ablation (oracle_recall), not by end-to-end R4
-  evaluation on canonicalized vs. raw evidence.
-- **Safe wording:** "End-to-end format-shift R4 evaluation is blocked
-  by an environment version mismatch; the format-shift finding is
-  supported by canonicalizer ablation oracle recall, not by direct
-  R4 F1 comparison."
+- **Statement:** The format-shift R4 evaluation was previously blocked
+  by `sklearn_version_mismatch` (frozen R4 artifacts pickled with
+  scikit-learn 1.9.0; previous environment had 1.4.1.post1). An offline
+  compatibility investigation identified a project-local `.venv` with
+  scikit-learn 1.9.0, and the full R4 evaluation was completed offline
+  (`HF_HUB_OFFLINE=1`) with no network, no API, no retraining, and no
+  model-artifact modification. Real R4 metrics on all 8 variants are
+  now reported. Canonicalized evidence
+  (`canonicalized_best_sentence_top5`) achieves strong_F1=0.4615, close
+  to the oracle upper bound (0.4627) and substantially above raw BM25
+  chunks (0.2755).
+- **Source:** `experiments/format_shift_ablation_v1/format_shift_metrics.csv`,
+  `experiments/format_shift_ablation_v1/r4_eval_blocked.json` (status=resolved),
+  `reports/sklearn_offline_compatibility_investigation_v3_17.md`
+- **Implication:** The canonicalization gain is now confirmed by both
+  oracle_recall (canonicalizer ablation: 0.043 -> 0.387) and R4
+  strong_F1 (format-shift eval: 0.2755 -> 0.4615). Results are
+  diagnostic (silver labels, frozen R4), not benchmark-level.
+- **Safe wording:** "Variant construction, NLI feature extraction, and
+  frozen R4 prediction were completed using a local scikit-learn 1.9.0
+  environment, run offline with no network, no API, no retraining, and
+  no model-artifact modification. Canonicalized evidence achieves
+  strong_F1=0.4615, close to the oracle upper bound (0.4627) and
+  substantially above raw BM25 chunks (0.2755). Results are diagnostic
+  (silver labels, frozen R4), not benchmark-level."
 
 ## L5 — No LLM / VLM baseline
 
