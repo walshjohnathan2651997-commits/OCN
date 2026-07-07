@@ -1,12 +1,13 @@
 {
   "name": "pdf_sentence_corpus",
-  "version": "1.0.0",
-  "description": "Sentence-level PDF corpus units used as the BM25 retrieval pool. One JSON object per line in sentences.jsonl. Sibling files pages.jsonl and blocks.jsonl share the same hash/redaction conventions.",
+  "version": "1.1.0",
+  "description": "Sentence-level PDF corpus units used as the BM25 retrieval pool. One JSON object per line in sentences.jsonl. Sibling files pages.jsonl and blocks.jsonl share the same hash/redaction conventions. In private_mode, text columns are redacted from public outputs (only hashes remain); full text is stored in a gitignored private directory.",
   "file_format": "jsonl",
   "primary_file": "sentences.jsonl",
   "sibling_files": [
     "pages.jsonl",
-    "blocks.jsonl"
+    "blocks.jsonl",
+    "windows.jsonl"
   ],
   "required_columns": [
     "paper_id",
@@ -16,15 +17,19 @@
     "block_id",
     "sentence_id",
     "unit_id",
-    "raw_text",
-    "clean_text",
     "raw_text_sha256",
     "clean_text_sha256",
     "n_chars",
     "n_words",
     "section_hint"
   ],
-  "optional_columns": [],
+  "optional_columns": [
+    "raw_text",
+    "clean_text",
+    "source_id",
+    "source_chunk_id",
+    "source_chunk_ids"
+  ],
   "forbidden_columns_for_public_release": [
     "raw_text",
     "clean_text",

@@ -1,0 +1,16 @@
+{
+  "n_pdfs": 69,
+  "n_success": 69,
+  "n_failed": 0,
+  "n_pages": 0,
+  "n_blocks": 4747,
+  "n_sentences": 34643,
+  "n_windows": 32250,
+  "window_size": 3,
+  "private_mode": true,
+  "source_mode": "chunk_csv",
+  "created_at": "2026-07-07T09:17:47.831224+00:00",
+  "no_network": true,
+  "no_api": true,
+  "chunk_csv_source": "data/simclaim_pdf_corpus_retrieval_v1/local_pdf_corpus_chunks.csv"
+}

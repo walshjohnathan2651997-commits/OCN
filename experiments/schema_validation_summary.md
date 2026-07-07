@@ -1,10 +1,10 @@
 # Schema Validation Summary
 
-Generated: 2026-07-07T02:38:21
+Generated: 2026-07-07T17:42:51
 
 - Total files checked: **38**
-- Passed: **34**
-- Failed: **4**
+- Passed: **36**
+- Failed: **2**
 
 ## Per-directory results
 
@@ -13,14 +13,10 @@ Generated: 2026-07-07T02:38:21
 - [PASS] `pdf_manifest.csv` (schema: `pdf_manifest`)
 - [PASS] `sentences.jsonl` (schema: `pdf_sentence_corpus`)
 
-### `data/pdf_corpus_v1` — FAIL (0/2 ok)
+### `data/pdf_corpus_v1` — OK (2/2 ok)
 
-- [FAIL] `pdf_manifest.csv` (schema: `pdf_manifest`)
-  - file does not exist
-  - error: file not found
-- [FAIL] `sentences.jsonl` (schema: `pdf_sentence_corpus`)
-  - file does not exist
-  - error: file not found
+- [PASS] `pdf_manifest.csv` (schema: `pdf_manifest`)
+- [PASS] `sentences.jsonl` (schema: `pdf_sentence_corpus`)
 
 ### `experiments/bm25_sentence_retrieval_v1` — OK (3/3 ok)
 

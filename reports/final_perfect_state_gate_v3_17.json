@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-07T05:33:33.727706+00:00",
+  "generated_at": "2026-07-07T09:43:04.672302+00:00",
   "final_status": "READY_WITH_LIMITATIONS",
   "summary": {
     "total_checks": 44,
-    "pass": 39,
+    "pass": 40,
     "warning": 3,
-    "blocked": 2,
+    "blocked": 1,
     "fail": 0
   },
   "checks": [
@@ -102,12 +102,12 @@
     {
       "category": "3. Real Experiments",
       "check_id": "3.2",
-      "description": "Sentence/window BM25 blocked documented",
-      "status": "BLOCKED",
+      "description": "Sentence/window BM25 complete",
+      "status": "PASS",
       "priority": "P0",
-      "evidence": "status=blocked, reason=missing_pdf_corpus",
-      "blocked_reason": "missing_pdf_corpus",
-      "next_action": "Generate PDF sentence corpus or document as permanent limitation"
+      "evidence": "n_candidates=444",
+      "blocked_reason": "",
+      "next_action": ""
     },
     {
       "category": "3. Real Experiments",
@@ -425,7 +425,7 @@
       "description": "Schema validation has documented failures",
       "status": "WARNING",
       "priority": "P1",
-      "evidence": "34 passed, 4 failed (failures from blocked experiments)",
+      "evidence": "36 passed, 2 failed (failures from blocked experiments)",
       "blocked_reason": "Schema failures due to blocked experiments",
       "next_action": "Fix blocked experiments or document as permanent"
     },
@@ -452,12 +452,6 @@
   ],
   "blocked_items": [
     {
-      "check_id": "3.2",
-      "description": "Sentence/window BM25 blocked documented",
-      "blocked_reason": "missing_pdf_corpus",
-      "next_action": "Generate PDF sentence corpus or document as permanent limitation"
-    },
-    {
       "check_id": "3.4",
       "description": "Format shift blocked documented",
       "blocked_reason": "sklearn_version_mismatch",
@@ -480,7 +474,7 @@
     {
       "check_id": "10.2",
       "description": "Schema validation has documented failures",
-      "evidence": "34 passed, 4 failed (failures from blocked experiments)",
+      "evidence": "36 passed, 2 failed (failures from blocked experiments)",
       "next_action": "Fix blocked experiments or document as permanent"
     }
   ],

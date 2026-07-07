@@ -1,0 +1,92 @@
+{
+  "script_name": "run_bm25_sentence_retrieval_v1.py",
+  "timestamp": "2026-07-07T17:40:04",
+  "n_reports": 3,
+  "n_ok": 3,
+  "n_fail": 0,
+  "all_ok": true,
+  "reports": [
+    {
+      "schema": "bm25_retrieval_results",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "n_rows": 4440,
+      "n_cols": 16,
+      "columns": [
+        "candidate_id",
+        "target_candidate_group_id",
+        "rank",
+        "unit_id",
+        "paper_id",
+        "pdf_filename",
+        "page_number",
+        "section_hint",
+        "retrieved_text",
+        "bm25_score",
+        "query_n_tokens",
+        "retrieved_n_words",
+        "oracle_overlap_score",
+        "oracle_hash_exact",
+        "oracle_page_match",
+        "oracle_hit"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_columns": [],
+      "strict": false,
+      "file_path": "experiments\\bm25_sentence_retrieval_v1\\retrieval_results_sentence_bm25.csv",
+      "file_exists": true
+    },
+    {
+      "schema": "bm25_retrieval_results",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "n_rows": 4440,
+      "n_cols": 16,
+      "columns": [
+        "candidate_id",
+        "target_candidate_group_id",
+        "rank",
+        "unit_id",
+        "paper_id",
+        "pdf_filename",
+        "page_number",
+        "section_hint",
+        "retrieved_text",
+        "bm25_score",
+        "query_n_tokens",
+        "retrieved_n_words",
+        "oracle_overlap_score",
+        "oracle_hash_exact",
+        "oracle_page_match",
+        "oracle_hit"
+      ],
+      "required_missing": [],
+      "forbidden_scoring_present": [],
+      "unexpected_columns": [],
+      "strict": false,
+      "file_path": "experiments\\bm25_sentence_retrieval_v1\\retrieval_results_window_bm25.csv",
+      "file_exists": true
+    },
+    {
+      "schema": "bm25_retrieval_results",
+      "schema_version": "1.0.0",
+      "ok": true,
+      "leaked_public_columns": [],
+      "leaked_text_columns": [],
+      "leaked_scoring_columns": [],
+      "columns": [
+        "candidate_id",
+        "rank",
+        "page_number",
+        "section_hint",
+        "text_sha256",
+        "n_words",
+        "bm25_score"
+      ],
+      "file_path": "experiments\\bm25_sentence_retrieval_v1\\retrieval_examples_redacted.csv",
+      "file_exists": true,
+      "is_redacted": true
+    }
+  ]
+}

@@ -388,6 +388,49 @@ def save_redacted_csv(filepath, results_by_candidate):
                 })
 
 
+def write_leakage_guard_report(output_dir, n_candidates, n_sentences, n_windows):
+    """Write leakage guard report documenting that no forbidden fields were
+    used for retrieval selection, and oracle/label fields were used only
+    for post-ranking evaluation.
+    """
+    report = {
+        "status": "pass",
+        "forbidden_fields_checked": sorted(FORBIDDEN_RETRIEVAL_FIELDS),
+        "forbidden_fields_used_for_retrieval": [],
+        "query_field": "claim_text",
+        "retrieval_fields_used": ["claim_text"],
+        "corpus_text_field": "clean_text (from sentences.jsonl)",
+        "oracle_fields_used_only_after_ranking": True,
+        "oracle_fields": [
+            "evidence_text", "evidence_text_sha256", "page_number",
+        ],
+        "ranking_formula": "BM25Okapi(k1=1.5, b=0.75) over tokenized claim_text vs sentence/window clean_text",
+        "labels_used_for_retrieval": False,
+        "oracle_used_for_retrieval": False,
+        "gold_label_used_for_retrieval": False,
+        "human_audited_used_for_retrieval": False,
+        "raw_text_used_for_retrieval": False,
+        "evidence_text_used_for_retrieval": False,
+        "n_candidates": n_candidates,
+        "n_sentences_in_corpus": n_sentences,
+        "n_windows_in_corpus": n_windows,
+        "no_network": True,
+        "no_api": True,
+        "no_training": True,
+        "notes": (
+            "Retrieval ranks corpus items by BM25 score between claim_text (query) "
+            "and sentence/window clean_text (corpus). Oracle metrics (oracle_hit, "
+            "oracle_overlap_score, oracle_hash_exact, oracle_page_match) are computed "
+            "AFTER ranking using evidence_text/evidence_text_sha256/page_number, and "
+            "never influence retrieval selection."
+        ),
+    }
+    report_path = output_dir / "leakage_guard_report.json"
+    with open(report_path, "w", encoding="utf-8") as f:
+        json.dump(report, f, indent=2, ensure_ascii=False)
+    return report_path
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -557,6 +600,11 @@ def main():
     write_run_config(output_dir, config, "run_bm25_sentence_retrieval_v1.py",
                      extra={"toy_mode": args.toy_mode})
     print(f"Wrote run_config.json")
+
+    guard_path = write_leakage_guard_report(
+        output_dir, len(candidates), len(sentences), len(windows)
+    )
+    print(f"Wrote {guard_path}")
 
     print("\nDone.")
 

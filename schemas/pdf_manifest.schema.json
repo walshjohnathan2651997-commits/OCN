@@ -17,6 +17,7 @@
     "n_sentences",
     "error_message",
     "source_pair_id",
+    "source_id",
     "title",
     "arxiv_id",
     "source_url",

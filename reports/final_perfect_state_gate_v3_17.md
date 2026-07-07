@@ -1,6 +1,6 @@
 # Final Perfect-State Readiness Gate — V3.17 Confidential Lightweight
 
-Generated: 2026-07-07T05:33:33+0000
+Generated: 2026-07-07T09:43:04+0000
 
 > Read-only gate. No experiments were re-run. No results were modified.
 
@@ -11,9 +11,9 @@ Generated: 2026-07-07T05:33:33+0000
 | Metric | Count |
 |---|---|
 | Total checks | 44 |
-| PASS | 39 |
+| PASS | 40 |
 | WARNING | 3 |
-| BLOCKED | 2 |
+| BLOCKED | 1 |
 | FAIL | 0 |
 
 ### Status logic
@@ -27,7 +27,6 @@ Generated: 2026-07-07T05:33:33+0000
 
 | ID | Check | Reason | Next Action |
 |---|---|---|---|
-| 3.2 | Sentence/window BM25 blocked documented | missing_pdf_corpus | Generate PDF sentence corpus or document as permanent limitation |
 | 3.4 | Format shift blocked documented | sklearn_version_mismatch | Upgrade sklearn (needs network) or document as permanent limitation |
 
 ### Warning items (documented limitations)
@@ -36,7 +35,7 @@ Generated: 2026-07-07T05:33:33+0000
 |---|---|---|---|
 | 6.4 | Audit not yet run (documented) | No audit dir; protocol documents audit as not complete | Execute human audit when annotators available |
 | 9.1 | Redteam high risk in internal files (release excluded) | high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion; reconciliation report present | Address high-risk findings or confirm permanent exclusion from release |
-| 10.2 | Schema validation has documented failures | 34 passed, 4 failed (failures from blocked experiments) | Fix blocked experiments or document as permanent |
+| 10.2 | Schema validation has documented failures | 36 passed, 2 failed (failures from blocked experiments) | Fix blocked experiments or document as permanent |
 
 ---
 
@@ -56,11 +55,11 @@ Generated: 2026-07-07T05:33:33+0000
 | ID | Check | Status | Priority | Evidence |
 |---|---|---|---|---|
 | 10.1 | Toy demo passes | PASS | P0 | all_steps_success=true, 6 steps completed |
-| 10.2 | Schema validation has documented failures | WARNING | P1 | 34 passed, 4 failed (failures from blocked experiments) |
+| 10.2 | Schema validation has documented failures | WARNING | P1 | 36 passed, 2 failed (failures from blocked experiments) |
 | 10.3 | Pipeline runner exists | PASS | P0 | run_v3_17_confidential_pipeline.py present |
 | 10.4 | Makefile/CI smoke exists | PASS | P0 | Makefile + 3 workflow(s): ['ci-nightly.yml', 'ci-smoke.yml', 'smoke.yml'] |
 
-- **10.2 WARNING**: 34 passed, 4 failed (failures from blocked experiments) → next_action=`Fix blocked experiments or document as permanent`
+- **10.2 WARNING**: 36 passed, 2 failed (failures from blocked experiments) → next_action=`Fix blocked experiments or document as permanent`
 
 ### 2. Dataset
 
@@ -78,7 +77,7 @@ Generated: 2026-07-07T05:33:33+0000
 | ID | Check | Status | Priority | Evidence |
 |---|---|---|---|---|
 | 3.1 | BM25 real complete | PASS | P0 | n_claims=444, recall@10=0.9797297297297297 |
-| 3.2 | Sentence/window BM25 blocked documented | BLOCKED | P0 | status=blocked, reason=missing_pdf_corpus |
+| 3.2 | Sentence/window BM25 complete | PASS | P0 | n_candidates=444 |
 | 3.3 | Canonicalizer real complete | PASS | P0 | 8 selectors evaluated |
 | 3.4 | Format shift blocked documented | BLOCKED | P0 | status=blocked, reason=sklearn_version_mismatch |
 | 3.5 | Leakage audit complete | PASS | P0 | audit_summary.md reports PASS |
@@ -87,7 +86,6 @@ Generated: 2026-07-07T05:33:33+0000
 | 3.8 | Metric robustness exists | PASS | P0 | 4 metrics with CI |
 | 3.9 | Error taxonomy exists | PASS | P1 | 9 error types |
 
-- **3.2 BLOCKED**: reason=`missing_pdf_corpus`, next_action=`Generate PDF sentence corpus or document as permanent limitation`
 - **3.4 BLOCKED**: reason=`sklearn_version_mismatch`, next_action=`Upgrade sklearn (needs network) or document as permanent limitation`
 
 ### 4. PDF

@@ -1,21 +1,24 @@
 #!/usr/bin/env python
 """build_pdf_sentence_corpus_v1.py — Local PDF sentence corpus builder.
 
-Begins from local PDFs (or toy synthetic text) and constructs page/block/
-sentence corpus units before retrieval. The pipeline starts from raw PDF
-files and does NOT read evidence_text from strict_silver CSV or any label
-field.
+Begins from local PDFs (or toy synthetic text, or pre-chunked CSV) and
+constructs page/block/sentence corpus units before retrieval. The pipeline
+starts from raw PDF files, a chunk CSV, or toy synthetic text, and does
+NOT read evidence_text from strict_silver CSV or any label field.
 
 Hard boundaries:
   - no network, no API, no cloud, no PDF upload
   - no model training, no original data modification
   - does not read label fields
   - does not read evidence_text as corpus source
-  - corpus is built only from local PDFs or toy synthetic text
+  - corpus is built only from local PDFs, pre-chunked CSV, or toy text
 
 Usage:
   python scripts/build_pdf_sentence_corpus_v1.py --pdf_dir pdfs --output_dir data/pdf_corpus_v1
   python scripts/build_pdf_sentence_corpus_v1.py --toy_mode --output_dir data/pdf_corpus_toy_v1
+  python scripts/build_pdf_sentence_corpus_v1.py \
+      --from_chunk_csv data/simclaim_pdf_corpus_retrieval_v1/local_pdf_corpus_chunks.csv \
+      --output_dir data/pdf_corpus_v1 --private_mode true
 """
 
 import argparse
@@ -414,6 +417,7 @@ def build_windows(sentence_rows, window_size=3):
 
     Each window contains up to `window_size` consecutive sentences.
     Window text is the concatenation of sentence clean_text with spaces.
+    Preserves source_chunk_id when present (backward-compatible).
     """
     window_rows = []
     # Group sentences by (paper_id, page_number)
@@ -444,8 +448,9 @@ def build_windows(sentence_rows, window_size=3):
             pdf_filename = window_sents[0]["pdf_filename"]
             pdf_sha256 = window_sents[0]["pdf_sha256"]
             block_ids = [s["block_id"] for s in window_sents]
+            source_chunk_ids = [s.get("source_chunk_id", "") for s in window_sents]
 
-            window_rows.append({
+            window_row = {
                 "paper_id": paper_id,
                 "pdf_filename": pdf_filename,
                 "pdf_sha256": pdf_sha256,
@@ -461,7 +466,12 @@ def build_windows(sentence_rows, window_size=3):
                 "n_words": count_words(window_text),
                 "n_sentences_in_window": len(window_sents),
                 "section_hint": hint,
-            })
+            }
+            # Preserve source_chunk_id provenance when available
+            if any(source_chunk_ids):
+                window_row["source_chunk_id"] = source_chunk_ids[0] if source_chunk_ids else ""
+                window_row["source_chunk_ids"] = json.dumps(source_chunk_ids)
+            window_rows.append(window_row)
             global_window_id += 1
 
     return window_rows
@@ -474,6 +484,150 @@ def sha256_file(path):
         for chunk in iter(lambda: f.read(8192), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+# ---------------------------------------------------------------------------
+# Chunk CSV mode: build corpus from pre-chunked PDF text
+# ---------------------------------------------------------------------------
+
+def load_chunk_csv(csv_path):
+    """Load pre-chunked PDF text from CSV.
+
+    Expected columns: chunk_id, paper_id, source_pair_id, pdf_path,
+                      page_start, page_end, chunk_index, chunk_text, n_words, extract_status
+
+    Returns list of dicts with normalized fields. Does NOT print chunk_text.
+    Handles NUL characters from PDF extraction (replaces with empty string).
+    """
+    chunks = []
+    with open(csv_path, "r", encoding="utf-8", newline="", errors="replace") as f:
+        content = f.read().replace("\x00", "")
+    reader = csv.DictReader(content.splitlines())
+    required = {"chunk_id", "paper_id", "chunk_text", "page_start"}
+    missing = required - set(reader.fieldnames or [])
+    if missing:
+        raise SystemExit(f"ERROR: chunk CSV missing required columns: {missing}")
+    for row in reader:
+        if row.get("extract_status", "ok") != "ok":
+            continue
+        chunks.append({
+            "chunk_id": row["chunk_id"],
+            "paper_id": row["paper_id"],
+            "source_pair_id": row.get("source_pair_id", row["paper_id"]),
+            "pdf_path": row.get("pdf_path", ""),
+            "page_start": int(row.get("page_start", 1) or 1),
+            "page_end": int(row.get("page_end", row.get("page_start", 1)) or 1),
+            "chunk_index": int(row.get("chunk_index", 0) or 0),
+            "chunk_text": row.get("chunk_text", ""),
+            "n_words": int(row.get("n_words", 0) or 0),
+        })
+    return chunks
+
+
+def build_corpus_from_chunks(chunk_rows, window_size=3):
+    """Build sentence and window corpus from pre-chunked PDF text.
+
+    Each chunk is treated as a single block. Text is normalized,
+    dehyphenated, and split into sentences. source_chunk_id is preserved
+    for provenance tracking.
+
+    Unlike build_corpus_from_pages(), this does NOT do header/footer
+    removal (chunks are pre-extracted) and does NOT create page-level
+    rows (chunks are the atomic unit).
+
+    Returns:
+        sentence_rows, window_rows, manifest_rows, stats
+    """
+    by_paper = defaultdict(list)
+    for chunk in chunk_rows:
+        by_paper[chunk["paper_id"]].append(chunk)
+
+    all_sentence_rows = []
+    manifest_rows = []
+    global_sentence_id = 0
+
+    for paper_id, chunks in by_paper.items():
+        first_chunk = chunks[0]
+        pdf_path = first_chunk.get("pdf_path", "")
+        pdf_filename = Path(pdf_path).name if pdf_path else paper_id
+        # Path-derived hash (stable identifier; not the actual file hash
+        # since source PDFs may not be accessible from this working copy).
+        pdf_sha256 = sha256_text(pdf_filename)
+        source_id = first_chunk.get("source_pair_id", paper_id)
+
+        pages_seen = set()
+        n_blocks = 0
+        n_sentences = 0
+
+        for chunk in chunks:
+            chunk_id = chunk["chunk_id"]
+            chunk_text = chunk.get("chunk_text", "")
+            page_number = chunk["page_start"]
+            pages_seen.add(page_number)
+
+            # Clean the chunk text (same pipeline as page mode)
+            text = normalize_unicode(chunk_text)
+            text = dehyphenate(text)
+            text = repair_linebreaks(text)
+
+            if not text.strip():
+                continue
+
+            block_id = n_blocks
+            n_blocks += 1
+            section_hint = detect_section_hint(text)
+
+            sents = split_sentences(text)
+            for sent in sents:
+                n_words = count_words(sent)
+                if n_words < 5:
+                    continue
+                unit_id = f"{paper_id}::p{page_number}::b{block_id}::s{global_sentence_id}"
+                all_sentence_rows.append({
+                    "paper_id": paper_id,
+                    "source_id": source_id,
+                    "pdf_filename": pdf_filename,
+                    "pdf_sha256": pdf_sha256,
+                    "page_number": page_number,
+                    "block_id": block_id,
+                    "sentence_id": global_sentence_id,
+                    "unit_id": unit_id,
+                    "raw_text": sent,
+                    "clean_text": sent,
+                    "raw_text_sha256": sha256_text(sent),
+                    "clean_text_sha256": sha256_text(sent),
+                    "n_chars": len(sent),
+                    "n_words": n_words,
+                    "section_hint": section_hint,
+                    "source_chunk_id": chunk_id,
+                })
+                global_sentence_id += 1
+                n_sentences += 1
+
+        manifest_rows.append({
+            "paper_id": paper_id,
+            "source_id": source_id,
+            "pdf_filename": pdf_filename,
+            "pdf_path": pdf_path,
+            "pdf_sha256": pdf_sha256,
+            "n_pages": len(pages_seen),
+            "extraction_status": "ok",
+            "n_pages_extracted": len(pages_seen),
+            "n_blocks": n_blocks,
+            "n_sentences": n_sentences,
+            "error_message": "",
+        })
+
+    all_window_rows = build_windows(all_sentence_rows, window_size=window_size)
+
+    stats = {
+        "n_papers": len(by_paper),
+        "n_chunks": len(chunk_rows),
+        "n_blocks": sum(r["n_blocks"] for r in manifest_rows),
+        "n_sentences": len(all_sentence_rows),
+        "n_windows": len(all_window_rows),
+    }
+    return all_sentence_rows, all_window_rows, manifest_rows, stats
 
 
 def load_toy_pages(toy_path):
@@ -540,9 +694,15 @@ def main():
     parser.add_argument("--manifest", default=None, help="Optional CSV manifest mapping paper_id to pdf_path")
     parser.add_argument("--max_pages", type=int, default=None, help="Max pages to extract per PDF (optional)")
     parser.add_argument("--toy_mode", action="store_true", help="Use toy synthetic text instead of real PDFs")
+    parser.add_argument("--from_chunk_csv", default=None,
+                        help="Build corpus from pre-chunked CSV (chunk_id, paper_id, chunk_text, page_start, ...). "
+                             "Skips PDF extraction entirely.")
     parser.add_argument("--private_mode", action="store_true",
                         help="Hash-only public outputs (no raw/clean text in pages/blocks/sentences/windows.jsonl). "
                              "Full text saved to private/ subdirectory (gitignored).")
+    parser.add_argument("--private_dir", default=None,
+                        help="Directory for private full-text outputs (default: data/private/pdf_corpus_v1_internal "
+                             "when --from_chunk_csv, else <output_dir>/private/)")
     parser.add_argument("--window_size", type=int, default=3,
                         help="Number of consecutive sentences per window (default: 3)")
     args = parser.parse_args()
@@ -554,6 +714,7 @@ def main():
     all_page_rows = []
     all_block_rows = []
     all_sentence_rows = []
+    all_window_rows = []
 
     n_pdfs = 0
     n_success = 0
@@ -561,8 +722,40 @@ def main():
     total_pages = 0
     total_blocks = 0
     total_sentences = 0
+    total_windows = 0
 
-    if args.toy_mode:
+    # --- Determine private_dir ---
+    if args.private_mode:
+        if args.private_dir:
+            private_dir = Path(args.private_dir)
+        elif args.from_chunk_csv:
+            private_dir = Path("data/private/pdf_corpus_v1_internal")
+        else:
+            private_dir = output_dir / "private"
+        private_dir.mkdir(parents=True, exist_ok=True)
+    else:
+        private_dir = None
+
+    if args.from_chunk_csv:
+        chunk_csv_path = Path(args.from_chunk_csv)
+        if not chunk_csv_path.is_file():
+            print(f"ERROR: chunk CSV not found at {chunk_csv_path}", file=sys.stderr)
+            raise SystemExit(2)
+        print(f"[chunk_csv_mode] Loading chunks from {chunk_csv_path}")
+        chunk_rows = load_chunk_csv(str(chunk_csv_path))
+        print(f"  {len(chunk_rows)} chunks loaded")
+        all_sentence_rows, all_window_rows, manifest_rows, stats = build_corpus_from_chunks(
+            chunk_rows, window_size=args.window_size
+        )
+        n_pdfs = stats["n_papers"]
+        n_success = stats["n_papers"]
+        total_blocks = stats["n_blocks"]
+        total_sentences = stats["n_sentences"]
+        total_windows = stats["n_windows"]
+        print(f"  {stats['n_papers']} papers, {stats['n_chunks']} chunks, "
+              f"{stats['n_blocks']} blocks, {stats['n_sentences']} sentences, "
+              f"{stats['n_windows']} windows")
+    elif args.toy_mode:
         toy_path = Path("data/toy_synthetic/toy_pdf_texts.jsonl")
         if not toy_path.is_file():
             print(f"ERROR: toy data not found at {toy_path}", file=sys.stderr)
@@ -653,15 +846,16 @@ def main():
                 })
                 print(f"  FAILED {paper_id}: {e}", file=sys.stderr)
 
-    # --- Build windows from sentences ---
-    all_window_rows = build_windows(all_sentence_rows, window_size=args.window_size)
-    total_windows = len(all_window_rows)
-    print(f"\nBuilt {total_windows} windows (window_size={args.window_size})")
+    # --- Build windows from sentences (skip if already built in chunk mode) ---
+    if not all_window_rows:
+        all_window_rows = build_windows(all_sentence_rows, window_size=args.window_size)
+        total_windows = len(all_window_rows)
+    print(f"\n{total_windows} windows (window_size={args.window_size})")
 
     # --- Write outputs ---
 
     # In private_mode, public files are hash-only (no raw/clean text).
-    # Full text goes to private/ subdirectory (should be gitignored).
+    # Full text goes to private/ subdirectory (gitignored).
     TEXT_FIELDS_PAGES = {"raw_page_text", "clean_page_text"}
     TEXT_FIELDS_BLOCKS = {"raw_block_text", "clean_block_text"}
     TEXT_FIELDS_SENTS = {"raw_text", "clean_text"}
@@ -671,19 +865,15 @@ def main():
         """Return a copy of row with text fields removed."""
         return {k: v for k, v in row.items() if k not in text_fields}
 
-    private_dir = output_dir / "private" if args.private_mode else None
-    if private_dir:
-        private_dir.mkdir(parents=True, exist_ok=True)
-
-    # pdf_manifest.csv
+    # pdf_manifest.csv (extrasaction='ignore' for optional source_id field)
     manifest_path = output_dir / "pdf_manifest.csv"
     manifest_fields = [
-        "paper_id", "pdf_filename", "pdf_path", "pdf_sha256",
+        "paper_id", "source_id", "pdf_filename", "pdf_path", "pdf_sha256",
         "n_pages", "extraction_status", "n_pages_extracted",
         "n_blocks", "n_sentences", "error_message",
     ]
     with open(manifest_path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=manifest_fields)
+        writer = csv.DictWriter(f, fieldnames=manifest_fields, extrasaction="ignore")
         writer.writeheader()
         for row in manifest_rows:
             writer.writerow(row)
@@ -756,10 +946,13 @@ def main():
         "n_windows": total_windows,
         "window_size": args.window_size,
         "private_mode": args.private_mode,
+        "source_mode": "chunk_csv" if args.from_chunk_csv else ("toy" if args.toy_mode else "pdf_extraction"),
         "created_at": datetime.now(timezone.utc).isoformat(),
         "no_network": True,
         "no_api": True,
     }
+    if args.from_chunk_csv:
+        summary["chunk_csv_source"] = str(args.from_chunk_csv)
     summary_path = output_dir / "extraction_summary.json"
     with open(summary_path, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
