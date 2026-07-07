@@ -52,9 +52,13 @@ R-50,8.4,second_stage_viable,true,,experiments/canonicalized_review_queue_v1/can
 R-51,8.5,n_variants,8,,experiments/format_shift_ablation_v1/format_shift_summary.json,format-shift variants
 R-52,8.5,n_variant_rows,3552,,experiments/format_shift_ablation_v1/format_shift_summary.json,8 variants x 444 candidates
 R-53,8.5,NLI features shape,"[3552 7]",,experiments/format_shift_ablation_v1/r4_eval_blocked.json,NLI feature extraction success
-R-54,8.5,format_shift R4 status,blocked,,experiments/format_shift_ablation_v1/r4_eval_blocked.json,sklearn_version_mismatch
-R-55,8.5,required sklearn,>=1.5.0,,reports/format_shift_r4_eval_blocked_v3_17.md,frozen R4 artifacts
-R-56,8.5,current sklearn,1.4.1.post1,,reports/format_shift_r4_eval_blocked_v3_17.md,environment
+R-54,8.5,format_shift R4 status,resolved,,experiments/format_shift_ablation_v1/r4_eval_blocked.json,offline sklearn 1.9.0 via project-local .venv
+R-55,8.5,required sklearn,>=1.5.0,,reports/sklearn_offline_compatibility_investigation_v3_17.md,frozen R4 artifacts (pickled with 1.9.0)
+R-56,8.5,environment sklearn,1.9.0,,reports/sklearn_offline_compatibility_investigation_v3_17.md,project-local .venv (exact match)
+R-56a,8.5,canonicalized strong_F1,0.4615,,experiments/format_shift_ablation_v1/format_shift_metrics.csv,canonicalized_best_sentence_top5
+R-56b,8.5,oracle strong_F1,0.4627,,experiments/format_shift_ablation_v1/format_shift_metrics.csv,oracle_clean
+R-56c,8.5,raw_bm25 strong_F1,0.2755,,experiments/format_shift_ablation_v1/format_shift_metrics.csv,raw_bm25_top1_chunk
+R-56d,8.5,canonicalization gain,+0.1860,,experiments/format_shift_ablation_v1/format_shift_summary.json,canonicalized vs raw_bm25
 R-57,10,leakage audit status,pass,,experiments/leakage_audit_v1/audit_summary.md,12 checks
 R-58,10,claim-only strong_F1,0.2448,,experiments/leakage_audit_v1/claim_only_baseline.json,TF-IDF+LR GroupKFold
 R-59,10,claim-only to R4 ratio,0.5436,,experiments/leakage_audit_v1/claim_only_baseline.json,below 0.8 warning

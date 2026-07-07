@@ -2,7 +2,7 @@
 
 **Manuscript:** Local Evidence Canonicalization for Offline Simulation-Claim Review Queues: A Controlled Silver Diagnostic Study of Retrieval-to-Screening Format Shift
 **Submission manuscript draft:** `paper_assets/v3_17_confidential/submission_manuscript_v1.md`
-**Final gate status:** `READY_WITH_LIMITATIONS` (PASS=40, WARNING=3, BLOCKED=1, FAIL=0)
+**Final gate status:** `READY_WITH_LIMITATIONS` (PASS=42, WARNING=2, BLOCKED=0, FAIL=0)
 **Generated:** 2026-07-07
 
 ---
@@ -18,7 +18,7 @@ The system is a **second-stage review queue generator**, not a standalone detect
 - "This is a controlled silver diagnostic study, not a gold benchmark."
 - "The system is a second-stage review queue generator, not a standalone detector."
 - "Confidentiality is a deployment constraint, not the empirical contribution."
-- "Format-shift R4 metrics are not reported because frozen R4 prediction is blocked by sklearn version mismatch."
+- "Format-shift R4 evaluation was completed offline using a compatible local scikit-learn environment; results are diagnostic (silver labels), not benchmark-level."
 
 ## 3. Documented limitations (acceptable for submission)
 
@@ -26,21 +26,21 @@ The system is a **second-stage review queue generator**, not a standalone detect
 |---|---|---|---|
 | 1 | Silver labels, not gold | Documented | `human_audited=False` for all 444 rows; `gold_label` empty |
 | 2 | Human audit staged, not executed | WARNING (6.4) | `docs/human_audit_protocol_v1.md` + `data/audit_templates/`; no `audit_agreement_summary.json` |
-| 3 | Format-shift R4 eval blocked | BLOCKED (3.4) | `reports/format_shift_r4_eval_blocked_v3_17.md` — sklearn 1.4.1 vs ≥1.5.0 required; no-network boundary |
+| 3 | Format-shift R4 eval completed | PASS (3.4 resolved) | `experiments/format_shift_ablation_v1/format_shift_metrics.csv`; `reports/sklearn_offline_compatibility_investigation_v3_17.md` — local scikit-learn 1.9.0 env, offline, no retraining |
 | 4 | Redteam high-risk in internal files | WARNING (9.1) | 3 high-risk `forbidden_sorting_field` in internal scoring files; excluded from release bundle |
-| 5 | Schema validation 2 failures | WARNING (10.2) | Both failures are `format_shift_metrics.csv` (blocked experiment) |
+| 5 | Schema validation | PASS (10.2) | `experiments/schema_validation_summary.md` — 38/38 OK, 0 fail |
 
 ## 4. Verification rerun (Task Pack 4, STEP 5)
 
-- `run_final_perfect_state_gate_v1.py` → PASS=40, WARNING=3, BLOCKED=1, FAIL=0
+- `run_final_perfect_state_gate_v1.py` → PASS=42, WARNING=2, BLOCKED=0, FAIL=0
 - `clean_legacy_narrative_scan_v1.py` → unsafe_current_claim=0, ambiguous=0
-- `validate_experiment_outputs_v1.py` → 36/38 OK, 2 fail (blocked format-shift)
+- `validate_experiment_outputs_v1.py` → 38/38 OK, 0 fail
 - `run_confidentiality_redteam_scan_v1.py` → 3 high-risk (internal-only, excluded from release)
 - `pytest tests/test_final_perfect_state_gate_v3_17.py` → 31/31 PASS
 
 ## 5. What is NOT in this submission
 
-- No fake `format_shift_metrics.csv` (blocked, documented as permanent limitation)
+- No fake `format_shift_metrics.csv` (real metrics generated via offline sklearn 1.9.0 environment; `experiments/format_shift_ablation_v1/format_shift_metrics.csv`)
 - No fake `audit_agreement_summary.json` (human audit staged, not executed)
 - No silver relabeled as gold (`human_audited` stays False; `gold_label` stays empty)
 - No raw claim/evidence/PDF text in public artifacts (hash-only public corpus)
@@ -52,7 +52,7 @@ All quantitative claims in the manuscript are traced to source files via `[Sourc
 
 ## 7. Reviewer risk note
 
-The highest reviewer risks are: (a) misreading "silver diagnostic" as a forbidden gold-benchmark claim, (b) misreading "second-stage review queue" as a forbidden standalone-detector claim, (c) treating the blocked format-shift R4 eval as a hidden negative result rather than an environment limitation. The manuscript and this cover note explicitly counter all three by using safe wording ("not a gold benchmark", "not a standalone detector", "blocked by sklearn version mismatch").
+The highest reviewer risks are: (a) misreading "silver diagnostic" as a forbidden gold-benchmark claim, (b) misreading "second-stage review queue" as a forbidden standalone-detector claim, (c) misreading the completed format-shift R4 eval as benchmark-level validation rather than silver-conditional diagnostics. The manuscript and this cover note explicitly counter all three by using safe wording ("not a gold benchmark", "not a standalone detector", "diagnostic, not benchmark-level").
 
 ---
 

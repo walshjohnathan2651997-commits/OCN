@@ -1,0 +1,9 @@
+variant,strong_F1,strong_precision,strong_recall,macro_F1,n_eval,delta_vs_oracle_clean,delta_vs_raw_bm25_top1
+oracle_clean,0.462687,0.389937,0.568807,0.460856,436,0.0,0.187177
+oracle_plus_metadata,0.433498,0.468085,0.40367,0.479799,436,-0.029189,0.157988
+oracle_lengthened,0.0,0.0,0.0,0.346996,436,-0.462687,-0.27551
+oracle_plus_metadata_lengthened,0.0,0.0,0.0,0.372523,436,-0.462687,-0.27551
+raw_bm25_top1_chunk,0.27551,0.310345,0.247706,0.358996,436,-0.187177,0.0
+cleaned_bm25_top1_chunk,0.276923,0.313953,0.247706,0.360841,436,-0.185764,0.001413
+canonicalized_best_sentence_top5,0.461538,0.324627,0.798165,0.35695,436,-0.001149,0.186028
+canonicalized_three_sentence_window_top5,0.398496,0.33758,0.486239,0.387132,436,-0.064191,0.122986

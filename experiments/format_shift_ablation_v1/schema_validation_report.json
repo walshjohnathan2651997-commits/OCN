@@ -1,55 +1,33 @@
 {
-  "script_name": "run_format_shift_ablation_v1.py",
-  "timestamp": "2026-07-07T00:42:57",
-  "n_reports": 2,
-  "n_ok": 2,
+  "script_name": "evaluate_r4_on_evidence_variants_v1.py",
+  "timestamp": "2026-07-07T21:45:46",
+  "n_reports": 1,
+  "n_ok": 1,
   "n_fail": 0,
   "all_ok": true,
   "reports": [
     {
-      "schema": "format_shift_inputs",
+      "schema": "format_shift_metrics",
       "schema_version": "1.0.0",
       "ok": true,
-      "n_rows": 3552,
-      "n_cols": 9,
+      "n_rows": 8,
+      "n_cols": 8,
       "columns": [
-        "candidate_id",
         "variant",
-        "evidence_input",
-        "evidence_input_sha256",
-        "n_words",
-        "source",
-        "uses_oracle_text",
-        "contains_metadata",
-        "is_lengthened"
+        "strong_F1",
+        "strong_precision",
+        "strong_recall",
+        "macro_F1",
+        "n_eval",
+        "delta_vs_oracle_clean",
+        "delta_vs_raw_bm25_top1"
       ],
       "required_missing": [],
       "forbidden_scoring_present": [],
       "unexpected_columns": [],
       "strict": false,
-      "file_path": "experiments\\format_shift_ablation_v1\\format_shift_inputs.csv",
+      "file_path": "experiments\\format_shift_ablation_v1\\format_shift_metrics.csv",
       "file_exists": true
-    },
-    {
-      "schema": "format_shift_inputs",
-      "schema_version": "1.0.0",
-      "ok": true,
-      "leaked_public_columns": [],
-      "leaked_text_columns": [],
-      "leaked_scoring_columns": [],
-      "columns": [
-        "candidate_id",
-        "variant",
-        "evidence_input_sha256",
-        "n_words",
-        "source",
-        "uses_oracle_text",
-        "contains_metadata",
-        "is_lengthened"
-      ],
-      "file_path": "experiments\\format_shift_ablation_v1\\format_shift_inputs_redacted.csv",
-      "file_exists": true,
-      "is_redacted": true
     }
   ]
 }

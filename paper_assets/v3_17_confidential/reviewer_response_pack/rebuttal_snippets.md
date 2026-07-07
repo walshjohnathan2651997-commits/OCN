@@ -18,17 +18,17 @@ We agree the 444-candidate set is a controlled silver diagnostic, not a gold ben
 
 ## Snippet B — Claim-only shortcut (Risk B)
 
-We agree a claim-only signal exists. Claim-only strong_F1=0.2448 (10-seed mean); the ratio claim-only / R4 is 0.5436, below the 0.8 warning threshold defined in our leakage audit. Shuffled-evidence, title-only, and metadata-only controls all collapse well below R4, and the lexical-cue probe does not exceed the claim-only baseline. These results indicate R4 uses the retrieved and canonicalized evidence beyond what is predictable from the claim alone, but they do not prove R4 is fully shortcut-free. We report the residual claim-only signal as a limitation, not as a hidden negative. A direct format-shift R4 evaluation, which would further constrain the shortcut interpretation, is blocked by sklearn version mismatch under the no-network boundary and is documented as a permanent limitation. We do not claim R4 is shortcut-free; we claim R4 substantially exceeds the claim-only ceiling on this silver set.
+We agree a claim-only signal exists. Claim-only strong_F1=0.2448 (10-seed mean); the ratio claim-only / R4 is 0.5436, below the 0.8 warning threshold defined in our leakage audit. Shuffled-evidence, title-only, and metadata-only controls all collapse well below R4, and the lexical-cue probe does not exceed the claim-only baseline. These results indicate R4 uses the retrieved and canonicalized evidence beyond what is predictable from the claim alone, but they do not prove R4 is fully shortcut-free. We report the residual claim-only signal as a limitation, not as a hidden negative. A direct format-shift R4 evaluation was completed offline using a compatible local scikit-learn environment; the canonicalization gain of +0.186 strong_F1 (canonicalized vs raw BM25 chunks) further constrains the shortcut interpretation on the format axis. We do not claim R4 is shortcut-free; we claim R4 substantially exceeds the claim-only ceiling on this silver set.
 
-*Word count: 154.*
+*Word count: 141.*
 
 ---
 
-## Snippet C — Format-shift blocked (Risk C)
+## Snippet C — Format-shift resolved (Risk C)
 
-We agree the format-shift R4 evaluation is not complete. Variant construction (8 variants × 444 candidates = 3552 rows) and NLI feature extraction (matrix [3552, 7]) are complete; the redacted public variant inputs are available as `experiments/format_shift_ablation_v1/format_shift_inputs_redacted.csv`. R4 prediction on the variants fails with `AttributeError` on `multi_class` because the frozen R4 artifacts require scikit-learn ≥ 1.5.0 and the environment has 1.4.1.post1; the V3.17 no-network boundary prevents in-place upgrade. We do not report R4 metrics on the variants and do not imply the evaluation was completed. This is an environmental block, not a hidden negative result. The canonicalization gain (oracle_recall 0.043 → 0.387, 9x) is reported on the canonicalizer ablation and is the strongest available evidence that format shift matters at the retrieval-to-screening interface. Any reader with scikit-learn ≥ 1.5.0 can reproduce the missing metrics from the public redacted inputs.
+We previously reported the format-shift R4 evaluation as blocked by a scikit-learn version mismatch (frozen R4 artifacts require sklearn 1.9.0; the environment had 1.4.1.post1). An offline compatibility investigation identified a project-local .venv with scikit-learn 1.9.0 — the exact version the frozen R4 artifacts were pickled with. The full R4 evaluation was then completed offline (HF_HUB_OFFLINE=1) with no network, no API, no retraining, and no model-artifact modification. Real R4 metrics on all 8 variants are now reported: canonicalized evidence (canonicalized_best_sentence_top5) achieves strong_F1=0.4615, close to the oracle upper bound (0.4627) and substantially above raw BM25 chunks (0.2755). The canonicalization gain of +0.186 strong_F1 confirms that format shift matters at the retrieval-to-screening interface. Results are diagnostic (silver labels, frozen R4), not benchmark-level.
 
-*Word count: 159.*
+*Word count: 131.*
 
 ---
 
@@ -85,8 +85,8 @@ We agree this paper is not a SOTA claim on any gold benchmark and is not positio
 | Snippet | Risk | Word count | Within 100–160? |
 |---|---|---|---|
 | A | Dataset silver risk | 143 | yes |
-| B | Claim-only shortcut | 154 | yes |
-| C | Format-shift blocked | 159 | yes |
+| B | Claim-only shortcut | 141 | yes |
+| C | Format-shift resolved | 131 | yes |
 | D | Human audit pending | 142 | yes |
 | E | Confidentiality framing | 158 | yes |
 | F | Simple method novelty | 156 | yes |

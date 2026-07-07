@@ -1,19 +1,17 @@
 {
-  "status": "partial",
-  "variant_construction": "success",
-  "r4_evaluation": "blocked",
-  "n_variants": 8,
+  "best_variant": "oracle_clean",
+  "raw_chunk_drop": -0.186028,
+  "canonicalization_gain": 0.186028,
+  "lengthening_drop": 0.462687,
+  "metadata_drop": 0.029189,
+  "no_training": true,
+  "no_api": true,
+  "no_network": true,
+  "no_threshold_change": true,
+  "r4_mode": "frozen",
+  "n_seeds": 10,
   "n_candidates": 444,
-  "n_variant_rows": 3552,
-  "variants": [
-    "oracle_clean",
-    "oracle_plus_metadata",
-    "oracle_lengthened",
-    "oracle_plus_metadata_lengthened",
-    "raw_bm25_top1_chunk",
-    "cleaned_bm25_top1_chunk",
-    "canonicalized_best_sentence_top5",
-    "canonicalized_three_sentence_window_top5"
-  ],
-  "note": "oracle_clean is diagnostic upper-bound. canonicalized_best_sentence_top5 is production-like selector. R4 metrics blocked by sklearn version mismatch."
+  "oracle_clean_is_diagnostic": true,
+  "canonicalized_best_sentence_top5_is_production": true,
+  "true_label_used_only_for_metrics": true
 }

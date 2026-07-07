@@ -8,7 +8,7 @@
 - **BLOCKED** — evidence incomplete due to environmental constraint; metrics not reported.
 - **FAIL** — would indicate an unsupported claim; not present in this submission.
 
-**Final gate reference.** `READY_WITH_LIMITATIONS` (PASS=40, WARNING=3, BLOCKED=1, FAIL=0).
+**Final gate reference.** `READY_WITH_LIMITATIONS` (PASS=42, WARNING=2, BLOCKED=0, FAIL=0).
 
 ---
 
@@ -17,8 +17,8 @@
 | Risk ID | Reviewer attack | Severity | Evidence | Current status | Safe answer | Limitation | Manuscript section |
 |---|---|---|---|---|---|---|---|
 | A | 444 candidates are GPT/silver; results may be silver-labeler contingency | High | Dataset lock (SHA256, 444 rows, 111 groups, 4 balanced labels); leakage audit 12/12 PASS; claim-only strong_F1=0.2448 (ratio 0.5436 <0.8); shuffled-evidence 46x collapse; group split integrity | WARNING (silver labels, no human audit) | Results support a retrieval-to-screening diagnostic on this controlled silver set; not general model validation | Silver labels (`human_audited=False`, `gold_label` empty); no human audit; 6 domains only | §6 Dataset and Boundaries; §1 Abstract framing |
-| B | R4 may have learned only claim template (claim-only shortcut) | High | Claim-only strong_F1=0.2448 (ratio 0.5436 <0.8); shuffled/title-only/metadata baselines collapse; lexical cue probe ≤ claim-only; leakage audit 12/12 PASS | WARNING (residual claim-only signal) | R4 substantially exceeds claim-only ceiling; not fully shortcut-free; residual signal is a reported limitation | Claim-only signal non-zero (0.2448); format-shift R4 eval blocked; subtle semantic shortcuts not ruled out | §10 Leakage and Shortcut Audits; §13 Limitations |
-| C | Format-shift R4 eval is incomplete (hidden negative result?) | High | 8 variants × 444 = 3552 rows constructed; NLI features [3552, 7] complete; R4 prediction blocked (sklearn 1.4.1.post1 vs ≥1.5.0); no-network boundary; blocked report; redacted public variant inputs | BLOCKED (3.4) | Variant construction and NLI features complete; R4 metrics not reported; environmental block, not suppressed negative result | R4 metrics on variants absent; block permanent under no-network; canonicalization gain is on ablation, not on R4 over variants | §7.2 Method; §13 Limitations; Appendix on blocked experiments |
+| B | R4 may have learned only claim template (claim-only shortcut) | High | Claim-only strong_F1=0.2448 (ratio 0.5436 <0.8); shuffled/title-only/metadata baselines collapse; lexical cue probe ≤ claim-only; leakage audit 12/12 PASS | WARNING (residual claim-only signal) | R4 substantially exceeds claim-only ceiling; not fully shortcut-free; residual signal is a reported limitation | Claim-only signal non-zero (0.2448); subtle semantic shortcuts not ruled out | §10 Leakage and Shortcut Audits; §13 Limitations |
+| C | Format-shift R4 eval is incomplete (hidden negative result?) | High | 8 variants × 444 = 3552 rows; NLI features [3552, 7]; R4 prediction completed via local sklearn 1.9.0 env (offline, HF_HUB_OFFLINE=1); canonicalized strong_F1=0.4615 vs raw_bm25 0.2755 (+0.186); schema validation 38/38 PASS; gate 3.4 PASS | PASS (3.4 resolved) | Format-shift R4 eval completed offline; canonicalization gain +0.186 strong_F1 confirms format shift matters; not a hidden negative result | Results diagnostic (silver labels, frozen R4); requires sklearn >= 1.5.0 to reproduce; lengthening variants produce strong_F1=0.0 | §7.2 Method; §13 Limitations |
 | D | No human audit; how can metrics be trusted? | High | Human audit protocol (`docs/human_audit_protocol_v1.md`); audit template and seed queue prepared; no `audit_agreement_summary.json`; `human_audited=False` for all 444 rows; `gold_label` empty | WARNING (6.4) | Protocol/template/seed queue prepared; audit not executed; all metrics are silver-conditional diagnostics | No human audit; metrics may shift under adjudication; 80–120 candidate sample, not full adjudication | §6 Dataset and Boundaries; §13 Limitations |
 | E | Why emphasize confidentiality? Narrative device to avoid LLM baselines? | Medium | `no_api`/`no_network`/`no_training` enforced by pipeline runner; manuscript states "Confidentiality is a deployment constraint, not the empirical contribution"; Pareto analysis marks `external_llm_baseline` unavailable | WARNING (no LLM baseline) | Confidentiality is deployment constraint, not contribution; main contributions are format shift + canonicalization + Pareto analysis | No LLM baseline in submission; DeepSeek V3 pilot authorized separately but not included; Pareto conditional on constraint set | §5 Problem Setting; §1 Abstract; §4 Related Work |
 | F | BM25/simple rules have no novelty | Medium | Retrieval-to-screening interface failure (recall@10=0.980 vs oracle_recall=0.043); canonicalization 9x improvement (0.043→0.387); Pareto analysis (deterministic Pareto-optimal, learned dominated); error taxonomy (interface errors dominate) | PASS (interface-level contribution) | Novelty is pipeline interface failure: retrieval success != screening success; canonicalization bridges interface under no-API/local constraints | No novel algorithm; Pareto optimality conditional on silver set and constraint set; interface failure shown on one dataset | §1 Introduction; §7 Method; §9 Results; §12 Complexity vs Utility |
@@ -42,12 +42,12 @@
 
 | Status | Count | Risk IDs |
 |---|---|---|
-| PASS | 1 | F |
+| PASS | 2 | C, F |
 | WARNING | 7 | A, B, D, E, G, H, I |
-| BLOCKED | 1 | C |
+| BLOCKED | 0 | — |
 | FAIL | 0 | — |
 
-The single BLOCKED item (Risk C, format-shift R4 eval) is an environmental block (sklearn version mismatch under no-network), not an empirical failure. No risk is promoted to PASS without complete evidence; no WARNING or BLOCKED is rewritten as PASS.
+Risk C (format-shift R4 eval) was previously BLOCKED by sklearn version mismatch; it has been resolved by identifying a local scikit-learn 1.9.0 environment and completing the full R4 evaluation offline. No risk is promoted to PASS without complete evidence; no WARNING is rewritten as PASS.
 
 ---
 
@@ -63,7 +63,7 @@ The following claims are forbidden across all response files, the master table, 
 | "automatic peer reviewer" | queue is second-stage; does not replace adjudication |
 | "standalone detector" | `standalone_viable=false`; queue is second-stage only |
 | "validated general detector" | silver-conditional diagnostics only; no cross-dataset validation |
-| "format-shift R4 evaluation is complete" | R4 metrics on variants not reported; status = partial |
+| "format-shift metrics are validated" | silver labels, not gold; diagnostic, not benchmark-level |
 | "R4 is shortcut-free" | claim-only strong_F1=0.2448 is non-zero |
 | "we beat LLM baselines" | no LLM baseline included; no comparison possible |
 | "the entire repo is leak-free" | 3 high-risk findings exist in internal scoring files |

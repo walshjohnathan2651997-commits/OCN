@@ -1,15 +1,26 @@
 {
-  "report_version": "1.0.0",
-  "generated_at": "2026-07-07T18:00:00Z",
+  "report_version": "2.0.0",
+  "generated_at": "2026-07-07T21:45:46Z",
   "experiment": "format_shift_ablation_v1",
-  "status": "blocked",
-  "reason": "sklearn_version_mismatch",
+  "status": "resolved",
+  "previous_status": "blocked",
+  "previous_reason": "sklearn_version_mismatch",
+  "resolution_path": "A (local compatible sklearn environment)",
+  "resolution_details": {
+    "environment_used": "d:\\ocn\\.venv\\Scripts\\python.exe (Python 3.13.7, scikit-learn 1.9.0)",
+    "sklearn_version": "1.9.0",
+    "nli_model": "cross-encoder/nli-deberta-base (local cache, HF_HUB_OFFLINE=1)",
+    "network_access": false,
+    "training_performed": false,
+    "model_artifacts_modified": false,
+    "investigation_report": "reports/sklearn_offline_compatibility_investigation_v3_17.md"
+  },
   "diagnosis": {
-    "required_sklearn_version": ">=1.5.0 (frozen R4 artifacts use LogisticRegression API that changed after 1.4.x; error message references 1.9.0)",
-    "current_sklearn_version": "1.4.1.post1",
+    "required_sklearn_version": ">=1.5.0 (frozen R4 artifacts pickled with scikit-learn 1.9.0)",
+    "previous_environment_sklearn_version": "1.4.1.post1 (Python 3.10)",
     "frozen_artifact_path": "experiments/r4_minimal_recovery_v1/artifacts",
     "exact_error": "AttributeError: LogisticRegression object has no attribute 'multi_class'",
-    "root_cause": "Frozen R4 classifiers (clf_contra.pkl, clf_strong.pkl, clf_svm.pkl) were pickled with a scikit-learn version where LogisticRegression.multi_class existed. Current environment (1.4.1) cannot unpickle and call predict_proba on these artifacts because the attribute was removed/renamed in newer sklearn releases."
+    "root_cause": "Frozen R4 classifiers were pickled with scikit-learn 1.9.0. Previous environment (1.4.1.post1) could not unpickle and call predict_proba because the multi_class attribute was removed in sklearn 1.9.0."
   },
   "completed_steps": {
     "variant_construction": "success",
@@ -28,41 +39,47 @@
     ],
     "nli_features_computed": true,
     "nli_features_shape": [3552, 7],
+    "r4_prediction": "success",
+    "r4_seeds": 10,
+    "metrics_computed": true,
+    "n_eval_per_variant": 436,
     "completed_artifacts": [
-      "experiments/format_shift_ablation_v1/format_shift_inputs.csv (3552 rows, 8 variants x 444 candidates)",
-      "experiments/format_shift_ablation_v1/format_shift_inputs_redacted.csv (redacted, safe for release)",
-      "experiments/format_shift_ablation_v1/format_shift_summary.json (partial: variant construction OK, R4 metrics blocked)",
-      "experiments/format_shift_ablation_v1/leakage_guard_report.json",
-      "experiments/format_shift_ablation_v1/r4_eval_blocked.json"
-    ]
-  },
-  "missing_steps": {
-    "r4_prediction": "blocked",
-    "missing_artifacts": [
       "experiments/format_shift_ablation_v1/format_shift_metrics.csv",
-      "experiments/format_shift_ablation_v1/format_shift_summary.json (complete with R4 metrics)"
+      "experiments/format_shift_ablation_v1/format_shift_predictions.csv",
+      "experiments/format_shift_ablation_v1/format_shift_summary.json",
+      "experiments/format_shift_ablation_v1/format_shift_failure_examples_redacted.csv",
+      "experiments/format_shift_ablation_v1/r4_leakage_guard_report.json",
+      "experiments/format_shift_ablation_v1/schema_validation_report.json"
     ]
   },
-  "fix_required": {
-    "action": "Upgrade scikit-learn to a version compatible with the frozen R4 artifacts (>=1.5.0 or whichever version the artifacts were pickled with)",
-    "blocked_by": "no_network hard boundary",
-    "why_no_network_prevents_fix": "pip install scikit-learn --upgrade requires downloading wheels from PyPI, which requires network access. The V3.17 confidential pipeline enforces no_network, no_api hard boundaries. No cached wheels for newer scikit-learn versions are available in the local pip cache."
+  "key_metrics": {
+    "canonicalized_best_sentence_top5_strong_F1": 0.461538,
+    "canonicalized_best_sentence_top5_strong_recall": 0.798165,
+    "oracle_clean_strong_F1": 0.462687,
+    "raw_bm25_top1_chunk_strong_F1": 0.27551,
+    "canonicalization_gain": 0.186028,
+    "lengthening_drop": 0.462687,
+    "metadata_drop": 0.029189
   },
   "paper_wording": {
-    "safe": "Format-shift variant construction and feature extraction completed, but frozen R4 prediction was blocked by environment compatibility (scikit-learn version mismatch). We do not report unsupported R4 format-shift metrics.",
+    "safe": "Variant construction, NLI feature extraction, and frozen R4 prediction were completed using a local scikit-learn 1.9.0 environment, run offline with no network, no API, no retraining, and no model-artifact modification. Canonicalized evidence achieves strong_F1=0.4615, close to the oracle upper bound (0.4627) and substantially above raw BM25 chunks (0.2755). Results are diagnostic (silver labels, frozen R4), not benchmark-level.",
     "unsafe_examples": [
-      "Full R4 format-shift evaluation completed.",
-      "Canonicalized format-shift metrics are validated.",
-      "R4 format-shift result is final."
+      "format-shift metrics are validated",
+      "benchmark-level format-shift results",
+      "R4 is robust to format shift"
     ]
   },
   "final_gate_impact": {
     "check_id": "3.4",
-    "current_status": "BLOCKED",
-    "acceptable_as_documented_limitation": true,
-    "rationale": "Variant inputs and NLI features are available for manual analysis. R4 metrics cannot be computed without upgrading sklearn, which requires network access that violates the no_network boundary. This is a permanent limitation of the current environment, not a code defect."
+    "current_status": "PASS",
+    "previous_status": "BLOCKED",
+    "rationale": "Local compatible sklearn environment identified; eval completed offline with no network, no API, no retraining."
   },
-  "no_network": true,
-  "no_api": true,
-  "no_training": true
+  "hard_boundaries_enforced": {
+    "no_network": true,
+    "no_api": true,
+    "no_training": true,
+    "no_repickling": true,
+    "no_fake_metrics": true
+  }
 }

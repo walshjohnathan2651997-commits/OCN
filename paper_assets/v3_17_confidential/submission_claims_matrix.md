@@ -24,7 +24,7 @@
 | Deterministic pipeline is Pareto-optimal | Yes (deployment-specific) | `experiments/complexity_vs_utility_ablation_v1/method_pareto_table.csv` | "under confidential / no-API / no-training / silver-diagnostic constraints, deterministic canonicalization is Pareto-optimal against learned alternatives" | "rules generally beat learned models"; "deterministic methods are universally better" | Medium — must keep deployment-specific framing |
 | PDF extraction robustness on 12 stress docs | Yes | `experiments/pdf_extraction_stress_test_v1/stress_test_summary.md` | "12 synthetic stress documents; 0 failures; engineering robustness test, not SOTA" | "SOTA PDF extraction" | Low |
 | Format-shift variant construction succeeded | Yes | `experiments/format_shift_ablation_v1/format_shift_summary.json` | "8 variants × 444 candidates = 3552 rows; NLI features [3552, 7]; variant construction success" | "full format-shift evaluation completed" | Low |
-| Format-shift R4 metrics blocked | Yes (blocked, documented) | `reports/format_shift_r4_eval_blocked_v3_17.md` | "Format-shift R4 metrics are not reported because frozen R4 prediction is blocked by sklearn version mismatch" | "full format-shift R4 evaluation completed"; "canonicalized format-shift metrics are validated"; "R4 format-shift result is final" | High — reviewer may misread as hidden negative result |
+| Format-shift R4 eval completed | Yes (resolved offline) | `experiments/format_shift_ablation_v1/format_shift_metrics.csv`; `reports/sklearn_offline_compatibility_investigation_v3_17.md` | "format-shift R4 evaluation completed offline using a compatible local scikit-learn environment; canonicalized strong_F1=0.4615, +0.186 over raw BM25 chunks; diagnostic, not benchmark-level" | "format-shift metrics are validated"; "R4 format-shift result is final"; "benchmark-level format-shift results" | Medium — reviewer may misread diagnostic as benchmark-level |
 | Human audit protocol staged | Yes (staged, not executed) | `docs/human_audit_protocol_v1.md`; `data/audit_templates/human_audit_queue_seed_v1_redacted.csv` | "small targeted human audit protocol and seed queue prepared; audit not yet executed" | "human-audited benchmark"; "human-audited dataset"; "human-validated" | High — reviewer may misread staged as completed |
 | Public release bundle safe | Yes | `reports/release_safety_manifest_v3_17.json` | "public sanitized release bundle (221 files); release_safety_gate=PASS; no raw claim/evidence/PDF text" | "release includes all data"; "no internal-only files exist" | Low |
 | Redteam findings reconciled with release safety | Yes | `reports/redteam_release_reconciliation_v3_17.md` | "repo-wide redteam scan finds 3 high-risk findings in internal scoring files; all excluded from public release bundle; release_safety_gate=PASS" | "redteam scan clean"; "no internal-only findings" | Medium — must explain scope difference |
@@ -36,7 +36,7 @@
 - **Total claims**: 17
 - **Supported**: 17 (16 supported by experiment artifacts; 1 supported by design/lock document)
 - **Unsupported**: 0
-- **Blocked claims**: 1 (format-shift R4 metrics — documented as permanent limitation, not reported)
+- **Blocked claims**: 0 (format-shift R4 eval was resolved offline; see `reports/sklearn_offline_compatibility_investigation_v3_17.md`)
 - **Staged claims**: 1 (human audit — staged, not executed; manuscript reports "audit not yet executed")
 
 ## Forbidden wording (NOT used in manuscript)

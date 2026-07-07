@@ -1,10 +1,10 @@
 # Schema Validation Summary
 
-Generated: 2026-07-07T17:56:54
+Generated: 2026-07-07T22:22:06
 
 - Total files checked: **38**
-- Passed: **36**
-- Failed: **2**
+- Passed: **38**
+- Failed: **0**
 
 ## Per-directory results
 
@@ -50,19 +50,15 @@ Generated: 2026-07-07T17:56:54
 - [PASS] `selector_variant_evidence.csv` (schema: `selector_variant_evidence`)
 - [PASS] `selector_examples_redacted.csv` (schema: `selector_variant_evidence`)
 
-### `experiments/format_shift_ablation_v1` — FAIL (2/3 ok)
+### `experiments/format_shift_ablation_v1` — OK (3/3 ok)
 
-- [FAIL] `format_shift_metrics.csv` (schema: `format_shift_metrics`)
-  - file does not exist
-  - error: file not found
+- [PASS] `format_shift_metrics.csv` (schema: `format_shift_metrics`)
 - [PASS] `format_shift_inputs.csv` (schema: `format_shift_inputs`)
 - [PASS] `format_shift_inputs_redacted.csv` (schema: `format_shift_inputs`)
 
-### `experiments/format_shift_ablation_v1_toy` — FAIL (2/3 ok)
+### `experiments/format_shift_ablation_v1_toy` — OK (3/3 ok)
 
-- [FAIL] `format_shift_metrics.csv` (schema: `format_shift_metrics`)
-  - file does not exist
-  - error: file not found
+- [PASS] `format_shift_metrics.csv` (schema: `format_shift_metrics`)
 - [PASS] `format_shift_inputs.csv` (schema: `format_shift_inputs`)
 - [PASS] `format_shift_inputs_redacted.csv` (schema: `format_shift_inputs`)
 

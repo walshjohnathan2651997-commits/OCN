@@ -42,11 +42,11 @@ The safe empirical conclusion is therefore narrow: **R4 substantially exceeds th
 - The claim-only ratio (0.5436) is below the 0.8 warning threshold but is not zero; a stricter reviewer may still consider 0.54 high.
 - The claim-only baseline is computed on silver labels; under human adjudication the claim-only signal could rise or fall.
 - The leakage audit covers structural shortcuts; subtle semantic shortcuts (e.g., claim phrasing systematically co-occurring with labels) cannot be fully ruled out without human audit.
-- Format-shift R4 evaluation (which would directly test whether R4 depends on evidence format) is blocked by sklearn version mismatch (see response 03); this leaves the shortcut analysis incomplete on the format axis.
+- Format-shift R4 evaluation (which directly tests whether R4 depends on evidence format) was completed offline using a compatible local scikit-learn environment (see response 03); the canonicalization gain of +0.186 strong_F1 (canonicalized vs raw BM25 chunks) confirms R4 uses the canonicalized evidence format beyond claim-only signal, but does not prove R4 is fully shortcut-free.
 
 ## 7. Paper text to add
 
-> "We report a claim-only baseline to quantify the shortcut risk. Claim-only strong_F1 = 0.2448 (10-seed mean), with ratio claim-only / R4 = 0.5436, below the 0.8 warning threshold defined in our leakage audit protocol. Shuffled-evidence, title-only, and metadata-only controls all collapse well below R4, and the lexical-cue probe does not exceed the claim-only baseline. These results indicate that R4 uses the retrieved and canonicalized evidence beyond what is predictable from the claim alone, but they do not prove that R4 is fully shortcut-free. The residual claim-only signal is a reported limitation. A direct format-shift R4 evaluation, which would further constrain the shortcut interpretation, is blocked by sklearn version mismatch and is documented as a permanent limitation (see response 03)."
+> "We report a claim-only baseline to quantify the shortcut risk. Claim-only strong_F1 = 0.2448 (10-seed mean), with ratio claim-only / R4 = 0.5436, below the 0.8 warning threshold defined in our leakage audit protocol. Shuffled-evidence, title-only, and metadata-only controls all collapse well below R4, and the lexical-cue probe does not exceed the claim-only baseline. These results indicate that R4 uses the retrieved and canonicalized evidence beyond what is predictable from the claim alone, but they do not prove that R4 is fully shortcut-free. The residual claim-only signal is a reported limitation. A direct format-shift R4 evaluation was completed offline using a compatible local scikit-learn environment; the canonicalization gain of +0.186 strong_F1 (canonicalized vs raw BM25 chunks) further constrains the shortcut interpretation on the format axis (see response 03)."
 
 ## 8. What not to claim
 
@@ -54,7 +54,7 @@ The safe empirical conclusion is therefore narrow: **R4 substantially exceeds th
 |---|---|
 | "R4 is shortcut-free" | claim-only strong_F1 = 0.2448 is non-zero; ratio 0.5436 is below threshold but not zero |
 | "claim-only signal is absent" | claim-only strong_F1 = 0.2448 is a real, reported signal |
-| "format-shift evaluation proves shortcut absence" | format-shift R4 evaluation is blocked; metrics not reported |
+| "format-shift evaluation proves shortcut absence" | format-shift R4 evaluation was completed but is diagnostic (silver labels, frozen R4); cannot prove shortcut absence |
 | "human audit confirmed shortcut-free" | human audit is staged, not executed |
 | "the evidence is necessary and sufficient" | evidence is helpful (R4 >> claim-only) but not proven necessary in all cases |
 

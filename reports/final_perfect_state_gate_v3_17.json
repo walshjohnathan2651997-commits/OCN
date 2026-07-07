@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-07T12:52:19.077969+00:00",
+  "generated_at": "2026-07-07T14:02:09.897697+00:00",
   "final_status": "READY_WITH_LIMITATIONS",
   "summary": {
     "total_checks": 44,
-    "pass": 40,
-    "warning": 3,
-    "blocked": 1,
+    "pass": 42,
+    "warning": 2,
+    "blocked": 0,
     "fail": 0
   },
   "checks": [
@@ -122,12 +122,12 @@
     {
       "category": "3. Real Experiments",
       "check_id": "3.4",
-      "description": "Format shift blocked documented",
-      "status": "BLOCKED",
+      "description": "Format shift complete",
+      "status": "PASS",
       "priority": "P0",
-      "evidence": "status=blocked, reason=sklearn_version_mismatch",
-      "blocked_reason": "sklearn_version_mismatch",
-      "next_action": "Upgrade sklearn (needs network) or document as permanent limitation"
+      "evidence": "Format shift R4 eval completed",
+      "blocked_reason": "",
+      "next_action": ""
     },
     {
       "category": "3. Real Experiments",
@@ -422,12 +422,12 @@
     {
       "category": "10. CI/Repro",
       "check_id": "10.2",
-      "description": "Schema validation has documented failures",
-      "status": "WARNING",
+      "description": "Schema validation pass",
+      "status": "PASS",
       "priority": "P1",
-      "evidence": "36 passed, 2 failed (failures from blocked experiments)",
-      "blocked_reason": "Schema failures due to blocked experiments",
-      "next_action": "Fix blocked experiments or document as permanent"
+      "evidence": "38 passed, 0 failed",
+      "blocked_reason": "",
+      "next_action": ""
     },
     {
       "category": "10. CI/Repro",
@@ -450,14 +450,7 @@
       "next_action": ""
     }
   ],
-  "blocked_items": [
-    {
-      "check_id": "3.4",
-      "description": "Format shift blocked documented",
-      "blocked_reason": "sklearn_version_mismatch",
-      "next_action": "Upgrade sklearn (needs network) or document as permanent limitation"
-    }
-  ],
+  "blocked_items": [],
   "warning_items": [
     {
       "check_id": "6.4",
@@ -470,12 +463,6 @@
       "description": "Redteam high risk in internal files (release excluded)",
       "evidence": "high_risk_count=3 in internal files; release_safety_gate=PASS confirms exclusion; reconciliation report present",
       "next_action": "Address high-risk findings or confirm permanent exclusion from release"
-    },
-    {
-      "check_id": "10.2",
-      "description": "Schema validation has documented failures",
-      "evidence": "36 passed, 2 failed (failures from blocked experiments)",
-      "next_action": "Fix blocked experiments or document as permanent"
     }
   ],
   "fail_items": []

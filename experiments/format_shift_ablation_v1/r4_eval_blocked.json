@@ -1,17 +1,48 @@
 {
-  "status": "blocked",
-  "reason": "sklearn_version_mismatch",
-  "blocked_at": "2026-07-06T17:02:19.707463+00:00",
-  "details": "R4 frozen artifacts were pickled with scikit-learn 1.9.0 but current environment has 1.4.1.post1. LogisticRegression.multi_class attribute removed in 1.9.0 but accessed by 1.4.1 predict_proba.",
-  "variant_construction": "success",
-  "variant_inputs_csv": "format_shift_inputs.csv (3552 rows, 8 variants x 444 candidates)",
-  "nli_features_computed": true,
-  "nli_features_shape": [
-    3552,
-    7
-  ],
-  "r4_prediction": "blocked",
-  "r4_prediction_error": "AttributeError: LogisticRegression object has no attribute multi_class",
-  "impact": "format_shift_metrics.csv and format_shift_summary.json cannot be generated. Variant inputs are available for manual analysis.",
-  "fix_required": "Upgrade scikit-learn to >=1.9.0 (requires network access, violates no_network boundary)"
+  "status": "resolved",
+  "previous_reason": "sklearn_version_mismatch",
+  "resolved_at": "2026-07-07T21:45:46Z",
+  "resolution_path": "A (local compatible sklearn environment)",
+  "resolution_details": "A project-local .venv at d:\\ocn\\.venv\\ contains scikit-learn 1.9.0, which is the exact version the frozen R4 artifacts were pickled with. The eval was run with HF_HUB_OFFLINE=1 using the .venv Python, producing real format_shift_metrics.csv with 8 variants x 436 evaluated candidates.",
+  "previous_block": {
+    "reason": "sklearn_version_mismatch",
+    "blocked_at": "2026-07-06T17:02:19.707463+00:00",
+    "details": "R4 frozen artifacts were pickled with scikit-learn 1.9.0 but previous environment (Python 3.10) had 1.4.1.post1. LogisticRegression.multi_class attribute removed in 1.9.0 but accessed by 1.4.1 predict_proba.",
+    "r4_prediction_error": "AttributeError: LogisticRegression object has no attribute multi_class"
+  },
+  "current_state": {
+    "variant_construction": "success",
+    "nli_features_computed": true,
+    "nli_features_shape": [3552, 7],
+    "r4_prediction": "success",
+    "metrics_produced": true,
+    "metrics_file": "experiments/format_shift_ablation_v1/format_shift_metrics.csv",
+    "n_variants": 8,
+    "n_evaluated": 436,
+    "key_findings": {
+      "canonicalized_best_sentence_top5_strong_F1": 0.461538,
+      "oracle_clean_strong_F1": 0.462687,
+      "raw_bm25_top1_chunk_strong_F1": 0.27551,
+      "canonicalization_gain": 0.186028,
+      "canonicalized_recall": 0.798165
+    }
+  },
+  "environment_used": {
+    "python": "d:\\ocn\\.venv\\Scripts\\python.exe (3.13.7)",
+    "sklearn": "1.9.0",
+    "joblib": "1.5.3",
+    "transformers": "5.12.1",
+    "torch": "2.12.1+cpu",
+    "nli_model": "cross-encoder/nli-deberta-base (local cache, HF_HUB_OFFLINE=1)",
+    "network_access": false,
+    "training_performed": false,
+    "model_artifacts_modified": false
+  },
+  "hard_boundaries_enforced": {
+    "no_network": true,
+    "no_api": true,
+    "no_training": true,
+    "no_repickling": true,
+    "no_fake_metrics": true
+  }
 }

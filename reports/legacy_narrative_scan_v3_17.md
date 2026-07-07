@@ -1,6 +1,6 @@
 # Legacy Narrative Scan — V3.17 Confidential Lightweight
 
-Generated: 2026-07-07T12:52:18.485646+00:00
+Generated: 2026-07-07T14:23:06.010805+00:00
 
 > Read-only scan. No files were modified.
 
@@ -189,13 +189,13 @@ Generated: 2026-07-07T12:52:18.485646+00:00
 | docs/tfidf_as_leakage_auditor.md | 33 | human-audited | - no human-audited gold labels |
 | paper_assets/v3_17_confidential/abstract_draft.md | 28 | human-audited | source-traceable but not gold and not human-audited |
 | paper_assets/v3_17_confidential/abstract_draft.md | 45 | standalone detector | queue augments human review; it is not a standalone detector and does |
-| paper_assets/v3_17_confidential/abstract_draft.md | 55 | SOTA | general detector, not SOTA, and not an automatic peer reviewer. |
-| paper_assets/v3_17_confidential/abstract_draft.md | 55 | automatic peer reviewer | general detector, not SOTA, and not an automatic peer reviewer. |
-| paper_assets/v3_17_confidential/abstract_draft.md | 75 | gold benchmark | \| gold benchmark \| no \| |
-| paper_assets/v3_17_confidential/abstract_draft.md | 76 | SOTA | \| SOTA / state-of-the-art \| no \| |
-| paper_assets/v3_17_confidential/abstract_draft.md | 76 | state-of-the-art | \| SOTA / state-of-the-art \| no \| |
-| paper_assets/v3_17_confidential/abstract_draft.md | 77 | automatic peer review | \| automatic peer review \| no \| |
-| paper_assets/v3_17_confidential/abstract_draft.md | 79 | human-audited | \| human-audited benchmark \| no \| |
+| paper_assets/v3_17_confidential/abstract_draft.md | 57 | SOTA | general detector, not SOTA, and not an automatic peer reviewer. |
+| paper_assets/v3_17_confidential/abstract_draft.md | 57 | automatic peer reviewer | general detector, not SOTA, and not an automatic peer reviewer. |
+| paper_assets/v3_17_confidential/abstract_draft.md | 77 | gold benchmark | \| gold benchmark \| no \| |
+| paper_assets/v3_17_confidential/abstract_draft.md | 78 | SOTA | \| SOTA / state-of-the-art \| no \| |
+| paper_assets/v3_17_confidential/abstract_draft.md | 78 | state-of-the-art | \| SOTA / state-of-the-art \| no \| |
+| paper_assets/v3_17_confidential/abstract_draft.md | 79 | automatic peer review | \| automatic peer review \| no \| |
+| paper_assets/v3_17_confidential/abstract_draft.md | 81 | human-audited | \| human-audited benchmark \| no \| |
 | paper_assets/v3_17_confidential/contribution_bullets.md | 5 | SOTA | bullet claims gold, SOTA, automatic peer review, or general detector |
 | paper_assets/v3_17_confidential/contribution_bullets.md | 5 | automatic peer review | bullet claims gold, SOTA, automatic peer review, or general detector |
 | paper_assets/v3_17_confidential/contribution_bullets.md | 62 | gold benchmark | - We do **not** claim a gold benchmark. |
@@ -207,12 +207,12 @@ Generated: 2026-07-07T12:52:18.485646+00:00
 | paper_assets/v3_17_confidential/limitations_draft.md | 22 | human-audited | diagnostic set. The labels are not gold or human-audited, and |
 | paper_assets/v3_17_confidential/limitations_draft.md | 49 | gold benchmark | This is a targeted audit protocol, not a gold benchmark. |
 | paper_assets/v3_17_confidential/limitations_draft.md | 52 | human-audited | readiness, not human-audited validation." |
-| paper_assets/v3_17_confidential/limitations_draft.md | 101 | standalone detector | ## L6 — Second-stage queue, not standalone detector |
-| paper_assets/v3_17_confidential/limitations_draft.md | 105 | standalone detector | FP/TP = 66.82, which is unusable as a standalone detector. |
-| paper_assets/v3_17_confidential/limitations_draft.md | 111 | standalone detector | queue that augments human review; it is not a standalone detector |
-| paper_assets/v3_17_confidential/limitations_draft.md | 147 | full shared-threshold CESE-OCN | claim. There is no full shared-threshold CESE-OCN validation in |
-| paper_assets/v3_17_confidential/limitations_draft.md | 163 | human-audited | > labels are not gold or human-audited, and results should not be |
-| paper_assets/v3_17_confidential/limitations_draft.md | 165 | SOTA | > a validated general detector, not SOTA, and not an automatic peer |
+| paper_assets/v3_17_confidential/limitations_draft.md | 110 | standalone detector | ## L6 — Second-stage queue, not standalone detector |
+| paper_assets/v3_17_confidential/limitations_draft.md | 114 | standalone detector | FP/TP = 66.82, which is unusable as a standalone detector. |
+| paper_assets/v3_17_confidential/limitations_draft.md | 120 | standalone detector | queue that augments human review; it is not a standalone detector |
+| paper_assets/v3_17_confidential/limitations_draft.md | 156 | full shared-threshold CESE-OCN | claim. There is no full shared-threshold CESE-OCN validation in |
+| paper_assets/v3_17_confidential/limitations_draft.md | 172 | human-audited | > labels are not gold or human-audited, and results should not be |
+| paper_assets/v3_17_confidential/limitations_draft.md | 174 | SOTA | > a validated general detector, not SOTA, and not an automatic peer |
 | paper_assets/v3_17_confidential/paper_claims_checklist.md | 3 | human-audited | > Controlled silver diagnostic, not gold/human-audited. |
 | paper_assets/v3_17_confidential/paper_claims_checklist.md | 10 | human-audited | \| C2 \| not human-audited benchmark \| YES (see U7, S8) \| |
 | paper_assets/v3_17_confidential/paper_claims_checklist.md | 11 | SOTA | \| C3 \| not SOTA \| YES (see U8) \| |
@@ -375,31 +375,31 @@ Generated: 2026-07-07T12:52:18.485646+00:00
 | paper_assets/v3_17_confidential/submission_manuscript_v1.md | 97 | gold benchmark | **This is a controlled silver diagnostic study, not a gold benchmark.** The labels are silver (`candidate_label_guess... |
 | paper_assets/v3_17_confidential/submission_manuscript_v1.md | 97 | human-audited | **This is a controlled silver diagnostic study, not a gold benchmark.** The labels are silver (`candidate_label_guess... |
 | paper_assets/v3_17_confidential/submission_manuscript_v1.md | 141 | standalone detector | We rank candidates by `priority_score = p_strong_mean − p_contra_mean + 0.5 × strong_action_flag` and evaluate 8 rank... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 239 | SOTA | We ran a synthetic PDF extraction stress suite of 12 documents covering stress types (caption-like text, corrupted te... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 266 | gold benchmark | **This is a controlled silver diagnostic study, not a gold benchmark.** Silver labels (`candidate_label_guess`) are u... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 306 | human-audited | A small targeted human audit protocol (2-annotator independent review followed by adjudication) is staged with 6 samp... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 314 | gold benchmark | 1. **Silver labels, not gold.** All 444 candidates have `human_audited=False` and `gold_label` empty. Silver labels (... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 315 | human-audited | 2. **Human audit staged, not executed.** A small targeted human audit protocol and seed queue are prepared; the audit... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 319 | SOTA | 6. **No SOTA claim.** We do not claim SOTA on simulation-claim screening. We do not claim a validated general detecto... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 319 | SOTA | 6. **No SOTA claim.** We do not claim SOTA on simulation-claim screening. We do not claim a validated general detecto... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 319 | automatic peer reviewer | 6. **No SOTA claim.** We do not claim SOTA on simulation-claim screening. We do not claim a validated general detecto... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 341 | gold benchmark | The controlled silver diagnostic set is locked at version v3_17. Any change to the locked CSV requires updating the d... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 341 | human-audited | The controlled silver diagnostic set is locked at version v3_17. Any change to the locked CSV requires updating the d... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 353 | gold benchmark | **This is a controlled silver diagnostic study, not a gold benchmark.** The system is a second-stage review queue gen... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 353 | standalone detector | **This is a controlled silver diagnostic study, not a gold benchmark.** The system is a second-stage review queue gen... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 355 | SOTA | We do not claim SOTA, a validated general detector, an automatic peer reviewer, or full CESE-OCN neural architecture ... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 355 | automatic peer reviewer | We do not claim SOTA, a validated general detector, an automatic peer reviewer, or full CESE-OCN neural architecture ... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 393 | gold benchmark | - "This is a controlled silver diagnostic study, not a gold benchmark." |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 394 | standalone detector | - "The system is a second-stage review queue generator, not a standalone detector." |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 398 | SOTA | - "We do not claim SOTA, a validated general detector, an automatic peer reviewer, or full CESE-OCN neural architectu... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 398 | automatic peer reviewer | - "We do not claim SOTA, a validated general detector, an automatic peer reviewer, or full CESE-OCN neural architectu... |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 405 | gold benchmark | \| "gold benchmark" \| The dataset is a controlled silver diagnostic set, not a gold benchmark. \| |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 405 | gold benchmark | \| "gold benchmark" \| The dataset is a controlled silver diagnostic set, not a gold benchmark. \| |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 406 | human-audited | \| "human-audited dataset" \| All 444 rows have `human_audited=False`; the audit is staged, not executed. \| |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 407 | SOTA | \| "SOTA" (as a positive claim) \| We do not claim SOTA on simulation-claim screening. \| |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 407 | SOTA | \| "SOTA" (as a positive claim) \| We do not claim SOTA on simulation-claim screening. \| |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 408 | automatic peer reviewer | \| "automatic peer reviewer" \| The system augments human reviewers; it is not an automatic peer reviewer. \| |
-| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 408 | automatic peer reviewer | \| "automatic peer reviewer" \| The system augments human reviewers; it is not an automatic peer reviewer. \| |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 248 | SOTA | We ran a synthetic PDF extraction stress suite of 12 documents covering stress types (caption-like text, corrupted te... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 275 | gold benchmark | **This is a controlled silver diagnostic study, not a gold benchmark.** Silver labels (`candidate_label_guess`) are u... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 315 | human-audited | A small targeted human audit protocol (2-annotator independent review followed by adjudication) is staged with 6 samp... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 323 | gold benchmark | 1. **Silver labels, not gold.** All 444 candidates have `human_audited=False` and `gold_label` empty. Silver labels (... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 324 | human-audited | 2. **Human audit staged, not executed.** A small targeted human audit protocol and seed queue are prepared; the audit... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 328 | SOTA | 6. **No SOTA claim.** We do not claim SOTA on simulation-claim screening. We do not claim a validated general detecto... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 328 | SOTA | 6. **No SOTA claim.** We do not claim SOTA on simulation-claim screening. We do not claim a validated general detecto... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 328 | automatic peer reviewer | 6. **No SOTA claim.** We do not claim SOTA on simulation-claim screening. We do not claim a validated general detecto... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 350 | gold benchmark | The controlled silver diagnostic set is locked at version v3_17. Any change to the locked CSV requires updating the d... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 350 | human-audited | The controlled silver diagnostic set is locked at version v3_17. Any change to the locked CSV requires updating the d... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 362 | gold benchmark | **This is a controlled silver diagnostic study, not a gold benchmark.** The system is a second-stage review queue gen... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 362 | standalone detector | **This is a controlled silver diagnostic study, not a gold benchmark.** The system is a second-stage review queue gen... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 364 | SOTA | We do not claim SOTA, a validated general detector, an automatic peer reviewer, or full CESE-OCN neural architecture ... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 364 | automatic peer reviewer | We do not claim SOTA, a validated general detector, an automatic peer reviewer, or full CESE-OCN neural architecture ... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 403 | gold benchmark | - "This is a controlled silver diagnostic study, not a gold benchmark." |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 404 | standalone detector | - "The system is a second-stage review queue generator, not a standalone detector." |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 408 | SOTA | - "We do not claim SOTA, a validated general detector, an automatic peer reviewer, or full CESE-OCN neural architectu... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 408 | automatic peer reviewer | - "We do not claim SOTA, a validated general detector, an automatic peer reviewer, or full CESE-OCN neural architectu... |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 415 | gold benchmark | \| "gold benchmark" \| The dataset is a controlled silver diagnostic set, not a gold benchmark. \| |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 415 | gold benchmark | \| "gold benchmark" \| The dataset is a controlled silver diagnostic set, not a gold benchmark. \| |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 416 | human-audited | \| "human-audited dataset" \| All 444 rows have `human_audited=False`; the audit is staged, not executed. \| |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 417 | SOTA | \| "SOTA" (as a positive claim) \| We do not claim SOTA on simulation-claim screening. \| |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 417 | SOTA | \| "SOTA" (as a positive claim) \| We do not claim SOTA on simulation-claim screening. \| |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 418 | automatic peer reviewer | \| "automatic peer reviewer" \| The system augments human reviewers; it is not an automatic peer reviewer. \| |
+| paper_assets/v3_17_confidential/submission_manuscript_v1.md | 418 | automatic peer reviewer | \| "automatic peer reviewer" \| The system augments human reviewers; it is not an automatic peer reviewer. \| |
 | paper_assets/v3_17_confidential/tables/table7_complexity_utility.md | 12 | human-audited | *Controlled silver diagnostic, not gold/human-audited.* |
 | paper_assets/v3_17_confidential/tables/table8_human_audit_if_available.md | 5 | gold benchmark | *Small targeted audit, not a gold benchmark. Audit seed is built; auditor labels pending.* |
 | README.md | 9 | gold benchmark | > confidential local PDF review. It is **not** a gold benchmark, SOTA |
@@ -440,7 +440,7 @@ Generated: 2026-07-07T12:52:18.485646+00:00
 | reports/dataset_provenance_ledger_v3_17.md | 13 | gold benchmark | - not gold benchmark |
 | reports/dataset_provenance_ledger_v3_17.md | 14 | human-audited | - not human-audited benchmark |
 | reports/dataset_provenance_ledger_v3_17.md | 20 | human-audited | > We use a source-traceable controlled silver diagnostic set. The labels are not gold or human-audited, and results s... |
-| reports/final_perfect_state_gate_v3_17.md | 119 | gold benchmark | \| 6.5 \| Never claims gold benchmark \| PASS \| P0 \| Legacy scan confirms no unsafe current claims (unsafe=0) \| |
+| reports/final_perfect_state_gate_v3_17.md | 110 | gold benchmark | \| 6.5 \| Never claims gold benchmark \| PASS \| P0 \| Legacy scan confirms no unsafe current claims (unsafe=0) \| |
 
 ### legacy_section (39)
 

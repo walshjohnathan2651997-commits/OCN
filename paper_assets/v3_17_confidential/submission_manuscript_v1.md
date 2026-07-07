@@ -4,7 +4,7 @@
 
 **Submission Manuscript Draft v1 — V3.17 Confidential Lightweight**
 
-> **Mandatory framing.** This is a controlled silver diagnostic study, not a gold benchmark. The system is a second-stage review queue generator, not a standalone detector. Confidentiality is a deployment constraint, not the empirical contribution. Format-shift R4 metrics are not reported because frozen R4 prediction is blocked by sklearn version mismatch.
+> **Mandatory framing.** This is a controlled silver diagnostic study, not a gold benchmark. The system is a second-stage review queue generator, not a standalone detector. Confidentiality is a deployment constraint, not the empirical contribution. Format-shift R4 evaluation was completed offline using a compatible local scikit-learn environment; results are diagnostic (silver labels), not benchmark-level.
 
 ---
 
@@ -24,9 +24,9 @@ We identify a retrieval-to-screening format shift: raw BM25 PDF chunks are too l
 
 We then evaluate a frozen R4 screening router (strong_F1 = 0.4503, 95% CI [0.4086, 0.4833]) and a conservative precision-optimized review queue (`G_conservative_precision`, precision@20 = 0.45). The queue augments human review; **it is a second-stage review queue generator, not a standalone detector**, and does not replace adjudication. A 12-check leakage audit finds no significant shortcuts or label contingencies: claim-only strong_F1 = 0.2448 (ratio to R4 = 0.54, below the 0.8 warning threshold).
 
-Limitations: silver labels (not gold), no completed human audit (protocol staged, not executed), six domains only, and **format-shift R4 metrics are not reported because frozen R4 prediction is blocked by sklearn version mismatch**. The system is not a validated general detector, not SOTA, and not an automatic peer reviewer.
+Limitations: silver labels (not gold), no completed human audit (protocol staged, not executed), six domains only, and the format-shift R4 evaluation was completed offline using a compatible local scikit-learn environment (canonicalized strong_F1=0.4615, +0.186 over raw BM25 chunks; diagnostic, not benchmark-level). The system is not a validated general detector, not SOTA, and not an automatic peer reviewer.
 
-[Source: experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv; experiments/metric_robustness_v1/classification_metrics_with_ci.csv; experiments/canonicalized_risk_ranking_v1/risk_ranking_gate.json; experiments/leakage_audit_v1/audit_summary.md; reports/format_shift_r4_eval_blocked_v3_17.md]
+[Source: experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv; experiments/metric_robustness_v1/classification_metrics_with_ci.csv; experiments/canonicalized_risk_ranking_v1/risk_ranking_gate.json; experiments/leakage_audit_v1/audit_summary.md; experiments/format_shift_ablation_v1/format_shift_metrics.csv; reports/sklearn_offline_compatibility_investigation_v3_17.md]
 
 ---
 
@@ -204,13 +204,22 @@ Computed on n=436 candidates (8 missing due to split). Silver labels used as `tr
 
 [Source: experiments/canonicalized_review_queue_v1/review_queue_metrics.csv; experiments/canonicalized_review_queue_v1/canonicalized_review_queue_gate.json]
 
-### 8.5 Format-Shift Ablation (partial)
+### 8.5 Format-Shift Ablation
 
 We constructed 8 format-shift variants × 444 candidates = 3552 rows and computed 7 NLI features per row (shape [3552, 7]). Variants include `oracle_clean`, `oracle_plus_metadata`, `oracle_lengthened`, `oracle_plus_metadata_lengthened`, `raw_bm25_top1_chunk`, `cleaned_bm25_top1_chunk`, `canonicalized_best_sentence_top5`, `canonicalized_three_sentence_window_top5`.
 
-**Format-shift R4 metrics are not reported because frozen R4 prediction is blocked by sklearn version mismatch.** Frozen R4 classifiers were pickled with scikit-learn ≥1.5.0; the current offline environment has 1.4.1.post1 and cannot call `predict_proba` (`AttributeError: LogisticRegression object has no attribute 'multi_class'`). Upgrading requires network access, which violates the `no_network` boundary. We do not report unsupported R4 format-shift metrics.
+The format-shift R4 evaluation was completed offline using a project-local `.venv` with scikit-learn 1.9.0 (exact match for the frozen R4 artifacts), under `HF_HUB_OFFLINE=1`/`TRANSFORMERS_OFFLINE=1` with no network, no API, no retraining, and no model-artifact modification. Schema validation passed 38/38 checks.
 
-[Source: experiments/format_shift_ablation_v1/format_shift_summary.json; experiments/format_shift_ablation_v1/r4_eval_blocked.json; reports/format_shift_r4_eval_blocked_v3_17.md]
+| Variant | strong_F1 | strong_precision | strong_recall | n_eval | Δ vs oracle_clean | Δ vs raw_bm25_top1 |
+|---|---|---|---|---|---|---|
+| oracle_clean | 0.4627 | 0.3899 | 0.5688 | 436 | 0.000 | +0.1872 |
+| canonicalized_best_sentence_top5 | 0.4615 | 0.3246 | 0.7982 | 436 | −0.0011 | +0.1860 |
+| raw_bm25_top1_chunk | 0.2755 | 0.3103 | 0.2477 | 436 | −0.1872 | 0.000 |
+| oracle_lengthened | 0.0000 | 0.0000 | 0.0000 | 436 | −0.4627 | −0.2755 |
+
+Key findings: canonicalized evidence (`canonicalized_best_sentence_top5`) achieves strong_F1=0.4615, close to the oracle upper bound (0.4627, Δ=−0.0011) and substantially above raw BM25 chunks (0.2755, Δ=+0.1860). The canonicalization gain of +0.186 strong_F1 confirms that the retrieval-to-screening format shift materially affects R4 performance. Lengthened variants produce strong_F1=0.0, confirming that lengthening evidence beyond the screening format collapses R4 prediction. Results are diagnostic (silver labels, frozen R4), not benchmark-level.
+
+[Source: experiments/format_shift_ablation_v1/format_shift_metrics.csv; experiments/format_shift_ablation_v1/format_shift_summary.json; experiments/format_shift_ablation_v1/r4_eval_blocked.json; reports/sklearn_offline_compatibility_investigation_v3_17.md]
 
 ---
 
@@ -313,7 +322,7 @@ A small targeted human audit protocol (2-annotator independent review followed b
 
 1. **Silver labels, not gold.** All 444 candidates have `human_audited=False` and `gold_label` empty. Silver labels (`candidate_label_guess`) are used as `true_label` for metrics only. **This is a controlled silver diagnostic study, not a gold benchmark.**
 2. **Human audit staged, not executed.** A small targeted human audit protocol and seed queue are prepared; the audit has not been executed. We do not report human-audited benchmark results. Paper wording: "small targeted human audit protocol and seed queue prepared; audit not yet executed."
-3. **Format-shift R4 metrics not reported.** **Format-shift R4 metrics are not reported because frozen R4 prediction is blocked by sklearn version mismatch.** Variant construction (3552 rows, 8 variants) and NLI feature extraction completed; R4 prediction blocked. Fix requires network/pip install, which violates the `no_network` boundary.
+3. **Format-shift R4 evaluation completed with environment note.** The format-shift R4 evaluation was completed offline using a project-local `.venv` with scikit-learn 1.9.0 (exact match for the frozen R4 artifacts). Reproducibility requires scikit-learn ≥ 1.5.0 (the `multi_class` attribute was removed in 1.5). Results are diagnostic (silver labels, frozen R4), not benchmark-level. Paper wording: "format-shift R4 evaluation completed offline; canonicalization gain +0.186 strong_F1 confirms format shift matters at the retrieval-to-screening interface."
 4. **Six domains only.** Coverage: autonomous_driving (140), policy_simulation (84), digital_twin (68), cyber_defense (64), marl (52), robotics (36). Not a general scientific claim benchmark.
 5. **Deployment-specific Pareto result.** The complexity-vs-utility Pareto result shows deterministic canonicalization is optimal under the confidential / no-API / no-training / silver-diagnostic constraint set. It does **not** prove rules generally beat learned models.
 6. **No SOTA claim.** We do not claim SOTA on simulation-claim screening. We do not claim a validated general detector. We do not claim an automatic peer reviewer. We do not claim full CESE-OCN neural architecture validation.
@@ -350,7 +359,7 @@ We identified the retrieval-to-screening format shift in offline simulation-clai
 
 On a 444-candidate controlled silver diagnostic set, a frozen R4 screening router achieves strong_F1 = 0.4503 (95% CI [0.4086, 0.4833]) and a conservative precision-optimized review queue achieves precision@20 = 0.45. A 12-check leakage audit finds no significant shortcuts or label contingencies. Under the confidential / no-API / no-training / silver-diagnostic constraint set, the deterministic pipeline is Pareto-optimal against learned alternatives.
 
-**This is a controlled silver diagnostic study, not a gold benchmark.** The system is a second-stage review queue generator, not a standalone detector. Confidentiality is a deployment constraint, not the empirical contribution. Format-shift R4 metrics are not reported because frozen R4 prediction is blocked by sklearn version mismatch. The human audit is staged, not executed.
+**This is a controlled silver diagnostic study, not a gold benchmark.** The system is a second-stage review queue generator, not a standalone detector. Confidentiality is a deployment constraint, not the empirical contribution. Format-shift R4 evaluation was completed offline (canonicalized strong_F1=0.4615, +0.186 over raw BM25 chunks); results are diagnostic, not benchmark-level. The human audit is staged, not executed.
 
 We do not claim SOTA, a validated general detector, an automatic peer reviewer, or full CESE-OCN neural architecture validation.
 
@@ -377,7 +386,8 @@ We do not claim SOTA, a validated general detector, an automatic peer reviewer, 
 | Complexity vs utility Pareto | experiments/complexity_vs_utility_ablation_v1/method_pareto_table.csv |
 | Method comparison | experiments/complexity_vs_utility_ablation_v1/method_comparison_metrics.csv |
 | PDF stress test | experiments/pdf_extraction_stress_test_v1/stress_test_summary.md |
-| Format-shift block | reports/format_shift_r4_eval_blocked_v3_17.md |
+| Format-shift R4 eval | experiments/format_shift_ablation_v1/format_shift_metrics.csv |
+| Format-shift investigation | reports/sklearn_offline_compatibility_investigation_v3_17.md |
 | Human audit protocol | docs/human_audit_protocol_v1.md |
 | Final gate | reports/final_perfect_state_gate_v3_17.md |
 | Redteam reconciliation | reports/redteam_release_reconciliation_v3_17.md |
@@ -393,7 +403,7 @@ The following safe wording is used in this manuscript:
 - "This is a controlled silver diagnostic study, not a gold benchmark."
 - "The system is a second-stage review queue generator, not a standalone detector."
 - "Confidentiality is a deployment constraint, not the empirical contribution."
-- "Format-shift R4 metrics are not reported because frozen R4 prediction is blocked by sklearn version mismatch."
+- "Format-shift R4 evaluation was completed offline using a compatible local scikit-learn environment; results are diagnostic (silver labels), not benchmark-level."
 - "small targeted human audit protocol and seed queue prepared; audit not yet executed"
 - "We do not claim SOTA, a validated general detector, an automatic peer reviewer, or full CESE-OCN neural architecture validation."
 
@@ -407,9 +417,9 @@ The following forbidden wording is **not** used in this manuscript:
 | "SOTA" (as a positive claim) | We do not claim SOTA on simulation-claim screening. |
 | "automatic peer reviewer" | The system augments human reviewers; it is not an automatic peer reviewer. |
 | "full CESE-OCN validation completed" | CESE-OCN is a future architecture, not a current validated system. |
-| "full format-shift R4 evaluation completed" | Format-shift R4 prediction is blocked by sklearn version mismatch. |
-| "Canonicalized format-shift metrics are validated" | Format-shift R4 metrics are not reported. |
-| "R4 format-shift result is final" | Format-shift R4 metrics are not reported. |
+| "full format-shift R4 evaluation completed" | The format-shift R4 evaluation was completed, but results are diagnostic (silver labels), not benchmark-level; do not claim benchmark-level validation. |
+| "Canonicalized format-shift metrics are validated" | Format-shift R4 metrics are diagnostic (silver labels, frozen R4), not validated benchmark-level results. |
+| "R4 format-shift result is final" | Format-shift R4 metrics are diagnostic and conditional on the silver diagnostic set; do not claim finality. |
 
 ---
 

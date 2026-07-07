@@ -50,8 +50,10 @@ threshold), and shuffled evidence collapses overlap by 46x.
 
 Limitations: silver labels (not gold), no completed human audit, six
 domains only, sentence/window BM25 on the real PDF corpus is blocked
-(missing corpus file), and the format-shift R4 evaluation is blocked
-by a scikit-learn version mismatch. The system is not a validated
+(missing corpus file), and the format-shift R4 evaluation was
+completed offline using a compatible local scikit-learn environment
+(canonicalized strong_F1=0.4615, +0.186 over raw BM25 chunks;
+diagnostic, not benchmark-level). The system is not a validated
 general detector, not SOTA, and not an automatic peer reviewer.
 
 ---
