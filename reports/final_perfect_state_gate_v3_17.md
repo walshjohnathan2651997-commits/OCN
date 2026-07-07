@@ -1,6 +1,6 @@
 # Final Perfect-State Readiness Gate — V3.17 Confidential Lightweight
 
-Generated: 2026-07-07T09:56:34+0000
+Generated: 2026-07-07T11:20:49+0000
 
 > Read-only gate. No experiments were re-run. No results were modified.
 
@@ -133,7 +133,7 @@ Generated: 2026-07-07T09:56:34+0000
 
 | ID | Check | Status | Priority | Evidence |
 |---|---|---|---|---|
-| 8.1 | Paper assets generated | PASS | P0 | 6 top-level + 8 tables |
+| 8.1 | Paper assets generated | PASS | P0 | 10 top-level + 8 tables |
 | 8.2 | Claims checklist exists | PASS | P0 | paper_claims_checklist.md present |
 | 8.3 | Reviewer risk register exists | PASS | P0 | reviewer_risk_register_v3_17.md present |
 | 8.4 | Limitations draft exists | PASS | P0 | limitations_draft.md present |
