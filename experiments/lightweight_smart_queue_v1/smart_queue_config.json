@@ -69,6 +69,8 @@
   ],
   "forbidden_sort_fields": [
     "candidate_label_guess",
+    "claim_text",
+    "clean_text",
     "evidence_text",
     "evidence_text_sha256",
     "final_label",
@@ -76,6 +78,8 @@
     "human_audited",
     "is_strong_action",
     "oracle_hit",
+    "raw_text",
+    "selected_evidence",
     "true_label"
   ]
 }

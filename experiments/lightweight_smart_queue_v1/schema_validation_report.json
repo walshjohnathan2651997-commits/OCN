@@ -1,6 +1,6 @@
 {
   "script_name": "run_lightweight_smart_queue_v1.py",
-  "timestamp": "2026-07-07T01:53:33",
+  "timestamp": "2026-07-07T13:33:07",
   "n_reports": 1,
   "n_ok": 1,
   "n_fail": 0,
@@ -37,7 +37,7 @@
       "forbidden_scoring_present": [],
       "unexpected_columns": [],
       "strict": false,
-      "file_path": "D:\\ocn\\experiments\\lightweight_smart_queue_v1\\smart_queue_scores.csv",
+      "file_path": "experiments\\lightweight_smart_queue_v1\\smart_queue_scores.csv",
       "file_exists": true
     }
   ]

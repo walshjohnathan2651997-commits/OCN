@@ -1,12 +1,18 @@
 # Leakage Quick Scan — V3.17 Confidential
 
-Generated: 2026-07-06T18:36:04.851473+00:00
+Generated: 2026-07-07T10:05:53.729584+00:00
 
 **Overall Status**: `WARNING`
 
 ## 1. Public/Redacted Files with Text Columns
 
 **PASS** — No public/redacted files contain forbidden text columns.
+
+## 1a. Task Pack 2/3/4 Leakage Reconciliation (2026-07-07)
+
+- **Task Pack 2 (Redteam reconciliation)**: Repo-wide redteam scan finds 3 high-risk `forbidden_sorting_field` findings (`true_label` in `experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv`, `true_label` and `oracle_hit` in `experiments/canonicalized_risk_ranking_v1/risk_ranking_features.csv`). All three are internal scoring files excluded from the public release bundle. `release_safety_manifest_v3_17.json` confirms `release_safety_gate.status=PASS`. Reconciliation report: `reports/redteam_release_reconciliation_v3_17.md`.
+- **Task Pack 3 (PDF corpus recovery)**: Public `data/pdf_corpus_v1/sentences.jsonl` and `windows.jsonl` are hash-only (no `raw_text`/`clean_text`). Full text resides in gitignored `data/private/pdf_corpus_v1_internal/`. BM25 reads from private corpus for ranking. Leakage guard report: `experiments/bm25_sentence_retrieval_v1/leakage_guard_report.json` (status=pass; oracle fields used only after ranking).
+- **Task Pack 4 (Format-shift block doc)**: No new leakage introduced. `experiments/format_shift_ablation_v1/format_shift_inputs_redacted.csv` is the public artifact (oracle variant rows stripped). `format_shift_metrics.csv` not generated (sklearn block).
 
 ## 2. Scripts with Hardcoded D:\ocn Paths
 

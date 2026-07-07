@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T18:36:04.849752+00:00",
+  "generated_at": "2026-07-07T10:05:53.729584+00:00",
   "mainline_docs": {
     "readme_mentions_v3_17": true,
     "current_mainline_points_to_v3_17": true,
@@ -1167,9 +1167,9 @@
       "claim": "Sentence-level BM25 retrieval has results",
       "evidence_file": "experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json",
       "status": "exists",
-      "data_provenance": "blocked",
-      "safe_wording": "Sentence/window BM25 retrieval blocked by missing PDF corpus; toy results show sentence-level outperforms window-level",
-      "risk": "Real PDFs no longer in workspace; sentence/window retrieval blocked. Toy data only."
+      "data_provenance": "real",
+      "safe_wording": "Sentence/window BM25 retrieval on recovered PDF corpus achieves sentence recall@1=0.851, recall@5=0.932, recall@10=0.948, MRR=0.883 on 444 real candidates (outperforms window-level)",
+      "risk": "Oracle recall on silver labels only; sentence corpus recovered from pre-chunked CSV (real PDFs no longer in workspace); public artifacts are hash-only (no raw text); BM25 reads from gitignored private corpus."
     },
     {
       "claim": "Canonicalization improves over raw chunks",
@@ -1177,7 +1177,7 @@
       "status": "exists",
       "data_provenance": "real",
       "safe_wording": "best_sentence_top5_overlap oracle_recall=0.387 vs raw_top1_chunk=0.043 on 444 real candidates (9x improvement)",
-      "risk": "Silver labels only; 2/8 selectors (sentence_bm25, window_bm25) blocked by missing PDF corpus"
+      "risk": "Silver labels only; canonicalizer ablation covers all 8 selectors (sentence_bm25 and window_bm25 now unblocked after Task Pack 3 corpus recovery)"
     },
     {
       "claim": "Frozen R4 review queue has results",
@@ -1240,8 +1240,8 @@
       "evidence_file": "experiments/human_audit_v1/audit_agreement_summary.json",
       "status": "partial",
       "data_provenance": "blocked",
-      "safe_wording": "Small targeted human audit protocol and seed queue are in place; auditor labels pending. Not a gold benchmark.",
-      "risk": "No human audit has been completed; all silver labels remain un-audited. Audit seed built (111 candidates); empirical results deferred."
+      "safe_wording": "Small targeted human audit protocol and seed queue are in place; audit not yet executed. Not a gold benchmark.",
+      "risk": "No human audit has been completed; all silver labels remain un-audited. Protocol and 111-candidate seed queue built; empirical audit deferred (not a release blocker)."
     },
     {
       "claim": "Paper assets generated",
@@ -1278,9 +1278,8 @@
     {
       "priority": "P0",
       "action": "Run BM25 sentence retrieval on real data",
-      "reason": "BLOCKED: real PDFs no longer in workspace",
-      "status": "blocked",
-      "blocker": "missing_pdf_corpus"
+      "reason": "Real BM25 sentence/window retrieval completed on recovered PDF corpus (sentence recall@10=0.948, MRR=0.883 on 444 candidates)",
+      "status": "done"
     },
     {
       "priority": "P0",
@@ -1291,9 +1290,10 @@
     {
       "priority": "P0",
       "action": "Run format shift ablation on real data",
-      "reason": "Format-shift inputs generated; R4 eval blocked (sklearn version)",
+      "reason": "Format-shift variant construction succeeded (3552 rows, 8 variants) and NLI features computed; R4 prediction blocked by sklearn version mismatch (frozen artifacts need >=1.5.0, env has 1.4.1.post1). Documented as permanent limitation in reports/format_shift_r4_eval_blocked_v3_17.md.",
       "status": "blocked",
-      "blocker": "sklearn_version_mismatch"
+      "blocker": "sklearn_version_mismatch",
+      "note": "Fix requires network/pip install which violates hard boundary. Blocked report v3_17 generated with safe/unsafe paper wording."
     },
     {
       "priority": "P0",
@@ -1329,9 +1329,9 @@
     {
       "priority": "P1",
       "action": "Define small human audit protocol (2-annotator, adjudication)",
-      "reason": "Protocol and seed queue built; auditor labels pending",
+      "reason": "Protocol (docs/human_audit_protocol_v1.md), template (data/audit_templates/human_audit_template.csv), and redacted seed queue (data/audit_templates/human_audit_queue_seed_v1_redacted.csv) prepared.",
       "status": "done",
-      "note": "Protocol exists; empirical audit deferred (not a release blocker)"
+      "note": "Audit remains staged, NOT executed. No fake audit_agreement_summary.json. Final Gate 6.4 = WARNING (documented). Paper wording: 'small targeted human audit protocol and seed queue prepared; audit not yet executed.'"
     },
     {
       "priority": "P2",
@@ -1350,6 +1350,81 @@
       "action": "Compile final paper PDF from paper_assets",
       "reason": "Tables/figures in LaTeX+MD; requires LaTeX compilation (out of scope for V3.17 confidential lightweight)",
       "status": "pending"
+    },
+    {
+      "priority": "P0",
+      "action": "Reconcile redteam findings with public release safety",
+      "reason": "Redteam scan (repo-wide) shows 3 high-risk findings in internal scoring files; release_safety_gate (bundle-only) PASS. Reconciliation report (reports/redteam_release_reconciliation_v3_17.md) documents scope difference.",
+      "status": "done"
+    },
+    {
+      "priority": "P0",
+      "action": "Document format-shift sklearn block as permanent limitation",
+      "reason": "reports/format_shift_r4_eval_blocked_v3_17.md/.json generated with diagnosis, safe/unsafe paper wording, and Final Gate impact statement.",
+      "status": "done"
     }
-  ]
+  ],
+  "gate_rerun_summary": {
+    "generated_at": "2026-07-07T10:05:53.729584+00:00",
+    "final_status": "READY_WITH_LIMITATIONS",
+    "pass_count": 40,
+    "warning_count": 3,
+    "blocked_count": 1,
+    "fail_count": 0,
+    "total_checks": 44,
+    "non_pass_items": [
+      {
+        "check_id": "3.4",
+        "status": "BLOCKED",
+        "priority": "P0",
+        "description": "Format shift blocked documented",
+        "blocked_reason": "sklearn_version_mismatch",
+        "next_action": "Upgrade sklearn (needs network) or document as permanent limitation",
+        "documented": true
+      },
+      {
+        "check_id": "6.4",
+        "status": "WARNING",
+        "priority": "P1",
+        "description": "Audit not yet run (documented)",
+        "blocked_reason": "Human audit not executed",
+        "next_action": "Execute human audit when annotators available",
+        "documented": true
+      },
+      {
+        "check_id": "9.1",
+        "status": "WARNING",
+        "priority": "P0",
+        "description": "Redteam high risk in internal files (release excluded)",
+        "blocked_reason": "High-risk findings in internal scoring files",
+        "next_action": "Address high-risk findings or confirm permanent exclusion from release",
+        "documented": true
+      },
+      {
+        "check_id": "10.2",
+        "status": "WARNING",
+        "priority": "P1",
+        "description": "Schema validation has documented failures",
+        "blocked_reason": "Schema failures due to blocked experiments",
+        "next_action": "Fix blocked experiments or document as permanent",
+        "documented": true
+      }
+    ],
+    "changed_since_previous_gate": [
+      "Task Pack 2: redteam/release safety reconciliation report added",
+      "Task Pack 3: BM25 sentence/window corpus recovered from chunk CSV; check 3.2 PASS",
+      "Task Pack 4: format-shift sklearn block documented; check 3.4 BLOCKED (documented)"
+    ],
+    "remaining_documented_limitations": [
+      "Format-shift R4 eval blocked by sklearn_version_mismatch (no-network boundary)",
+      "Human audit staged, not executed (no fake audit_agreement_summary.json)",
+      "Redteam high-risk findings in internal scoring files (excluded from public release)",
+      "Schema validation: 2 failures from blocked format-shift experiments"
+    ],
+    "next_actions": [
+      "Execute human audit when annotators available",
+      "Address internal-only redteam high-risk findings or confirm permanent exclusion",
+      "Consider sklearn upgrade for format-shift R4 eval (requires network)"
+    ]
+  }
 }

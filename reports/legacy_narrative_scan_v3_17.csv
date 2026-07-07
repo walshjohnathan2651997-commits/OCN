@@ -284,3 +284,4 @@ reports/current_project_status_v3_17.md,255,human-audited,"> All results are con
 reports/dataset_provenance_ledger_v3_17.md,13,gold benchmark,- not gold benchmark,safe_negation,Keep as-is (safe negation).
 reports/dataset_provenance_ledger_v3_17.md,14,human-audited,- not human-audited benchmark,safe_negation,Keep as-is (safe negation).
 reports/dataset_provenance_ledger_v3_17.md,20,human-audited,"> We use a source-traceable controlled silver diagnostic set. The labels are not gold or human-audited, and results should not be interpreted as benchmark-level model validation.",safe_negation,Keep as-is (safe negation).
+reports/final_perfect_state_gate_v3_17.md,119,gold benchmark,| 6.5 | Never claims gold benchmark | PASS | P0 | Legacy scan confirms no unsafe current claims (unsafe=0) |,safe_negation,Keep as-is (safe negation).

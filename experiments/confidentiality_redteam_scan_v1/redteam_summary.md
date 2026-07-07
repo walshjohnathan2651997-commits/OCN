@@ -1,7 +1,7 @@
 # Confidentiality Red-Team Scan Summary
 
-Generated: 2026-07-07T13:35:03
-Scanned files: 805
+Generated: 2026-07-07T17:58:18
+Scanned files: 806
 
 ## Gate Status
 

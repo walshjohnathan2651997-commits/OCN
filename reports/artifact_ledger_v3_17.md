@@ -1,6 +1,6 @@
 # Artifact Ledger — V3.17 Confidential Lightweight
 
-Generated: 2026-07-06T20:38:48+0000
+Generated: 2026-07-07T05:01:58+0000
 
 > Read-only scan. No artifacts were modified.
 

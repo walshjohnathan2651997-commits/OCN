@@ -1,6 +1,6 @@
 # Leakage Audit Summary
 
-Generated: 2026-07-06T17:36:51.054425+00:00
+Generated: 2026-07-07T05:33:20.744612+00:00
 
 ## Overall Status: **PASS**
 
@@ -44,7 +44,7 @@ generalization performance.
 | 9 | Group split integrity | pass | cross_groups=0 |
 | 10 | Generation policy distribution | pass | max_concentration=0.25 |
 | 11 | No oracle in selector | pass |  |
-| 12 | No label in queue sorting | skip |  |
+| 12 | No label in queue sorting | pass |  |
 
 ## Forbidden Fields (selector)
 

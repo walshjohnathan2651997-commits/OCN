@@ -2,15 +2,15 @@
   "n_candidates": 436,
   "n_in_queue": 100,
   "n_true_strong": 109,
-  "precision_at_20": 0.35,
-  "precision_at_50": 0.34,
+  "precision_at_20": 0.4,
+  "precision_at_50": 0.36,
   "precision_at_100": 0.38,
-  "recall_at_20": 0.06422,
-  "recall_at_50": 0.155963,
+  "recall_at_20": 0.073394,
+  "recall_at_50": 0.165138,
   "recall_at_100": 0.348624,
   "bucket_distribution": {
-    "evidence_check_needed": 97,
-    "high_priority_strong_review": 3
+    "evidence_check_needed": 98,
+    "high_priority_strong_review": 2
   },
   "true_label_used_for_metrics_only": true,
   "no_forbidden_fields_in_sorting": true

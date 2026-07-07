@@ -1,6 +1,6 @@
 # Legacy Narrative Scan — V3.17 Confidential Lightweight
 
-Generated: 2026-07-06T20:29:56.199830+00:00
+Generated: 2026-07-07T09:56:44.488024+00:00
 
 > Read-only scan. No files were modified.
 
@@ -8,12 +8,12 @@ Generated: 2026-07-06T20:29:56.199830+00:00
 
 | Classification | Count |
 |---|---|
-| safe_negation | 243 |
+| safe_negation | 244 |
 | legacy_section | 39 |
 | future_work | 3 |
 | unsafe_current_claim | 0 |
 | ambiguous | 0 |
-| **total** | **285** |
+| **total** | **286** |
 
 ## Gate status
 
@@ -23,7 +23,7 @@ Generated: 2026-07-06T20:29:56.199830+00:00
 
 ## All findings by classification
 
-### safe_negation (243)
+### safe_negation (244)
 
 | Path | Line | Phrase | Context |
 |---|---|---|---|
@@ -270,6 +270,7 @@ Generated: 2026-07-06T20:29:56.199830+00:00
 | reports/dataset_provenance_ledger_v3_17.md | 13 | gold benchmark | - not gold benchmark |
 | reports/dataset_provenance_ledger_v3_17.md | 14 | human-audited | - not human-audited benchmark |
 | reports/dataset_provenance_ledger_v3_17.md | 20 | human-audited | > We use a source-traceable controlled silver diagnostic set. The labels are not gold or human-audited, and results s... |
+| reports/final_perfect_state_gate_v3_17.md | 119 | gold benchmark | \| 6.5 \| Never claims gold benchmark \| PASS \| P0 \| Legacy scan confirms no unsafe current claims (unsafe=0) \| |
 
 ### legacy_section (39)
 
@@ -361,3 +362,4 @@ Generated: 2026-07-06T20:29:56.199830+00:00
 - `paper_assets/v3_17_confidential/tables/table8_human_audit_if_available.md`
 - `reports/current_project_status_v3_17.md`
 - `reports/dataset_provenance_ledger_v3_17.md`
+- `reports/final_perfect_state_gate_v3_17.md`

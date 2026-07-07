@@ -1,6 +1,6 @@
 # Current Project Status — V3.17 Confidential Lightweight
 
-Generated: 2026-07-06T18:36:04.849643+00:00
+Generated: 2026-07-07T10:05:53.729584+00:00
 
 > This is a read-only inventory. No experiments were re-run, no data modified.
 
@@ -201,8 +201,8 @@ Generated: 2026-07-06T18:36:04.849643+00:00
 | Claim | Evidence File | Status | Data Provenance | Safe Wording | Risk |
 |---|---|---|---|---|---|
 | Raw PDF chunk / BM25 retrieval has results | `experiments/simclaim_pdf_corpus_retrieval_v1/retrieval_results_bm25.csv` | exists | **private-only** | BM25 retrieval on local PDF corpus achieves measurable oracle recall | Oracle recall is on silver labels only; retrieval output is private-only (contains source text) |
-| Sentence-level BM25 retrieval has results | `experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json` | exists | **blocked** | Sentence/window BM25 retrieval blocked by missing PDF corpus; toy results show sentence-level outperforms window-level | Real PDFs no longer in workspace; sentence/window retrieval blocked. Toy data only. |
-| Canonicalization improves over raw chunks | `experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv` | exists | **real** | best_sentence_top5_overlap oracle_recall=0.387 vs raw_top1_chunk=0.043 on 444 real candidates (9x improvement) | Silver labels only; 2/8 selectors (sentence_bm25, window_bm25) blocked by missing PDF corpus |
+| Sentence-level BM25 retrieval has results | `experiments/bm25_sentence_retrieval_v1/oracle_recall_summary.json` | exists | **real** | Sentence/window BM25 retrieval on recovered PDF corpus achieves sentence recall@1=0.851, recall@5=0.932, recall@10=0.948, MRR=0.883 on 444 real candidates (outperforms window-level) | Oracle recall on silver labels only; sentence corpus recovered from pre-chunked CSV (real PDFs no longer in workspace); public artifacts are hash-only (no raw text); BM25 reads from gitignored private corpus. |
+| Canonicalization improves over raw chunks | `experiments/canonicalizer_ablation_v1/selector_metrics_summary.csv` | exists | **real** | best_sentence_top5_overlap oracle_recall=0.387 vs raw_top1_chunk=0.043 on 444 real candidates (9x improvement) | Silver labels only; canonicalizer ablation covers all 8 selectors (sentence_bm25 and window_bm25 now unblocked after Task Pack 3 corpus recovery) |
 | Frozen R4 review queue has results | `experiments/canonicalized_review_queue_v1/canonicalized_r4_review_scores.csv` | exists | **real** | Frozen R4 screening achieves strong_F1=0.4503 on 436 candidates | Silver labels only; not human-audited; review queue output is private-only (contains labels for audit join) |
 | Risk ranking has results | `experiments/canonicalized_risk_ranking_v1/risk_ranking_features.csv` | exists | **real** | G_conservative_precision ranking provides top-100 review queue | Threshold not fitted on test; silver labels only; feature matrix is private-only (contains labels for audit join) |
 | Leakage audit has results | `experiments/leakage_audit_v1/claim_only_baseline.json` | exists | **real** | All 12 leakage checks pass on 444 real candidates; claim-only ratio=0.74 (below WARNING threshold) | Silver labels (candidate_label_guess) used as true_label for audit; queue guard from toy SmartQueue |
@@ -210,7 +210,7 @@ Generated: 2026-07-06T18:36:04.849643+00:00
 | Error taxonomy has results | `experiments/error_taxonomy_v1/error_taxonomy_summary.csv` | exists | **real** | 9 error types tagged; top FP cause is mild_vs_strong_boundary | Silver labels only; error type thresholds are heuristic |
 | PDF-start extraction stress test has results | `experiments/pdf_extraction_stress_test_v1/` | exists | **toy** | 12 synthetic PDF stress documents processed; 0 failures; 123 sentences extracted. Extraction robustness test, not SOTA. | Synthetic stress fixtures only; not real PDFs; not an empirical claim about real-world extraction |
 | Complexity-vs-utility tradeoff analysis has results | `experiments/complexity_vs_utility_ablation_v1/method_comparison_metrics.csv` | exists | **real** | Deterministic canonicalization is Pareto-optimal under confidential/no-API/no-training/silver-diagnostic constraints | Does not prove rules generally beat learned models; deployment-specific tradeoff |
-| Human audit has results | `experiments/human_audit_v1/audit_agreement_summary.json` | partial | **blocked** | Small targeted human audit protocol and seed queue are in place; auditor labels pending. Not a gold benchmark. | No human audit has been completed; all silver labels remain un-audited. Audit seed built (111 candidates); empirical results deferred. |
+| Human audit has results | `experiments/human_audit_v1/audit_agreement_summary.json` | partial | **blocked** | Small targeted human audit protocol and seed queue are in place; audit not yet executed. Not a gold benchmark. | No human audit has been completed; all silver labels remain un-audited. Protocol and 111-candidate seed queue built; empirical audit deferred (not a release blocker). |
 | Paper assets generated | `paper_assets/v3_17_confidential/tables/` | exists | **real** | 8 tables (md+tex), 4 figure data CSVs, paper_results_summary.md (RQ1-8), paper_claims_checklist.md generated | All tables include caveat: controlled silver diagnostic, not gold/human-audited |
 | Public sanitized release bundle built | `release_bundles/v3_17_confidential_public/` | exists | **real** | 221 files; redteam scan PASS (high_risk=0); no raw claim/evidence/PDF text | Bundle excludes private scoring files, real review queues, PDFs, and label-bearing intermediates |
 
@@ -223,12 +223,17 @@ Generated: 2026-07-06T18:36:04.849643+00:00
   - Note: BLOCKED by scanner limitation: simple regex flags both claims AND denials. Manual review confirmed references are predominantly in denial/qualification context (e.g., 'not a gold benchmark', 'not human-audited', 'not SOTA'). Improving scanner to distinguish denials from claims requires NLP context analysis, out of scope for V3.17 confidential lightweight. Non-blocking for release.
 - **P0** [DONE]: Fix leaked text fields in public/redacted files
   - Reason: No forbidden text columns in public/redacted files
-- **P0** [BLOCKED]: Run BM25 sentence retrieval on real data
-  - Reason: BLOCKED: real PDFs no longer in workspace
+- **P0** [DONE]: Run BM25 sentence retrieval on real data
+  - Reason: Real BM25 sentence/window retrieval completed on recovered PDF corpus (sentence recall@10=0.948, MRR=0.883 on 444 candidates)
 - **P0** [DONE]: Run canonicalizer ablation on real data
   - Reason: Real data ablation completed (6/8 selectors)
 - **P0** [BLOCKED]: Run format shift ablation on real data
-  - Reason: Format-shift inputs generated; R4 eval blocked (sklearn version)
+  - Reason: Format-shift variant construction succeeded (3552 rows, 8 variants) and NLI features computed; R4 prediction blocked by sklearn version mismatch (frozen artifacts need >=1.5.0, env has 1.4.1.post1). Documented as permanent limitation in reports/format_shift_r4_eval_blocked_v3_17.md.
+  - Note: Fix requires network/pip install which violates hard boundary. Blocked report v3_17 generated with safe/unsafe paper wording.
+- **P0** [DONE]: Reconcile redteam findings with public release safety
+  - Reason: Redteam scan (repo-wide) shows 3 high-risk findings in internal scoring files; release_safety_gate (bundle-only) PASS. Reconciliation report (reports/redteam_release_reconciliation_v3_17.md) documents scope difference.
+- **P0** [DONE]: Document format-shift sklearn block as permanent limitation
+  - Reason: reports/format_shift_r4_eval_blocked_v3_17.md/.json generated with diagnosis, safe/unsafe paper wording, and Final Gate impact statement.
 - **P0** [DONE]: Run leakage audit on real data
   - Reason: Real data audit completed (12 checks, PASS)
 - **P1** [DONE]: Run SmartQueue on real data
@@ -241,14 +246,54 @@ Generated: 2026-07-06T18:36:04.849643+00:00
 - **P1** [DONE]: Implement and run PDF extraction stress test
   - Reason: Script exists and has been run on synthetic stress fixtures
 - **P1** [DONE]: Define small human audit protocol (2-annotator, adjudication)
-  - Reason: Protocol and seed queue built; auditor labels pending
-  - Note: Protocol exists; empirical audit deferred (not a release blocker)
+  - Reason: Protocol (docs/human_audit_protocol_v1.md), template (data/audit_templates/human_audit_template.csv), and redacted seed queue (data/audit_templates/human_audit_queue_seed_v1_redacted.csv) prepared.
+  - Note: Audit remains staged, NOT executed. No fake audit_agreement_summary.json. Final Gate 6.4 = WARNING (documented). Paper wording: 'small targeted human audit protocol and seed queue prepared; audit not yet executed.'
 - **P2** [DONE]: Publish sanitized public release bundle
   - Reason: Bundle built: 221 files, redteam PASS
 - **P2** [DONE]: Generate paper assets (8 tables, RQ1-8, claims checklist)
   - Reason: Paper assets generated
 - **P2** [PENDING]: Compile final paper PDF from paper_assets
   - Reason: Tables/figures in LaTeX+MD; requires LaTeX compilation (out of scope for V3.17 confidential lightweight)
+
+## 8. Final Gate Rerun Summary (Task Pack 4 — 2026-07-07)
+
+**Final status**: `READY_WITH_LIMITATIONS`
+
+| Metric | Count |
+|---|---|
+| PASS | 40 |
+| WARNING | 3 |
+| BLOCKED | 1 |
+| FAIL | 0 |
+| Total checks | 44 |
+
+### Non-PASS items (all documented)
+
+| Check | Status | Priority | Description | Documented |
+|---|---|---|---|---|
+| 3.4 | BLOCKED | P0 | Format shift blocked documented (sklearn_version_mismatch) | Yes |
+| 6.4 | WARNING | P1 | Audit not yet run (documented) | Yes |
+| 9.1 | WARNING | P0 | Redteam high risk in internal files (release excluded) | Yes |
+| 10.2 | WARNING | P1 | Schema validation has documented failures (blocked experiments) | Yes |
+
+### Changed since previous gate
+
+- Task Pack 2: redteam/release safety reconciliation report added
+- Task Pack 3: BM25 sentence/window corpus recovered from pre-chunked CSV; check 3.2 PASS
+- Task Pack 4: format-shift sklearn block documented; check 3.4 BLOCKED (documented)
+
+### Remaining documented limitations
+
+1. Format-shift R4 eval blocked by `sklearn_version_mismatch` (no-network boundary)
+2. Human audit staged, not executed (no fake `audit_agreement_summary.json`)
+3. Redteam high-risk findings in internal scoring files (excluded from public release)
+4. Schema validation: 2 failures from blocked format-shift experiments
+
+### Next actions
+
+1. Execute human audit when annotators available
+2. Address internal-only redteam high-risk findings or confirm permanent exclusion
+3. Consider sklearn upgrade for format-shift R4 eval (requires network)
 
 ---
 

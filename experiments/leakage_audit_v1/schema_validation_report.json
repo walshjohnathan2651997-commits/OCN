@@ -1,6 +1,6 @@
 {
   "script_name": "run_leakage_audit_v1.py",
-  "timestamp": "2026-07-07T01:36:51",
+  "timestamp": "2026-07-07T13:33:21",
   "n_reports": 9,
   "n_ok": 9,
   "n_fail": 0,
@@ -183,7 +183,17 @@
       "ok": true,
       "keys": [
         "status",
-        "reason",
+        "labels_used_for_sorting",
+        "oracle_used_for_sorting",
+        "raw_text_used_for_sorting",
+        "true_label_used_for_sorting",
+        "oracle_hit_used_for_sorting",
+        "evidence_text_used_for_sorting",
+        "forbidden_fields_found_in_sorting",
+        "allowed_fields_used",
+        "forbidden_fields_checked",
+        "sort_formula",
+        "guard_report_status",
         "path"
       ],
       "required_missing": [],

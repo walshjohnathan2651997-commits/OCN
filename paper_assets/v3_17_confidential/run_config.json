@@ -1,7 +1,7 @@
 {
   "script_name": "generate_paper_assets_v3_17.py",
-  "timestamp": "2026-07-06T18:38:26.311514+00:00",
-  "config_source": "unknown",
+  "timestamp": "2026-07-07T05:34:45.905309+00:00",
+  "config_source": "defaults",
   "guards": {
     "no_api": true,
     "no_network": true,
