@@ -1,6 +1,6 @@
 # Legacy Narrative Scan — V3.17 Confidential Lightweight
 
-Generated: 2026-07-08T06:29:17.227511+00:00
+Generated: 2026-07-08T06:42:49.371791+00:00
 
 > Read-only scan. No files were modified.
 
@@ -36,13 +36,13 @@ Generated: 2026-07-08T06:29:17.227511+00:00
 | CURRENT_MAINLINE.md | 46 | full shared-threshold CESE-OCN | - **full shared-threshold CESE-OCN neural architecture** = future architecture, not current empirical claim |
 | docs/annotation_guidelines_simclaim_eval_v1.md | 5 | human-audited | **Not for:** this guideline must not be used to claim that round1_seed is a benchmark, gold test, or human-audited set. |
 | docs/annotation_guidelines_simclaim_eval_v1.md | 224 | human-audited | 5. **`user_confirmed=true` does not imply `human_audited=true`.** Round1 labels are GPT-annotated + GPT-adjudicated +... |
-| docs/corpus_alignment_audit_guide_zh_v1.md | 117 | gold benchmark | - 不是 gold benchmark。 |
-| docs/corpus_alignment_audit_guide_zh_v1.md | 131 | gold benchmark | - 「small targeted alignment check, not a gold benchmark」 |
-| docs/corpus_alignment_audit_guide_zh_v1.md | 138 | gold benchmark | \| 「gold benchmark」 \| silver diagnostic; not gold \| |
-| docs/corpus_alignment_audit_guide_zh_v1.md | 140 | SOTA | \| 「SOTA」 \| no gold comparison; silver diagnostic only \| |
-| docs/corpus_alignment_audit_guide_zh_v1.md | 141 | automatic peer reviewer | \| 「automatic peer reviewer」 \| not an automatic peer reviewer \| |
-| docs/corpus_alignment_audit_guide_zh_v1.md | 141 | automatic peer reviewer | \| 「automatic peer reviewer」 \| not an automatic peer reviewer \| |
-| docs/corpus_alignment_audit_guide_zh_v1.md | 143 | human-audited | \| 「human-audited validation」 \| only alignment pilot, not label audit \| |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 136 | gold benchmark | - 不是 gold benchmark。 |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 152 | gold benchmark | - 「small targeted alignment check, not a gold benchmark」 |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 159 | gold benchmark | \| 「gold benchmark」 \| silver diagnostic; not gold \| |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 161 | SOTA | \| 「SOTA」 \| no gold comparison; silver diagnostic only \| |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 162 | automatic peer reviewer | \| 「automatic peer reviewer」 \| not an automatic peer reviewer \| |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 162 | automatic peer reviewer | \| 「automatic peer reviewer」 \| not an automatic peer reviewer \| |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 164 | human-audited | \| 「human-audited validation」 \| only alignment pilot, not label audit \| |
 | docs/current_mainline_v3_17.md | 109 | Standalone detector | - "Standalone detector." — R4 standalone viability is false. |
 | docs/current_mainline_v3_17.md | 113 | Full shared-threshold CESE-OCN | - "Full shared-threshold CESE-OCN neural architecture validation." — The older CESE-OCN architecture is development h... |
 | docs/current_mainline_v3_17.md | 133 | human-audited | \| Validation status \| External \| Controlled silver diagnostic only; not gold; not human-audited \| |

@@ -22,21 +22,46 @@ If the completed file exists, writes:
   experiments/corpus_alignment_v1/alignment_cases_redacted.csv  (hash-only, no raw text)
 
 Metrics:
-  n_pilot                          — number of rows in the completed sheet
-  pair_valid_rate                  — fraction where 语料关联性 in {明确相关, 弱相关}
-  topic_only_rate                  — fraction where 语料关联性 == 只是同主题
-  unrelated_rate                   — fraction where 语料关联性 == 基本无关
-  insufficient_context_rate        — fraction where 语料关联性 == 证据不足无法判断
-  selected_evidence_alignment_rate — fraction where selected_evidence关联性 in
-                                      {和claim明确相关, 和claim弱相关}
-  label_eligible_rate              — fraction where 是否可进入标签判断 == 是
-  needs_second_review_rate         — fraction where 是否二审 == 是
+  n_pilot                                  — number of rows in the completed sheet
+  pair_valid_rate                          — fraction where 语料关联性 in {明确相关, 弱相关}
+  topic_only_rate                          — fraction where 语料关联性 == 只是同主题
+  unrelated_rate                           — fraction where 语料关联性 == 基本无关
+  insufficient_context_rate                — fraction where 语料关联性 == 证据不足无法判断
+  selected_evidence_alignment_rate         — fraction where selected_evidence关联性 in
+                                              {和claim明确相关, 和claim弱相关}
+  needs_second_review_rate                 — fraction where 是否二审 == 是
 
-Decision rule on label_eligible_rate:
-  >= 0.85  → proceed with full 111-item human label audit
-  0.70-0.85→ label only eligible subset; rest as corpus noise analysis
-  < 0.70   → stop formal label audit; pivot to corpus alignment /
-             silver diagnostic failure analysis
+  --- Primary decision metrics (split) ---
+  claim_evidence_label_eligible_rate       — fraction where 语料关联性 in {明确相关, 弱相关}
+                                              AND 是否可进入标签判断 == 是.
+                                              Decides whether the corpus can enter
+                                              the formal human label audit.
+  selected_evidence_system_eval_eligible_rate — fraction where selected_evidence关联性
+                                                in {和claim明确相关, 和claim弱相关} (i.e.
+                                                selected_evidence is non-empty and usable).
+                                                Decides whether the system's evidence
+                                                selection can be evaluated.
+  selected_evidence_missing_or_short_rate  — fraction where selected_evidence关联性 ==
+                                              为空或太短. Reports selected_evidence
+                                              coverage problems separately.
+
+  --- Legacy / compatibility ---
+  label_eligible_rate                      — fraction where 是否可进入标签判断 == 是.
+                                              Kept for backward compatibility; NOT the
+                                              sole decision metric anymore.
+
+Decision rule (uses the two split rates independently):
+  claim_evidence_label_eligible_rate:
+    >= 0.85  → proceed with full 111-item human label audit
+    0.70-0.85→ label only eligible subset; rest as corpus noise analysis
+    < 0.70   → stop formal label audit; pivot to corpus alignment /
+               silver diagnostic failure analysis
+
+  selected_evidence_system_eval_eligible_rate:
+    If low (e.g. < 0.50), do NOT claim the model label evaluation failed.
+    Instead report "selected_evidence coverage/alignment insufficient" and
+    treat it as an evidence-selection failure to analyze separately from the
+    label-audit decision.
 
 Hard boundaries:
   - no API, no network, no training
@@ -252,7 +277,10 @@ def compute_metrics(rows: list[dict]) -> dict:
     sel_align_counts = Counter()
     eligible_counts = Counter()
     second_review_yes = 0
-    eligible_rows = 0
+    eligible_rows = 0  # legacy: 是否可进入标签判断 == 是
+    claim_evidence_eligible = 0  # 语料关联性 related AND eligible == 是
+    sel_eval_eligible = 0  # selected_evidence关联性 in related set (non-empty/usable)
+    sel_missing_or_short = 0  # selected_evidence关联性 == 为空或太短
 
     for r in rows:
         ca = r.get(COL_CORPUS_ALIGN, "").strip()
@@ -265,6 +293,14 @@ def compute_metrics(rows: list[dict]) -> dict:
         eligible_counts[el] += 1
         if el in ELIGIBLE_YES:
             eligible_rows += 1
+        # Primary: claim-evidence eligibility (stricter than legacy label_eligible_rate)
+        if ca in CORPUS_ALIGN_VALID_RELATED and el in ELIGIBLE_YES:
+            claim_evidence_eligible += 1
+        # Primary: selected_evidence system-eval eligibility
+        if sa in SEL_ALIGN_VALID_RELATED:
+            sel_eval_eligible += 1
+        if sa == "为空或太短":
+            sel_missing_or_short += 1
         if sr in SECOND_REVIEW_YES:
             second_review_yes += 1
 
@@ -274,18 +310,29 @@ def compute_metrics(rows: list[dict]) -> dict:
     insufficient = sum(corpus_align_counts[k] for k in CORPUS_ALIGN_INSUFFICIENT)
     sel_aligned = sum(sel_align_counts[k] for k in SEL_ALIGN_VALID_RELATED)
 
-    label_eligible_rate = eligible_rows / n
-    decision = decide_decision(label_eligible_rate)
+    legacy_label_eligible_rate = eligible_rows / n
+    claim_evidence_rate = claim_evidence_eligible / n
+    sel_eval_rate = sel_eval_eligible / n
+    sel_missing_rate = sel_missing_or_short / n
+    decision = decide_decision(claim_evidence_rate, sel_eval_rate)
 
     return {
         "n_pilot": n,
+        # Corpus alignment distribution
         "pair_valid_rate": round(pair_valid / n, 4),
         "topic_only_rate": round(topic_only / n, 4),
         "unrelated_rate": round(unrelated / n, 4),
         "insufficient_context_rate": round(insufficient / n, 4),
         "selected_evidence_alignment_rate": round(sel_aligned / n, 4),
-        "label_eligible_rate": round(label_eligible_rate, 4),
         "needs_second_review_rate": round(second_review_yes / n, 4),
+        # Primary split decision metrics
+        "claim_evidence_label_eligible_rate": round(claim_evidence_rate, 4),
+        "selected_evidence_system_eval_eligible_rate": round(sel_eval_rate, 4),
+        "selected_evidence_missing_or_short_rate": round(sel_missing_rate, 4),
+        # Legacy / compatibility
+        "label_eligible_rate": round(legacy_label_eligible_rate, 4),
+        "label_eligible_rate_status": "legacy/compatibility — not the sole decision metric",
+        # Distributions
         "corpus_alignment_distribution": dict(corpus_align_counts),
         "selected_evidence_alignment_distribution": dict(sel_align_counts),
         "eligible_distribution": dict(eligible_counts),
@@ -293,33 +340,65 @@ def compute_metrics(rows: list[dict]) -> dict:
     }
 
 
-def decide_decision(rate: float) -> dict:
-    if rate >= 0.85:
-        return {
-            "tier": "proceed_full_label_audit",
-            "label_eligible_rate_threshold": ">= 0.85",
-            "recommendation": (
-                "Pilot suggests the audit packet is ready for formal 111-item "
-                "human label audit. Proceed with the full label audit."
-            ),
-        }
-    if rate >= 0.70:
-        return {
-            "tier": "eligible_subset_only",
-            "label_eligible_rate_threshold": "0.70 <= r < 0.85",
-            "recommendation": (
-                "Only label the eligible subset; treat the rest as corpus "
-                "noise analysis. Do not run the full 111-item label audit."
-            ),
-        }
-    return {
-        "tier": "stop_formal_label_audit",
-        "label_eligible_rate_threshold": "< 0.70",
-        "recommendation": (
+def decide_decision(claim_evidence_rate: float, sel_eval_rate: float) -> dict:
+    """Two-part decision:
+    1. Primary tier based on claim_evidence_label_eligible_rate (corpus
+       suitability for human label audit).
+    2. Secondary note on selected_evidence_system_eval_eligible_rate
+       (system evidence-selection usability). If low, flag as an
+       evidence-selection failure — do NOT claim model label evaluation
+       failed.
+    """
+    if claim_evidence_rate >= 0.85:
+        tier = "proceed_full_label_audit"
+        ce_threshold = ">= 0.85"
+        ce_rec = (
+            "Pilot suggests the audit packet is ready for formal 111-item "
+            "human label audit. Proceed with the full label audit."
+        )
+    elif claim_evidence_rate >= 0.70:
+        tier = "eligible_subset_only"
+        ce_threshold = "0.70 <= r < 0.85"
+        ce_rec = (
+            "Only label the eligible subset; treat the rest as corpus "
+            "noise analysis. Do not run the full 111-item label audit."
+        )
+    else:
+        tier = "stop_formal_label_audit"
+        ce_threshold = "< 0.70"
+        ce_rec = (
             "Stop formal label audit. Pivot the project to corpus alignment "
             "/ silver diagnostic failure analysis. Do not claim human-audited "
             "validation."
-        ),
+        )
+
+    # Secondary: selected_evidence coverage
+    SEL_LOW_THRESHOLD = 0.50
+    if sel_eval_rate < SEL_LOW_THRESHOLD:
+        sel_note = (
+            f"selected_evidence_system_eval_eligible_rate = {sel_eval_rate:.4f} "
+            f"is low (< {SEL_LOW_THRESHOLD}). Do NOT conclude the model label "
+            f"evaluation failed. Report 'selected_evidence coverage/alignment "
+            f"insufficient' and treat as an evidence-selection failure to "
+            f"analyze separately from the label-audit decision."
+        )
+        sel_status = "insufficient"
+    else:
+        sel_note = (
+            f"selected_evidence_system_eval_eligible_rate = {sel_eval_rate:.4f} "
+            f"is adequate (>= {SEL_LOW_THRESHOLD}). System evidence selection "
+            f"can be evaluated alongside the label audit."
+        )
+        sel_status = "adequate"
+
+    return {
+        "tier": tier,
+        "claim_evidence_label_eligible_rate_threshold": ce_threshold,
+        "claim_evidence_label_eligible_rate": round(claim_evidence_rate, 4),
+        "recommendation": ce_rec,
+        "selected_evidence_system_eval_eligible_rate": round(sel_eval_rate, 4),
+        "selected_evidence_status": sel_status,
+        "selected_evidence_note": sel_note,
     }
 
 
@@ -417,6 +496,16 @@ def render_completed_md(meta: dict, metrics: dict) -> str:
     lines.append("")
     lines.append("## Metrics")
     lines.append("")
+    lines.append("### Primary decision metrics (split)")
+    lines.append("")
+    lines.append("| metric | value | meaning |")
+    lines.append("|---|---|---|")
+    lines.append(f"| claim_evidence_label_eligible_rate | {metrics['claim_evidence_label_eligible_rate']} | 语料关联性 related AND 是否可进入标签判断 == 是 |")
+    lines.append(f"| selected_evidence_system_eval_eligible_rate | {metrics['selected_evidence_system_eval_eligible_rate']} | selected_evidence关联性 in related set (non-empty/usable) |")
+    lines.append(f"| selected_evidence_missing_or_short_rate | {metrics['selected_evidence_missing_or_short_rate']} | selected_evidence关联性 == 为空或太短 |")
+    lines.append("")
+    lines.append("### Corpus alignment distribution")
+    lines.append("")
     lines.append("| metric | value |")
     lines.append("|---|---|")
     for k in [
@@ -426,10 +515,15 @@ def render_completed_md(meta: dict, metrics: dict) -> str:
         "unrelated_rate",
         "insufficient_context_rate",
         "selected_evidence_alignment_rate",
-        "label_eligible_rate",
         "needs_second_review_rate",
     ]:
         lines.append(f"| {k} | {metrics[k]} |")
+    lines.append("")
+    lines.append("### Legacy / compatibility")
+    lines.append("")
+    lines.append("| metric | value | status |")
+    lines.append("|---|---|---|")
+    lines.append(f"| label_eligible_rate | {metrics['label_eligible_rate']} | {metrics['label_eligible_rate_status']} |")
     lines.append("")
     lines.append("## Corpus alignment distribution (语料关联性)")
     lines.append("")
@@ -454,14 +548,24 @@ def render_completed_md(meta: dict, metrics: dict) -> str:
     lines.append("")
     lines.append("## Decision")
     lines.append("")
+    lines.append("### Part 1 — claim-evidence label audit (primary)")
+    lines.append("")
     lines.append(f"- **tier:** {d['tier']}")
-    lines.append(f"- **threshold:** {d['label_eligible_rate_threshold']}")
+    lines.append(f"- **claim_evidence_label_eligible_rate:** {d['claim_evidence_label_eligible_rate']}")
+    lines.append(f"- **threshold:** {d['claim_evidence_label_eligible_rate_threshold']}")
     lines.append(f"- **recommendation:** {d['recommendation']}")
+    lines.append("")
+    lines.append("### Part 2 — selected_evidence system evaluation (secondary)")
+    lines.append("")
+    lines.append(f"- **selected_evidence_system_eval_eligible_rate:** {d['selected_evidence_system_eval_eligible_rate']}")
+    lines.append(f"- **selected_evidence_status:** {d['selected_evidence_status']}")
+    lines.append(f"- **note:** {d['selected_evidence_note']}")
     lines.append("")
     lines.append("## Safe wording")
     lines.append("")
     lines.append("- 「corpus alignment pilot, N={n}」".format(n=metrics["n_pilot"]))
-    lines.append("- 「label_eligible_rate = {r} on the pilot subset」".format(r=metrics["label_eligible_rate"]))
+    lines.append("- 「claim_evidence_label_eligible_rate = {r} on the pilot subset」".format(r=metrics["claim_evidence_label_eligible_rate"]))
+    lines.append("- 「selected_evidence_system_eval_eligible_rate = {r} (evidence-selection coverage)」".format(r=metrics["selected_evidence_system_eval_eligible_rate"]))
     lines.append("- 「small targeted alignment check, not a gold benchmark」")
     lines.append("")
     lines.append("### Forbidden wording (禁止的措辞)")
@@ -515,16 +619,40 @@ def write_pending_summary(reason: str = "no completed file provided") -> None:
     lines.append("- No `alignment_summary.json` (pilot not executed)")
     lines.append("- No `alignment_summary.md` (pilot not executed)")
     lines.append("- No `alignment_cases_redacted.csv` (pilot not executed)")
-    lines.append("- No `label_eligible_rate` computed (pilot not executed)")
+    lines.append("- No `claim_evidence_label_eligible_rate` computed (pilot not executed)")
+    lines.append("- No `selected_evidence_system_eval_eligible_rate` computed (pilot not executed)")
+    lines.append("- No `label_eligible_rate` computed (legacy; pilot not executed)")
     lines.append("- No human-audited validation (pilot not executed)")
     lines.append("")
-    lines.append("## Decision rule (to be applied after pilot completion)")
+    lines.append("## Decision rule (two separate rates, applied after pilot completion)")
     lines.append("")
-    lines.append("| label_eligible_rate | recommendation |")
+    lines.append("After completion, decisions use **two separate rates**:")
+    lines.append("")
+    lines.append("1. `claim_evidence_label_eligible_rate` — decides whether the corpus can enter the formal human label audit.")
+    lines.append("2. `selected_evidence_system_eval_eligible_rate` — decides whether the system's evidence selection can be evaluated.")
+    lines.append("")
+    lines.append("These are independent: a corpus can have good claim-evidence pairs but poor selected_evidence coverage. Do NOT conflate them.")
+    lines.append("")
+    lines.append("### Part 1 — claim-evidence label audit (claim_evidence_label_eligible_rate)")
+    lines.append("")
+    lines.append("| claim_evidence_label_eligible_rate | recommendation |")
     lines.append("|---|---|")
     lines.append("| >= 0.85 | proceed with full 111-item human label audit |")
     lines.append("| 0.70 ~ 0.85 | label only eligible subset; rest as corpus noise analysis |")
     lines.append("| < 0.70 | stop formal label audit; pivot to corpus alignment / silver diagnostic failure analysis |")
+    lines.append("")
+    lines.append("### Part 2 — selected_evidence system evaluation (selected_evidence_system_eval_eligible_rate)")
+    lines.append("")
+    lines.append("| selected_evidence_system_eval_eligible_rate | recommendation |")
+    lines.append("|---|---|")
+    lines.append("| >= 0.50 | system evidence selection can be evaluated alongside the label audit |")
+    lines.append("| < 0.50 | do NOT claim model label evaluation failed; report 'selected_evidence coverage/alignment insufficient' and treat as an evidence-selection failure to analyze separately |")
+    lines.append("")
+    lines.append("`selected_evidence_missing_or_short_rate` is also reported to quantify the coverage gap.")
+    lines.append("")
+    lines.append("### Legacy metric")
+    lines.append("")
+    lines.append("`label_eligible_rate` (是否可进入标签判断 == 是) is kept for backward compatibility but is NOT the sole decision metric anymore.")
     lines.append("")
     lines.append("## Safe wording")
     lines.append("")

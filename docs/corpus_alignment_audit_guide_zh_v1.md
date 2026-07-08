@@ -96,13 +96,32 @@
 
 ## 判定规则（汇总脚本使用）
 
-pilot 完成后，`scripts/summarize_corpus_alignment_pilot_v1.py` 会计算 `label_eligible_rate`（`是否可进入标签判断 = 是` 的比例）并按以下规则给出建议：
+pilot 完成后，`scripts/summarize_corpus_alignment_pilot_v1.py` 会计算 **两个独立的 eligibility rate**。不要把它们混成一个指标——claim-evidence 可判性和系统 selected_evidence 可用性是两件事。
 
-| label_eligible_rate | 建议 |
+### Part 1 — claim-evidence 标签审计（claim_evidence_label_eligible_rate）
+
+定义：`语料关联性 in [明确相关, 弱相关]` 且 `是否可进入标签判断 == 是`。
+
+| claim_evidence_label_eligible_rate | 建议 |
 |---|---|
 | >= 0.85 | 可以继续正式 111 条 human label audit。 |
 | 0.70 ~ 0.85 | 只对 eligible subset 做标签审计；其余作为语料噪声分析。 |
 | < 0.70 | 停止正式标签审计；项目改为 corpus alignment / silver diagnostic failure analysis。 |
+
+### Part 2 — selected_evidence 系统评价（selected_evidence_system_eval_eligible_rate）
+
+定义：`selected_evidence关联性 in [和claim明确相关, 和claim弱相关]`（即 selected_evidence 非空且可用）。
+
+| selected_evidence_system_eval_eligible_rate | 建议 |
+|---|---|
+| >= 0.50 | 系统选证据可用于评价 review queue / screening pipeline。 |
+| < 0.50 | **不要**说模型标签评价失败；应写 `selected_evidence coverage/alignment insufficient`，作为 evidence-selection failure 单独分析。 |
+
+另外报告 `selected_evidence_missing_or_short_rate`（`selected_evidence关联性 == 为空或太短` 的比例），单独量化系统选证据的覆盖问题。
+
+### Legacy 指标
+
+`label_eligible_rate`（`是否可进入标签判断 == 是` 的比例）保留用于向后兼容，但**不再作为唯一决策指标**。
 
 ## 严禁事项
 
@@ -126,7 +145,9 @@ pilot 完成后，`scripts/summarize_corpus_alignment_pilot_v1.py` 会计算 `la
 **Safe wording (允许)**:
 
 - 「corpus alignment pilot, N=30」
-- 「label_eligible_rate = X on the pilot subset」
+- 「claim_evidence_label_eligible_rate = X on the pilot subset」
+- 「selected_evidence_system_eval_eligible_rate = X (evidence-selection coverage)」
+- 「selected_evidence coverage/alignment insufficient — evidence-selection failure to analyze separately」
 - 「pilot suggests the audit packet is / is not ready for formal human label audit」
 - 「small targeted alignment check, not a gold benchmark」
 
