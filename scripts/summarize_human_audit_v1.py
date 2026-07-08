@@ -279,9 +279,9 @@ def quality_check(rows: list[dict], has_bilingual: bool) -> list[str]:
                 errors.append(f"{idx}: 证据是否一致 is empty")
             elif consistency not in set(ZH_CONSISTENCY_MAP.values()):
                 errors.append(f"{idx}: invalid evidence_consistency='{consistency}'")
-            if not sufficiency:
-                errors.append(f"{idx}: 系统证据是否足够 is empty")
-            elif sufficiency not in set(ZH_SUFFICIENCY_MAP.values()):
+            # selected_evidence_sufficiency is OPTIONAL this round.
+            # Only validate if filled; do not error on empty.
+            if sufficiency and sufficiency not in set(ZH_SUFFICIENCY_MAP.values()):
                 errors.append(f"{idx}: invalid selected_evidence_sufficiency='{sufficiency}'")
             if second_review and second_review not in {"True", "False"}:
                 errors.append(f"{idx}: invalid requires_second_review='{second_review}'")
@@ -385,10 +385,21 @@ def compute_metrics(rows: list[dict], has_bilingual: bool) -> dict:
             (r.get("evidence_consistency") or "").strip() or "(missing)"
             for r in rows
         )
-        sufficiency_dist = Counter(
-            (r.get("selected_evidence_sufficiency") or "").strip() or "(missing)"
-            for r in rows
+        # Determine if selected_evidence audit was executed (any sufficiency filled)
+        n_sufficiency_filled = sum(
+            1 for r in rows
+            if (r.get("selected_evidence_sufficiency") or "").strip()
         )
+        selected_evidence_audit_executed = n_sufficiency_filled > 0
+
+        if selected_evidence_audit_executed:
+            sufficiency_dist = Counter(
+                (r.get("selected_evidence_sufficiency") or "").strip() or "(missing)"
+                for r in rows
+            )
+        else:
+            sufficiency_dist = {}
+
         # selection_error_rate: evidence is inconsistent OR selected is empty/too short
         n_selection_error = sum(
             1 for r in rows
@@ -407,7 +418,12 @@ def compute_metrics(rows: list[dict], has_bilingual: bool) -> dict:
             n_second_review / n_filled if n_filled > 0 else None
         )
         metrics["evidence_consistency_distribution"] = dict(consistency_dist)
-        metrics["selected_evidence_sufficiency_distribution"] = dict(sufficiency_dist)
+        metrics["selected_evidence_audit_executed"] = selected_evidence_audit_executed
+        metrics["claim_evidence_human_audit_executed"] = True
+        if selected_evidence_audit_executed:
+            metrics["selected_evidence_sufficiency_distribution"] = dict(sufficiency_dist)
+        else:
+            metrics["selected_evidence_sufficiency_distribution"] = None
         metrics["selection_error_rate"] = (
             round(selection_error_rate, 4) if selection_error_rate is not None else None
         )
@@ -436,7 +452,12 @@ def build_confusion_matrix(rows: list[dict]) -> list[dict]:
 
 
 def build_disagreement_rows(rows: list[dict]) -> list[dict]:
-    """Redacted disagreement rows (no candidate_id, no group_id, no raw text)."""
+    """Redacted disagreement rows (no candidate_id, no group_id, no raw text).
+
+    NOTE: audit_notes (备注) is NOT included in the output because annotator
+    notes may contain claim/evidence text fragments. disagreement_reason is
+    left empty for safety.
+    """
     out: list[dict] = []
     for r in rows:
         a_label = (r.get("auditor_label") or "").strip()
@@ -456,7 +477,10 @@ def build_disagreement_rows(rows: list[dict]) -> list[dict]:
             "auditor_confidence": r.get("auditor_confidence", ""),
             "queue_rank": r.get("queue_rank", ""),
             "queue_source": r.get("queue_source", ""),
-            "disagreement_reason": r.get("disagreement_reason", r.get("audit_notes", "")),
+            # Use structured disagreement_reason if present (English format).
+            # Do NOT fall back to audit_notes (备注) — bilingual annotator
+            # notes may contain claim/evidence text fragments.
+            "disagreement_reason": r.get("disagreement_reason", ""),
         }
         # Include bilingual fields if present
         if r.get("evidence_consistency"):
@@ -538,6 +562,26 @@ def write_summary_md(path: Path, metrics: dict,
 
     # Bilingual-specific metrics
     if has_bilingual:
+        lines.append("### Audit Execution Scope")
+        lines.append("")
+        lines.append("| flag | value |")
+        lines.append("|------|-------|")
+        ce_exec = metrics.get("claim_evidence_human_audit_executed", True)
+        se_exec = metrics.get("selected_evidence_audit_executed", False)
+        lines.append(f"| claim_evidence_human_audit_executed | {ce_exec} |")
+        lines.append(f"| selected_evidence_audit_executed | {se_exec} |")
+        lines.append("")
+        if not se_exec:
+            lines.append("**Note:** selected_evidence audit was NOT executed this round.")
+            lines.append("selected_evidence_sufficiency fields were not filled by the auditor.")
+            lines.append("Do NOT interpret the absence of selected_evidence data as:")
+            lines.append("- human label audit failure")
+            lines.append("- model label disagreement")
+            lines.append("- claim-evidence audit failure")
+            lines.append("selected_evidence coverage is an evidence-selection issue,")
+            lines.append("analyzed separately in the corpus alignment pilot.")
+            lines.append("")
+
         lines.append("### Evidence Consistency & Sufficiency")
         lines.append("")
         lines.append("| Metric | Value |")
@@ -558,7 +602,7 @@ def write_summary_md(path: Path, metrics: dict,
             for k, v in sorted(cons_dist.items()):
                 lines.append(f"| {k} | {v} |")
             lines.append("")
-        suff_dist = metrics.get("selected_evidence_sufficiency_distribution", {})
+        suff_dist = metrics.get("selected_evidence_sufficiency_distribution")
         if suff_dist:
             lines.append("**selected_evidence_sufficiency_distribution:**")
             lines.append("")
@@ -596,9 +640,13 @@ def write_summary_md(path: Path, metrics: dict,
     lines.append("  written by this script.")
     if has_bilingual:
         lines.append("- Bilingual format detected: Chinese labels mapped to English")
-        lines.append("  internally. evidence_consistency and selected_evidence_sufficiency")
-        lines.append("  are auditor-assessed fields (not raw text) and are included in")
-        lines.append("  redacted outputs.")
+        lines.append("  internally. evidence_consistency is an auditor-assessed field")
+        lines.append("  (not raw text) and is included in redacted outputs.")
+        se_exec = metrics.get("selected_evidence_audit_executed", False)
+        if not se_exec:
+            lines.append("- selected_evidence_sufficiency was NOT audited this round.")
+            lines.append("  The auditor did not fill 系统证据是否足够. selected_evidence")
+            lines.append("  coverage is analyzed separately in the corpus alignment pilot.")
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
@@ -797,6 +845,11 @@ def run(args) -> int:
         "input_format": "bilingual_chinese" if has_bilingual else "english",
         "n_loaded": len(rows),
         "n_filled": len(filled_rows),
+        "claim_evidence_human_audit_executed": True,
+        "selected_evidence_audit_executed": (
+            metrics.get("selected_evidence_audit_executed", False)
+            if has_bilingual else None
+        ),
         "metrics": metrics,
         "disclaimer": (
             "Small targeted audit, not a gold benchmark. "

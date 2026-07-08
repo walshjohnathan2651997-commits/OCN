@@ -1,0 +1,12 @@
+silver_label,auditor_label,n
+contradiction_candidate,contradiction_candidate,6
+contradiction_candidate,mild_scope_overclaim,2
+mild_scope_overclaim,contradiction_candidate,11
+mild_scope_overclaim,mild_scope_overclaim,32
+mild_scope_overclaim,supported,5
+strong_action_overclaim,contradiction_candidate,12
+strong_action_overclaim,mild_scope_overclaim,20
+strong_action_overclaim,strong_action_overclaim,2
+strong_action_overclaim,supported,2
+supported,mild_scope_overclaim,2
+supported,supported,17

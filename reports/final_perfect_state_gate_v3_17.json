@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-08T09:35:15.790495+00:00",
+  "generated_at": "2026-07-08T11:34:15.904060+00:00",
   "final_status": "READY_WITH_LIMITATIONS",
   "summary": {
     "total_checks": 44,
-    "pass": 42,
-    "warning": 2,
+    "pass": 43,
+    "warning": 1,
     "blocked": 0,
     "fail": 0
   },
@@ -292,12 +292,12 @@
     {
       "category": "6. Human Audit",
       "check_id": "6.4",
-      "description": "Audit summary missing",
-      "status": "WARNING",
+      "description": "Audit summary exists",
+      "status": "PASS",
       "priority": "P1",
-      "evidence": "Audit dir exists but no summary",
-      "blocked_reason": "Audit incomplete",
-      "next_action": "Complete audit and generate summary"
+      "evidence": "audit_agreement_summary.json present",
+      "blocked_reason": "",
+      "next_action": ""
     },
     {
       "category": "6. Human Audit",
@@ -452,12 +452,6 @@
   ],
   "blocked_items": [],
   "warning_items": [
-    {
-      "check_id": "6.4",
-      "description": "Audit summary missing",
-      "evidence": "Audit dir exists but no summary",
-      "next_action": "Complete audit and generate summary"
-    },
     {
       "check_id": "9.1",
       "description": "Redteam high risk in internal files (release excluded)",

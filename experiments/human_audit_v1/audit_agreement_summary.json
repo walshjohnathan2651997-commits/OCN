@@ -1,0 +1,41 @@
+{
+  "script_name": "summarize_human_audit_v1.py",
+  "timestamp": "2026-07-08T11:32:55.770724+00:00",
+  "audit_file": "D:\\ocn\\data\\private_audit\\v3_17_audit_packet\\audit_packet_simple_zh_bilingual_completed.xlsx",
+  "input_format": "bilingual_chinese",
+  "n_loaded": 111,
+  "n_filled": 111,
+  "claim_evidence_human_audit_executed": true,
+  "selected_evidence_audit_executed": false,
+  "metrics": {
+    "n_filled": 111,
+    "n_decided": 111,
+    "n_uncertain": 0,
+    "n_disagreement": 54,
+    "n_major_disagreement": 2,
+    "silver_vs_auditor_agreement": 0.5135,
+    "any_disagreement_rate": 0.4865,
+    "major_disagreement_rate": 0.018,
+    "uncertain_rate": 0.0,
+    "strong_action_precision_in_top20": 1.0,
+    "strong_action_precision_in_top50": 1.0,
+    "evidence_consistency_distribution": {
+      "inconsistent": 29,
+      "consistent": 31,
+      "partial_consistent": 51
+    },
+    "selected_evidence_audit_executed": false,
+    "claim_evidence_human_audit_executed": true,
+    "selected_evidence_sufficiency_distribution": null,
+    "selection_error_rate": 0.2613,
+    "needs_second_review_rate": 0.5315
+  },
+  "disclaimer": "Small targeted audit, not a gold benchmark. Directional reliability check only. Do not claim human-validated dataset.",
+  "guards": {
+    "no_api": true,
+    "no_network": true,
+    "no_training": true,
+    "no_original_data_modification": true
+  },
+  "no_raw_text_in_outputs": true
+}
