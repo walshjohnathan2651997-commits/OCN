@@ -1,6 +1,6 @@
 # Legacy Narrative Scan — V3.17 Confidential Lightweight
 
-Generated: 2026-07-08T06:12:53.089479+00:00
+Generated: 2026-07-08T06:29:17.227511+00:00
 
 > Read-only scan. No files were modified.
 
@@ -8,12 +8,12 @@ Generated: 2026-07-08T06:12:53.089479+00:00
 
 | Classification | Count |
 |---|---|
-| safe_negation | 437 |
+| safe_negation | 444 |
 | legacy_section | 39 |
 | future_work | 3 |
 | unsafe_current_claim | 0 |
 | ambiguous | 0 |
-| **total** | **479** |
+| **total** | **486** |
 
 ## Gate status
 
@@ -23,7 +23,7 @@ Generated: 2026-07-08T06:12:53.089479+00:00
 
 ## All findings by classification
 
-### safe_negation (437)
+### safe_negation (444)
 
 | Path | Line | Phrase | Context |
 |---|---|---|---|
@@ -36,6 +36,13 @@ Generated: 2026-07-08T06:12:53.089479+00:00
 | CURRENT_MAINLINE.md | 46 | full shared-threshold CESE-OCN | - **full shared-threshold CESE-OCN neural architecture** = future architecture, not current empirical claim |
 | docs/annotation_guidelines_simclaim_eval_v1.md | 5 | human-audited | **Not for:** this guideline must not be used to claim that round1_seed is a benchmark, gold test, or human-audited set. |
 | docs/annotation_guidelines_simclaim_eval_v1.md | 224 | human-audited | 5. **`user_confirmed=true` does not imply `human_audited=true`.** Round1 labels are GPT-annotated + GPT-adjudicated +... |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 117 | gold benchmark | - 不是 gold benchmark。 |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 131 | gold benchmark | - 「small targeted alignment check, not a gold benchmark」 |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 138 | gold benchmark | \| 「gold benchmark」 \| silver diagnostic; not gold \| |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 140 | SOTA | \| 「SOTA」 \| no gold comparison; silver diagnostic only \| |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 141 | automatic peer reviewer | \| 「automatic peer reviewer」 \| not an automatic peer reviewer \| |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 141 | automatic peer reviewer | \| 「automatic peer reviewer」 \| not an automatic peer reviewer \| |
+| docs/corpus_alignment_audit_guide_zh_v1.md | 143 | human-audited | \| 「human-audited validation」 \| only alignment pilot, not label audit \| |
 | docs/current_mainline_v3_17.md | 109 | Standalone detector | - "Standalone detector." — R4 standalone viability is false. |
 | docs/current_mainline_v3_17.md | 113 | Full shared-threshold CESE-OCN | - "Full shared-threshold CESE-OCN neural architecture validation." — The older CESE-OCN architecture is development h... |
 | docs/current_mainline_v3_17.md | 133 | human-audited | \| Validation status \| External \| Controlled silver diagnostic only; not gold; not human-audited \| |
@@ -445,7 +452,7 @@ Generated: 2026-07-08T06:12:53.089479+00:00
 | reports/dataset_provenance_ledger_v3_17.md | 13 | gold benchmark | - not gold benchmark |
 | reports/dataset_provenance_ledger_v3_17.md | 14 | human-audited | - not human-audited benchmark |
 | reports/dataset_provenance_ledger_v3_17.md | 20 | human-audited | > We use a source-traceable controlled silver diagnostic set. The labels are not gold or human-audited, and results s... |
-| reports/final_perfect_state_gate_v3_17.md | 108 | gold benchmark | \| 6.5 \| Never claims gold benchmark \| PASS \| P0 \| Legacy scan confirms no unsafe current claims (unsafe=0) \| |
+| reports/final_perfect_state_gate_v3_17.md | 110 | gold benchmark | \| 6.5 \| Never claims gold benchmark \| PASS \| P0 \| Legacy scan confirms no unsafe current claims (unsafe=0) \| |
 | reports/v3_17_final_delivery_manifest.md | 3 | gold benchmark | > **Mandatory framing.** Controlled silver diagnostic study, not a gold benchmark. Not SOTA. Not an automatic peer re... |
 | reports/v3_17_final_delivery_manifest.md | 3 | SOTA | > **Mandatory framing.** Controlled silver diagnostic study, not a gold benchmark. Not SOTA. Not an automatic peer re... |
 | reports/v3_17_final_delivery_manifest.md | 3 | automatic peer reviewer | > **Mandatory framing.** Controlled silver diagnostic study, not a gold benchmark. Not SOTA. Not an automatic peer re... |
@@ -523,6 +530,7 @@ Generated: 2026-07-08T06:12:53.089479+00:00
 - `README.md`
 - `docs/annotation_guidelines_simclaim_eval_v1.md`
 - `docs/archive/README.md`
+- `docs/corpus_alignment_audit_guide_zh_v1.md`
 - `docs/current_mainline_v3_17.md`
 - `docs/current_mainline_v3_17_confidential.md`
 - `docs/data_card_simclaim_eval.md`

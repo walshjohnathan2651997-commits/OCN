@@ -9,6 +9,13 @@ CURRENT_MAINLINE.md,46,full shared-threshold CESE-OCN,"- **full shared-threshold
 docs/annotation_guidelines_simclaim_eval_v1.md,5,human-audited,"**Not for:** this guideline must not be used to claim that round1_seed is a benchmark, gold test, or human-audited set.",safe_negation,Keep as-is (safe negation).
 docs/annotation_guidelines_simclaim_eval_v1.md,224,human-audited,"5. **`user_confirmed=true` does not imply `human_audited=true`.** Round1 labels are GPT-annotated + GPT-adjudicated + user-final-confirmed, not dual-human-audited gold.",safe_negation,Keep as-is (safe negation).
 docs/archive/README.md,25,Full shared-threshold CESE-OCN,"- **Full shared-threshold CESE-OCN neural architecture.** The dual-branch ordinal calibration network with shared thresholds (`cese/models/`, `cese/losses/`, `cese/calibrator/`) is a future archite...",legacy_section,Keep in legacy section.
+docs/corpus_alignment_audit_guide_zh_v1.md,117,gold benchmark,- 不是 gold benchmark。,safe_negation,Keep as-is (safe negation).
+docs/corpus_alignment_audit_guide_zh_v1.md,131,gold benchmark,"- 「small targeted alignment check, not a gold benchmark」",safe_negation,Keep as-is (safe negation).
+docs/corpus_alignment_audit_guide_zh_v1.md,138,gold benchmark,| 「gold benchmark」 | silver diagnostic; not gold |,safe_negation,Keep as-is (safe negation).
+docs/corpus_alignment_audit_guide_zh_v1.md,140,SOTA,| 「SOTA」 | no gold comparison; silver diagnostic only |,safe_negation,Keep as-is (safe negation).
+docs/corpus_alignment_audit_guide_zh_v1.md,141,automatic peer reviewer,| 「automatic peer reviewer」 | not an automatic peer reviewer |,safe_negation,Keep as-is (safe negation).
+docs/corpus_alignment_audit_guide_zh_v1.md,141,automatic peer reviewer,| 「automatic peer reviewer」 | not an automatic peer reviewer |,safe_negation,Keep as-is (safe negation).
+docs/corpus_alignment_audit_guide_zh_v1.md,143,human-audited,"| 「human-audited validation」 | only alignment pilot, not label audit |",safe_negation,Keep as-is (safe negation).
 docs/current_mainline_v3_17.md,109,Standalone detector,"- ""Standalone detector."" — R4 standalone viability is false.",safe_negation,Keep as-is (safe negation).
 docs/current_mainline_v3_17.md,113,Full shared-threshold CESE-OCN,"- ""Full shared-threshold CESE-OCN neural architecture validation."" — The older CESE-OCN architecture is development history / future architecture, not the current empirical claim.",safe_negation,Keep as-is (safe negation).
 docs/current_mainline_v3_17.md,133,human-audited,| Validation status | External | Controlled silver diagnostic only; not gold; not human-audited |,safe_negation,Keep as-is (safe negation).
@@ -459,7 +466,7 @@ reports/current_project_status_v3_17.md,253,human-audited,"> All results are con
 reports/dataset_provenance_ledger_v3_17.md,13,gold benchmark,- not gold benchmark,safe_negation,Keep as-is (safe negation).
 reports/dataset_provenance_ledger_v3_17.md,14,human-audited,- not human-audited benchmark,safe_negation,Keep as-is (safe negation).
 reports/dataset_provenance_ledger_v3_17.md,20,human-audited,"> We use a source-traceable controlled silver diagnostic set. The labels are not gold or human-audited, and results should not be interpreted as benchmark-level model validation.",safe_negation,Keep as-is (safe negation).
-reports/final_perfect_state_gate_v3_17.md,108,gold benchmark,| 6.5 | Never claims gold benchmark | PASS | P0 | Legacy scan confirms no unsafe current claims (unsafe=0) |,safe_negation,Keep as-is (safe negation).
+reports/final_perfect_state_gate_v3_17.md,110,gold benchmark,| 6.5 | Never claims gold benchmark | PASS | P0 | Legacy scan confirms no unsafe current claims (unsafe=0) |,safe_negation,Keep as-is (safe negation).
 reports/v3_17_final_delivery_manifest.md,3,gold benchmark,"> **Mandatory framing.** Controlled silver diagnostic study, not a gold benchmark. Not SOTA. Not an automatic peer reviewer. Not a validated general detector.",safe_negation,Keep as-is (safe negation).
 reports/v3_17_final_delivery_manifest.md,3,SOTA,"> **Mandatory framing.** Controlled silver diagnostic study, not a gold benchmark. Not SOTA. Not an automatic peer reviewer. Not a validated general detector.",safe_negation,Keep as-is (safe negation).
 reports/v3_17_final_delivery_manifest.md,3,automatic peer reviewer,"> **Mandatory framing.** Controlled silver diagnostic study, not a gold benchmark. Not SOTA. Not an automatic peer reviewer. Not a validated general detector.",safe_negation,Keep as-is (safe negation).

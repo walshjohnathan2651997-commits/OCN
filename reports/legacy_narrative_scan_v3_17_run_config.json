@@ -1,6 +1,6 @@
 {
   "script": "scripts/clean_legacy_narrative_scan_v1.py",
-  "timestamp": "2026-07-08T06:12:53.090428+00:00",
+  "timestamp": "2026-07-08T06:29:17.228454+00:00",
   "scan_targets": [
     "README.md",
     "CURRENT_MAINLINE.md",
@@ -10,11 +10,11 @@
   ],
   "strict": false,
   "counts": {
-    "safe_negation": 437,
+    "safe_negation": 444,
     "legacy_section": 39,
     "future_work": 3
   },
-  "total_findings": 479,
+  "total_findings": 486,
   "unsafe_current_claim_count": 0,
   "ambiguous_count": 0,
   "gate_pass": true

@@ -1,0 +1,20 @@
+field,label_zh,label_en,meaning_zh
+语料关联性,明确相关,clearly_related,evidence_text 直接提供判断 claim 所需信息
+语料关联性,弱相关,weakly_related,evidence_text 有部分信息但上下文不完整
+语料关联性,只是同主题,topic_only,主题相似但无法判断 claim
+语料关联性,基本无关,unrelated,claim 和 evidence_text 看不出实质关系
+语料关联性,证据不足无法判断,insufficient_evidence,文本太短缺上下文或不可理解
+selected_evidence关联性,和claim明确相关,clearly_related_to_claim,selected_evidence 直接提供判断 claim 所需信息
+selected_evidence关联性,和claim弱相关,weakly_related_to_claim,selected_evidence 有部分信息但不够
+selected_evidence关联性,只是同主题,topic_only,selected_evidence 主题相似但无法判断 claim
+selected_evidence关联性,基本无关,unrelated,selected_evidence 和 claim 看不出实质关系
+selected_evidence关联性,为空或太短,empty_or_too_short,selected_evidence 缺失或信息太少
+是否可进入标签判断,是,yes,语料关联性为明确相关或弱相关且证据足以做初步判断
+是否可进入标签判断,否,no,只是同主题基本无关证据不足或 selected_evidence 完全不可用
+不可判原因,无,none,可进入标签判断无需填此列
+不可判原因,claim-evidence无关,claim_evidence_unrelated,claim 和 evidence_text 无实质关系
+不可判原因,selected_evidence无关,selected_evidence_unrelated,selected_evidence 和 claim 无实质关系
+不可判原因,证据太短,evidence_too_short,证据文本太短信息不足
+不可判原因,上下文缺失,context_missing,缺少上下文无法判断
+不可判原因,术语或对象不一致,terminology_mismatch,claim 和 evidence 讨论的对象或术语不匹配
+不可判原因,其他,other,其他无法判断的原因在备注里说明
