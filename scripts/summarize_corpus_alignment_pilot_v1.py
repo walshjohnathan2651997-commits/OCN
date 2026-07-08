@@ -224,6 +224,7 @@ def validate_rows(rows: list[dict]) -> list[dict]:
 
     cleaned = []
     errors = []
+    warnings = []
     for i, r in enumerate(rows, 2):  # row 1 is header
         audit_id = r.get(COL_AUDIT_ID, "").strip()
         if not audit_id:
@@ -254,7 +255,40 @@ def validate_rows(rows: list[dict]) -> list[dict]:
                 f"row {i} ({audit_id}): {COL_ELIGIBLE}=否 but "
                 f"{COL_NOTJUDGABLE_REASON} is empty or '无'"
             )
+
+        # ---- selected_evidence consistency hard checks ----
+        sel_orig = r.get(COL_SEL_ORIG, "").strip()
+        sufficiency = r.get(COL_SUFFICIENCY, "").strip()
+        if not sel_orig:
+            # selected_evidence_原文 is empty → selected_evidence关联性 MUST be 为空或太短
+            if sel_align and sel_align != "为空或太短":
+                errors.append(
+                    f"row {i} ({audit_id}): {COL_SEL_ORIG} is empty but "
+                    f"{COL_SEL_ALIGN}={sel_align!r}; must be '为空或太短'"
+                )
+            # selected_evidence_原文 is empty → 系统证据是否足够 MUST NOT be 足够
+            if sufficiency == "足够":
+                errors.append(
+                    f"row {i} ({audit_id}): {COL_SEL_ORIG} is empty but "
+                    f"{COL_SUFFICIENCY}='足够'; must not be '足够' when "
+                    f"selected_evidence is empty"
+                )
+        else:
+            # selected_evidence_原文 is non-empty but marked 为空或太短 → WARNING only
+            if sel_align == "为空或太短":
+                warnings.append(
+                    f"row {i} ({audit_id}): {COL_SEL_ORIG} is non-empty but "
+                    f"{COL_SEL_ALIGN}='为空或太短' (annotator may have mislabeled)"
+                )
+
         cleaned.append(r)
+
+    if warnings:
+        print(f"VALIDATION WARNINGS ({len(warnings)}):", file=sys.stderr)
+        for w in warnings[:20]:
+            print(f"  {w}", file=sys.stderr)
+        if len(warnings) > 20:
+            print(f"  ... and {len(warnings) - 20} more", file=sys.stderr)
 
     if errors:
         print("VALIDATION ERRORS:", file=sys.stderr)

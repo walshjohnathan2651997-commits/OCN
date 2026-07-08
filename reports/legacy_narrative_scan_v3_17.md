@@ -1,6 +1,6 @@
 # Legacy Narrative Scan — V3.17 Confidential Lightweight
 
-Generated: 2026-07-08T06:42:49.371791+00:00
+Generated: 2026-07-08T09:34:59.821456+00:00
 
 > Read-only scan. No files were modified.
 

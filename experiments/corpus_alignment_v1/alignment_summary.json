@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "generated_at": "2026-07-08T09:34:19.102909+00:00",
+    "source_file": "data/private_audit/v3_17_audit_packet/audit_packet_alignment_pilot_completed.xlsx",
+    "source_file_name": "audit_packet_alignment_pilot_completed.xlsx",
+    "n_rows": 30
+  },
+  "metrics": {
+    "n_pilot": 30,
+    "pair_valid_rate": 1.0,
+    "topic_only_rate": 0.0,
+    "unrelated_rate": 0.0,
+    "insufficient_context_rate": 0.0,
+    "selected_evidence_alignment_rate": 0.1,
+    "needs_second_review_rate": 0.0,
+    "claim_evidence_label_eligible_rate": 1.0,
+    "selected_evidence_system_eval_eligible_rate": 0.1,
+    "selected_evidence_missing_or_short_rate": 0.9,
+    "label_eligible_rate": 1.0,
+    "label_eligible_rate_status": "legacy/compatibility — not the sole decision metric",
+    "corpus_alignment_distribution": {
+      "明确相关": 30
+    },
+    "selected_evidence_alignment_distribution": {
+      "为空或太短": 27,
+      "和claim弱相关": 3
+    },
+    "eligible_distribution": {
+      "是": 30
+    },
+    "decision": {
+      "tier": "proceed_full_label_audit",
+      "claim_evidence_label_eligible_rate_threshold": ">= 0.85",
+      "claim_evidence_label_eligible_rate": 1.0,
+      "recommendation": "Pilot suggests the audit packet is ready for formal 111-item human label audit. Proceed with the full label audit.",
+      "selected_evidence_system_eval_eligible_rate": 0.1,
+      "selected_evidence_status": "insufficient",
+      "selected_evidence_note": "selected_evidence_system_eval_eligible_rate = 0.1000 is low (< 0.5). Do NOT conclude the model label evaluation failed. Report 'selected_evidence coverage/alignment insufficient' and treat as an evidence-selection failure to analyze separately from the label-audit decision."
+    }
+  }
+}
