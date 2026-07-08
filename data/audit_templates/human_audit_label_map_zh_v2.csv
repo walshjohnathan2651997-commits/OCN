@@ -1,0 +1,14 @@
+field,label_zh,label_en,meaning_zh
+人工标签,支持,supported,证据基本支持 claim
+人工标签,轻微过度,mild_scope_overclaim,claim 比证据说得更宽更确定
+人工标签,强行动过度,strong_action_overclaim,claim 加入部署真实应用自动决策安全保证政策行动工程落地等证据未支持的含义
+人工标签,矛盾,contradiction_candidate,claim 和证据方向相反
+人工标签,不确定,uncertain_insufficient_context,证据不足或难判断
+证据是否一致,一致,consistent,selected_evidence 和 evidence_text 表达基本相同
+证据是否一致,部分一致,partial_consistent,selected_evidence 只覆盖 evidence_text 的一部分
+证据是否一致,不一致,inconsistent,selected_evidence 选偏和 evidence_text 重点不同
+证据是否一致,selected为空或太短,selected_empty_or_too_short,selected_evidence 缺失或信息太少
+系统证据是否足够,足够,sufficient,只看 selected_evidence 就能判断 claim
+系统证据是否足够,部分足够,partial_sufficient,selected_evidence 有帮助但还要看 evidence_text
+系统证据是否足够,不足,insufficient,selected_evidence 不够主要靠 evidence_text 判断
+系统证据是否足够,无法判断,cannot_judge,两个证据都不够或看不懂

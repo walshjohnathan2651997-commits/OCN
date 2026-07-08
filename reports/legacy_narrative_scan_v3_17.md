@@ -1,6 +1,6 @@
 # Legacy Narrative Scan — V3.17 Confidential Lightweight
 
-Generated: 2026-07-07T17:35:15.551257+00:00
+Generated: 2026-07-08T06:12:53.089479+00:00
 
 > Read-only scan. No files were modified.
 
@@ -8,12 +8,12 @@ Generated: 2026-07-07T17:35:15.551257+00:00
 
 | Classification | Count |
 |---|---|
-| safe_negation | 431 |
+| safe_negation | 437 |
 | legacy_section | 39 |
 | future_work | 3 |
 | unsafe_current_claim | 0 |
 | ambiguous | 0 |
-| **total** | **473** |
+| **total** | **479** |
 
 ## Gate status
 
@@ -23,7 +23,7 @@ Generated: 2026-07-07T17:35:15.551257+00:00
 
 ## All findings by classification
 
-### safe_negation (431)
+### safe_negation (437)
 
 | Path | Line | Phrase | Context |
 |---|---|---|---|
@@ -72,6 +72,12 @@ Generated: 2026-07-07T17:35:15.551257+00:00
 | docs/dataset_version_lock_v3_17.md | 33 | human-audited | - **Not** a human-audited benchmark. |
 | docs/dataset_version_lock_v3_17.md | 40 | human-audited | > labels are not gold or human-audited, and results should not be |
 | docs/dataset_version_lock_v3_17.md | 171 | human-audited | 2. **Not human-audited.** `human_audited=False` for all 444 rows. The |
+| docs/human_audit_annotation_guide_zh_v2.md | 100 | gold benchmark | - 不是 gold benchmark。 |
+| docs/human_audit_annotation_guide_zh_v2.md | 109 | gold benchmark | - 「small targeted audit, not a gold benchmark」 |
+| docs/human_audit_annotation_guide_zh_v2.md | 118 | gold benchmark | \| 「gold benchmark」 \| silver diagnostic; not gold \| |
+| docs/human_audit_annotation_guide_zh_v2.md | 120 | SOTA | \| 「SOTA」 \| no gold comparison; silver diagnostic only \| |
+| docs/human_audit_annotation_guide_zh_v2.md | 121 | automatic peer reviewer | \| 「automatic peer reviewer」 \| not an automatic peer reviewer \| |
+| docs/human_audit_annotation_guide_zh_v2.md | 121 | automatic peer reviewer | \| 「automatic peer reviewer」 \| not an automatic peer reviewer \| |
 | docs/human_audit_protocol_v1.md | 6 | gold benchmark | diagnostic candidate pool. The audit is **not** a gold benchmark and must not be |
 | docs/human_audit_protocol_v1.md | 26 | gold benchmark | - Not a gold benchmark. |
 | docs/human_audit_protocol_v1.md | 154 | human-audited | states "audit packet prepared; audit not yet executed" and "no human-audited |
@@ -439,7 +445,7 @@ Generated: 2026-07-07T17:35:15.551257+00:00
 | reports/dataset_provenance_ledger_v3_17.md | 13 | gold benchmark | - not gold benchmark |
 | reports/dataset_provenance_ledger_v3_17.md | 14 | human-audited | - not human-audited benchmark |
 | reports/dataset_provenance_ledger_v3_17.md | 20 | human-audited | > We use a source-traceable controlled silver diagnostic set. The labels are not gold or human-audited, and results s... |
-| reports/final_perfect_state_gate_v3_17.md | 110 | gold benchmark | \| 6.5 \| Never claims gold benchmark \| PASS \| P0 \| Legacy scan confirms no unsafe current claims (unsafe=0) \| |
+| reports/final_perfect_state_gate_v3_17.md | 108 | gold benchmark | \| 6.5 \| Never claims gold benchmark \| PASS \| P0 \| Legacy scan confirms no unsafe current claims (unsafe=0) \| |
 | reports/v3_17_final_delivery_manifest.md | 3 | gold benchmark | > **Mandatory framing.** Controlled silver diagnostic study, not a gold benchmark. Not SOTA. Not an automatic peer re... |
 | reports/v3_17_final_delivery_manifest.md | 3 | SOTA | > **Mandatory framing.** Controlled silver diagnostic study, not a gold benchmark. Not SOTA. Not an automatic peer re... |
 | reports/v3_17_final_delivery_manifest.md | 3 | automatic peer reviewer | > **Mandatory framing.** Controlled silver diagnostic study, not a gold benchmark. Not SOTA. Not an automatic peer re... |
@@ -525,6 +531,7 @@ Generated: 2026-07-07T17:35:15.551257+00:00
 - `docs/dataset_shortcut_risk_v1.md`
 - `docs/dataset_version_lock_v3_17.md`
 - `docs/how_to_upgrade_to_paper_full.md`
+- `docs/human_audit_annotation_guide_zh_v2.md`
 - `docs/human_audit_protocol_v1.md`
 - `docs/next_phase_benchmark_plan.md`
 - `docs/paper_outline_v3_17_confidential.md`
