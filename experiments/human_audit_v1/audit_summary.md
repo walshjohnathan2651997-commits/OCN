@@ -1,6 +1,6 @@
 # Human Audit Summary (v1)
 
-Generated: 2026-07-08T11:32:55.773018+00:00
+Generated: 2026-07-08T11:46:24.399200+00:00
 
 Input format: bilingual Chinese (xlsx/csv)
 
@@ -61,9 +61,11 @@ analyzed separately in the corpus alignment pilot.
 
 ### Evidence Consistency & Sufficiency
 
+**selected_evidence_audit_executed = false; therefore no human-verified selected-evidence sufficiency or selected-evidence error rate is reported in the main audit summary.**
+
 | Metric | Value |
 |--------|-------|
-| selection_error_rate | 0.2613 |
+| evidence_consistency_error_rate | 0.2613 |
 | needs_second_review_rate | 0.5315 |
 
 **evidence_consistency_distribution:**

@@ -1,0 +1,28 @@
+{
+  "script_name": "check_selected_evidence_alignment_v1.py",
+  "timestamp": "2026-07-08T11:46:57.139775+00:00",
+  "input_file": "D:\\ocn\\data\\private_audit\\v3_17_audit_packet\\audit_packet_simple_zh_bilingual_completed.xlsx",
+  "n_total": 111,
+  "selected_evidence_human_audit_executed": false,
+  "selected_evidence_automatic_alignment_check_executed": true,
+  "selected_evidence_nonempty_count": 111,
+  "selected_evidence_missing_or_invalid_count": 59,
+  "class_counts": {
+    "missing_or_invalid": 59,
+    "exact_or_contained": 8,
+    "conflict_candidate": 3,
+    "high_overlap": 0,
+    "partial_overlap": 22,
+    "low_or_unrelated": 19
+  },
+  "exact_or_contained_count": 8,
+  "high_overlap_count": 0,
+  "partial_overlap_count": 22,
+  "low_or_unrelated_count": 19,
+  "conflict_candidate_count": 3,
+  "selected_evidence_strong_alignment_rate": 0.0721,
+  "selected_evidence_usable_alignment_rate": 0.2703,
+  "coverage_assessment": "selected_evidence trace coverage/alignment is insufficient for treating selected_evidence as a reliable explanation of the model's screening decision.",
+  "disclaimer": "This is an automatic text-alignment check, NOT a human audit. The result is automatic trace-coverage analysis, not human-verified selected-evidence sufficiency. selected_evidence was not manually audited.",
+  "no_raw_text_in_outputs": true
+}

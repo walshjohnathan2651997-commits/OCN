@@ -1,6 +1,6 @@
 {
   "script_name": "summarize_human_audit_v1.py",
-  "timestamp": "2026-07-08T11:32:55.770724+00:00",
+  "timestamp": "2026-07-08T11:46:24.396724+00:00",
   "audit_file": "D:\\ocn\\data\\private_audit\\v3_17_audit_packet\\audit_packet_simple_zh_bilingual_completed.xlsx",
   "input_format": "bilingual_chinese",
   "n_loaded": 111,
@@ -27,7 +27,9 @@
     "selected_evidence_audit_executed": false,
     "claim_evidence_human_audit_executed": true,
     "selected_evidence_sufficiency_distribution": null,
+    "evidence_consistency_error_rate": 0.2613,
     "selection_error_rate": 0.2613,
+    "selection_error_rate_note": "Derived from 证据是否一致 (claim-evidence audit), NOT from selected_evidence_sufficiency. Not a selected_evidence human audit result.",
     "needs_second_review_rate": 0.5315
   },
   "disclaimer": "Small targeted audit, not a gold benchmark. Directional reliability check only. Do not claim human-validated dataset.",

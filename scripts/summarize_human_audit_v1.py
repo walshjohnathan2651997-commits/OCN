@@ -400,14 +400,16 @@ def compute_metrics(rows: list[dict], has_bilingual: bool) -> dict:
         else:
             sufficiency_dist = {}
 
-        # selection_error_rate: evidence is inconsistent OR selected is empty/too short
-        n_selection_error = sum(
+        # evidence_consistency_error_rate: derived from 证据是否一致 (claim-evidence
+        # audit field), NOT from selected_evidence_sufficiency. Counts rows where
+        # the auditor marked evidence as inconsistent or selected as empty/too short.
+        n_evidence_error = sum(
             1 for r in rows
             if (r.get("evidence_consistency") or "").strip()
                in {"inconsistent", "selected_empty_or_too_short"}
         )
-        selection_error_rate = (
-            n_selection_error / n_filled if n_filled > 0 else None
+        evidence_consistency_error_rate = (
+            n_evidence_error / n_filled if n_filled > 0 else None
         )
         # needs_second_review_rate
         n_second_review = sum(
@@ -424,8 +426,16 @@ def compute_metrics(rows: list[dict], has_bilingual: bool) -> dict:
             metrics["selected_evidence_sufficiency_distribution"] = dict(sufficiency_dist)
         else:
             metrics["selected_evidence_sufficiency_distribution"] = None
-        metrics["selection_error_rate"] = (
-            round(selection_error_rate, 4) if selection_error_rate is not None else None
+        metrics["evidence_consistency_error_rate"] = (
+            round(evidence_consistency_error_rate, 4)
+            if evidence_consistency_error_rate is not None else None
+        )
+        # Deprecated alias — same value, kept for backward compatibility.
+        # Do NOT interpret as a selected_evidence human audit result.
+        metrics["selection_error_rate"] = metrics["evidence_consistency_error_rate"]
+        metrics["selection_error_rate_note"] = (
+            "Derived from 证据是否一致 (claim-evidence audit), NOT from "
+            "selected_evidence_sufficiency. Not a selected_evidence human audit result."
         )
         metrics["needs_second_review_rate"] = (
             round(needs_second_review_rate, 4) if needs_second_review_rate is not None else None
@@ -584,14 +594,16 @@ def write_summary_md(path: Path, metrics: dict,
 
         lines.append("### Evidence Consistency & Sufficiency")
         lines.append("")
+        if not se_exec:
+            lines.append("**selected_evidence_audit_executed = false; therefore no "
+                         "human-verified selected-evidence sufficiency or "
+                         "selected-evidence error rate is reported in the main "
+                         "audit summary.**")
+            lines.append("")
         lines.append("| Metric | Value |")
         lines.append("|--------|-------|")
-        for k in [
-            "selection_error_rate",
-            "needs_second_review_rate",
-        ]:
-            v = metrics.get(k)
-            lines.append(f"| {k} | {v if v is not None else 'n/a'} |")
+        lines.append(f"| evidence_consistency_error_rate | {metrics.get('evidence_consistency_error_rate', 'n/a')} |")
+        lines.append(f"| needs_second_review_rate | {metrics.get('needs_second_review_rate', 'n/a')} |")
         lines.append("")
         cons_dist = metrics.get("evidence_consistency_distribution", {})
         if cons_dist:
